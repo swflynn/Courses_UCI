@@ -15,7 +15,11 @@ MWF 10-10:50(am); PSCB 240
 `Friday:` 12-12:50(pm); DBH 142. 
 
 #### Textbook:
-The suggested text for the class is `Physical Chemistry Thermodynamics, Structure, and Change (10 Edition)` by Peter Atkins and Julio de Paula. 
+The suggested text for the class are:
+
+Quantum Mechanics, Volume 1 and 2. Claude Cohen-Tannoudji, Bernard Diu, Frack Laloe
+Publisher: Wiley-VCN, ISBN 978-0-471-164-33-3
+
 
 ## Lecture_notes:
 Directory containing typed Lecture Notes from the course. 
