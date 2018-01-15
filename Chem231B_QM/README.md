@@ -98,7 +98,7 @@ Because the original repo (owned by swflynn) will be constantly changing as ever
 To see what repositores are remotes try `$ git remote -v`.
 This hsould show YOUR version of the course (not swflynn). 
 We need to add the original upstream (owned by swflynn) to this list. 
-To do this:
+To do this go into the Courses_UCI directory and type the following:
 
 `$ git remote add upstream "the url from swflynn page under copy/download"`.
 
