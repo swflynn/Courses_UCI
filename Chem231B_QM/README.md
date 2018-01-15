@@ -131,7 +131,7 @@ A simple way to do this in one step is the following
 
 `$ git add .`
 
-Which will add all changes  to be  saved.
+Which will add all changes to be saved.
 
 Finally we need to commit to saving these changes.
 This is done using
