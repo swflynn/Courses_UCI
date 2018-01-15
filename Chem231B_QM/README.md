@@ -1,7 +1,7 @@
 # Welcome:
 You have found my notes for Applications of Quantum Mechanics, Chem231B at UCI (Winter 2018).
 
-Topics included are: (TBD)
+Topics included are: (Harmonic Oscillator, Quantum Harmonic Oscillator, ...)
 
 ## Instructors:
 The instructor for the course is `Dr. Shaul Mukamel`.
@@ -20,16 +20,17 @@ The suggested text for the class are:
 Quantum Mechanics, Volume 1 and 2. Claude Cohen-Tannoudji, Bernard Diu, Frack Laloe
 Publisher: Wiley-VCN, ISBN 978-0-471-164-33-3
 
-
 ## Lecture_notes:
 Directory containing typed Lecture Notes from the course.
 Each lecture is written in a LaTex file (name.tex) and compiled to pdf.
 
 ## Github Crashcourse
-Github is essentially a tool for source control (tracking a document in time, saving all verisons and changes made to that document), and for working with other people.
-Highlight working with others, we will use this tool to develop lecture notes for this course.
-This is made extremly easy, you just need to read the below guide and should be ready to contribute to this project in a few minutes!
-Please note: The tutorial will be for running on a mac, if you are using a different operating system the idea is the same, but you will need to look up your specific operating system install process (windows people may want to look into git bash).
+Github is a tool for source control (tracking a document in time, saving all verisons and changes made to that document), and for collaborating and developing projects with other people.
+
+We will use this resource for developing lecture notes for a graduate course in Quantum Mechanics.
+To contribute to the project just read the example work-flow provided below (there are fancier things you can learn/read about using Git/Github, but all the essentials are covered below).
+Please note: The tutorial will be for running on a Mac.
+If you are using a different operating system the idea is the same (all of the git commands are the same), but you will need to look up your specific operating system install process (windows people may want to look into git bash).
 
 #### Github Install
 To get started you will need to make a `Github` account; Please Note: most people see/use Github as a professional tool.
@@ -47,7 +48,7 @@ On mac git will actually come installed on your device.
 It will be an older version of git and you should really get the most recent version.
 To do this you are going to need Xcode and the Xcode command line tools, on mac you can follow the [Xcode](https://github.com/swflynn/fortran_tutorials/tree/master/fortran_crashcourse/00) install section here (Note: Just scroll down to the Xcode install section, you do not need anything else).
 
-Now that you have Xcode on your machine you can go download [Git}(https://git-scm.com/downloads).
+Now that you have Xcode on your machine you can go download [Git](https://git-scm.com/downloads).
 Run the dmg file and follow the prompts to get Git.
 Once the install is done type the following into your terminal to make sure everything worked (do not type $, it just implies to be typed into terminal).
 
