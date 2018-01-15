@@ -33,7 +33,7 @@ Please note: The tutorial will be for running on a mac, if you are using a diffe
 
 #### Github Install
 To get started you will need to make a `Github` account; Please Note: most people see/use Github as a professional tool.
-Remember that when making your account (*(*(*_*)*)*)
+Remember that when making your account. 
 You may find Github to be a useful tool and continue to use it in the future.
 If you use an edu email you will get access to some extra tools in Github which  may be useful in your future developments.
 
