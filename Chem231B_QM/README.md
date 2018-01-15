@@ -148,8 +148,9 @@ If this does not work for some reason (your configuration is not  set up correct
 
 Which tells git to push to the master copy on your Github (the main version). 
 
-Now that you have saved chagnes you are happy with, your should update the original version owned by swflynn. 
-To do this, go to the swflynn repo (the original) and click `New Pull Request` and make a pull request.
+Now that you have saved changes you are happy with, you should update the original version owned by swflynn. 
+To do this, go to your Github repo for the course and select Create New Pull Request. 
+As long as everything checks out you should get a green message and submit the pull request. 
 swflynn will need to review your changes and add them to the original account.
 Please see the [Official](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) Giithub guide if you are confused. 
 
