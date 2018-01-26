@@ -14,11 +14,99 @@
 \newcommand{\eenum}{\end{enumerate}}
 \newcommand{\pd}{\partial}
 % Title Information
-\title{Chem132A: Lecture 21}
-\author{Shane Flynn (swflynn@uci.edu)}
+\title{Chem132A: Lecture 1}
+\author{Shane Flynn (swflynn@uci.edu), Moises Romero (moiseser@uci.edu}
 \date{11/27/17}
 
 \begin{document}
 \maketitle
+
+\section{Importance of Harmonic Oscillator (H.O.)}
+Many systems can be explained (approximately) using the H.O. equations.
+The H.O.is a good approximation for low energy levels (systems near equilibrium). 
+It can represent any bound system. 
+It is also useful in many body systems. 
+
+\section{Classical Harmonic Oscillator}
+We will first discuss the H.O. in a classical system. 
+Consider the potential energy function for a particle of a mass(m) moving in a potential only dependent on position (x). Where k is the spring constant. 
+\be
+V(x) = \frac{1}{2}kx^2
+\ee
+
+We can determine an expression for Force using : 
+\be
+F_x=-\frac{\partial V}{\partial x} = -kx
+\ee
+We can see that the H.O. is a restoring force, and thus the the particle is attraced to x=0 [minimum of potential function V(x)]
+
+A particles motion around x=0 is a sinusoidal of an angular frequency ($\omega$) 
+\be
+\omega=\sqrt{\frac{k}{m}}
+\ee
+
+We can find a mathematical expression for k using the Force expression : 
+\be
+k=\frac{\partial^2V}{\partial^2x}
+\ee
+
+Using Newtons Second Law we can write an equation of motion for the H.O.
+\be
+F=ma=m\frac{d^2x}{dt^2}=\frac{-dV}{dx}=-kx
+\ee
+Solving this differntial equation gives the general solution to describe a H.O. motion : 
+\be
+x=x_Mcos(\omega t - \phi)
+\ee
+Where $x_M$ and $\phi$ are constants and values are determined by initial conditions of the H.O. 
+
+%This is missing E=T+V and then subsitiing the equation of motion in to prove it is time indepent etc to show where the Hamoltonian is derived from in QM, and then taylor expansion section from the book - Moises
+
+
+
+
+
+
+
+
+
+\section{Properties of QM Hamiltonian}
+In Quantum mechanics position and momentum are described by their respective operators X and P. 
+Which when taking the commutator yieled the following relationsip : 
+\be
+[X,P]=i\hbar
+\ee
+\be
+[P,X]=-i\hbar
+\ee
+%needs derivation to be added / explantion - Moises
+
+The Hamiltonian for the quantum Harmonic Oscillator is then taken from the classical representation but taking x and replacing it with the operator X.
+\be
+H=\frac{p^2}{2m} + \frac{1}{2}m\omega^2X^2
+\ee
+%The notes has some symmetry operator which i dont understand at all the book has similar notes on it in a small paragraph - Moises
+\section{Eigenvalues of the Hamiltonian}
+
+\subsection{$\hat{X}$ and $\hat{P}$ Operators}
+
+X and P have dimensions of legnth and momentum we want to define two new dimensionless operators. We will use S.I. units for dimensional analysis, and recall that angular frequency $\omega$  has units of inverse time,$\hbar$=Js and that a Joule is J=kg*m$^2$s$^{-2}$
+
+For X : 
+\be
+\hat{X}=\sqrt{\frac{m\omega}{\hbar}}X=\left(\frac{kgs^{-1}}{Js})\right)^{\frac{1}{2}}m = \left(\frac{kg}{kgm^{2}s^{-2}s^{2}}\right)^{\frac{1}{2}}m = \left(\frac{1}{m^2}\right)^{\frac{1}{2}} m = \frac{1}{m}m = 1
+\ee
+For P : 
+\be
+\hat{P} = \frac{1}{\sqrt{m\hbar \omega}} P = \frac{1}{\sqrt{kg *J*s*s^{-1}}} P = \frac{1}{\sqrt{kg*kg*m^2s^{-2}}} P = \frac{1}{\sqrt{\frac{kg^2m^2}{s^2}}} P = \frac{1}{\frac{kg*m}{s}}*kg*m*s^{-1} = 1
+\ee
+
+Thus we see that $\hat{X}$ and $\hat{P}$ are dimensionless
+
+We now want to see the commutator relationship of our new operators. 
+\be
+[\hat{X},\hat{P}] = \hat{X}\hat{P} - \hat{P}\hat{X}
+\ee
+
 
 \end{document}
