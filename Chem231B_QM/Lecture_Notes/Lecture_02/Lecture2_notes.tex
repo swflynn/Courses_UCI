@@ -1,0 +1,62 @@
+\documentclass{article}
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{hyperref}
+\usepackage[version=4]{mhchem}
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+% Title Information
+\title{Chem231B: Lecture 2}
+\author{Shane Flynn}
+\date{1/9/18}
+
+\begin{document}
+\maketitle
+
+\section*{Lecture 1 Recap}
+From Lecture 1 we found the eigenvalues (of $\hat{H}$) for the Quantum Harmonic Oscillator are given by
+\be
+E_n = \left( n+\frac{1}{2} \right) \hbar \omega
+\ee
+We also found that we could express the Hamiltonian in terms of our new creationa nd anniliation operators as 
+\be
+\hat{H} = \left(a^\dg\right) 
+\ee
+Finally we introduced (defined) the Number Operator $\hat{N}$ (which is a Hermitian Operator). 
+\be
+\hat{N} \equiv a^\dg a
+\ee
+
+\section*{Operator Algebra}
+A cornerstone of this course will be the use of operators to solve Quantum Mechanics Problems. 
+By using the operator formulation of Qm we can completly ignore the wavefunction and instead compute observables from just the algebraic manipulations of opertors.
+This means we can ignore solving the various integrals and differential equations commonly found in the wave function formulation. 
+
+\section*{The Ground State}
+We can consider the ground state energy of the HO, which has an Eigenvalue (Eigen Energy) of
+\be
+E_0 = \frac{\hbar \omega}{2}
+\ee
+And its associated eigenvector satifies
+\be
+a\ket{\phi_0} = 0
+\ee
+This is a differential equation, we can substitute in the forms of the operators and find
+\be
+\begin{split}
+    a = \frac{1}{\sqrt{2}}\left(\hat{X} + i\hat{P}\right)
+\end{split}
+\ee
+
+
+
+\end{document}
