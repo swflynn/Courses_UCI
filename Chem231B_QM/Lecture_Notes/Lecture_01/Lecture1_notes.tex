@@ -16,36 +16,36 @@
 \newcommand{\pd}{\partial}
 % Title Information
 \title{Chem132A: Lecture 1}
-\author{Shane Flynn (swflynn@uci.edu), Moises Romero (moiseser@uci.edu}
+\author{Shane Flynn (swflynn@uci.edu), Moises Romero (moiseser@uci.edu), Alan Robledo (arobled1@uci.edu)}
 
-\date{1/8/18}
+\date{1/28/18}
 
 \begin{document}
 \maketitle
 
 \section*{Course Overview}
-The course will be broken into two general topics.
-The first being the principles of Qantum Mechanics, and t he second being special topics from the literature. 
-Students are encouraged to suggest  literature topics to be covered in the second half of the course. 
+The course will be broken up into two general topics.
+The first being the principles of Quantum Mechanics, and the second being special topics from the literature.
+Students are encouraged to suggest literature topics to be covered in the second half of the course.
 
 \subsubsection*{Logistics}
-Ther eis no TA for the course, therefore homework willbe assigned and solutions willl be provided, but only the Midterm and Final examinations will be graded.
-There are discussion sections for the course (Tuesday and Friday) however, these will only be used to provide make-up lectures. 
+There is no TA for the course. Therefore, homework will be assigned and solutions will be provided, but only the Midterm and Final examinations will be graded.
+There are discussion sections for the course (Tuesday and Friday). However, these will only be used to provide make-up lectures.
 
 \section*{Chapter 5; The Harmonic Oscillator}
-We begin the course by discussing Ch.5 in Tannoudji (P.480), the Harmonic Oscillator. 
-The HO is a useful model throughout physics because it can be solved analytically (is some cases), and provides an intuition for methods and techniques in Quantum Mechanics. 
-Some common problems modeled by the HO are the study of vibrations of atoms about their equiibriun positions, and the oscillations of atoms in a crystalline lattice (photons).
+We begin the course by discussing Ch.5 in Tannoudji (P.480), the Harmonic Oscillator.
+The HO is a useful model throughout physics because it can be solved analytically (in some cases), and provides an intuition for methods and techniques in Quantum Mechanics.
+Some common problems modeled by the HO are the study of vibrations of atoms about their equilibrium positions, and the oscillations of atoms in a crystalline lattice (phonons).
 An important example is the electromagnetic field, there  exists an  infinite number of possible stationary waves within a cavity (normal modes of the cavity).
-The electromagnetic field can be expanded in these modes and shown to have coefficients obeying differential equations identical to the HO. 
-Meaning the electric field is formallye quivalent to a set of indepedent harmonic oscillators. 
+The electromagnetic field can be expanded in these modes and shown to have coefficients obeying differential equations identical to the HO.
+Meaning the electric field is formally equivalent to a set of independent harmonic oscillators.
 
 The HO essentially assumes we are near a minimum and computes a truncated Taylor Expansion for the Potential Energy (V) around a minimum x$_0$
 \be
 V(x - x_0) = V(x_0)  + (x-x_0) \left[\frac{dV(x)}{dx}\right]_{x_0} + \frac{1}{2}(x-x_0)^2  \left[\frac{d^2V(x)}{dx^2}\right]_{x_0} + \frac{1}{6} (x-x_0)^3  \left[\frac{d^3V(x)}{dx^3}\right]_{x_0} + \cdots
 \ee
 The first term in the expansion is a constant and can usually be ignored (we can always re-define the Zero-potential to make this constant 0).
-The first derivitive is zero by definition of being in a minimum.
+The first derivative is zero by definition of being in a minimum.
 Truncating this expression to second order produces the HO Potential.
 \be
 \begin{split}
@@ -54,94 +54,152 @@ Truncating this expression to second order produces the HO Potential.
 \end{split}
 \ee
 
-Therefore the model replaces the Potential Energy by a porabola, a good approximation near the minimum, and not very good higher along the surface.
-In the language of chemistry it can represent lower leveled quantum states, but is inconsistent with higher excitations. 
-These higher states are by definition weaker, and therefore can be treated by techniques like Pertebation Theory (which will be covered later in the course). 
+Therefore the model replaces the Potential Energy by a parabola, a good approximation near the minimum, and not very good higher along the surface.
+In the language of chemistry it can represent lower leveled quantum states, but is inconsistent with higher excitations.
+These higher states are by definition weaker, and therefore can be treated by techniques like Perturbation Theory (which will be covered later in the course).
 
-Any bound system can be represented by a HO, and it can be used toanalyze the many-body problem (many bodied systems).
-Consider a colllection of non-interacting particles (Bosons).
+Any bound system can be represented by a HO, and it can be used to analyze the many-body problem (many bodied systems).
+Consider a collection of non-interacting particles (Bosons).
 How many atoms can be in an energy level?
 Each particle will contribute the characteristic $\hbar \omega$.
-Although in this example we are talking about the energy of the particles (and teh energy within each state) this is the same function  form as the HO (which has energy gaps seperated by $\hbar \omega$.
-We can therefore treat a many-body problem such as a collection of non-interacting Bosons as a collection of harmonic oscillators. 
+Although in this example we are talking about the energy of the particles (and the energy within each state) this is the same function  form as the HO (which has energy gaps separated by $\hbar \omega$.
+We can therefore treat a many-body problem such as a collection of non-interacting Bosons as a collection of harmonic oscillators.
 
 \section{Classical Harmonic Oscillator}
-In Classical Mechanics the motion of a particle 
-Consider the potential energy function for a particle of a mass(m) moving in a potential only dependent on position (x). Where k is the spring constant. 
-%\be
-%V(x) = \frac{1}{2}kx^2
-%\ee
-
-We can determine an expression for Force using : 
+A fairly simple way of seeing the parabolic nature of the potential energy of a harmonic oscillator is by introducing the widely used scenario of an object with mass m that
+is attached to a massless spring and is moving periodically. If $\vec{F}$ is the only force involved in extending or compressing the spring, the system is called a simple
+Harmonic Oscillator (HO) and we say that the system obeys Hooke's law. Therefore, the force acting on the mass from the spring is the restoring force and has the form $\vec{F} = - k \vec{r}$.
+From Newtons Second Law, we can now write an equation of motion for the HO
 \be
-F_x=-\frac{\partial V}{\partial x} = -kx
+\vec{F}=m\vec{a}=m\frac{d^2\vec{r}}{dt^2}=-k\vec{r} .
 \ee
-We can see that the H.O. is a restoring force, and thus the the particle is attraced to x=0 [minimum of potential function V(x)]
-
-A particles motion around x=0 is a sinusoidal of an angular frequency ($\omega$) 
+This gives us a second order linear differential equation with constant coefficients. If we consider the one dimensional case where the force acts only in the x-direction, we
+can reduce the number of differential equations down to one. Rearranging the terms and setting the equation equal to 0 gives us
 \be
-\omega=\sqrt{\frac{k}{m}}
+\frac{d^2x}{dt^2} + \omega^2 x = 0.
 \ee
-
-We can find a mathematical expression for k using the Force expression : 
-\be
-k=\frac{\partial^2V}{\partial^2x}
-\ee
-
-Using Newtons Second Law we can write an equation of motion for the H.O.
-\be
-F=ma=m\frac{d^2x}{dt^2}=\frac{-dV}{dx}=-kx
-\ee
-Solving this differntial equation gives the general solution to describe a H.O. motion : 
+where $\omega^2 = \frac{k}{m}$. $\omega$ in this case can be thought of as the angular frequency of the HO. Solving this differential equation gives the general solution that
+describes the motion of the HO
 \be
 x=x_Mcos(\omega t - \phi)
 \ee
-Where $x_M$ and $\phi$ are constants and values are determined by initial conditions of the H.O. 
+where $x_M$ and $\phi$ are constants and values that are determined by the initial conditions of the HO.
 
+In order to find the potential energy stored in the HO, all we need to do is find out the amount of work done on the system as a result of a perturbation (i.e. stretching or
+compressing the spring attached to the mass). Going back to Hooke's law, the force needed to stretch or compress the spring is $\vec{F} = k \vec{x}$ (remember that we are
+only considering a force in the x-direction). Do not get this confused with the restoring force that the spring exerts on the mass after the perturbation which is $\vec{F} = - k \vec{x}$.
+Since we have the appropriate force and are able to keep track of the object's displacement over time, we can calculate work as
+\be
+\begin{split}
+W &= \int_{0}^{x} \vec{F}_x \cdot d\vec{x} \\
+&= \int_{0}^{x} k x dx \\
+&= \frac{1}{2}k (\Delta x)^2 .
+\end{split}
+\ee
+We calculated the work to eventually lead into saying that the change in elastic potential energy of the system is equal to the amount of work done on the system $\Delta V = W = \frac{1}{2}k (\Delta x)^2$. Expanding the deltas on both sides gives us the stored potential energy in the HO
+\be
+V(x) = \frac{1}{2}k x^2.
+\ee
+By doing some differentiation instead of integration, we can see that the force constant k can be expressed as
+\be
+k \equiv \frac{d^2 V(x)}{d x^2}.
+\ee
+Setting the equilibrium position of the mass m to be at x = 0 means that the minimum of the potential function V(x) occurs at the equilibrium position. Relating this to chemistry
+and the fact that the harmonic oscillator is a useful model, if you had a diatomic molecule and considered one of the atoms, say the left atom, to be grounded and you pulled the
+right atom away from the left, you would be moving the atom away from the equilibrium position and thus stretching the bond. In terms of potential energy, the potential would be
+increasing parabolically. If you let go of the right atom, it would move to its equilibrium position where the potential energy of the molecule is at a minimum and where the
+molecule can be thought of as being in the ground state.
+
+Since we are simply dealing with one object and the spring is massless, we can just say that the kinetic energy is
+\be
+T = \frac{1}{2}m (\frac{\partial x}{\partial t})^2 = \frac{1}{2}m v^2.
+\ee
+Likewise, we can express the kinetic energy of the mass in terms of its momentum $p$
+\be
+T = \frac{p^2}{2 m} = \frac{1}{2} m v^2
+\ee
+where $p = mv$. By combining the kinetic and potential energies, we get the total energy energy of the system
+\be
+E = T + V = \frac{1}{2}mv^2 + \frac{1}{2}kx^2
+\ee
+but it can also be expressed with $\omega$ and $p$
+\be
+E = T + V = \frac{p^2}{2 m} + \frac{1}{2}m  \omega^2 x^2 .
+\ee
 %This is missing E=T+V and then subsitiing the equation of motion in to prove it is time indepent etc to show where the Hamoltonian is derived from in QM, and then taylor expansion section from the book - Moises
 
 
 
 
 
-
-
-
-
 \section{Properties of QM Hamiltonian}
-In Quantum mechanics position and momentum are described by their respective operators X and P. 
-Which when taking the commutator yieled the following relationsip : 
+In Quantum Mechanics, we can solve for the total energy of a system by using the hamiltonian operator. Similar to the classical oscillator, the expression for the hamiltonian of
+the quantum Harmonic Oscillator, in terms of the position and momentum operators, is
 \be
-[X,P]=i\hbar
+\hat{H}=\frac{\hat{P}^2}{2m} + \frac{1}{2}m\omega^2 \hat{X}^2
 \ee
+where $\omega$ is the angular frequency of the oscillator, as stated before in the classical case.
+In Quantum mechanics, position and momentum are described using their respective operators $\hat{X}$ and $\hat{P}$.
+Taking the commutator between the two operators yields the following relationships:
 \be
-[P,X]=-i\hbar
+\begin{split}
+[\hat{X},\hat{P}] &= i \hbar \\
+[\hat{P},\hat{X}] &= - i \hbar
+\end{split}
 \ee
-%needs derivation to be added / explantion - Moises
-
-The Hamiltonian for the quantum Harmonic Oscillator is then taken from the classical representation but taking x and replacing it with the operator X.
+Deriving the relationships can be done by introducing a function $f(x)$ and operating on the function with the commutator.
+I will derive the first relationship by starting with $[\hat{X},\hat{P}] = \hat{X}\hat{P} - \hat{P}\hat{X}$ and leave the second to anybody who wants some practice.
 \be
-H=\frac{p^2}{2m} + \frac{1}{2}m\omega^2X^2
+[\hat{X},\hat{P}]f = (\hat{X} \hat{P} - \hat{P} \hat{X})f = \hat{X} \hat{P}f - \hat{P} \hat{X}f
 \ee
+Knowing that $\hat{X}f = x f$ and $\hat{P}f = - i \hbar \frac{d}{dx} f$, we can make the appropriate substitutions
+\be
+\hat{X} \hat{P}f - \hat{P} \hat{X}f = - x i \hbar \frac{df}{dx} - (- i \hbar \frac{d(xf)}{dx})
+\ee
+Using the product rule and cancelling out terms, we get
+\be
+\begin{split}
+[\hat{X},\hat{P}]f &= - x i \hbar \frac{df}{dx} + i \hbar(f + x \frac{df}{dx}) \\
+&= - x i \hbar \frac{df}{dx} + i \hbar f + x i \hbar \frac{df}{dx} \\
+&= i \hbar f
+\end{split}
+\ee
+When we remove the function $f(x)$, we can see the relationship
+\be
+[\hat{X},\hat{P}]= i \hbar
+\ee
+After taking an undergraduate quantum course, it should be obvious that this commutator yields a nonzero operator because of its connection to the famous uncertainty principle
+\be
+\sigma_x \sigma_p \geq \frac{\hbar}{2}.
+\ee
+If a commutator yields the zero operator $\hat{0}$, we say that the two operators commute. What this means physically is that the observables involved in the commutator
+can be measured simultaneously to any arbitrary precision. Since the commutator between position and momentum does not yield the zero operator, the position and momentum of a
+system cannot be measured simultaneously to arbitrary precision. By recognizing that $\sigma_x$ and $\sigma_p$ are standard deviations of the position and momentum, we can say that
+the minimum amount of uncertainty in the simultaneous measurement is equal to $\frac{\hbar}{2}$ and when we increase the precision of measurement of one observable, we decrease the
+precision of measurement of the other observable and vise versa.
 %The notes has some symmetry operator which i dont understand at all the book has similar notes on it in a small paragraph - Moises
+
+%I did what I could without the book and a couple hours of time. - Alan
+
+
 \section{Eigenvalues of the Hamiltonian}
 
 \subsection{$\hat{X}$ and $\hat{P}$ Operators}
 
 X and P have dimensions of legnth and momentum we want to define two new dimensionless operators. We will use S.I. units for dimensional analysis, and recall that angular frequency $\omega$  has units of inverse time,$\hbar$=Js and that a Joule is J=kg*m$^2$s$^{-2}$
 
-For X : 
+For X :
 \be
 \hat{X}=\sqrt{\frac{m\omega}{\hbar}}X=\left(\frac{kgs^{-1}}{Js})\right)^{\frac{1}{2}}m = \left(\frac{kg}{kgm^{2}s^{-2}s^{2}}\right)^{\frac{1}{2}}m = \left(\frac{1}{m^2}\right)^{\frac{1}{2}} m = \frac{1}{m}m = 1
 \ee
-For P : 
+For P :
 \be
 \hat{P} = \frac{1}{\sqrt{m\hbar \omega}} P = \frac{1}{\sqrt{kg *J*s*s^{-1}}} P = \frac{1}{\sqrt{kg*kg*m^2s^{-2}}} P = \frac{1}{\sqrt{\frac{kg^2m^2}{s^2}}} P = \frac{1}{\frac{kg*m}{s}}*kg*m*s^{-1} = 1
 \ee
 
 Thus we see that $\hat{X}$ and $\hat{P}$ are dimensionless
 
-We now want to see the commutator relationship of our new operators. 
+We now want to see the commutator relationship of our new operators.
 \be
 [\hat{X},\hat{P}] = \hat{X}\hat{P} - \hat{P}\hat{X}
 \ee
