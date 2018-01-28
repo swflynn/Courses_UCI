@@ -20,6 +20,13 @@ The suggested text for the class are:
 Quantum Mechanics, Volume 1 and 2. Claude Cohen-Tannoudji, Bernard Diu, Frack Laloe
 Publisher: Wiley-VCN, ISBN 978-0-471-164-33-3
 
+## Authors
+All material is provided ``as is", with the intention of understanding graduate level Quantum Mechanics. 
+While accuracy is strived for, there is no guarantee the material is accurate (or up-to-date). 
+Thank you to everyone who helped contribute to the project in any way.
+
+Authors: Moises Romero, Alan Robledo, and Shane Flynn.
+
 ## Lecture_notes:
 Directory containing typed Lecture Notes from the course.
 Each lecture is written in a LaTex file (name.tex) and compiled to pdf.
