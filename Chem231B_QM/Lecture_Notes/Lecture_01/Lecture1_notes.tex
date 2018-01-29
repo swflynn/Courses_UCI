@@ -14,6 +14,7 @@
 \newcommand{\benum}{\begin{enumerate}}
 \newcommand{\eenum}{\end{enumerate}}
 \newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
 % Title Information
 \title{Chem132A: Lecture 1}
 
@@ -277,22 +278,21 @@ Clearly the HO Potential Energy  must be symmetric wrt parity (it goes as V(x) $
 This is not necessiarly true for the wavefunction however, it can be either symmetric or anti-symmetric.
 For example the HO wavefunction alternates symmetry (check teh Hermite Polynomials). 
 
-\subsection*{Eigenvalues of the Hamiltonian}
+\section*{Eigenvalues of the Hamiltonian}
+We will now prove the eigenvalues of teh HO are discrete without using the Schrodinger Equation. 
+We know in general the Eigenvalue problem is interested in teh following 
+\be
+H\ket{\phi} = E\ket{\phi}
+\ee
+We will start by introducing some notation. 
+The position and momentum operators definitions must have dimensions (of positon and momentum...).
+We can define some dimensionless units by noting that $\omega$ by construction has units of inverse time and $\hbar$ is na action (energy*time).
+If we make the following definitions, our units will be dimensionless in these new coordinates
+\be
+\hat{X} = \sqrt{\frac{m\omega}{\hbar}}X, \qquad \hat{P} = \frac{1}{\sqrt{m\hbar \omega}} P
+\ee
 
-
-
-%============================================================================%
-%============================================================================%
-% Others Comments, Incorporate
-%============================================================================%
-
-
-\section{Eigenvalues of the Hamiltonian}
-
-\subsection{$\hat{X}$ and $\hat{P}$ Operators}
-
-X and P have dimensions of legnth and momentum we want to define two new dimensionless operators. We will use S.I. units for dimensional analysis, and recall that angular frequency $\omega$  has units of inverse time,$\hbar$=Js and that a Joule is J=kg*m$^2$s$^{-2}$
-
+\subsubsection*{Dimensional Analysis}
 For X :
 \be
 \hat{X}=\sqrt{\frac{m\omega}{\hbar}}X=\left(\frac{kgs^{-1}}{Js})\right)^{\frac{1}{2}}m = \left(\frac{kg}{kgm^{2}s^{-2}s^{2}}\right)^{\frac{1}{2}}m = \left(\frac{1}{m^2}\right)^{\frac{1}{2}} m = \frac{1}{m}m = 1
@@ -301,13 +301,68 @@ For P :
 \be
 \hat{P} = \frac{1}{\sqrt{m\hbar \omega}} P = \frac{1}{\sqrt{kg *J*s*s^{-1}}} P = \frac{1}{\sqrt{kg*kg*m^2s^{-2}}} P = \frac{1}{\sqrt{\frac{kg^2m^2}{s^2}}} P = \frac{1}{\frac{kg*m}{s}}*kg*m*s^{-1} = 1
 \ee
-
 Thus we see that $\hat{X}$ and $\hat{P}$ are dimensionless
 
-We now want to see the commutator relationship of our new operators.
+We can now evaluate the commutator for these new coordinates in a similar manner to before. 
 \be
-[\hat{X},\hat{P}] = \hat{X}\hat{P} - \hat{P}\hat{X}
+[\hat{X},\hat{P}] = \hat{X}\hat{P} - \hat{P}\hat{X} = i
 \ee
+%=============================================================================%
+% Someone else can do this algebra I don't feel like it 
+%=============================================================================%
+
+\subsection*{Hamiltonian}
+Using our new unitless definition the Hamiltonian can be written as 
+\be
+\begin{split}
+    H &= \hbar \omega \hat{H}\\
+    \hat{H} &\equiv \frac{1}{2}\left(\hat{X}^2 + \hat{P}^2\right)
+\end{split}
+\ee
+
+\subsubsection*{Algebra}
+\be
+\begin{split}
+    \hat{x}^2= \frac{m\omega}{\hbar}x^2 \qquad & \qquad \hat{P}^2 = \frac{1}{m\hbar\omega}P^2 \\
+    H &= \hbar\omega\hat{H} = \hbar\omega \left[\frac{1}{2} \left(\frac{m\omega}{\hbar} X^2 + \frac{1}{m\hbar\omega}P^2\right)\right]\\
+    &= \frac{m\omega^2}{2} X^2 + \frac{1}{2m}P^2
+\end{split}
+\ee
+
+We are now going to solve the related eigenvalue equation
+\be
+\hat{H}\ket{\phi_\nu^i} = \epsilon_\nu \ket{\phi_\ni^i}
+\ee
+Where the operator $\hat{H}$ and the eigenvalues $\epsilon$ are dimensionless. 
+The index $\nu$ can be either continuous or discrete, and the index i allows us to distinguish between teh various possible orthogonal eigenvecctors associated with the same eigenvalue $\epsilon_i$. 
+
+Because the $\hat{X}$ and $\hat{P}$ operators do  not commute:
+\be
+\hat{X}^2 + \hat{P}^2 \neq (\hat{X} - i\hat{P})(\hat{X} + i\hat{P})
+\ee
+We shall show that introducing twonew  operators proportional to these  factor swill helpo simplify the eigen problem considerably. 
+\be
+a \equiv \frac{1}{\sqrt{2}} (\hat{X} + i\hat{P}) \qquad a^\dg \equiv \frac{1}{\sqrt{2}} (\hat{X} - i\hat{P})
+\ee
+If  you invert these formulas than you find
+\be
+\hat{X} = \frac{1}{\sqrt{2}} (a^\dg + a) \qquad \hat{P} = \frac{1}{\sqrt{2}} (a^\dg - a)
+\ee
+
+The commutator for our new operators is given by
+\be
+[a,a^\dg] = 1
+\ee
+%=============================================================================%
+% Someone else can do this algebra I don't feel like it 
+%=============================================================================%
+
+
+
+
+
+
+
 
 
 \end{document}
