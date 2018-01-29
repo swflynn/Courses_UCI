@@ -40,13 +40,14 @@ An important example is the electromagnetic field, there  exists an  infinite nu
 The electromagnetic field can be expanded in these modes and shown to have coefficients obeying differential equations identical to the HO.
 Meaning the electric field is formally equivalent to a set of independent harmonic oscillators.
 
-The HO essentially assumes we are near a minimum and computes a truncated Taylor Expansion for the Potential Energy (V) around a minimum x$_0$
+\subsection*{The HO as a Taylor Expansion}
+The HO essentially assumes we are near a minimum and computes a truncated Taylor Expansion for the Potential Energy (V) around the minimum x$_0$
 \be
 V(x - x_0) = V(x_0)  + (x-x_0) \left[\frac{dV(x)}{dx}\right]_{x_0} + \frac{1}{2}(x-x_0)^2  \left[\frac{d^2V(x)}{dx^2}\right]_{x_0} + \frac{1}{6} (x-x_0)^3  \left[\frac{d^3V(x)}{dx^3}\right]_{x_0} + \cdots
 \ee
 The first term in the expansion is a constant and can usually be ignored (we can always re-define the Zero-potential to make this constant 0).
-The first derivative is zero by definition of being in a minimum.
-Truncating this expression to second order produces the HO Potential.
+The first derivative is zero by definition of being at a minimum.
+Truncating this expression to second order produces the HO Potential directly from the Taylor Expansion about a minimum.
 \be
 \begin{split}
     V(x-x_0) &= V(x_0) +  \frac{1}{2}k(x-x_0)^2\\
@@ -55,7 +56,7 @@ Truncating this expression to second order produces the HO Potential.
 \ee
 
 Therefore the model replaces the Potential Energy by a parabola, a good approximation near the minimum, and not very good higher along the surface.
-In the language of chemistry it can represent lower leveled quantum states, but is inconsistent with higher excitations.
+In the language of chemistry it can represent lower levele quantum states, but is inconsistent with higher excitations.
 These higher states are by definition weaker, and therefore can be treated by techniques like Perturbation Theory (which will be covered later in the course).
 
 Any bound system can be represented by a HO, and it can be used to analyze the many-body problem (many bodied systems).
@@ -65,21 +66,26 @@ Each particle will contribute the characteristic $\hbar \omega$.
 Although in this example we are talking about the energy of the particles (and the energy within each state) this is the same function  form as the HO (which has energy gaps separated by $\hbar \omega$.
 We can therefore treat a many-body problem such as a collection of non-interacting Bosons as a collection of harmonic oscillators.
 
-\section{Classical Harmonic Oscillator}
-A fairly simple way of seeing the parabolic nature of the potential energy of a harmonic oscillator is by introducing the widely used scenario of an object with mass m that
-is attached to a massless spring and is moving periodically. If $\vec{F}$ is the only force involved in extending or compressing the spring, the system is called a simple
-Harmonic Oscillator (HO) and we say that the system obeys Hooke's law. Therefore, the force acting on the mass from the spring is the restoring force and has the form $\vec{F} = - k \vec{r}$.
+\subsection*{Classical Harmonic Oscillator Approach}
+In classical mechanics we can approach the HO problem from a different angle. 
+A fairly simple way of seeing the parabolic nature of the potential energy of a harmonic oscillator is by introducing the widely used scenario of an object with mass m that is attached to a massless spring and is moving periodically. 
+If $\vec{F}$ is the only force involved in extending or compressing the spring, the system is called a simple Harmonic Oscillator (HO) and we say that the system obeys Hooke's law. 
+Therefore, the force acting on the mass from the spring is the restoring force and has the form $\vec{F} = - k \vec{r}$.
 From Newtons Second Law, we can now write an equation of motion for the HO
 \be
 \vec{F}=m\vec{a}=m\frac{d^2\vec{r}}{dt^2}=-k\vec{r} .
 \ee
-This gives us a second order linear differential equation with constant coefficients. If we consider the one dimensional case where the force acts only in the x-direction, we
-can reduce the number of differential equations down to one. Rearranging the terms and setting the equation equal to 0 gives us
+This gives us a second order linear differential equation with constant coefficients. 
+If we consider the one dimensional case where the force acts only in the x-direction, we can reduce the number of differential equations down to one. 
+Rearranging the terms and setting the equation equal to 0 gives us
 \be
 \frac{d^2x}{dt^2} + \omega^2 x = 0.
 \ee
 where $\omega^2 = \frac{k}{m}$. $\omega$ in this case can be thought of as the angular frequency of the HO. Solving this differential equation gives the general solution that
 describes the motion of the HO
+%===========================================================================%
+%================Insert Math for the General Solution=======================%
+%===========================================================================%
 \be
 x=x_Mcos(\omega t - \phi)
 \ee
@@ -96,6 +102,23 @@ W &= \int_{0}^{x} \vec{F}_x \cdot d\vec{x} \\
 &= \frac{1}{2}k (\Delta x)^2 .
 \end{split}
 \ee
+We calculated the work to eventually lead into saying that the change in elastic potential energy of the system is equal to the amount of work done on the system $\Delta V = W = \frac{1}{2}k (\Delta x)^2$. Expanding the deltas on both sides gives us the stored potential energy in the HO
+\be
+V(x) = \frac{1}{2}k x^2.
+\ee
+By doing some differentiation instead of integration, we can see that the force constant k can be expressed as
+\be
+k \equiv \frac{d^2 V(x)}{d x^2}.
+\ee
+Setting the equilibrium position of the mass m to be at x = 0 means that the minimum of the potential function V(x) occurs at the equilibrium position. 
+Relating this to chemistry and the fact that the harmonic oscillator is a useful model, if you had a diatomic molecule and considered one of the atoms, say the left atom, to be grounded and you pulled the right atom away from the left, you would be moving the atom away from the equilibrium position and thus stretching the bond. 
+In terms of potential energy, the potential would be increasing parabolically. 
+If you let go of the right atom, it would move to its equilibrium position where the potential energy of the molecule is at a minimum and where the molecule can be thought of as being in the ground state.
+
+%============================================================================%
+%============This needs tobe incorporated into the ocument so it flows=======%%
+%============================================================================%
+
 We calculated the work to eventually lead into saying that the change in elastic potential energy of the system is equal to the amount of work done on the system $\Delta V = W = \frac{1}{2}k (\Delta x)^2$. Expanding the deltas on both sides gives us the stored potential energy in the HO
 \be
 V(x) = \frac{1}{2}k x^2.
@@ -132,54 +155,136 @@ E = T + V = \frac{p^2}{2 m} + \frac{1}{2}m  \omega^2 x^2 .
 
 
 
-\section{Properties of QM Hamiltonian}
-In Quantum Mechanics, we can solve for the total energy of a system by using the hamiltonian operator. Similar to the classical oscillator, the expression for the hamiltonian of
-the quantum Harmonic Oscillator, in terms of the position and momentum operators, is
-\be
-\hat{H}=\frac{\hat{P}^2}{2m} + \frac{1}{2}m\omega^2 \hat{X}^2
-\ee
-where $\omega$ is the angular frequency of the oscillator, as stated before in the classical case.
-In Quantum mechanics, position and momentum are described using their respective operators $\hat{X}$ and $\hat{P}$.
-Taking the commutator between the two operators yields the following relationships:
+
+
+A final comment, at higher Energies the partical will move in periodic, but not sinusoidal motion.
+If you expand the function info a Fourier series to get the position of the particle you find several frequencies or integer multiples of the lowest frequency.
+This is an anharmonic oscillator and the period of this motion is more complicated. 
+
+\section*{Quantum Mechanics Harmonic Oscillator}
+From undergraduate QM we know we want to solve the Schrodinger Equaiton for our sustems. 
+In the context of the Quantum HO we construct the Hamiltonian Operator as
 \be
 \begin{split}
-[\hat{X},\hat{P}] &= i \hbar \\
-[\hat{P},\hat{X}] &= - i \hbar
+    \hat{H}\Psi &= E\Psi\\
+    \hat{H} &= \frac{\hat{P}^2}{2m} + \frac{1}{2}m\omega^2 \hat{X}^2
 \end{split}
 \ee
-Deriving the relationships can be done by introducing a function $f(x)$ and operating on the function with the commutator.
-I will derive the first relationship by starting with $[\hat{X},\hat{P}] = \hat{X}\hat{P} - \hat{P}\hat{X}$ and leave the second to anybody who wants some practice.
+If we assume a conservative system $\hat{H}$ is a time-indepedent operator, and assuming a 1D (x) system we can express the HO written in the x  representation as
 \be
-[\hat{X},\hat{P}]f = (\hat{X} \hat{P} - \hat{P} \hat{X})f = \hat{X} \hat{P}f - \hat{P} \hat{X}f
+\begin{split}
+    \hat{H}\ket{\phi} &= E\ket{\phi}\\
+    \left[-\frac{\hbar^2}{2m} \frac{d^2}{dx^2} + \frac{1}{2}m\omega^2x^2\right]\phi(x) &= E\phi(x)
+\end{split}
 \ee
-Knowing that $\hat{X}f = x f$ and $\hat{P}f = - i \hbar \frac{d}{dx} f$, we can make the appropriate substitutions
+From this equation the undergraduate course explores various methods of finding interesting properties (eigenvalues, energy, etc). 
 \be
-\hat{X} \hat{P}f - \hat{P} \hat{X}f = - x i \hbar \frac{df}{dx} - (- i \hbar \frac{d(xf)}{dx})
+\braket{A} = \int \phi^*\hat{A}\phi
+\ee
+
+We will take a new  approach in this class, by introducing new operators. 
+The \textbf{Creation} and \textbf{Annilation} operators can be used to solve all of the properties associated with $\hat{H}$ without any differential equaitons!
+We will calculate these quantities in a more elegant manner, bypassing the wavefunction all together!
+In the case of the HO we can solve the problem exactly so either method is sufficient.
+But in reality more problems are not exact and the wavefunction approach will nto be useful.
+So we need to develop a method of applying operator algebra to bypass the wavefunction. 
+
+\subsection*{Basic QM Review}
+\subsubsection*{Commutators}
+It will be essential to understand commutation relationships for our operator algebra. 
+In,QM  position and momentum are described using their operators $\hat{x}$ and $\hat{p}$.
+We recall tht these two opertors do not commute in either orientation.
+\be
+\begin{split}
+[\hat{x},\hat{p_x}] &= i \hbar \\
+[\hat{p_x},\hat{x}] &= - i \hbar
+\end{split}
+\ee
+To derive this result introduce a generic function f(x), and apply it to the commutation relationship.
+Recall in general that the commutator essentially measures ``how much" two operators commute by taking the difference in orientation of the two operators.
+\be
+[\hat{x},\hat{p_x}] = \hat{x}\hat{p_x} - \hat{p_x}\hat{x}
+\ee
+Applying our funciton f(x) to the definition of the commutator yields:
+\be
+[\hat{x},\hat{p_x}]f(x) = (\hat{x} \hat{p_x} - \hat{p_x} \hat{x})f(x) = \hat{x} \hat{p_x}f(x) - \hat{p_x} \hat{x}f(x)
+\ee
+Taking the definition of each operator, $\hat{x} = x $ and $\hat{p_x} = - i \hbar \frac{d}{dx}$, we can make the appropriate substitutions.
+\be
+\hat{x} \hat{p_x}f(x) - \hat{p_x} \hat{x}f(x) = - x i \hbar \frac{df(x)}{dx} - (- i \hbar \frac{d(xf(x))}{dx})
 \ee
 Using the product rule and cancelling out terms, we get
 \be
 \begin{split}
-[\hat{X},\hat{P}]f &= - x i \hbar \frac{df}{dx} + i \hbar(f + x \frac{df}{dx}) \\
-&= - x i \hbar \frac{df}{dx} + i \hbar f + x i \hbar \frac{df}{dx} \\
-&= i \hbar f
+    [\hat{x},\hat{p_x}]f(x) &= - x i \hbar \frac{df}(x){dx} + i \hbar(f(x) + x \frac{df}(x){dx}) \\
+    &= - x i \hbar \frac{df(x)}{dx} + i \hbar f(x) + x i \hbar \frac{df(x)}{dx} \\
+    &= i \hbar f(x)
 \end{split}
 \ee
-When we remove the function $f(x)$, we can see the relationship
+Therefore the generic commutation (which is not depedent upon our generic function f(x) is)
 \be
-[\hat{X},\hat{P}]= i \hbar
+[\hat{x},\hat{p_x}]= i \hbar
 \ee
-After taking an undergraduate quantum course, it should be obvious that this commutator yields a nonzero operator because of its connection to the famous uncertainty principle
+A major reason QM is interesting is because these two operators do not commute. 
+This commutator yielding a nonzero operator is directly connected to the uncertainty principle!
 \be
 \sigma_x \sigma_p \geq \frac{\hbar}{2}.
 \ee
-If a commutator yields the zero operator $\hat{0}$, we say that the two operators commute. What this means physically is that the observables involved in the commutator
-can be measured simultaneously to any arbitrary precision. Since the commutator between position and momentum does not yield the zero operator, the position and momentum of a
-system cannot be measured simultaneously to arbitrary precision. By recognizing that $\sigma_x$ and $\sigma_p$ are standard deviations of the position and momentum, we can say that
-the minimum amount of uncertainty in the simultaneous measurement is equal to $\frac{\hbar}{2}$ and when we increase the precision of measurement of one observable, we decrease the
-precision of measurement of the other observable and vise versa.
-%The notes has some symmetry operator which i dont understand at all the book has similar notes on it in a small paragraph - Moises
+If a commutator yields the zero operator $\hat{0}$, we say that the two operators commute.
+Physically speaking the observables involved in the commutator can be measured simultaneously to arbitrary precision.
+We have just shown that the position and momentum (in the same dimension) cannot be measured simultaneously to arbitrary precision. 
+By recognizing that $\sigma_x$ and $\sigma_p$ are standard deviations of the position and momentum, we can say that the minimum amount of uncertainty in the simultaneous measurement is equal to $\frac{\hbar}{2}$.
+%============================================================================%
+% Do the other derivation out giving the reverse result
+%============================================================================%
 
-%I did what I could without the book and a couple hours of time. - Alan
+\subsubsection*{Eigenvalues Are Positive (M3 Complement)}
+We can show the energies ofthe HO are positive.
+This is a simple conservative system, therefore the total energy is given by the sum of the Kinetic and Potential Energy respectively (consider bound stataes for htis problem)
+\be
+\hat{E} = \braket{\hat{T}} + \braket{\hat{V}}
+\ee
+We know the Kinetic Energy Operator is given by
+\be
+\braket{T} = -\frac{\hbar^2}{2m}\int_{-\infty}^\infty dx \phi^*(x) \frac{d^2}{dx^2} \phi(x) = \frac{\hbar^2}{2m} \int_{-\infty}^\infty dx \left|\frac{d}{dx}\phi(x)\right|^2 \geq 0
+\ee
+Where we have performed integration by parts, and used the fact that teh wavefunction goes to 0 at an infinite distance, showing this value is non-negative.
+
+We can now look at the Potential Energy
+\be
+\braket{V} = \int_{-\infty}^\infty dx V(x) |\phi|^2
+\ee
+Defining the minimum of the potential to be -V$_0$, than we know that all values must be larger than -V$_0$, generating the inequality:
+\be
+\braket{V} \geq \int_{-\infty}^\infty dx (-V_0) |\phi|^2 = -V_0 \int_{-\infty}^\infty dx |\phi|^2 = -V_0
+\ee
+Where the equality comes from the normalization. 
+Having shown the Kinetic Energy to be non-negative we have shown that
+\be
+E = \braket{T} + \braket{V} > \braket{V} \geq -V_0
+\ee
+
+\subsubsection*{Parity in the Harmonic Oscillator}
+The parity of a function asks what happens when you take the inverse of the inputs.
+In general the Potential Energy of a generic function does not need to be symmetirc wrt parity ($\pi$), however, in many cases it is. 
+\be
+\begin{split}
+    \pi V(x) &= V(x) \quad \quad \text{symetric}\\
+    \pi V(x) &= -V(x) \quad \quad \text{anti-symetric}\\
+\end{split}
+\ee
+Clearly the HO Potential Energy  must be symmetric wrt parity (it goes as V(x) $\approx$ $x^2$) for this specific system. 
+This is not necessiarly true for the wavefunction however, it can be either symmetric or anti-symmetric.
+For example the HO wavefunction alternates symmetry (check teh Hermite Polynomials). 
+
+\subsection*{Eigenvalues of the Hamiltonian}
+
+
+
+%============================================================================%
+%============================================================================%
+% Others Comments, Incorporate
+%============================================================================%
 
 
 \section{Eigenvalues of the Hamiltonian}
