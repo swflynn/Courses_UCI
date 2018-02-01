@@ -353,11 +353,36 @@ The commutator for our new operators is given by
 \be
 [a,a^\dg] = 1
 \ee
+\subsubsection*{Proof}
+%=============================================================================%
+% There is an issue with the tex here need to fix the bracket mistake
+%=============================================================================%
+\be
+\begin{split}
+    [a,a^\dg] &= aa^\dg - a^\dg a\\
+    \frac{1}{\sqrt{2}} \left(\hat{X} + i\hat{P}\right) \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right) &- \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right)\frac{1}{\sqrt{2}} \left(\hat{X} + i\hat{P}\right)\\
+    \frac{i}{2} \left[ \left(\hat{X} + \hat{P}\right) \left(\hat{X} - \hat{P}\right) &- \left(\hat{X} - \hat{P}\right) \left(\hat{X} + \hat{P}\right) \right]\\
+    \frac{1}{2} \left[\hat{x}^2 + \hat{P}^2 + \left[\hat{P},\hat{X}\right] &- \hat{X}^2 - \hat{P}^2 -\left[\hat{x},\hat{P}\right]\right]\\
+    & \frac{i}{2}\left(\frac{1}{i} - i\right)\\
+    [a,a^\dg] &= 1
+\end{split}
+\ee
+
+
+We can also take the inverse commutator as
+\be
+[a^\dg, a] = \frac{1}{2}\left(\hat{X}^2 + \hat{P}^2 - 1\right)
+\ee
+\subsubsection*{Proof}
 %=============================================================================%
 % Someone else can do this algebra I don't feel like it 
+% Someone should prove this
 %=============================================================================%
-
-
+\be
+\begin{split}
+    [a^\dg,a] &= \frac{1}{2} \left[\hat{X} + i\hat{P}, \hat{X} - i\hat{P}\right]\\
+\end{split}
+\ee
 
 
 

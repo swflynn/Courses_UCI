@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 JAN 2018 21:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  31 JAN 2018 16:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -865,20 +865,163 @@ LaTeX Info: Redefining \nameref on input line 24.
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
  [4] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 368.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 368.
-
-(./Lecture1_notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 368.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 368.
+! Extra }, or forgotten \right.
+<template> }
+            $\endtemplate 
+l.368 \end{split}
+                 
+? 
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Extra \right.
+<argument> ...\hat {X} + \hat {P}\right ) \right ]
+                                                  \\ \frac {1}{2} \left [\ha...
+l.368 \end{split}
+                 
+? 
+! Missing { inserted.
+<inserted text> 
+                {
+l.368 \end{split}
+                 
+? 
+! Extra }, or forgotten \right.
+<template> }
+            $\endtemplate 
+l.368 \end{split}
+                 
+? 
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Extra \right.
+<argument> ...t [\hat {x},\hat {P}\right ]\right ]
+                                                  \\ & \frac {i}{2}\left (\f...
+l.368 \end{split}
+                 
+? 
+! Missing { inserted.
+<inserted text> 
+                {
+l.368 \end{split}
+                 
+? 
+! Extra }, or forgotten \right.
+<template> }
+            $\endtemplate 
+l.368 \end{split}
+                 
+? 
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Extra \right.
+<argument> ...\hat {X} + \hat {P}\right ) \right ]
+                                                  \\ \frac {1}{2} \left [\ha...
+l.368 \end{split}
+                 
+? 
+! Missing { inserted.
+<inserted text> 
+                {
+l.368 \end{split}
+                 
+? 
+! Extra }, or forgotten \right.
+<template> }
+            $\endtemplate 
+l.368 \end{split}
+                 
+? 
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Missing } inserted.
+<inserted text> 
+                }
+l.368 \end{split}
+                 
+? 
+! Extra \right.
+<argument> ...t [\hat {x},\hat {P}\right ]\right ]
+                                                  \\ & \frac {i}{2}\left (\f...
+l.368 \end{split}
+                 
+? 
+! Missing { inserted.
+<inserted text> 
+                {
+l.368 \end{split}
+                 
+? 
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 393.
+[6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 393.
+ (./Lecture1_notes.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 393.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 393.
 Package rerunfilecheck Info: File `Lecture1_notes.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 368.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 393.
  ) 
 Here is how much of TeX's memory you used:
- 14224 strings out of 493089
- 258012 string characters out of 6134842
+ 14229 strings out of 493089
+ 258073 string characters out of 6134842
  344669 words of memory out of 5000000
  17531 multiletter control sequences out of 15000+600000
  9023 words of font info for 33 fonts, out of 8000000 for 9000
@@ -896,10 +1039,10 @@ l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on Lecture1_notes.pdf (6 pages, 165015 bytes).
+Output written on Lecture1_notes.pdf (6 pages, 166502 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 129 compressed objects within 2 object streams
- 63 named destinations out of 1000 (max. 500000)
+ 157 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
+ 68 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
