@@ -1,4 +1,4 @@
-% Comments are given  by the % character
+% Comments are given  by the % charactee
 \documentclass{article}
 % Packages
 \usepackage[utf8]{inputenc}
@@ -6,7 +6,6 @@
 \usepackage{amsmath}
 \usepackage{braket}
 \usepackage[margin=0.7in]{geometry}
-\usepackage{hyperref}
 \usepackage[version=4]{mhchem}
 % User-Defined Commands
 \newcommand{\be}{\begin{equation}}
@@ -307,13 +306,18 @@ We can now evaluate the commutator for these new coordinates in a similar manner
 \be
 [\hat{X},\hat{P}] = \hat{X}\hat{P} - \hat{P}\hat{X} = i
 \ee
+\be
+[\hat{P},\hat{X}] = \hat{P}\hat{X} - \hat{X}\hat{P} = \frac{1}{i}
+\ee
+\subsubsection*{Proof}
 %=============================================================================%
 % Someone else can do this algebra I don't feel like it 
+% Please do both!!!!
 %=============================================================================%
 
 \subsection*{Hamiltonian}
 Using our new unitless definition the Hamiltonian can be written as 
-\be
+\be \label{eq:Hamiltonian}
 \begin{split}
     H &= \hbar \omega \hat{H}\\
     \hat{H} &\equiv \frac{1}{2}\left(\hat{X}^2 + \hat{P}^2\right)
@@ -348,41 +352,103 @@ If  you invert these formulas than you find
 \be
 \hat{X} = \frac{1}{\sqrt{2}} (a^\dg + a) \qquad \hat{P} = \frac{1}{\sqrt{2}} (a^\dg - a)
 \ee
+Note: these two operators are not  Hermitian (X and P are hermitian, a and a$^\dg$ have a factor of i and are therefore not Hermitian). 
 
 The commutator for our new operators is given by
 \be
 [a,a^\dg] = 1
 \ee
 \subsubsection*{Proof}
-%=============================================================================%
-% There is an issue with the tex here need to fix the bracket mistake
-%=============================================================================%
 \be
-\begin{split}
-    [a,a^\dg] &= aa^\dg - a^\dg a\\
-    \frac{1}{\sqrt{2}} \left(\hat{X} + i\hat{P}\right) \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right) &- \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right)\frac{1}{\sqrt{2}} \left(\hat{X} + i\hat{P}\right)\\
-    \frac{i}{2} \left[ \left(\hat{X} + \hat{P}\right) \left(\hat{X} - \hat{P}\right) &- \left(\hat{X} - \hat{P}\right) \left(\hat{X} + \hat{P}\right) \right]\\
-    \frac{1}{2} \left[\hat{x}^2 + \hat{P}^2 + \left[\hat{P},\hat{X}\right] &- \hat{X}^2 - \hat{P}^2 -\left[\hat{x},\hat{P}\right]\right]\\
-    & \frac{i}{2}\left(\frac{1}{i} - i\right)\\
-    [a,a^\dg] &= 1
-\end{split}
-\ee
+ \begin{split}
+     [a,a^\dg] &= aa^\dg - a^\dg a =\\
+     \frac{1}{\sqrt{2}} \left(\hat{X} + i\hat{P}\right) \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right) &- \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right)\frac{1}{\sqrt{2}} \left(\hat{X} + i\hat{P}\right)\\
+   \frac{1}{2} \bigg\{ \left(\hat{X} + i\hat{P}\right) \left(\hat{X} - i\hat{P}\right) &- \left(\hat{X} - i\hat{P}\right) \left(\hat{X} + i\hat{P}\right) \bigg\}\\
+      \frac{1}{2} \bigg\{\hat{X}^2 - \hat{X}i\hat{P} + i\hat{P}\hat{X} + \hat{P}^2  &- \left(\hat{X}^2 + \hat{X}i\hat{P} - i\hat{P}\hat{X} + \hat{P}^2\right)  \bigg\}\\
+        \frac{1}{2} \bigg\{\hat{X}^2 + \hat{P}^2 + i\left(\hat{P}\hat{X} - \hat{X}\hat{P}\right)   &- \left(\hat{X}^2 + \hat{P}^2 + i\left(\hat{X}\hat{P} - \hat{P}\hat{X}\right)\right) \bigg\}\\
+        \frac{i}{2} \bigg\{ \left[\hat{P},
+        \hat{X}\right] &- \left[\hat{X},
+     \hat{P}\right] \bigg\}\\
+     \frac{i}{2} \bigg\{ \frac{1}{i} &- i] \bigg\}\\
+     [a,a^\dg] &= 1
+ \end{split}
+ \ee
 
-
-We can also take the inverse commutator as
+If we want the reverse order it should give
 \be
-[a^\dg, a] = \frac{1}{2}\left(\hat{X}^2 + \hat{P}^2 - 1\right)
+[a^\dg, a] = -1
 \ee
 \subsubsection*{Proof}
-%=============================================================================%
-% Someone else can do this algebra I don't feel like it 
-% Someone should prove this
-%=============================================================================%
+%====================================================================================%
+% I am guessing but pretty sure, someone should chekc/do this
+%====================================================================================%
+
+
+It turns out we can write a very convenient form of the Hamiltonian opertor in terms of our new operators.
+Consider the following
 \be
 \begin{split}
-    [a^\dg,a] &= \frac{1}{2} \left[\hat{X} + i\hat{P}, \hat{X} - i\hat{P}\right]\\
+a^\dg a &= \left(\hat{X} - i\hat{P}\right) \left(\hat{X} + i\hat{P}\right)\\
+&= \frac{1}{2}\left(\hat{X}^2 + \hat{P}^2 + i\left\{ \hat{X}\hat{P} - \hat{P}\hat{X}\right\}\right)\\
+a^\dg a &=\frac{1}{2}\left(\hat{X}^2 + \hat{P}^2 - 1\right)
 \end{split}
 \ee
+Now compare this to our definition of the Hamiltonian Operator in the normalizeed units (eq. \ref{eq:Hamiltonian}) we immediately see that we can write
+\be
+\hat{H} = a^\dg a + \frac{1}{2}
+\ee
+We can also write the expression as 
+\be
+\hat{H} = aa^\dg - \frac{1}{2}
+\ee
+%===========================================================================================%
+% Someone show this transformation too
+%===========================================================================================%
+\subsection*{Number Operator}
+For convenience (as we will see later) we can ndefine a new operator called teh \textbf{Number Operator}
+It turns out this operator is related to the number of excitations occuring in the oscillator. 
+\be
+N \equiv a^\dg a
+\ee
+This operator is Hermitian (unlike a or a$^\dg$.
+%===========================================================================================%
+% Someone show this, I don't honestly remember how
+%===========================================================================================%
+Given our insight, this operator counts the number of excitations that occur in the oscillator.
+It is therefore a physical quantity, and muyst be a Hermitian operator!	
+
+Taking our definition of the Hamimltonian Operator we can also express the relationship as
+\be
+\hat{H} = N + \frac{1}{2}
+\ee
+Which implies the eigenvectors of $\hat{H}$ are also eigenvectors of N. 
+\be
+\begin{split}
+N\ket{\phi_\nu} &= \nu \ket{\phi_\nu}\\
+H\ket{\phi_\nu} &= (\nu+\frac{1}{2})\hbar\omega \ket{\phi_\nu}\\
+\end{split}
+\ee
+Where we are using the unscaled Hamiltonian operator, and the factor of $\frac{1}{2}$ difference from teh Number Operator.
+
+We can quickly calculate the commutators for N and a
+\be
+\begin{split}
+{N,a} &= [a^\dg a, a] = a^\dg[a,a] + [a^\dg,a]a = -a\\
+{N,a^\dg} &= [a^\dg a, a^\dg] = a^\dg[a,a^\dg] + [a^\dg,a^\dg]a = a^\dg\\
+\end{split}
+\ee
+
+\subsection*{reation/Annilation}
+The a, a$^\dg$ operators are known as the \textbf{Annilation} and \textbf{Creation} operators (which we will show later in the course).
+Consider an arbitrary eigenvector $\ket{\phi_\nu}$ of N.
+The square modulus must be either 0 or larger than 0 (the length of the modulus cannot be negative).
+\be
+||a\ket{\phi_\nu}||^2 = \braket{\phi_\nu|a^\dg a| \phi_\nu} \geq 0
+\ee
+
+If $\nu$ = 0, than a$\ket{\phi_\nu}$ =0.
+If $\nu > 0$ than a$\ket{\phi_\nu}$ is the eigenfunction of N with an eigenvalue lowered by 1. 
+
 
 
 
