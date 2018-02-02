@@ -22,40 +22,139 @@
 \begin{document}
 \maketitle
 
-\section*{Lecture 1 Recap}
-From Lecture 1 we found the eigenvalues (of $\hat{H}$) for the Quantum Harmonic Oscillator are given by
-\be
-E_n = \left( n+\frac{1}{2} \right) \hbar \omega
-\ee
-We also found that we could express the Hamiltonian in terms of our new creationa nd anniliation operators as 
-\be
-\hat{H} = \left(a^\dg\right) 
-\ee
-Finally we introduced (defined) the Number Operator $\hat{N}$ (which is a Hermitian Operator). 
-\be
-\hat{N} \equiv a^\dg a
-\ee
-
 \section*{Operator Algebra}
 A cornerstone of this course will be the use of operators to solve Quantum Mechanics Problems. 
 By using the operator formulation of Qm we can completly ignore the wavefunction and instead compute observables from just the algebraic manipulations of opertors.
 This means we can ignore solving the various integrals and differential equations commonly found in the wave function formulation. 
 
 \section*{The Ground State}
-We can consider the ground state energy of the HO, which has an Eigenvalue (Eigen Energy) of
-\be
-E_0 = \frac{\hbar \omega}{2}
-\ee
-And its associated eigenvector satifies
+We can consider the ground state energy of the HO, which has an eigenvector satifieing the following
 \be
 a\ket{\phi_0} = 0
 \ee
-This is a differential equation, we can substitute in the forms of the operators and find
+This statement is really a differential equation, remember what the operators represent
+\be
+\left\{\frac{1}{\sqrt{2}} \sqrt{\frac{m\omega}{\hbar}}x + \frac{i}{\sqrt{m\hbar\omega}}p\right\}\phi_0 = 0
+\ee
+In the position representation 
+%============================================================================================%
+%Someone should show why this is true derivations
+%============================================================================================%
+We have 
+\be
+\left(\frac{m\omega}{\hbar}x + \frac{d}{dx}\right)\phi_0(x) = 0
+\ee
+%============================================================================================%
+%Someone should prove teh general solution
+%============================================================================================%
+The general solution is of the form 
+\be
+\phi(x) = ce^{-\frac{m\omega x^2}{2\hbar}}
+\ee
+This solution (which takes some effort is just of the ground state.
+All of the solution are actually proportional, therefore only 1 ket exists to describe the ground state (it is degenerate, giving an energy of f
+\be
+E_0 = \frac{\hbar\omega}{2}
+\ee
+\subsection*{First Excited State}
+We want more however, what about excitations!
+To do this we will utilize our creation and annilation operators.
+It is important realize that a and a$^\dg$ do NOT conserve normaliztion, as we will see below.
+
+We can show that all of the states are also non-degenerate.
+Suppose we have a single vector satisfying 
+\be
+N\ket{\phi_n} = n\ket{\phi_n}
+\ee
+Likewise we have an eigenvector associated witht he n+1 eigenvalue.
+\be
+N\ket{\phi_{n+1}} = (n+1)\ket{\phi_{n+1}}
+\ee
+We also know from Lecture 1 that our annilation operator can be used to write
+\be
+a\ket{\phi_{n+1}} = c\ket{\phi_n}
+\ee
+If we simply stick the a$^\dg$ operator in this expression we have a nice simplification
 \be
 \begin{split}
-    a = \frac{1}{\sqrt{2}}\left(\hat{X} + i\hat{P}\right)
+    a^\dg a\ket{\phi_{n+1}} &= a^\dg c\ket{\phi_n}\\
+    N\ket{\phi_{n+1}} &= a^\dg c\ket{\phi_n}\\
+    (n+1)\ket{\phi_{n+1}} &= a^\dg c\ket{\phi_n}\\
+    \ket{\phi_{n+1}} &= \frac{c}{(n+1)}a^\dg\ket{\phi_n}\\
 \end{split}
 \ee
+This result shows all n+1 vectors are proportional to a$^\dg \ket{\phi_n}$ and therefore proportional to eachother and the eigenvalues are not degenerate. 
+\be
+\ket{\phi_n} \rightarrow \qquad \qquad E_n = \left(n + \frac{1}{2}\right)\hbar\omega
+\ee
+
+Our result also shows we need to know the pre-factors to get the wavefunctions.
+\be
+a\ket{\phi_0} = 0, \qquad \ket{\phi_1} = c_1a^\dg\ket{\phi_o} \cdots
+\ee
+
+We can find our normalization by taking the scalar product
+\be
+\begin{split}
+    \braket{\phi_1|\phi_1} &= |c_1|^2 \braket{\phi_0|aa^\dg|\phi_1}\\
+    &= |c_1|^2 \braket{\phi_0|(a^\dg a+1)|\phi_1}
+\end{split}
+\ee
+The last line follows because of the commutator
+\be
+[a,a^\dg] = 1 \rightarrow aa^\dg - a^\dg a = 1 \rightarrow  aa^\dg = 1 + a^\dg a
+\ee
+If we require $\ket{\phi_1}$ to be normalized and have a constant c$_1$ to be real and positive (relative to the phase of $\ket{\phi_0}$.
+But $\ket{\phi_0}$ is a normalized eigenstate of N with an eigenvalue of zero as we have shown, therefore
+\be
+\braket{\phi_1|\phi_1} = |c_1|^2 = 1, \qquad c_1 = 1
+\ee
+We can always have an arbitrary phase term associate with $\phi$ that is fine, it will jsut make $\phi$ complex, choosing c$_1$ to be 1 makes $\phi$ real. 
+
+\subsection*{Second Excited State}
+In the same manner we can construct the next state using our operators, assuming c$_2$ to be real and $\ket{\phi_2}$ tp be normalized. 
+\be
+\begin{split}
+    \ket{\phi_2} &= c_2 a^\dg\ket{\phi_1}\\
+    \braket{\phi_2|\phi_2} &= |c_2|^2 \braket{\phi_1|aa^\dg|\phi_1}\\
+    &= |c_2|^2 \braket{\phi_1|(a^\dg a + 1)|\phi_1}\\
+    &= |c_2|^2 \braket{\phi_1|(N + 1)|\phi_1}\\
+    &= |c_2|^2 \braket{\phi_1|(N\phi_1 + \phi_1}\\
+    &= |c_2|^2 \braket{\phi_1|\phi_1 + \phi_1}\\
+    &= |c_2|^2 2\braket{\phi_1|\phi_1}\\
+    &= 2|c_2|^2  = 1
+\end{split}
+\ee
+We have therefore shown (taking the normaliztion into accoutn)
+\be
+\ket{\phi_2} = \frac{1}{\sqrt{2}}a^\dg\ket{\phi_1} = \frac{1}{\sqrt{2}}(a^\dg)^2\ket{\phi_0}
+\ee
+
+\subsection*{General Solution Harmonic Oscillator}
+Hopefully now you can realize that we can build all of the wavefuntions by multiplying with a$^\dg$ and findng the appropriate normaliztion. 
+The general case works in teh same manner
+\be
+\begin{split}
+    \ket{\phi_n} &= c_n \ket{\phi_{n-1}}\\
+    \braket{\phi_n|\phi_n} &= |c_n|^2 \braket{\phi_{n-1}|aa^\dg|\phi_{n-1}}\\
+    \braket{\phi_n|\phi_n} &= |c_n|^2 \braket{\phi_{n-1}|a^\dg a + 1|\phi_{n-1}}\\
+    \rightarrow c_n &= \frac{1}{\sqrt{n}}
+\end{split}
+\ee
+\be
+\ket{\phi_n} = \frac{1}{\sqrt{n}}a^\dg \ket{\phi_{n-1}} = \frac{1}{\sqrt{n!}}(a^\dg)^n \ket{\phi_0}
+\ee
+Where this last line represents the general solution for the Harmonic Oscillator!
+
+
+
+
+
+
+
+
+
+
 
 
 
