@@ -433,12 +433,12 @@ Where we are using the unscaled Hamiltonian operator, and the factor of $\frac{1
 We can quickly calculate the commutators for N and a
 \be
 \begin{split}
-{N,a} &= [a^\dg a, a] = a^\dg[a,a] + [a^\dg,a]a = -a\\
-{N,a^\dg} &= [a^\dg a, a^\dg] = a^\dg[a,a^\dg] + [a^\dg,a^\dg]a = a^\dg\\
+[N,a] &= [a^\dg a, a] = a^\dg[a,a] + [a^\dg,a]a = -a\\
+[N,a^\dg] &= [a^\dg a, a^\dg] = a^\dg[a,a^\dg] + [a^\dg,a^\dg]a = a^\dg\\
 \end{split}
 \ee
 
-\subsection*{reation/Annilation}
+\subsection*{Creation/Annilation}
 The a, a$^\dg$ operators are known as the \textbf{Annilation} and \textbf{Creation} operators (which we will show later in the course).
 Consider an arbitrary eigenvector $\ket{\phi_\nu}$ of N.
 The square modulus must be either 0 or larger than 0 (the length of the modulus cannot be negative).
@@ -449,8 +449,51 @@ The square modulus must be either 0 or larger than 0 (the length of the modulus 
 If $\nu$ = 0, than a$\ket{\phi_\nu}$ =0.
 If $\nu > 0$ than a$\ket{\phi_\nu}$ is the eigenfunction of N with an eigenvalue lowered by 1. 
 
+Consider a generic vector, multiplyign each sife by a$^\dg$ yields the number operator. 
+\be
+\begin{split}
+    a\ket{\phi} &= 0 \\
+    a^\dg a \ket{\phi} &= N\ket{\phi} = 0
+\end{split}
+\ee
+So any vector satisfying our assumption of $a\ket{\phi} = 0$ is an eigenvector of N with an eigenvalue of 0. 
 
+Cnsider now a non-0 positive value of $\nu$. 
+From the N,a commutator we can write the following
+\be
+\begin{split}
+    [N,a]\ket{\phi_\nu} &= -a\ket{\phi}\\
+    Na\ket{\phi_\nu} - aN\ket{\phi_\nu} &= -a\ket{\phi_\nu}\\
+    Na\ket{\phi_\nu} &= aN\ket{\phi_\nu} -a\ket{\phi_\nu}\\
+    Na\ket{\phi_\nu} &= a\nu\ket{\phi_\nu} -a\ket{\phi_\nu}
+\end{split}
+\ee
+This tell sus we can write 
+\be
+Na \ket{\phi_\nu} = (\nu-1)a\ket{\phi_\nu}
+\ee
+Which shows acting a to the right will lower the state by 1.
+We can therefore use this relationship to compute all of the lower states. 
 
+We can also work this problem in the other direction using a$^\dg$.
+\be
+\begin{split}
+    [N,a^\dg]\ket{\phi_\nu} &= a^\dg\ket{\phi}\\
+    Na^\dg\ket{\phi_\nu} - a^\dg N\ket{\phi_\nu} &= a^\dg\ket{\phi_\nu}\\
+    Na^\dg\ket{\phi_\nu} &= a^\dg N\ket{\phi_\nu} + a^\dg\ket{\phi_\nu}\\
+    Na^\dg\ket{\phi_\nu} &= a^\dg \nu\ket{\phi_\nu} + a^\dg\ket{\phi_\nu}\\
+    Na^\dg \ket{\phi_\nu} &= (\nu+1)a^\dg\ket{\phi_\nu}
+\end{split}
+\ee
+Showing the a$^\dg$ operator can be used to find higher exciattions. 
+
+%====================================================================================%
+% The book goes through some logic arguing this, someone else can walk through it if they want
+%====================================================================================%
+The eigenvalues must be integers, if non-integer than you could construct an eigenvalue less than 0 which is unphysical. 
+
+We need to reaalize, we have drived all of the eigenvalues and eigenvectors with an arbitrary wavefunction, no evaluating, just algebra!
+In general you cannot always solve for the wavefunction, these algebraic methods are much more reliable for harder problems. 
 
 
 
