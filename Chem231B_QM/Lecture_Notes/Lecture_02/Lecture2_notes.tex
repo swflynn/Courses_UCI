@@ -24,11 +24,11 @@
 
 \section*{Operator Algebra}
 A cornerstone of this course will be the use of operators to solve Quantum Mechanics Problems. 
-By using the operator formulation of Qm we can completly ignore the wavefunction and instead compute observables from just the algebraic manipulations of opertors.
+By using the operator formulation of QM we can completly ignore the wavefunction and instead compute observables from just the algebraic manipulations of opertors.
 This means we can ignore solving the various integrals and differential equations commonly found in the wave function formulation. 
 
 \section*{The Ground State}
-We can consider the ground state energy of the HO, which has an eigenvector satifieing the following
+We can consider the ground state energy of the HO, which has an eigenvector satisfying the following equation
 \be
 a\ket{\phi_0} = 0
 \ee
@@ -36,37 +36,37 @@ This statement is really a differential equation, remember what the operators re
 \be
 \left\{\frac{1}{\sqrt{2}} \sqrt{\frac{m\omega}{\hbar}}x + \frac{i}{\sqrt{m\hbar\omega}}p\right\}\phi_0 = 0
 \ee
-In the position representation 
+In the position representation  we have
 %============================================================================================%
 %Someone should show why this is true derivations
 %============================================================================================%
-We have 
 \be
 \left(\frac{m\omega}{\hbar}x + \frac{d}{dx}\right)\phi_0(x) = 0
 \ee
 %============================================================================================%
-%Someone should prove teh general solution
+%Someone should prove the general solution
 %============================================================================================%
-The general solution is of the form 
+The general solution to this differential equation is of the form 
 \be
 \phi(x) = ce^{-\frac{m\omega x^2}{2\hbar}}
 \ee
-This solution (which takes some effort is just of the ground state.
-All of the solution are actually proportional, therefore only 1 ket exists to describe the ground state (it is degenerate, giving an energy of f
+This solution (which takes some effort) is just for the ground state.
+All of the solution are actually proportional, therefore only 1 ket exists to describe the ground state (it is degenerate) giving an energy of
 \be
 E_0 = \frac{\hbar\omega}{2}
 \ee
+
 \subsection*{First Excited State}
-We want more however, what about excitations!
-To do this we will utilize our creation and annilation operators.
-It is important realize that a and a$^\dg$ do NOT conserve normaliztion, as we will see below.
+We want more, how do we approach the excited states?
+To do this we will utilize the creation and annilation operators.
+It is important to realize that a and a$^\dg$ do NOT conserve normaliztion, as we will see below.
 
 We can show that all of the states are also non-degenerate.
 Suppose we have a single vector satisfying 
 \be
 N\ket{\phi_n} = n\ket{\phi_n}
 \ee
-Likewise we have an eigenvector associated witht he n+1 eigenvalue.
+Likewise we have an eigenvector associated with the n+1 eigenvalue.
 \be
 N\ket{\phi_{n+1}} = (n+1)\ket{\phi_{n+1}}
 \ee
@@ -88,7 +88,7 @@ This result shows all n+1 vectors are proportional to a$^\dg \ket{\phi_n}$ and t
 \ket{\phi_n} \rightarrow \qquad \qquad E_n = \left(n + \frac{1}{2}\right)\hbar\omega
 \ee
 
-Our result also shows we need to know the pre-factors to get the wavefunctions.
+Our result also shows that we need to know the pre-factors to get the wavefunctions.
 \be
 a\ket{\phi_0} = 0, \qquad \ket{\phi_1} = c_1a^\dg\ket{\phi_o} \cdots
 \ee
@@ -146,12 +146,93 @@ The general case works in teh same manner
 \ee
 Where this last line represents the general solution for the Harmonic Oscillator!
 
+\subsubsection*{Orthonormal and Closure}
+Because H is Hermitian the HO kets $\ket{\phi_n}$ are orthogonal.
+Each is individually normalized therefore we have an orthonormal set.
+\be
+\braket{\phi_{n'} | \phi_n} = \delta_{nn'}
+\ee
+We also know that H is an observable and we therefore have closure over the basis.
+\be
+\sum_n \ket{\phi_n} \bra{\phi_n} = 1
+\ee
 
+\subsection*{New Section}
+Any generic operator A (representing a physical observable) ca be expressed in terms of a and a$^\dg$ because X and P are simply linear combinations of a and a$^\dg$.
+This essentially means wecan solve any expectation value by using a and a$^\dg$. 
 
+We have already found general expressions relating a and a$^\dg$ to the HO $\ket{\phi_n}$.
+These expressions make it very convenient to operate on $\ket{\phi_n}$.
+\be
+\begin{split}
+    a^\dg\ket{\phi_n} &= \sqrt{n+1}\ket{\phi_{n+1}}\\
+    a\ket{\phi_n} &= \sqrt{n} \ket{\phi_{n-1}}
+\end{split}
+\ee
+Which makes it clear where the names creation and annilation  operators come from. 
+The second relatioship follows from the commutator of $[a,a^\dg]$
+\be
+a\ket{\phi_n} = a\frac{1}{\sqrt{n}}a^\dg \ket{\phi_{n-1}} = \frac{1}{\sqrt{n}}aa^\dg \ket{\phi_{n-1}} = \frac{1}{\sqrt{n}}(a^\dg a+1) \ket{\phi_{n-1}} = ? = \sqrt{n}\ket{\phi_{n-1}}
+\ee
+%===============================================================================================%
+% Need to fill in the last line of this derivation P.498
+%===============================================================================================%
+The creation and annilation names are intuitive when acting on the ket, however, acting on teh bra we actually find the inverse. 
+\be
+\begin{split}
+    \bra{\phi_n}a &= \sqrt{n+1}\bra{\phi_{n+1}}\\
+    \bra{\phi_n}a^\dg &= \sqrt{n}\bra{\phi_{n-1}}\\
+\end{split}
+\ee
 
+\subsection*{Matrix Elements}
+From our operator definitions we know
+\be
+\hat{X} = \sqrt{\frac{m\omega}{\hbar}}X, \quad \hat{X} = \frac{1}{\sqrt{2}}\left(a^\dg + a\right)
+\ee
+Substituting these expressions we can write the following
+\be
+X\ket{\phi_n} =  \sqrt{\frac{\hbar}{2m\omega}} \left(a^\dg + a\right)\ket{\phi_n}
+\ee
+And in the analagous manner we can define the momentum operation as 
+\be
+P\ket{\phi_n} = \sqrt{m\hbar\omega} \frac{i}{\sqrt{2}} \left(a^\dg - a \right) \ket{\phi_n}
+\ee
 
+With all of these expressions we can analyze various matrix elements (recall the HO vectors are orthornormal).
+\be
+\braket{\phi_{n'}|a|\phi_n} =  \braket{\phi_{n'}|\sqrt{n}\phi_{n-1}} = \sqrt{n}\braket{\phi_{n'}|\phi_{n-1}} = \sqrt{n} \delta_{n',n-1}
+\ee
+In the same manner we can easily write 
+\be
+\braket{\phi_{n'}|a^\dg|\phi_n} =\sqrt{n+1} \delta_{n',n+1}
+\ee
+\be
+\braket{\phi_{n'}|X|\phi_n} = \sqrt{\frac{\hbar}{2m\omega}}\left[\sqrt{n+1}\delta_{n',n+1} + \sqrt{n} \delta_{n',n-1}\right]
+\ee
+\be
+\braket{\phi_{n'}|P|\phi_n} = i\sqrt{\frac{m\hbar\omega}{2}}\left[\sqrt{n+1}\delta_{n',n+1} - \sqrt{n} \delta_{n',n-1}\right]
+\ee
 
+From these matrix elements it becomes clear that only a and a$^\dg$ are Hermitian Congugates and the matrix a$^\dg$a only has non-zero elements for the diagonal which starts at 0 and increases by 1 along the diagonal. 
 
+\subsection*{Wavefunction}
+We can now start discussing the wavefunction itself.
+We know from before that the groundstate  is proportional to a Gaussian.
+As stated before, ew can get all of the expectation values using a and a$\dg$ because they are proportional to linear combinations of X and P.
+The groundstate of the HO (well known) can be written explicitly in the $\{\ket{x}\}$ representation as
+\be
+\phi_0(x) = \braket{x|\phi_0} = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \text{exp} \left\{-\frac{m\omega}{2\hbar}x^2\right\}
+\ee
+%============================================================================================%
+% Could derive this if we felt like it
+%============================================================================================%
+To obtain the $\phi_n(x)$ associated with the other stationary states (eigenstates are stationary, linear combinations are not) we can use our general solution to the HO vectors and the x representation of a$\dg$
+\be
+a^\dg = \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right) = \frac{1}{\sqrt{2}} \left\{ \sqrt{\frac{m\omega}{\hbar}} x - \sqrt{\frac{\hbar}{m\omega}}\frac{d}{dx}\right\}
+\ee
+
+P500
 
 
 
