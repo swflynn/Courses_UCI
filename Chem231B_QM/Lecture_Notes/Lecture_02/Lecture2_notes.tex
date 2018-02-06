@@ -22,6 +22,10 @@
 \begin{document}
 \maketitle
 
+%=================================================================================================%
+$\approx$ P496 Volume 1 Cohen-Tannoudji
+%======================Add some page numbers to help follow along in the future===================%
+%=================================================================================================%
 \section*{Operator Algebra}
 A cornerstone of this course will be the use of operators to solve Quantum Mechanics Problems. 
 By using the operator formulation of QM we can completly ignore the wavefunction and instead compute observables from just the algebraic manipulations of opertors.
@@ -232,10 +236,44 @@ To obtain the $\phi_n(x)$ associated with the other stationary states (eigenstat
 a^\dg = \frac{1}{\sqrt{2}} \left(\hat{X} - i\hat{P}\right) = \frac{1}{\sqrt{2}} \left\{ \sqrt{\frac{m\omega}{\hbar}} x - \sqrt{\frac{\hbar}{m\omega}}\frac{d}{dx}\right\}
 \ee
 
-P500
+Note: we showed all of the wavefunctions are of Gaussian form, x and p will not change the distribution (it will still be gaussian if you multiply by x or take a derivitive wrt x). 
+From our general solution to the HO we can get all of the wavefunctions in the x representation. 
+\be
+\begin{split}
+    \phi_n(x) = \braket{x|\phi_n} &= \frac{1}{\sqrt{n}} \braket{x|(a^\dg)^n|\phi_0}\\
+    &= \frac{1}{\sqrt{n}} \frac{1}{\sqrt{2^n}}\left[ \sqrt{\frac{m\omega}{\hbar}}x - \sqrt{\frac{\hbar}{m\omega}}\frac{d}{dx} \right]^n \phi_0(x)\\
+    \phi_n(x) &= \left[ \frac{1}{2^nn!} \left(\frac{\hbar}{m\omega}\right)^n \right]^{1/2} \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} \left[ \frac{m\omega}{\hbar}x-\frac{d}{dx} \right]^n \text{exp} \left\{-\frac{m\omega}{2\hbar}x^2\right\}
+\end{split}
+\ee
+We see that the general solution is the expotential times a polynomial of degree n and parit (-1)$^n$.
+These polynomialsl are well known as the \textbf{Hermite Polynomials}. 
+If you plot htese functions (and their probability densities) uyou will see that there are as many poles as excitations (n).
+This suggestst the kinetic energy of the particle increasas (increased curcature i.e. larger second derivitive i.e. larger kinetic energy). 
+At large n we observe the probability distribution is maximized at the ends of the amplitude.
+This is consistent with classical mechanics.
+Think of a mass on a spring, at the turning point the velocity must go to zero, therefore the mass spends most of its time at the turning point amplitude. 
+In the QM case we have exactlyt he opposite behavior (it is a gaussian maximize at the middle) bbut fo rlarge values of n we recove the classical behavior. 
 
+This result is a general observation of the \textbf{Correspondence Principle} which states that higher energy quantum systems begin to represent classical systems. 
 
+\subsection*{Name}
+The eigenstates are all stationary states, nothing is happening.
+If we want dynamics we need to look at superpositions. 
+In the future we will look at coherence states with the HO to get superpositions.
 
+Neither X or P commute with H, and the eigenstates of H are not eigenstates of X or P. 
+We can calculate the expectation values of X and P in a stationary state and verify the uncertainty relationship.
+We have already found $X\ket{\phi_n}$ and $P\ket{\phi_n}$ so we can explicitly compute the matrix elements if we want.
+But from intuition we already know that
+\be
+\begin{split}
+    \braket{\phi_n|X|\phi_n} &= 0\\
+    \braket{\phi_n|P|\phi_n} &= 0
+    \end{split}
+    \ee
+We are in a stationary state, if we have an average value here we cannot be in a stationary state!
+
+We can compute the root-mean-square properties using
 
 
 
