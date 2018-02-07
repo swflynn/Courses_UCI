@@ -273,7 +273,69 @@ But from intuition we already know that
     \ee
 We are in a stationary state, if we have an average value here we cannot be in a stationary state!
 
-We can compute the root-mean-square properties using
+We can compute the root-mean-square properties using (for a generic operator A)
+%=================================================================================================================%
+% Someone should prove the variance proof here if we want
+%=================================================================================================================%
+\be
+\text{var}[A] = \braket{A^2} - \braket{A}^2
+\ee
+Applying this to X and P we have (remember the average X and P are 0 for the stationary states). 
+\be
+\begin{split}
+    (\Delta X)^2 &= \braket{\phi_n|X^2|\phi_n} - \left(\braket{\phi_n|X|\phi_n}\right)^2 = \braket{\phi_n|X^2|\phi_n}\\
+    (\Delta P)^2 &= \braket{\phi_n|P^2|\phi_n} - \left(\braket{\phi_n|P|\phi_n}\right)^2 = \braket{\phi_n|P^2|\phi_n}
+\end{split}
+\ee
+
+\be
+\begin{split}
+    X &= \sqrt{\frac{\hbar}{m\omega}}\hat{X}, \qquad \hat{X} = \frac{1}{\sqrt{2}}\left(a^\dg + a\right) \\
+    X^2 &= \frac{\hbar}{2m\omega} \left(a^\dg + a\right) \left(a^\dg + a\right)\\
+    &= \frac{\hbar}{2m\omega} \left\{(a^\dg) ^2 + a^\dg a + a a^\dg + a^2\right\}
+\end{split}
+\ee
+We need to note that a$^2$ and a$^\dg$ are 0 because $a^2\ket{\phi_n}$ is proportinal to $\ket{\phi_{n-2}}$ and is orthogonal to $\ket{\phi_n}$ and the same with the dagger (they move two excitations). 
+We can therefore write (applying the coommutator [a,a$^\dg$])
+\be
+    X^2 = \frac{\hbar}{2m\omega} \left\{ a^\dg a + a a^\dg\right\} = \frac{\hbar}{2m\omega} \left\{ a^\dg a + 1 + a^\dg a \right\} = \frac{\hbar}{2m\omega} \left\{ 2a^\dg a + 1\right\} = \frac{\hbar}{2m\omega} \left\{ 2N + 1\right\}
+\ee
+And from here we have evaluated our variance for the HO
+\be
+(\Delta X)^2 = \braket{\phi_n|X^2|\phi_n} = \left(n + \frac{1}{2}\right) \frac{\hbar}{m\omega}
+\ee
+%======================================================================================================%
+% Someone else can insert the derivation for momentum it follows the same logic
+%======================================================================================================%
+In the same manner we find
+\be
+(\Delta P)^2 = \braket{\phi_n|P^2|\phi_n} = \left(n + \frac{1}{2}\right) m\hbar\omega
+\ee
+Unsurprisingly we see that the variance increases with the quantum number n. 
+We can now evaluate teh uncertainty principle
+\be
+\Delta X \Delta P = \sqrt{(\Delta X^2)(\Delta P^2)} = \left(n+ \frac{1}{2}\right)\hbar
+\ee
+We see that the lower bound occurs in the ground state (n=0, $\frac{\hbar}{2}$).
+The uncertainty principle holds which is epected, X and P do not commute whichh is the root of the uncertainty. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
