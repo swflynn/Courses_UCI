@@ -15,7 +15,7 @@
 \newcommand{\pd}{\partial}
 % Title Information
 \title{Chem231B: Lecture 3}
-\author{Shane Flynn (swflynn@uci.edu)}
+\author{Shane Flynn (swflynn@uci.edu)Moises Romero(moiseser@uci.edu)}
 \date{1/10/18}
 
 \begin{document}
@@ -29,7 +29,7 @@ The conclusion is that squeezing a particle into a smaller space requires a high
 In Quantum Mechanics the n=0 state is no localized at the bottom of the well, but has a finite distribution. 
 This is characterized by the root-mean-square deviation in X as we found last lecture. 
 
-For our HOo the average Potential Energy of the particle in sthe state $\ket{\phi_n}$ is given by
+For our HO the average Potential Energy of the particle in the state $\ket{\phi_n}$ is given by
 \be
 \braket{V(X)} = \frac{1}{2} m\omega^2 \braket{X^2} = \frac{1}{2} m\omega^2 \braket{\Delta X^2}
 \ee
@@ -40,99 +40,3 @@ We can repeat the analysis for the average kinetic energy as
 \ee
 Substituting in our expressions from lecture 2 for the variance we see that
 \be
-\begin{split}
-\braket{V(X)} &= \frac{\hbar \omega}{2} \left(n+\frac{1}{2}\right) \\
-\braket{\frac{P^2}{2m}} &= \frac{\hbar \omega}{2} \left(n+\frac{1}{2}\right) \\
-\end{split}
-\ee
-If we now recall the expression for E$_n$ (Lecture 2) we see each of theses are actually equal to $\frac{E_n}{2}$.
-
-So half of the average enerygis kinetic and half is potential.
-This is a manifestation of the virial theorem in Quantum Mechanics. 
-
-\section*{Eigenstates}
-The stationary state $\ket{\phi_n}$ has no equivalent in Classical Mechanics (energy is not zero btu the average positiona nd moentum are). 
-To connect with Classical Mechanics we need to consider an ensemble of Harmonic Oscillators with a random phase term (collection of out of phase oscillator with phases spanning 0 to 2$\pi$ with equal  probability).
-Consider the general solution to the Classical HO with these assumptions. 
-%============================================================================================%
-% Someone can show/compute/do these integrals if they want
-%============================================================================================%
-\be
-\begin{split}
-    x &= x_m \cos(\omega t - \phi), \qquad E = \frac{m\omega^2}{2}x_m^2\\
-    \bar{x}_{CM} &= x_m\frac{1}{2\pi}\int_0^{2\pi} \cos(\omega t - \phi) d\phi = 0\\
-    \bar{p}_{CM} &= -p_m\frac{1}{2\pi}\int_0^{2\pi} \sin(\omega t - \phi) d\phi = 0
-\end{split}
-\ee
-So we can find a classical system that represents the Stationary States of the Quantum system.
-It is a collection of random phase oscillaotrs.
-Over time some particles more left, some move right, and all the terms cancel giving average positionand momentum of 0 for the ensemble. 
-So the eigenstate (stationary state) of the Quantum HO is represented by a collection of randomly phased classical harmoni coscillators. 
-The eigenstate is not a single oscillator classically but an ensemble!
-Keep the states in mind, the eigenstates are special, a general state of the QHO is a superposition of eigenstates.
-
-\section*{Ground State}
-In Classical Mechanics we know  that the lowest energy of the HO is given by the particle at rest where there is no  momentum or kinetic energy, located at the minimum of the potential surface. 
-The Quantum HO is completly different, represented by a minimum energy state $\ket{\phi_n}$  with a non-zero energy and associated wavefunction. 
-The uncertainty principle does not allow us to minimize both the kinetic and potential energy (because x and p do not commute). 
-Instead the ground state is a compromize minmizing each of these wrt eachother. 
-
-For the HO we can Think of a bound system (a particle confined to (a width of) a distance $\xi$). 
-Here $\xi$ is a paramater representing the spatial extension of the wavefunction. 
-We can approximate the potential energy as 
-\be
-\bar{V} \approx \frac{m\omega^2}{2}\xi^2
-\ee
-This implies that $\Delta$P is of the order $\frac{\hbar}{\xi}$.
-Therefore the average kinetic energy looks like
-\be
-\bar{T} \approx \frac{\hbar^2}{2m\xi^2}
-\ee
-And the average total energy would be of the order
-\be
-\bar{E} \approx \frac{\hbar^2}{2m\xi^2} + \frac{m\omega^2}{2}\xi^2
-\ee
-We then expect the ground state to represent the minimization of this total energy which is given by 
-\be
-\xi \approx \sqrt{\frac{\hbar}{m\omega}}, \qquad \qquad \bar{E}_m \approx \hbar \omega
-\ee
-So this hand-wavign argument gets the minimum energy on the same order of magnitude of our ground state analysis ($\frac{\hbar \omega}{2}$). 
-The HO is special, you actually reach the lower bound of the uncertainty principle in teh ground state (this result is related to the ground state wave funciton being a  Gaussian). 
-
-\section*{Time}
-P 507
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\end{document}
