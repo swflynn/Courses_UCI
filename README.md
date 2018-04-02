@@ -17,4 +17,4 @@ This platform has source-control which essentially tracks all changes made to a 
 Clearly the resources are made freely available and can be accessed by anyone.
 To contribute to the project you will need a Github (and Git) account.
 
-For a brief tutorial on using and contributing to the resources look in the Chem231B [README](https://github.com/swflynn/Courses_UCI/tree/master/Chem231B_QM).
+For a brief tutorial on using and contributing to the resources look in any of the courses ==> [README](https://github.com/swflynn/Courses_UCI/tree/master/Chem231B_QM).
