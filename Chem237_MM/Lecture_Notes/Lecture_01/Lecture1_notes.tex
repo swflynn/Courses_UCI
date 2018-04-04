@@ -38,21 +38,21 @@ The homework will be split into both analytical and numerical problems, any prog
 For the numerical problems if you are asked to make an algorithm you CANNOT use pre-built algorithms available to the languages.
 
 \section*{Chapter 1: Differential Equations}
-A Differential Equation simply refers to an equation containing derivitives.
-An \textbf{Ordinary Differential Equation} (ODE) refers to any differential equation with derivitives taken wrt a single variable.
-In contrast a \textbf{Partial Differential Equation} (PDE) contains derivitives wrt more than 1 variable. 
-We can further categorize differential equations (both ODE and PDE) into linear or nonlinear. 
-As you can imagine linear equations are simplier to solve compared to nonlinear and ODEs are easier to solve than PDEs. 
+A Differential Equation simply refers to an equation containing derivatives.
+An \textbf{Ordinary Differential Equation} (ODE) refers to any differential equation with derivatives taken wrt a single variable.
+In contrast a \textbf{Partial Differential Equation} (PDE) contains derivatives wrt more than 1 variable.
+We can further categorize differential equations (both ODE and PDE) into linear or nonlinear.
+As you can imagine, linear equations are simpler to solve compared to nonlinear and ODEs are easier to solve than PDEs.
 
 \subsection*{Linear Equations}
-Linear Equations are a general topic, there are linear differential equations, linear algebraic equations, and etc. 
+Linear Equations are a general topic, there are linear differential equations, linear algebraic equations, and etc.
 A linear equation has the form
 \be
 \hat{A} f(x,y,\hdots) = B(x,y,\hdots)
 \ee
-Where the RHS (B) is known, and the function f is an unknown function. 
+Where the RHS (B) is known, and the function f is an unknown function.
 To be a linear equation, the operator $\hat{A}$ must be a linear operator.
-For example take the equation above, and let $\hat{A}$ be the differential operator wrt a single dimension, and you get a linear ordinary differential equation. 
+For example take the equation above, and let $\hat{A}$ be the differential operator wrt a single dimension, and you get a linear ordinary differential equation.
 
 If the RHS (B) is equal to 0, the linear equation is called \textbf{Homogeneous} and if the RHs is anything other than 0 if it termed \textbf{Inhomogeneous}.
 
@@ -65,8 +65,8 @@ If we assume f$_1$ and f$_2$ are solutions to equation \ref{eq:lin_homo} than we
 \be
 f_3 = c_1f_1 + c_2f_2
 \ee
-This result is true for any set of linear homogeneous equations. 
-The linear combination of two different solutions to a linear homogeneous equation is another unique solution. 
+This result is true for any set of linear homogeneous equations.
+The linear combination of two different solutions to a linear homogeneous equation is another unique solution.
 
 \subsubsection*{Inhomogeneous Linear Equations}
 If we now consider the Inhomogeneous linear equation, equation \ref{eq:lin_inhomo}
@@ -77,19 +77,19 @@ If we know a specific solution to equation \ref{eq:lin_inhomo} than we can const
 \be
 f = f_0 + \sum_i c_i f_i
 \ee
-Where the specific solution (f$_0$) is known as a \textbf{Particular Solution} and the f$_i$ solutions refer to the solutions of the associated homogeneous equation. 
+Where the specific solution (f$_0$) is known as a \textbf{Particular Solution} and the f$_i$ solutions refer to the solutions of the associated homogeneous equation.
 
 \subsection*{ODE: Linear, Homogeneous, Constant Coefficients}
-We will start with the simpliest ODEs, the linear, homogeneous, constnat coefficient expressions. 
+We will start with the simplest ODEs, the linear, homogeneous, constant coefficient expressions.
 Various books use different notation for presenting ODEs.
-For example, it is very common in physics to considers functions that only depend on time ==$>$ x = x(t). 
+For example, it is very common in physics to considers functions that only depend on time ==$>$ x = x(t).
 
-We can also define notation 
+We can also define notation
 \be
 x^n \equiv \frac{d^n}{dt}x \equiv D^n x
 \ee
 Hopefully it is clear that D is the differential operator, it is a linear operator.
-If you apply a linear operator n times it is still linear therefore D$^n$ is also a linear operator. 
+If you apply a linear operator n times it is still linear therefore D$^n$ is also a linear operator.
 The general form of these equations are
 \be \label{eq:lin_cc}
 \sum_{n=0}^N a_nx^{(n)} = f(t)
@@ -113,28 +113,28 @@ To solve we assume a solution of the form: x(t) = e$^{\lambda t}$ and substitute
 \end{split}
 \ee
 The last line is known as the \textbf{Characteristic Polynomial} and is the general solution to the linear constant coefficient ODE.
-The above polynimial is of degree N, and a theorem in  ODEs says that there exists exactly N roots (in general complex) that can potentially be degenerate. 
+The above polynomial is of degree N, and a theorem in  ODEs says that there exists exactly N roots (in general complex) that can potentially be degenerate.
 %==============================================================================%
 % Someone go find this theorem
 %==============================================================================%
 
-Let's begin exploring these equations by assuming the non-degenerate case (i.e. $\lambda_i \neq \lambda_j$). 
+Let's begin exploring these equations by assuming the non-degenerate case (i.e. $\lambda_i \neq \lambda_j$).
 This means we have N solutions, but any linear combination of these solutions also presents a new solution.
-Therefore a general solution to the non-degenerate case is 
+Therefore a general solution to the non-degenerate case is
 \be
 x(t) = \sum_{n=1}^N c_n e^{\lambda_nt}
 \ee
-So the linear constant coefficient ODE problem is equivalent to finding the roots of a polynomial, and related to the linear algebra problem (which we will see later in the course). 
+So the linear constant coefficient ODE problem is equivalent to finding the roots of a polynomial, and related to the linear algebra problem (which we will see later in the course).
 %==============================================================================%
 % Someone can explain this better / elaborate if they want
 %==============================================================================%
 
 \subsubsection*{Damper Harmonic Oscillator}
-Let's consider an example, the \textbf{Damped Harmonic Oscillator}, a very common physics example with analytic solutions. 
+Let's consider an example, the \textbf{Damped Harmonic Oscillator}, a very common physics example with analytic solutions.
 \be
 \frac{d^2}{dt^2} x + 2\gamma \frac{d}{dt} x + \omega^2 x = 0
 \ee
-We will see this equation more, but the $\gamma$ is interpreted as the expotential decay, and the $\omega$ term refers to the frequency in physics models. 
+We will see this equation more, but the $\gamma$ is interpreted as the exponential decay, and the $\omega$ term refers to the frequency in physics models.
 If we assume ==$>$ x = x$^{\lambda t}$ we can find the characteristic equation
 \be
 \begin{split}
@@ -145,7 +145,7 @@ If we assume ==$>$ x = x$^{\lambda t}$ we can find the characteristic equation
 %==============================================================================%
 % Someone do the work for the derivation, I am not sure if the last line is correct...
 %==============================================================================%
-Where we see the last line is the characteristic equation, and it is a quadratic expression. 
+Where we see the last line is the characteristic equation, and it is a quadratic expression.
 
 There are 3 different regiemes to consider
 \benum
@@ -155,7 +155,7 @@ There are 3 different regiemes to consider
 \eenum
 
 %==============================================================================%
-% I AM HERE 
+% I AM HERE
 %==============================================================================%
 
 
