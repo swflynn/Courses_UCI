@@ -6,6 +6,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{braket}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
@@ -23,7 +24,7 @@
 %                             Title Information                                %
 %==============================================================================%
 \title{Chem237: Lecture 1}
-\date{4/3/18}
+\date{4/5/18}
 \author{Shane Flynn, Alan Robledo}
 %==============================================================================%
 %	Everyone Please Make Comments if Something Needs to be Reviewed        %
@@ -166,64 +167,120 @@ Since one unique solution is $c_1 e^{\lambda_1 t}$, we can replace the constant 
 
 So the linear constant coefficient ODE problem is equivalent to finding the roots of a polynomial, and related to the linear algebra problem (which we will see later in the course).
 %==============================================================================%
-% Someone can explain this better / elaborate if they want
+% Someone try making the ODE subsection flow better
 %==============================================================================%
 
 \subsubsection*{Damped Harmonic Oscillator}
-Let's consider an example, the \textbf{Damped Harmonic Oscillator}, a very common physics example with analytic solutions.
+Let's consider an example, the \textbf{Damped Harmonic Oscillator}; a very common physics example with analytic solutions.
 \be
-\frac{d^2}{dt^2} x + 2\gamma \frac{d}{dt} x + \omega^2 x = 0
+\frac{d^2}{dt^2} x + 2\gamma \frac{d}{dt} x + \omega_o^2 x = 0
 \ee
-We will see this equation more, but the $\gamma$ is interpreted as the exponential decay, and the $\omega$ term refers to the frequency in physics models.
-If we assume ==$>$ x = e$^{\lambda t}$ we can find the characteristic equation
+The $\gamma$ is interpreted as the damping constant, and the $\omega_o$ term is interpreted as the frequency of oscillations if no damping was present, aka the natural frequency.
+While we do not live in an imaginary world, we would prefer to generalize $x(t)$ by making it a complex function.
+If we ever need to compute real observables of the oscillator, this can be done by just taking the real part of the general solution.
+Now, if we assume ==$>$ x = e$^{\lambda t}$ we can find the characteristic equation.
 \be
-\begin{split}
 \lambda^2 + 2\gamma\lambda  + \omega^2 = 0\\
-\lambda = -\gamma \pm \sqrt{^2 - \omega^2}
-\end{split}
 \ee
-%==============================================================================%
-% Someone do the work for the derivation, I am not sure if the last line is correct...
-%==============================================================================%
-Where we see the last line is the characteristic equation, and it is a quadratic expression.
+Since the ODE is second order, we can predict that the characteristic equation will be quadratic with two roots $\lambda_+$ and $\lambda_-$
+\be \label{eq:oscillator_char}
+\lambda_{\pm} = -\gamma \pm \sqrt{\gamma^2 - \omega_o^2} .
+\ee
 
-There are 3 different regiemes to consider
+In order to observe the behavior of the oscillator (i.e. solve the differential equation), we need to consider 3 different cases:
 \benum
-\item $\omega > \gamma$, the damped solution.
+\item $\omega > \gamma$, the underdamped solution.
 \item $\omega < \gamma$, the overdamped solution.
 \item $\omega = \gamma$, the degenerate solution ($\lambda_1 = \lambda_2$).
 \eenum
-
 %==============================================================================%
-% I AM HERE
+% I AM HERE -Shane
 %==============================================================================%
 
+\subsubsection*{Underdamping ($\omega_o > \gamma$)}
+In the case of underdamping, the damping constant is small compared to $\omega_o$. In this case, the square root in equation \ref{eq:oscillator_char} is imaginary and we can say
+\be
+\sqrt{\gamma^2 - \omega_o^2} = i \Omega = i \sqrt{\omega_o^2 - \gamma^2}
+\ee
+Therefore,
+\be
+\lambda_{\pm} = -\gamma \pm i \Omega .
+\ee
+And we can write the general solution as
+\be
+\begin{split}
+x(t) &= c_1 e^{(-\gamma + i \Omega)t} + c_2 e^{(-\gamma - i \Omega)t} \\
+&= e^{-\gamma t}(c_1 e^{i \Omega t} + c_2 e^{-i \Omega t}) \\
+\end{split}
+\ee
+Now that we have found the general solution, we would like to plot the position as a function of time. Since it is difficult to visualize in its current form, let's rewrite it in terms of sine and cosine using euler's identity
+\be
+\begin{split}
+x(t) &= e^{-\gamma t} \big[ c_1(cos(\Omega t) + i sin(\Omega t)) + c_2(cos(\Omega t) - i sin(\Omega t)) \big] \\
+x(t) &= e^{-\gamma t} \big[ (c_1 + c_2)cos(\Omega t) + i(c_1 - c_2)sin(\Omega t) \big] \\
+\end{split}
+\ee
+and introduce new coefficients $B_1$ and $B_2$
+\be
+\begin{split}
+&B_1 = c_1 + c_2 \\
+&B_2 = i(c_1 - c_2) . \\
+\end{split}
+\ee
+This turns the general solution into
+\be
+x(t) = e^{-\gamma t} \big[ B_1 cos(\Omega t) + B_2 sin(\Omega t)]
+\ee
 
+Since we know that $x(t)$ is real, along with $cos(\Omega t)$ and $sin(\Omega t)$, $c_1$ and $c_2$ must be chosen carefully to ensure that $B_1$ and $B_2$ are real. To continue reducing the solution to a more manageable form, we need to introduce one last variable
+\be
+A = \sqrt{B_1^2 + B_2^2}
+\ee
+where B$_1$ and B$_2$ can be thought of as the adjacent and opposite sides of a right triangle, respectively, with A as the hypotenuse and $\delta$ as the lower angle.
+With that, we can use some geometry to rewrite the general solution as
+\be
+\begin{split}
+x(t) &= Ae^{-\gamma t} \Big[\frac{B_1}{A}cos(\Omega t) + \frac{B_2}{A}sin(\Omega t) \Big]\\
+ &= Ae^{-\gamma t} [cos(\delta)cos(\Omega t) + sin(\delta)sin(\Omega t)]\\
+ &= Ae^{-\gamma t} cos(\Omega t - \delta)\\
+\end{split}
+\ee
+where we used the trig identity $cos(A)cos(B) + sin(A)sin(B) = cos(A-B)$.
 
+We now have a very nice and compact equation to describe the motion of the oscillator.
+%==============================================================================%
+% We should probably add the plot of the solution right here.
+%==============================================================================%
+By looking at the solution in this form, we can see that the oscillatory motion comes from the cosine term and the oscillator tending towards equilibrium comes from the negative exponential term.
 
+\subsubsection*{Overdamping ($\omega_o < \gamma$)}
+In the case of overdamping, the square root in equation \ref{eq:oscillator_char} is real and not complex, so we can just write the general solution as
+\be
+\begin{split}
+x(t) &= c_1 e^{-\gamma + \sqrt{\gamma^2 - \omega_o^2}} + c_2 e^{-\gamma - \sqrt{\gamma^2 - \omega_o^2}} \\
+&= c_1 e^{-(\gamma - \sqrt{\gamma^2 - \omega_o^2})} + c_2 e^{-(\gamma + \sqrt{\gamma^2 - \omega_o^2})}
+\end{split}
+\ee
+%==============================================================================%
+% I wrote equation 28 this way to bypass using Vlad's upside down plus minus thing.
+%==============================================================================%
+The reason for rewriting the general solution is to see more clearly what is happening to the oscillator's position by noticing the two negative exponential terms.
+In the case of overdamping, the resistive force, proportional to the damping constant, dominates the spring force.
+So once the oscillator is kicked at time t $=$ 0, it will move to its maximum displacement and then quickly decay to zero displacement without anymore oscillations.
+%==============================================================================%
+% Add the other plot of the solution here.
+%==============================================================================%
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsubsection*{Critical Damping ($\omega_o = \gamma$)}
+In the case of critical damping, the damping constant is equal to the natural frequency.
+This means that the characteristic equation has two equal roots and the general solution can be written as
+\be
+\begin{split}
+x(t) &= c_1 e^{\lambda_1 t} + c_2 te^{\lambda_2 t}\\
+&= c_1 e^{-\gamma t} + c_2 te^{-\gamma t}\\
+\end{split}
+\ee
+%==============================================================================%
+% I AM HERE -Alan
+%==============================================================================%
 \end{document}
