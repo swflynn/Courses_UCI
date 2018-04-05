@@ -193,9 +193,6 @@ In order to observe the behavior of the oscillator (i.e. solve the differential 
 \item $\omega < \gamma$, the overdamped solution.
 \item $\omega = \gamma$, the degenerate solution ($\lambda_1 = \lambda_2$).
 \eenum
-%==============================================================================%
-% I AM HERE -Shane
-%==============================================================================%
 
 \subsubsection*{Underdamping ($\omega_o > \gamma$)}
 In the case of underdamping, the damping constant is small compared to $\omega_o$. In this case, the square root in equation \ref{eq:oscillator_char} is imaginary and we can say
@@ -213,11 +210,14 @@ x(t) &= c_1 e^{(-\gamma + i \Omega)t} + c_2 e^{(-\gamma - i \Omega)t} \\
 &= e^{-\gamma t}(c_1 e^{i \Omega t} + c_2 e^{-i \Omega t}) \\
 \end{split}
 \ee
+Here c$_1$ and c$_2$ can be complex.
+The term within parenthesis is an oscillaiting component, and the outside terms shows an expoetential decay. 
+
 Now that we have found the general solution, we would like to plot the position as a function of time. Since it is difficult to visualize in its current form, let's rewrite it in terms of sine and cosine using euler's identity
 \be
 \begin{split}
-x(t) &= e^{-\gamma t} \big[ c_1(cos(\Omega t) + i sin(\Omega t)) + c_2(cos(\Omega t) - i sin(\Omega t)) \big] \\
-x(t) &= e^{-\gamma t} \big[ (c_1 + c_2)cos(\Omega t) + i(c_1 - c_2)sin(\Omega t) \big] \\
+x(t) &= e^{-\gamma t} \big[ c_1(\cos(\Omega t) + i \sin(\Omega t)) + c_2(\cos(\Omega t) - i \sin(\Omega t)) \big] \\
+x(t) &= e^{-\gamma t} \big[ (c_1 + c_2)\cos(\Omega t) + i(c_1 - c_2)\sin(\Omega t) \big] \\
 \end{split}
 \ee
 and introduce new coefficients $B_1$ and $B_2$
@@ -232,7 +232,7 @@ This turns the general solution into
 x(t) = e^{-\gamma t} \big[ B_1 cos(\Omega t) + B_2 sin(\Omega t)]
 \ee
 
-Since we know that $x(t)$ is real, along with $cos(\Omega t)$ and $sin(\Omega t)$, $c_1$ and $c_2$ must be chosen carefully to ensure that $B_1$ and $B_2$ are real. To continue reducing the solution to a more manageable form, we need to introduce one last variable
+Since we know that $x(t)$ is real, along with $\cos(\Omega t)$ and $\sin(\Omega t)$, $c_1$ and $c_2$ must be chosen carefully to ensure that $B_1$ and $B_2$ are real. To continue reducing the solution to a more manageable form, we need to introduce one last variable
 \be
 A = \sqrt{B_1^2 + B_2^2}
 \ee
@@ -250,10 +250,14 @@ where we used the trig identity $cos(A)cos(B) + sin(A)sin(B) = cos(A-B)$.
 We now have a very nice and compact equation to describe the motion of the oscillator.
 %==============================================================================%
 % We should probably add the plot of the solution right here.
+% Make sure we add the plot, Real component of x(t) vs t, also plot the expotential decay e^{-gamma t} to compare with
+% Allplots should be written in a programming language and privided on the github page too, use whatever language you like
+% If you need extra packages to plot (i.e. pandas for python or something) make a note in the src code
 %==============================================================================%
 By looking at the solution in this form, we can see that the oscillatory motion comes from the cosine term and the oscillator tending towards equilibrium comes from the negative exponential term.
 
 \subsubsection*{Overdamping ($\omega_o < \gamma$)}
+The overdamping case can be physically interpreted as having a very large friction contribution. 
 In the case of overdamping, the square root in equation \ref{eq:oscillator_char} is real and not complex, so we can just write the general solution as
 \be
 \begin{split}
@@ -269,9 +273,13 @@ In the case of overdamping, the resistive force, proportional to the damping con
 So once the oscillator is kicked at time t $=$ 0, it will move to its maximum displacement and then quickly decay to zero displacement without anymore oscillations.
 %==============================================================================%
 % Add the other plot of the solution here.
+% Again plot Re[x(t) vs t]
 %==============================================================================%
 
 \subsubsection*{Critical Damping ($\omega_o = \gamma$)}
+%==============================================================================%
+% I AM HERE -Shane
+%==============================================================================%
 In the case of critical damping, the damping constant is equal to the natural frequency.
 This means that the characteristic equation has two equal roots and the general solution can be written as
 \be
