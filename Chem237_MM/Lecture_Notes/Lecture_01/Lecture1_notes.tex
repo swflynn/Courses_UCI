@@ -24,7 +24,7 @@
 %==============================================================================%
 \title{Chem237: Lecture 1}
 \date{4/3/18}
-\author{Shane Flynn}
+\author{Shane Flynn, Alan Robledo}
 %==============================================================================%
 %	Everyone Please Make Comments if Something Needs to be Reviewed        %
 %                           Or just fix it yourself!                           %
@@ -52,45 +52,46 @@ A linear equation has the form
 \ee
 Where the RHS (B) is known, and the function f is an unknown function.
 To be a linear equation, the operator $\hat{A}$ must be a linear operator.
-For example take the equation above, and let $\hat{A}$ be the differential operator wrt a single dimension, and you get a linear ordinary differential equation.
+For example, take the equation above and let $\hat{A}$ be the differential operator wrt a single dimension, and you get a linear ordinary differential equation.
 
-If the RHS (B) is equal to 0, the linear equation is called \textbf{Homogeneous} and if the RHs is anything other than 0 if it termed \textbf{Inhomogeneous}.
+If the RHS (B) is equal to 0, the linear equation is called \textbf{Homogeneous} and if the RHS is anything other than 0, the linear equation is called \textbf{Inhomogeneous}.
 
 \subsubsection*{Homogeneous Linear Equations}
 Consider equation \ref{eq:lin_homo} below
 \be \label{eq:lin_homo}
 \hat{A}f = 0
 \ee
-If we assume f$_1$ and f$_2$ are solutions to equation \ref{eq:lin_homo} than we immediately known another solution given by
+If we assume f$_1$ and f$_2$ are solutions to equation \ref{eq:lin_homo}, then we immediately know another solution to be a linear combination of f$_1$ and f$_2$
 \be
-f_3 = c_1f_1 + c_2f_2
+f_3 = c_1f_1 + c_2f_2 .
 \ee
 This result is true for any set of linear homogeneous equations.
-The linear combination of two different solutions to a linear homogeneous equation is another unique solution.
+The linear combination of two unique solutions to a linear homogeneous equation gives another unique solution.
 
 \subsubsection*{Inhomogeneous Linear Equations}
 If we now consider the Inhomogeneous linear equation, equation \ref{eq:lin_inhomo}
 \be \label{eq:lin_inhomo}
 \hat{A}f = B
 \ee
-If we know a specific solution to equation \ref{eq:lin_inhomo} than we can construct another solution as
+we can construct the solution to this equation as
 \be
 f = f_0 + \sum_i c_i f_i
 \ee
-Where the specific solution (f$_0$) is known as a \textbf{Particular Solution} and the f$_i$ solutions refer to the solutions of the associated homogeneous equation.
+Where the specific solution ($f_0$) is known as a \textbf{Particular Solution} and the $f_i$ solutions refer to the solutions of the associated homogeneous equation.
 
 \subsection*{ODE: Linear, Homogeneous, Constant Coefficients}
 We will start with the simplest ODEs, the linear, homogeneous, constant coefficient expressions.
 Various books use different notation for presenting ODEs.
-For example, it is very common in physics to considers functions that only depend on time ==$>$ x = x(t).
+For example, it is very common in physics to consider functions that only depend on time ==$>$ x = x(t).
 
-We can also define notation
+We can also define notation as
 \be
 x^n \equiv \frac{d^n}{dt}x \equiv D^n x
 \ee
-Hopefully it is clear that D is the differential operator, it is a linear operator.
+Hopefully it is clear that D is the linear differential operator.
 If you apply a linear operator n times it is still linear therefore D$^n$ is also a linear operator.
-The general form of these equations are
+
+The general form of these equations is
 \be \label{eq:lin_cc}
 \sum_{n=0}^N a_nx^{(n)} = f(t)
 \ee
@@ -99,10 +100,7 @@ If we consider the homogeneous linear constant coefficients, than equation \ref{
 \be \label{eq:lin_cc_homo}
 \sum_{n=0}^N a_nx^{(n)} = 0
 \ee
-%==============================================================================%
-% Someone Give motivation/intuition for this equation solution
-%==============================================================================%
-To solve we assume a solution of the form: x(t) = e$^{\lambda t}$ and substitute this into equation \ref{eq:lin_cc_homo}.
+To solve these equations, we assume a solution of the form: x(t) = e$^{\lambda t}$ and substitute this into equation \ref{eq:lin_cc_homo}.
 \be
 \begin{split}
     \sum_{n=0}^N a_nx^{(n)} &= 0\\
@@ -112,34 +110,76 @@ To solve we assume a solution of the form: x(t) = e$^{\lambda t}$ and substitute
     \sum_{n=0}^N a_n \lambda^n &= 0\\
 \end{split}
 \ee
-The last line is known as the \textbf{Characteristic Polynomial} and is the general solution to the linear constant coefficient ODE.
+
+The last line is known as the \textbf{Characteristic Polynomial} and it helps us find the general solution to the linear constant coefficient ODE.
 The above polynomial is of degree N, and a theorem in  ODEs says that there exists exactly N roots (in general complex) that can potentially be degenerate.
 %==============================================================================%
 % Someone go find this theorem
 %==============================================================================%
 
-Let's begin exploring these equations by assuming the non-degenerate case (i.e. $\lambda_i \neq \lambda_j$).
-This means we have N solutions, but any linear combination of these solutions also presents a new solution.
-Therefore a general solution to the non-degenerate case is
+The reason for using this approach comes solely from mathematical intuition.
+Our differential equation requires a function $x(t)$ such that the function and its derivatives cancel out to satisfy the RHS.
+The only function we know of that satisfies this condition is x(t) = e$^{\lambda t}$.
+In order to account for different multiples of the function, we include the $\lambda$ in our assumed solution, since its derivative is equal to $\lambda$ e$^{\lambda t}$.
+One would think that trigonometric functions and several derivatives of itself can satisfy this condition as well.
+While this is sometimes true, it is not true generally.
+Even if you consider a combination of sine and cosine, such a function would not always work.
+Consider the example ODE below,
 \be
-x(t) = \sum_{n=1}^N c_n e^{\lambda_nt}
+\frac{dy}{dt} + y = 0 .
 \ee
+Suppose that we assume the solution to be x(t) = sin($\lambda$ t) + cos($\lambda$ t).
+Plugging this and its derivative into the original equation yields
+\be
+\lambda cos(\lambda t) - \lambda sin(\lambda t) + sin(\lambda t) + cos(\lambda t) = 0 .
+\ee
+However, there are no values of $\lambda$ that could satisfy this equation.
+Therefore, we are only left with generally assuming that the solution to linear constant coefficient ODEs is an exponential function to avoid situations similar to the above example.
+
+We begin exploring situations of non-degenerate and degenerate roots of the characteristic equation by assuming the non-degenerate case (i.e. $\lambda_i \neq \lambda_j$).
+Since each root of the polynomial gives us the $\lambda_n$ in the general solution, we can write the general solution to the ODE as
+\be
+x(t) = \sum_{n=1}^N c_n e^{\lambda_n t}
+\ee
+Finding the general solution for the degenerate case is not as straightforward because if we have two roots that are the same (e.g. $\lambda_1$ = $\lambda_2$), we would not be able to form 2 unique solutions from these roots.
+We would only be able to form one unique solution.
+However, there are multiple ways to show that for each repeated root, each solution will contain some multiple of the variable in question.
+For example, if we had a 3rd order linear ODE with repeated roots, $\lambda_1$ = $\lambda_2$ = $\lambda_3$, the general solution would be
+\be
+x(t) = c_1 e^{\lambda_1 t} + c_2 t e^{\lambda_1 t} + c_3 t^2 e^{\lambda_1 t} .
+\ee
+There are 2 ways to show that this solution holds.
+Consider the following second order ODE with constant coefficients
+\be \label{eq:lin_cc_homo_reproot}
+a\frac{d^2 y}{dt^2} + b\frac{d y}{dt} + cy = 0
+\ee
+If the above ODE has two repeated roots, $\lambda_1$ and $\lambda_2$, we can say that one unique solution to the ODE is
+\be
+y_1(t) = c_1 e^{\lambda_1 t}
+\ee
+We can consider evaluating the following limit to obtain the resulting second unique solution
+\be
+\lim_{\lambda_1\to\ \lambda_2} \frac{e^{\lambda_1 t} - e^{\lambda_2 t}}{\lambda_2 - \lambda_1} = t e^{\lambda_2 t} .
+\ee
+To show the second way, we again consider equation \ref{eq:lin_cc_homo_reproot}.
+Since one unique solution is $c_1 e^{\lambda_1 t}$, we can replace the constant $c_1$ with a function $v(t)$ and try to determine the function $v(t)$ such that it is also a solution of equation \ref{eq:lin_cc_homo_reproot}.
+
 So the linear constant coefficient ODE problem is equivalent to finding the roots of a polynomial, and related to the linear algebra problem (which we will see later in the course).
 %==============================================================================%
 % Someone can explain this better / elaborate if they want
 %==============================================================================%
 
-\subsubsection*{Damper Harmonic Oscillator}
+\subsubsection*{Damped Harmonic Oscillator}
 Let's consider an example, the \textbf{Damped Harmonic Oscillator}, a very common physics example with analytic solutions.
 \be
 \frac{d^2}{dt^2} x + 2\gamma \frac{d}{dt} x + \omega^2 x = 0
 \ee
 We will see this equation more, but the $\gamma$ is interpreted as the exponential decay, and the $\omega$ term refers to the frequency in physics models.
-If we assume ==$>$ x = x$^{\lambda t}$ we can find the characteristic equation
+If we assume ==$>$ x = e$^{\lambda t}$ we can find the characteristic equation
 \be
 \begin{split}
-\lambda^2 + 2\gamma\lambda  + \omega^2 &= 0\\
--\gamma & \pm \sqrt{^2 - \omega^2}
+\lambda^2 + 2\gamma\lambda  + \omega^2 = 0\\
+\lambda = -\gamma \pm \sqrt{^2 - \omega^2}
 \end{split}
 \ee
 %==============================================================================%
@@ -157,6 +197,10 @@ There are 3 different regiemes to consider
 %==============================================================================%
 % I AM HERE
 %==============================================================================%
+
+
+
+
 
 
 
