@@ -328,6 +328,9 @@ x(t) = \left( A_0 + A_1t + A_2t^2 + \cdots + A_{k_1} t^{k_1}\right) e^{\lambda_1
 Where there are N free paramaters such that $k_1 + k_2 + \cdots = N$. 
 
 \subsection*{Inhomogeneous Linear ODE (constant Coefficients)}
+%==============================================================================%
+% We need to provinde the algebra for all of these cases!!!
+%==============================================================================%
 The general form for an inhomogeneous equation with constant coefficiemts is given by (followed by the associated homogenous equation)
 \be
 \begin{split}
@@ -356,22 +359,79 @@ At no point did we assume $\Omega \in \Re$, so this derivation is in general com
 \subsubsection*{Case 2}
 Our next special case is of the form $f(t) = B_1e^{\Omega_1t} + B_2e^{\Omega_2t} + \cdots$
 We will guess a solution of the form $x_0(t) = A_1 e^{\Omega_1t} + A_2 e^{\Omega_2t} + \cdots$
-Substituting this into the inhomigeneous equation we find 
+Substituting this into the inhomigeneous equation we find  (truncating to 2 terms for simplicity)
 \be
-e^{\omega_1t} A_1
+e^{\omega_1t} A_1\sum_{n=0}^N a_n \Omega_1^n + e^{\omega_2t} A_2\sum_{n=0}^N a_n \Omega_2^n = B_1e^{\Omega_1 t} + B_2 e^{\Omega_2 t}
+\ee
+This can be re-written as a set of equations if you perfer
+\be
+\begin{split}
+    A_1 \sum_{n=0}^N a_n\Omega_1^n &= B_1\\
+    A_2 \sum_{n=0}^N a_n\Omega_1^n &= B_2
+\end{split}
+\ee
+Notice our solution is a linear combination of expotential terms, so we can probably guess that a sin or cos function can also fit this form of equation.
+For example if f(t) = sin($\Omega$ t) or f(t) = cos($\Omega$t) then we can re-write f(t) in terms of expotentials and find
+\be
+\begin{split}
+    \cos(\Omega t) &= \frac{e^{i\Omega t} + e^{-i\Omega t}}{2}\\
+    \sin(\Omega t) &= \frac{e^{i\Omega t} - e^{-i\Omega t}}{2i}\\
+\end{split}
 \ee
 
-
-
-
 \subsubsection*{Case 3}
+Our next case assumes f(t) = $B_0 + B_1t + B_2t^2$
+We guess that $x_0(t) = A_0 + A_1t + A_2t^2$, and  substituting into the inhomogeneous equation we find
+\be
+a_0\left(A_0 + A_1t + A_2t^2\right) + a_1\left(A_1 + 2A_2t\right) + 2a_2A_2 = 0
+\ee
 
+This is a second order polynomial, we have 3 coefficients and 3 equations, and we can solve for A$_1$, A$_2$, and A$_3$. 
+\be
+\begin{split}
+    a_0A_0 + a_1A_1 + 2a_2A_2 &= B_0\\
+    a_0A_1 + 2a_1A_2 &= B_1\\
+    a_0A_2 &= B_2\\
+\end{split}
+\ee
 
 \subsubsection*{Case 4}
+Our final case to consider is of the form f(t) = $e^{\Omega t} \left( B_0 + B_1t + B_2t^2 \right)$.
+We make our guess as $x_0(t) = \left(A_0 + A_1 t + A_2 t^2\right)e^{\Omega t}$ and substitute into the inhomogeneous equation (In the homework we will show that we get a set of linear equations for the roots). 
+%==============================================================================%
+% Someone needs to do this substitution. 
+%==============================================================================%
+This is the last special case that Vladimir is aware of!
 
+What we have seen from these various cases is that a RHS containing a linear combination of expotentials and polynomials will produce a system of equations. 
 
+\subsection*{Linear ODE with Variable Coefficients}
+Constant coefficient linear ODEs can be solved with linear algebra as we saw.
+Unfortunately problems with variable coefficients are a bit more tricky. 
 
+An example of a first order variable coefficient ordinary differential equation is the 1-D Schrodinger Equation!
+\be
+-\frac{\hbar^2}{2m} \Psi''(x) + [E - V(x)] \Psi(x) = 0
+\ee
+Here V(x) is changing (is is a function of x) so the coefficients are changing. 
 
+In general we don't have a general approach to solve these problem.
 
+The SE is a  good example, guessing a Harmonic Oscillator for the potential (V(x) = kx$^2$) we can get analytic solutions. 
+
+Some other examples of linear ODEs with variable coefficients are the Morse Potential, and a piecewise constant potential.
+%==============================================================================%
+% SOmeone put in a plot for a morse potential and the stepwise potential
+% Also expand the conversation around these potentials if you want
+%==============================================================================%
+
+Another example of a second order variable coefficient OD eis teh Vertically Forced Pendulumn.
+The equation for this system is non-trivial and can be approximated as
+\be
+u'' + (\alpha + \beta\cos(t)) u = 0
+\ee
+This problem is very interesting, if you allow the focal point where the pendulumn connects to the base to move you can generate a stable solution to the problem.
+
+All of these examples are just to motivate the problems, we do not need to know these specific cases. 
 
 \end{document}
