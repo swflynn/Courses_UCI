@@ -278,9 +278,32 @@ So once the oscillator is kicked at time t $=$ 0, it will move to its maximum di
 
 \subsubsection*{Critical Damping ($\omega_o = \gamma$)}
 %==============================================================================%
-% I AM HERE -Shane
+% Need to aelaborate/understand the motivation for this solution somehow
 %==============================================================================%
 In the case of critical damping, the damping constant is equal to the natural frequency.
+$\lambda_1 = \lambda_2 = \omega = \gamma$. 
+To find the general solution let's first assume we do not have a degenerate solution.
+In this case we would have $\lambda_1 \neq \lambda_2$ and $e^{\lambda_1 t} - e^{\lambda_2 t}$. 
+We can take this solution and multiply or divide by any number and still have a solution. 
+So we consider a solution of the form
+\be
+\frac{e^{\lambda_1 t} - e^{\lambda_2 t}}{\lambda_1-\lambda_2}
+\ee
+We can now consider the limit as we approach our degenerate case (i.e. $\lambda_1=\lambda_2$). 
+%==============================================================================%
+% Need to do this limit
+%==============================================================================%
+\be
+\lim_{\lambda_1\to\lambda_2}  \frac{e^{\lambda_1 t} - e^{\lambda_2 t}}{\lambda_1-\lambda_2} = te^{\lambda t}
+\ee
+And the general solution can be written as 
+\be
+x(t) = (A + Bt)e^{-\lambda t}
+\ee
+With arbitrary cinstants A and B. 
+%==============================================================================%
+% ALan need to merge the above (from class) with your notes below
+%==============================================================================%
 This means that the characteristic equation has two equal roots and the general solution can be written as
 \be
 \begin{split}
@@ -288,7 +311,67 @@ x(t) &= c_1 e^{\lambda_1 t} + c_2 te^{\lambda_2 t}\\
 &= c_1 e^{-\gamma t} + c_2 te^{-\gamma t}\\
 \end{split}
 \ee
-%==============================================================================%
-% I AM HERE -Alan
-%==============================================================================%
+
+Here we see that our ODE is second order, and we get 2 free (potentially complex) parameters, meaning the dimensionality of the solution space is 2. 
+In general an N$^{th}$ order equation, assuming degenerate roots
+\be
+\sum_{n=0}^N a_n x^{(n)} = 0 \xrightarrow{\text{degenerate}} \sum_{n=0}^N a_n \lambda^n = 0
+\ee
+In the degenerate case this maps to
+\be
+\sum_{n=0}^N a_n \lambda^n = 0 \Leftrightarrow (\lambda - \lambda_1)^{k_1} (\lambda - \lambda_2)^{k_2} \cdots = 0
+\ee
+With a general solution of 
+\be
+x(t) = \left( A_0 + A_1t + A_2t^2 + \cdots + A_{k_1} t^{k_1}\right) e^{\lambda_1t} \left( B_0 + B_1t + B_2t^2 + \cdots + B_{k_2} t^{k_2}\right) e^{\lambda_2t}
+\ee
+Where there are N free paramaters such that $k_1 + k_2 + \cdots = N$. 
+
+\subsection*{Inhomogeneous Linear ODE (constant Coefficients)}
+The general form for an inhomogeneous equation with constant coefficiemts is given by (followed by the associated homogenous equation)
+\be
+\begin{split}
+	\sum_{n=0}^N a_n x^{(n)} &= f(t)\\
+	\sum_{n=0}^N a_n x^{(n)} &= 0
+\end{split}
+\ee
+This equation is well known, for example the n=2 case yields the \textbf{Driven Harmonic Oscillator}.
+The general solution for this problem is of the form
+\be
+x(t) = x_0(t) + \sum_{n=1}^N c_nx_n(t)
+\ee
+Where x$_0$(t) is a \textbf{Particular Solution} to the inhomogeneous equaiton, and x$_n$(t) = e$^{\lambda_n t}$. 
+Unfortunately there is no general method to solve for the particular solution.
+But there are special cases where a solution can be found.
+Unfortunately all of these special cases require some type of insight (a trick) to solve.
+
+\subsubsection*{Case 1}
+If we have f(t) = $Be^{\Omega t}$ and we assume the solution to be of the form $x_0(t) = Ae^{\Omega t}$.
+Substituting this guess into the into the inhomogeneous equation we find
+\be
+A \sum_{n=0}^N a_n \omega^n B \Rightarrow A = \frac{B}{\sum_{n=0}^N a_n \omega_n}
+\ee
+At no point did we assume $\Omega \in \Re$, so this derivation is in general complex.
+
+\subsubsection*{Case 2}
+Our next special case is of the form $f(t) = B_1e^{\Omega_1t} + B_2e^{\Omega_2t} + \cdots$
+We will guess a solution of the form $x_0(t) = A_1 e^{\Omega_1t} + A_2 e^{\Omega_2t} + \cdots$
+Substituting this into the inhomigeneous equation we find 
+\be
+e^{\omega_1t} A_1
+\ee
+
+
+
+
+\subsubsection*{Case 3}
+
+
+\subsubsection*{Case 4}
+
+
+
+
+
+
 \end{document}
