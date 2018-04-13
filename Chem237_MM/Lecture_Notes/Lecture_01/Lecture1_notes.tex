@@ -33,20 +33,20 @@
 \begin{document}
 \maketitle
 \section*{Course Overview}
-The course will not directly follow the textbook, however, it will provide a rough guideline for important topics.
+The course will not directly follow the textbook. However, it will provide a rough guideline for important topics.
 The lecture and homework are the most important aspects of the course.
-The homework will be split into both analytical and numerical problems, any programming language is fine for the numerical problems, however, mathematica and other highly developed languages are discouraged.
-For the numerical problems if you are asked to make an algorithm you CANNOT use pre-built algorithms available to the languages.
+The homework will be split into both analytical and numerical problems, any programming language is fine for the numerical problems. However, mathematica and other highly developed languages are discouraged.
+For the numerical problems, if you are asked to make an algorithm, you CANNOT use pre-built algorithms available to the languages.
 
 \section*{Chapter 1: Differential Equations}
-A Differential Equation simply refers to an equation containing derivatives.
-An \textbf{Ordinary Differential Equation} (ODE) refers to any differential equation with derivatives taken wrt a single variable.
-In contrast a \textbf{Partial Differential Equation} (PDE) contains derivatives wrt more than 1 variable.
+A Differential Equation simply refers to an equation containing a function and its derivatives.
+An \textbf{Ordinary Differential Equation} (ODE) refers to any differential equation with functions that depend on only one independent variable.
+In contrast a \textbf{Partial Differential Equation} (PDE) contains functions that depend on more than one independent variable.
 We can further categorize differential equations (both ODE and PDE) into linear or nonlinear.
-As you can imagine, linear equations are simpler to solve compared to nonlinear and ODEs are easier to solve than PDEs.
+As you can imagine, linear equations are simpler to solve compared to nonlinear ones and ODEs are easier to solve than PDEs.
 
 \subsection*{Linear Equations}
-Linear Equations are a general topic, there are linear differential equations, linear algebraic equations, and etc.
+Linear Equations are a general topic; there are linear differential equations, linear algebraic equations, and etc.
 A linear equation has the form
 \be
 \hat{A} f(x,y,\hdots) = B(x,y,\hdots)
@@ -56,13 +56,15 @@ To be a linear equation, the operator $\hat{A}$ must be a linear operator.
 For example, take the equation above and let $\hat{A}$ be the differential operator wrt a single dimension, and you get a linear ordinary differential equation.
 
 If the RHS (B) is equal to 0, the linear equation is called \textbf{Homogeneous} and if the RHS is anything other than 0, the linear equation is called \textbf{Inhomogeneous}.
+Another way to explain this is by saying that if every term in the differential equation contains the function f or any of its derivatives, it is called Homogenous.
+If there is at least one term that does not contain the function and/or its derivative, it is called Inhomogeneous.
 
 \subsubsection*{Homogeneous Linear Equations}
 Consider equation \ref{eq:lin_homo} below
 \be \label{eq:lin_homo}
 \hat{A}f = 0
 \ee
-If we assume f$_1$ and f$_2$ are solutions to equation \ref{eq:lin_homo}, then we immediately know another solution to be a linear combination of f$_1$ and f$_2$
+If we assume f$_1$ and f$_2$ are solutions to equation \ref{eq:lin_homo}, then by the principle of superposition, we immediately know another solution to be a linear combination of f$_1$ and f$_2$
 \be
 f_3 = c_1f_1 + c_2f_2 .
 \ee
@@ -78,26 +80,27 @@ we can construct the solution to this equation as
 \be
 f = f_0 + \sum_i c_i f_i
 \ee
-Where the specific solution ($f_0$) is known as a \textbf{Particular Solution} and the $f_i$ solutions refer to the solutions of the associated homogeneous equation.
+Where the specific solution $f_0$ is known as a \textbf{Particular Solution} and the $f_i$ solutions refer to the solutions of the associated homogeneous equation.
+Finding the particular solution can be done by choosing from a number of methods from the Method of Undetermined Coefficients to the Method of Variation of Parameters.
 
 \subsection*{ODE: Linear, Homogeneous, Constant Coefficients}
 We will start with the simplest ODEs, the linear, homogeneous, constant coefficient expressions.
 Various books use different notation for presenting ODEs.
 For example, it is very common in physics to consider functions that only depend on time ==$>$ x = x(t).
+We may switch between using t and x as independent variables in class.
+If you are given a differential equation and cannot determine the independent variable by inspection, you can make the variable whatever you want.
 
-We can also define notation as
+We can also define notation for a derivative as
 \be
-x^n \equiv \frac{d^n}{dt}x \equiv D^n x
+x^(n) \equiv \frac{d^n}{dt^n}x \equiv D^n x
 \ee
 Hopefully it is clear that D is the linear differential operator.
-If you apply a linear operator n times it is still linear therefore D$^n$ is also a linear operator.
-
-The general form of these equations is
+If you apply a linear operator n times it is still linear, therefore D$^n$ is also a linear operator.
+The general form of these differential equations is
 \be \label{eq:lin_cc}
 \sum_{n=0}^N a_nx^{(n)} = f(t)
 \ee
-
-If we consider the homogeneous linear constant coefficients, than equation \ref{eq:lin_cc} simplifies to
+If we consider the homogeneous, linear, constant coefficients case, then equation \ref{eq:lin_cc} simplifies to
 \be \label{eq:lin_cc_homo}
 \sum_{n=0}^N a_nx^{(n)} = 0
 \ee
@@ -115,42 +118,42 @@ To solve these equations, we assume a solution of the form: x(t) = e$^{\lambda t
 The last line is known as the \textbf{Characteristic Polynomial} and it helps us find the general solution to the linear constant coefficient ODE.
 The above polynomial is of degree N, and a theorem in  ODEs says that there exists exactly N roots (in general complex) that can potentially be degenerate.
 %==============================================================================%
-% Someone go find this theorem
+% Someone go find this theorem. C
 %==============================================================================%
 
 The reason for using this approach comes solely from mathematical intuition.
-Our differential equation requires a function $x(t)$ such that the function and its derivatives cancel out to satisfy the RHS.
+Our differential equation requires a function x(t) such that the function and its derivatives cancel out to satisfy the RHS.
 The only function we know of that satisfies this condition is x(t) = e$^{\lambda t}$.
 In order to account for different multiples of the function, we include the $\lambda$ in our assumed solution, since its derivative is equal to $\lambda$ e$^{\lambda t}$.
 One would think that trigonometric functions and several derivatives of itself can satisfy this condition as well.
-While this is sometimes true, it is not true generally.
+While this may sometimes be true, it is not true generally.
 Even if you consider a combination of sine and cosine, such a function would not always work.
 Consider the example ODE below,
 \be
 \frac{dy}{dt} + y = 0 .
 \ee
-Suppose that we assume the solution to be x(t) = sin($\lambda$ t) + cos($\lambda$ t).
+Suppose that we assume the solution to be x(t) = sin($\lambda$t) + cos($\lambda$t).
 Plugging this and its derivative into the original equation yields
 \be
-\lambda cos(\lambda t) - \lambda sin(\lambda t) + sin(\lambda t) + cos(\lambda t) = 0 .
+\lambda \cos(\lambda t) - \lambda \sin(\lambda t) + \sin(\lambda t) + \cos(\lambda t) = 0 .
 \ee
 However, there are no values of $\lambda$ that could satisfy this equation.
-Therefore, we are only left with generally assuming that the solution to linear constant coefficient ODEs is an exponential function to avoid situations similar to the above example.
+Therefore, we are only left with generally assuming that the solution to linear, constant coefficient ODEs is an exponential function to avoid situations similar to the above example.
 
-We begin exploring situations of non-degenerate and degenerate roots of the characteristic equation by assuming the non-degenerate case (i.e. $\lambda_i \neq \lambda_j$).
+We begin exploring situations of non-degenerate and degenerate roots of the characteristic polynomial by starting with the non-degenerate case (i.e. $\lambda_i \neq \lambda_j$).
 Since each root of the polynomial gives us the $\lambda_n$ in the general solution, we can write the general solution to the ODE as
 \be
 x(t) = \sum_{n=1}^N c_n e^{\lambda_n t}
 \ee
 Finding the general solution for the degenerate case is not as straightforward because if we have two roots that are the same (e.g. $\lambda_1$ = $\lambda_2$), we would not be able to form 2 unique solutions from these roots.
 We would only be able to form one unique solution.
-However, there are multiple ways to show that for each repeated root, each solution will contain some multiple of the variable in question.
+However, there are multiple ways to show that for each repeated root, each solution will be different by a multiple of the exponential.
 For example, if we had a 3rd order linear ODE with repeated roots, $\lambda_1$ = $\lambda_2$ = $\lambda_3$, the general solution would be
 \be
 x(t) = c_1 e^{\lambda_1 t} + c_2 t e^{\lambda_1 t} + c_3 t^2 e^{\lambda_1 t} .
 \ee
-There are 2 ways to show that this solution holds.
-Consider the following second order ODE with constant coefficients
+There are 2 ways to show that this can be done for repeated roots of the characteristic polynomial.
+For the first way, consider the following second order ODE with constant coefficients
 \be \label{eq:lin_cc_homo_reproot}
 a\frac{d^2 y}{dt^2} + b\frac{d y}{dt} + cy = 0
 \ee
@@ -158,17 +161,29 @@ If the above ODE has two repeated roots, $\lambda_1$ and $\lambda_2$, we can say
 \be
 y_1(t) = c_1 e^{\lambda_1 t}
 \ee
+Let's first assume we do not have a degeneracy so we would have $\lambda_1 \neq \lambda_2$.
 We can consider evaluating the following limit to obtain the resulting second unique solution
 \be
-\lim_{\lambda_1\to\ \lambda_2} \frac{e^{\lambda_1 t} - e^{\lambda_2 t}}{\lambda_2 - \lambda_1} = t e^{\lambda_2 t} .
+\lim_{\lambda_1\to\ \lambda_2} \frac{e^{\lambda_2 t} - e^{\lambda_1 t}}{\lambda_2 - \lambda_1} = t e^{\lambda_1 t} .
 \ee
-To show the second way, we again consider equation \ref{eq:lin_cc_homo_reproot}.
-Since one unique solution is $c_1 e^{\lambda_1 t}$, we can replace the constant $c_1$ with a function $v(t)$ and try to determine the function $v(t)$ such that it is also a solution of equation \ref{eq:lin_cc_homo_reproot}.
+For the second way, we again consider equation \ref{eq:lin_cc_homo_reproot}.
+Since one unique solution is $c_1 e^{\lambda_1 t}$, we can replace the constant $c_1$ with a function v(t) and try to determine the function v(t) such that $v(t) e^{\lambda_1 t}$ is also a solution of equation \ref{eq:lin_cc_homo_reproot}.
+After plugging in your new guess for the second solution into the original ODE, you will obtain a new differential equation for v(t).
+You can see for yourself that your v(t) will be equal to t or some multiple of t.
 
-So the linear constant coefficient ODE problem is equivalent to finding the roots of a polynomial, and related to the linear algebra problem (which we will see later in the course).
-%==============================================================================%
-% Someone try making the ODE subsection flow better
-%==============================================================================%
+In general an N$^{th}$ order equation, assuming degenerate roots
+\be
+\sum_{n=0}^N a_n x^{(n)} = 0 \xrightarrow{\text{degenerate}} \sum_{n=0}^N a_n \lambda^n = 0 .
+\ee
+In the degenerate case, this maps to
+\be
+\sum_{n=0}^N a_n \lambda^n = 0 \Leftrightarrow (\lambda - \lambda_1)^{k_1} (\lambda - \lambda_2)^{k_2} \cdots = 0
+\ee
+With a general solution of
+\be
+x(t) = \left( A_0 + A_1t + A_2t^2 + \cdots + A_{k_1} t^{k_1}\right) e^{\lambda_1t} + \left( B_0 + B_1t + B_2t^2 + \cdots + B_{k_2} t^{k_2}\right) e^{\lambda_2t}
+\ee
+Where there are N free paramaters such that $k_1 + k_2 + \cdots = N$.
 
 \subsubsection*{Damped Harmonic Oscillator}
 Let's consider an example, the \textbf{Damped Harmonic Oscillator}; a very common physics example with analytic solutions.
@@ -211,9 +226,10 @@ x(t) &= c_1 e^{(-\gamma + i \Omega)t} + c_2 e^{(-\gamma - i \Omega)t} \\
 \end{split}
 \ee
 Here c$_1$ and c$_2$ can be complex.
-The term within parenthesis is an oscillaiting component, and the outside terms shows an expoetential decay. 
+The term within parenthesis is an oscillating component, and the outside terms shows an exponential decay.
 
-Now that we have found the general solution, we would like to plot the position as a function of time. Since it is difficult to visualize in its current form, let's rewrite it in terms of sine and cosine using euler's identity
+Now that we have found the general solution, we would like to plot the position as a function of time.
+Since it is difficult to visualize in its current form, let's rewrite it in terms of sine and cosine using euler's identity
 \be
 \begin{split}
 x(t) &= e^{-\gamma t} \big[ c_1(\cos(\Omega t) + i \sin(\Omega t)) + c_2(\cos(\Omega t) - i \sin(\Omega t)) \big] \\
@@ -232,7 +248,8 @@ This turns the general solution into
 x(t) = e^{-\gamma t} \big[ B_1 cos(\Omega t) + B_2 sin(\Omega t)]
 \ee
 
-Since we know that $x(t)$ is real, along with $\cos(\Omega t)$ and $\sin(\Omega t)$, $c_1$ and $c_2$ must be chosen carefully to ensure that $B_1$ and $B_2$ are real. To continue reducing the solution to a more manageable form, we need to introduce one last variable
+Since we know that $x(t)$ is real, along with $\cos(\Omega t)$ and $\sin(\Omega t)$, $c_1$ and $c_2$ must be chosen carefully to ensure that $B_1$ and $B_2$ are real.
+To continue reducing the solution to a more manageable form, we need to introduce one last variable
 \be
 A = \sqrt{B_1^2 + B_2^2}
 \ee
@@ -257,7 +274,7 @@ We now have a very nice and compact equation to describe the motion of the oscil
 By looking at the solution in this form, we can see that the oscillatory motion comes from the cosine term and the oscillator tending towards equilibrium comes from the negative exponential term.
 
 \subsubsection*{Overdamping ($\omega_o < \gamma$)}
-The overdamping case can be physically interpreted as having a very large friction contribution. 
+The overdamping case can be physically interpreted as having a very large friction contribution.
 In the case of overdamping, the square root in equation \ref{eq:oscillator_char} is real and not complex, so we can just write the general solution as
 \be
 \begin{split}
@@ -277,33 +294,13 @@ So once the oscillator is kicked at time t $=$ 0, it will move to its maximum di
 %==============================================================================%
 
 \subsubsection*{Critical Damping ($\omega_o = \gamma$)}
-%==============================================================================%
-% Need to aelaborate/understand the motivation for this solution somehow
-%==============================================================================%
-In the case of critical damping, the damping constant is equal to the natural frequency.
-$\lambda_1 = \lambda_2 = \omega = \gamma$. 
-To find the general solution let's first assume we do not have a degenerate solution.
-In this case we would have $\lambda_1 \neq \lambda_2$ and $e^{\lambda_1 t} - e^{\lambda_2 t}$. 
-We can take this solution and multiply or divide by any number and still have a solution. 
-So we consider a solution of the form
+In the case of critical damping, the damping constant is equal to the natural frequency, $\lambda_+ = \lambda_-$.
+To find the general solution, we can use either of the two methods discussed earlier when we have repeated roots of the auxiliary equation.
+So the general solution can be written as
 \be
-\frac{e^{\lambda_1 t} - e^{\lambda_2 t}}{\lambda_1-\lambda_2}
+x(t) = (c_1 + c_2t)e^{\lambda_+ t} = (c_1 + c_2t)e^{\lambda_- t}
 \ee
-We can now consider the limit as we approach our degenerate case (i.e. $\lambda_1=\lambda_2$). 
-%==============================================================================%
-% Need to do this limit
-%==============================================================================%
-\be
-\lim_{\lambda_1\to\lambda_2}  \frac{e^{\lambda_1 t} - e^{\lambda_2 t}}{\lambda_1-\lambda_2} = te^{\lambda t}
-\ee
-And the general solution can be written as 
-\be
-x(t) = (A + Bt)e^{-\lambda t}
-\ee
-With arbitrary cinstants A and B. 
-%==============================================================================%
-% ALan need to merge the above (from class) with your notes below
-%==============================================================================%
+With arbitrary constants $c_1$ and $c_2$.
 This means that the characteristic equation has two equal roots and the general solution can be written as
 \be
 \begin{split}
@@ -311,46 +308,29 @@ x(t) &= c_1 e^{\lambda_1 t} + c_2 te^{\lambda_2 t}\\
 &= c_1 e^{-\gamma t} + c_2 te^{-\gamma t}\\
 \end{split}
 \ee
-
-Here we see that our ODE is second order, and we get 2 free (potentially complex) parameters, meaning the dimensionality of the solution space is 2. 
-In general an N$^{th}$ order equation, assuming degenerate roots
-\be
-\sum_{n=0}^N a_n x^{(n)} = 0 \xrightarrow{\text{degenerate}} \sum_{n=0}^N a_n \lambda^n = 0
-\ee
-In the degenerate case this maps to
-\be
-\sum_{n=0}^N a_n \lambda^n = 0 \Leftrightarrow (\lambda - \lambda_1)^{k_1} (\lambda - \lambda_2)^{k_2} \cdots = 0
-\ee
-With a general solution of 
-\be
-x(t) = \left( A_0 + A_1t + A_2t^2 + \cdots + A_{k_1} t^{k_1}\right) e^{\lambda_1t} \left( B_0 + B_1t + B_2t^2 + \cdots + B_{k_2} t^{k_2}\right) e^{\lambda_2t}
-\ee
-Where there are N free paramaters such that $k_1 + k_2 + \cdots = N$. 
+Here we see that our ODE is second order, and we get 2 free (potentially complex) parameters, meaning the dimensionality of the solution space is 2.
 
 \subsection*{Inhomogeneous Linear ODE (constant Coefficients)}
 %==============================================================================%
 % We need to provinde the algebra for all of these cases!!!
 %==============================================================================%
-The general form for an inhomogeneous equation with constant coefficiemts is given by (followed by the associated homogenous equation)
+The general form for an inhomogeneous equation with constant coefficients is given by
 \be
-\begin{split}
-	\sum_{n=0}^N a_n x^{(n)} &= f(t)\\
-	\sum_{n=0}^N a_n x^{(n)} &= 0
-\end{split}
+	\sum_{n=0}^N a_n x^{(n)} = f(t) .
 \ee
-This equation is well known, for example the n=2 case yields the \textbf{Driven Harmonic Oscillator}.
+A well known example of the n=2 case is the \textbf{Driven Harmonic Oscillator}.
 The general solution for this problem is of the form
 \be
 x(t) = x_0(t) + \sum_{n=1}^N c_nx_n(t)
 \ee
-Where x$_0$(t) is a \textbf{Particular Solution} to the inhomogeneous equaiton, and x$_n$(t) = e$^{\lambda_n t}$. 
+Where x$_0$(t) is a \textbf{Particular Solution} to the inhomogeneous equaiton, and x$_n$(t) = e$^{\lambda_n t}$.
 Unfortunately there is no general method to solve for the particular solution.
-But there are special cases where a solution can be found.
-Unfortunately all of these special cases require some type of insight (a trick) to solve.
+But it is very convenient to use the \textbf{Method of Undetermined Coefficients}.
+The following cases show you how to approach obtaining the particular solution.
 
 \subsubsection*{Case 1}
-If we have f(t) = $Be^{\Omega t}$ and we assume the solution to be of the form $x_0(t) = Ae^{\Omega t}$.
-Substituting this guess into the into the inhomogeneous equation we find
+If we have f(t) = $Be^{\Omega t}$, we can assume the particular solution to be of the form $x_0(t) = Ae^{\Omega t}$.
+Substituting this guess into the into the inhomogeneous equation to find
 \be
 A \sum_{n=0}^N a_n \omega^n B \Rightarrow A = \frac{B}{\sum_{n=0}^N a_n \omega_n}
 \ee
@@ -386,7 +366,7 @@ We guess that $x_0(t) = A_0 + A_1t + A_2t^2$, and  substituting into the inhomog
 a_0\left(A_0 + A_1t + A_2t^2\right) + a_1\left(A_1 + 2A_2t\right) + 2a_2A_2 = 0
 \ee
 
-This is a second order polynomial, we have 3 coefficients and 3 equations, and we can solve for A$_1$, A$_2$, and A$_3$. 
+This is a second order polynomial, we have 3 coefficients and 3 equations, and we can solve for A$_1$, A$_2$, and A$_3$.
 \be
 \begin{split}
     a_0A_0 + a_1A_1 + 2a_2A_2 &= B_0\\
@@ -397,27 +377,27 @@ This is a second order polynomial, we have 3 coefficients and 3 equations, and w
 
 \subsubsection*{Case 4}
 Our final case to consider is of the form f(t) = $e^{\Omega t} \left( B_0 + B_1t + B_2t^2 \right)$.
-We make our guess as $x_0(t) = \left(A_0 + A_1 t + A_2 t^2\right)e^{\Omega t}$ and substitute into the inhomogeneous equation (In the homework we will show that we get a set of linear equations for the roots). 
+We make our guess as $x_0(t) = \left(A_0 + A_1 t + A_2 t^2\right)e^{\Omega t}$ and substitute into the inhomogeneous equation (In the homework we will show that we get a set of linear equations for the roots).
 %==============================================================================%
-% Someone needs to do this substitution. 
+% Someone needs to do this substitution.
 %==============================================================================%
 This is the last special case that Vladimir is aware of!
 
-What we have seen from these various cases is that a RHS containing a linear combination of expotentials and polynomials will produce a system of equations. 
+What we have seen from these various cases is that a RHS containing a linear combination of expotentials and polynomials will produce a system of equations.
 
 \subsection*{Linear ODE with Variable Coefficients}
 Constant coefficient linear ODEs can be solved with linear algebra as we saw.
-Unfortunately problems with variable coefficients are a bit more tricky. 
+Unfortunately problems with variable coefficients are a bit more tricky.
 
 An example of a first order variable coefficient ordinary differential equation is the 1-D Schrodinger Equation!
 \be
 -\frac{\hbar^2}{2m} \Psi''(x) + [E - V(x)] \Psi(x) = 0
 \ee
-Here V(x) is changing (is is a function of x) so the coefficients are changing. 
+Here V(x) is changing (is is a function of x) so the coefficients are changing.
 
 In general we don't have a general approach to solve these problem.
 
-The SE is a  good example, guessing a Harmonic Oscillator for the potential (V(x) = kx$^2$) we can get analytic solutions. 
+The SE is a  good example, guessing a Harmonic Oscillator for the potential (V(x) = kx$^2$) we can get analytic solutions.
 
 Some other examples of linear ODEs with variable coefficients are the Morse Potential, and a piecewise constant potential.
 %==============================================================================%
@@ -432,6 +412,6 @@ u'' + (\alpha + \beta\cos(t)) u = 0
 \ee
 This problem is very interesting, if you allow the focal point where the pendulumn connects to the base to move you can generate a stable solution to the problem.
 
-All of these examples are just to motivate the problems, we do not need to know these specific cases. 
+All of these examples are just to motivate the problems, we do not need to know these specific cases.
 
 \end{document}
