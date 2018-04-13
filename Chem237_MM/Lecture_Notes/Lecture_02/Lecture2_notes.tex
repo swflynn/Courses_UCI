@@ -24,7 +24,7 @@
 %                             Title Information                                %
 %==============================================================================%
 \title{Chem237: Lecture 2}
-\date{4//18}
+\date{4/4/18}
 \author{Shane Flynn}
 %==============================================================================%
 %	Everyone Please Make Comments if Something Needs to be Reviewed        %
@@ -32,6 +32,231 @@
 %==============================================================================%
 \begin{document}
 \maketitle
-\section*{Stuff}
+\section*{ODE; Variable Coefficients}
+\subsection*{Variable Coefficients; Homogenous}
+Now consider Variable coefficients to our differential equations. 
+\be
+\frac{dx}{dt} + a(t) x = 0
+\ee
+Cosider the linear first order variable coeficient equation above.
+This is simple because the problem is seperable, and can easily be solved by direct integration. 
+\be
+\begin{split}
+    \frac{dx}{dt} + a(t) x &= 0 \\
+    \int dx \frac{1}{x} &= -\int dt \text{ a}(t) \\
+    x(t) &= x_0 \exp\left[-\int_{t_0}^t dt \text{ a}(t)\right]
+\end{split}
+\ee
+The last line is the homogeneous solution to the first order variable coefficient ODE above. 
+Although the answer is in terms of an integral, an integral is much simplier than a differential equaiton, and we call this a solution, because we have made progress. 
 
+\subsection*{Variable Coefficients; Non-Homogenous}
+Now consider the non-homonogeous variable coefficient differential equation
+\be
+\frac{dx}{dt} + a(t) x = f(t)
+\ee
+Where f(t) is a known (given) function. 
+We know the general solution to a non-hoogenous equation is the summation of a particular solution (x$_1$), and the homogeneous equation.
+\be
+\begin{split}
+    x(t) &= x_1(t) + C\exp\left[ -A(t) \right]\\
+    A(t) & \equiv \int_0^t dt \text{ a}(t)
+\end{split}
+\ee
+We will assume the particular solution is of the form
+\be
+x_1(t) = e^{-A(t)}g(t)
+\ee
+Where g is an unknown function, and we will try to solve for it.
+\be
+\begin{split}
+    \frac{dx_1(t)}{dt} + a(t) x_1(t) &= f(t) \Rightarrow \\
+    \frac{d}{dt} e^{-A(t)}g(t) + a(t)  e^{-A(t)}g(t) &= f(t)\\
+    e^{-A(t)} \frac{d}{dt} g(t) + g(t) \frac{d}{dt} e^{-A(t)} + a(t)  e^{-A(t)}g(t) &= f(t)\\
+    e^{-A(t)} \frac{d}{dt} g(t) &= f(t) \Rightarrow \\
+    g(t) &= \int^t dt \text{ }e^{A(t)} f(t) \Rightarrow \\
+\end{split}
+\ee
+
+\section*{NonLinear ODE}
+We will start a new, more complicated problem, the nonlinear ordinary differential equations. 
+There is no general solution to solve a non-linear ODE, however, there are classes that can be solved. 
+
+Consider first a generalized form for the first order ODE 
+\be
+\begin{split}
+    a(x) dx + b(y) dy &= 0 \Rightarrow\\
+    b(y) \frac{dy}{dx} + a(x) &= 0
+\end{split}
+\ee
+These two lines are equivalent, but the second line is much more convenient because it is seperable and can be solved by integration. 
+This is the simpliest form of a non-linear equation, because there isn't a y depedence in every term. 
+
+An even more general form would be 
+\be
+A(x,y)dx + B(x,y)dy = 0
+\ee
+We will see that this is a more preferable form.
+
+If this is an exact differential (the LHS), calling it U, than consider
+\be
+U(x,y), \quad dU(x,y) = Adx + Bdy
+\ee
+With both of these statements the solution is then
+\be
+U(x,y) + c = 0
+\ee
+So if we have an exact differential, than if we just find the exact differential than we can get the solution. 
+
+Consider exact differentials (the second line we simply give the partial derivitives names). 
+\be
+\begin{split}
+    dU &= \frac{\pd U}{\pd x} dx + \frac{\pd U}{\pd y} dy \\
+    dU &= A dx + B dy \\
+    \frac{\pd ^2 U}{\pd x \pd y} &= \frac{\pd ^2 U}{\pd y \pd x} 
+\end{split}
+\ee
+And the last line is a requirement for a total differential.
+
+So we have seen that if we have an exact differential we can solve, and we have conditions that must be satisfied. 
+
+As an example consider
+\be
+\begin{split}
+    U(x,y) &= x^2 + xy + y^3\\
+    \frac{\pd ^2 U}{\pd x \pd y} &= 1\\
+    \frac{\pd ^2 U}{\pd y \pd x} &= 1\\
+\end{split}
+\ee
+We see this is an exact differential, therefore the solution to the problem is given  by
+\be
+x^2 + xy + y^3 + C = 0
+\ee
+
+\subsection*{Integrating Factor}
+If we do not have an exact differential the probem is no longer easy, we have a few methods we can use to solve. 
+A well known method for addressing a non-linear ODE with is the \textbf{Integrating Factor}. 
+Consider Adx + Bdy, such that it is not an exact differntial. 
+Introduce the integrating factor $\lambda$(x,y), such that 
+\be
+dU = \lambda(Adx + Bdy)
+\ee
+Is now transformed into an exact differential. 
+We therefore need to find a $\lambda$ such that the inexact differential becomes exact. 
+%==============================================================================%
+%	                Someone may want to look into this theorem             %
+%==============================================================================%
+A theorem exists stating that an integrating factor always exists, but there is no general method for finding it!
+But $\lambda$ always exists. 
+
+There are known forms for A and B that we can recognize to solve for the integrating factor. 
+
+As an example consider
+\be
+y' + f(x) y = g(x) \Rightarrow dy + f(x) y dx = g(x) dx 
+\ee
+We can always consider an integrating factor
+\be
+\lambda \left[dy + f(x) y dx\right] = \lambda g(x) dx 
+\ee
+The idea is now to integrate each side, however, this will only be useful if the RHS is only a function of x. 
+If it turns out that $\lambda \rightarrow \lambda(x)$ than the RHS is always a function of x. 
+If $\lambda$(x,y) than we may not be able to solve the LHS.
+%==============================================================================%
+%	                May need to elaborate on this part, not sure
+%==============================================================================%
+So we will assume $\lambda \rightarrow \lambda(x)$ and see if it works.
+The whole point of the method is to get an exact differntial, therefore assume the LHS is exact.
+\be
+\frac{\pd\lambda}{\pd x} = \frac{\pd (\lambda f y)}{\pd y} = \lambda(x) f(x)
+\ee
+This new equation is seperable and we can solve by integration.
+\be
+\int d\lambda \frac{1}{\lambda} = \int dx f(x) \Rightarrow \lambda(x) = \exp\left[\int dx f(x)\right]
+\ee
+So we see that we can find the integrating factor with $\lambda(x)$. 
+Now that we have an exact differential we need to confirm
+\be
+\begin{split}
+    dU &\equiv \lambda(dy + f(x)ydx)\\
+    \frac{\pd U}{\pd x} &= \lambda\\
+    U(x,y) = \lambda(x) y
+\end{split}
+\ee
+So we can solve this problem by integration, and find a general equation for any f(x), g(x). 
+
+Another example consider
+\be
+\begin{split}
+    xy' + (1+x) y = e^x \Rightarrow y' + \left(\frac{1+x}{x}\right)y &= \frac{e^x}{x}\\
+    \lambda(x) = \exp\left[ \int dx \frac{1+x}{x} \right] = xe^x
+\end{split}
+\ee
+Now if we multipy the LHS and RHS by $\lambda$
+\be
+\int xe^x\left[y' + \frac{1+x}{x} y\right] = \int dx e^{2x} \Rightarrow U(x,y) = xe^xy = \frac{1}{2} e^{2x} + c \Rightarrow y = \frac{e^x}{2x} + \frac{c}{x} e^{-x}
+\ee
+
+So we see that a non-linear first order ODE can be solved with the integrating factor method. 
+If we have an equation of the form
+\be
+y' + f(x)y = g(x)
+\ee
+Than the integrating factor is a useful approach, using a non-trivial transfomration to generate a simple solution. 
+
+\subsection*{New Method}
+We can look at other classes of equations we can solve for. 
+\be
+A(x,y)dx + B(x,y)dy = 0
+\ee
+Consider an equation of the above from with A and B both being homogeneous functions of degree r.
+Recall a homogeneous function obeys
+\be
+A(cx,cy) = c^r A(x,y)
+\ee
+
+As an example 
+\be
+A = x^2 + yx, \qquad B = y^2
+\ee
+Both functions are homogeneous functions of degree 2. 
+
+For this type of equation for we can generate a seperable equation through the substitution
+\be
+y = vx
+\ee
+Consider our example above we find
+\be
+ydx + (2\sqrt{xy} - x) dy = 0
+\ee
+In this example r=1, let y=vx and substitute in dy = vdx + xdv (assume an exact differential). 
+\be
+vxdx + (2x\sqrt{v} - x) (vdx + xdv) = 0 \Rightarrow \frac{2\sqrt{v}-1}{2v^{3/2}}dv = -\frac{1}{x} dx
+\ee
+And this equation is seperable and can be solved with integration!
+
+\subsection*{Final Example}
+Another example of the same class of problem. 
+\be
+(ax + by + c) dx + (ex + fy + g dy) = 0
+\ee
+Where a,b,c,e,f,g are all constants. 
+But ax + by + c is not homogeneous because c is a lone constant (same with g). 
+Consider x = X + $\alpha$ and y = Y + $\beta$, dx = dX, and dy = dY. 
+Substitute in these definitions we find
+\be
+(aX + a\alpha + bY + b\beta + c) dX + (eX + e\alpha + fY + f\beta + g) dY = 0
+\ee
+We can find $\alpha$ and $\beta$, 
+\be
+\begin{split}
+    a\alpha + b\beta + c &= 0 \\
+    e\alpha + f\beta + g &= 0 \\
+\end{split}
+\ee
+This generates 
+\be
+(aX + bY)dX + (eX + fY)dY = 0
+\ee
+Where we have a homogeneous equation, and we can solve using the methods from before.
 \end{document}
