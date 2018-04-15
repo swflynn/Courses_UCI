@@ -1,6 +1,6 @@
 \documentclass{article}
 %==============================================================================%
-%	                          Packages                                     %
+%	                          Packages                                           %
 %==============================================================================%
 % Packages
 \usepackage[utf8]{inputenc}
@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{braket}
+\usepackage{float}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
 %==============================================================================%
@@ -24,10 +25,10 @@
 %                             Title Information                                %
 %==============================================================================%
 \title{Chem237: Lecture 1}
-\date{4/5/18}
-\author{Shane Flynn, Alan Robledo}
+\date{4/14/18}
+\author{Alan Robledo, Shane Flynn}
 %==============================================================================%
-%	Everyone Please Make Comments if Something Needs to be Reviewed        %
+%	Everyone Please Make Comments if Something Needs to be Reviewed              %
 %                           Or just fix it yourself!                           %
 %==============================================================================%
 \begin{document}
@@ -35,7 +36,8 @@
 \section*{Course Overview}
 The course will not directly follow the textbook. However, it will provide a rough guideline for important topics.
 The lecture and homework are the most important aspects of the course.
-The homework will be split into both analytical and numerical problems, any programming language is fine for the numerical problems. However, mathematica and other highly developed languages are discouraged.
+The homework will be split into both analytical and numerical problems, any programming language is fine for the numerical problems.
+However, mathematica and other highly developed languages are discouraged.
 For the numerical problems, if you are asked to make an algorithm, you CANNOT use pre-built algorithms available to the languages.
 
 \section*{Chapter 1: Differential Equations}
@@ -64,12 +66,13 @@ Consider equation \ref{eq:lin_homo} below
 \be \label{eq:lin_homo}
 \hat{A}f = 0
 \ee
-If we assume f$_1$ and f$_2$ are solutions to equation \ref{eq:lin_homo}, then by the principle of superposition, we immediately know another solution to be a linear combination of f$_1$ and f$_2$
+If we assume f$_1$ and f$_2$ are solutions to equation \ref{eq:lin_homo}, then, by the principle of superposition, we immediately know another solution to be a linear combination of f$_1$ and f$_2$
 \be
 f_3 = c_1f_1 + c_2f_2 .
 \ee
-This result is true for any set of linear homogeneous equations.
-The linear combination of two unique solutions to a linear homogeneous equation gives another unique solution.
+This implies that f$_1$ and f$_2$ are linearly independent functions, meaning that there cannot exist a constant c such that $f_1 = cf_2$.
+Checking if f$_1$ and f$_2$ are two linearly independent solutions can be done by determining the wronskian of the two functions, but we will not worry about having to do this.
+This result is true for any set of linear homogeneous ODEs: A linear combination of two unique solutions to a linear homogeneous equation gives another unique solution.
 
 \subsubsection*{Inhomogeneous Linear Equations}
 If we now consider the Inhomogeneous linear equation, equation \ref{eq:lin_inhomo}
@@ -92,7 +95,7 @@ If you are given a differential equation and cannot determine the independent va
 
 We can also define notation for a derivative as
 \be
-x^(n) \equiv \frac{d^n}{dt^n}x \equiv D^n x
+x^{(n)} \equiv \frac{d^n}{dt^n}x \equiv D^n x
 \ee
 Hopefully it is clear that D is the linear differential operator.
 If you apply a linear operator n times it is still linear, therefore D$^n$ is also a linear operator.
@@ -152,6 +155,7 @@ For example, if we had a 3rd order linear ODE with repeated roots, $\lambda_1$ =
 \be
 x(t) = c_1 e^{\lambda_1 t} + c_2 t e^{\lambda_1 t} + c_3 t^2 e^{\lambda_1 t} .
 \ee
+
 There are 2 ways to show that this can be done for repeated roots of the characteristic polynomial.
 For the first way, consider the following second order ODE with constant coefficients
 \be \label{eq:lin_cc_homo_reproot}
@@ -161,7 +165,7 @@ If the above ODE has two repeated roots, $\lambda_1$ and $\lambda_2$, we can say
 \be
 y_1(t) = c_1 e^{\lambda_1 t}
 \ee
-Let's first assume we do not have a degeneracy so we would have $\lambda_1 \neq \lambda_2$.
+Let's first assume we do not have a degeneracy so $\lambda_1 \neq \lambda_2$.
 We can consider evaluating the following limit to obtain the resulting second unique solution
 \be
 \lim_{\lambda_1\to\ \lambda_2} \frac{e^{\lambda_2 t} - e^{\lambda_1 t}}{\lambda_2 - \lambda_1} = t e^{\lambda_1 t} .
@@ -171,23 +175,26 @@ Since one unique solution is $c_1 e^{\lambda_1 t}$, we can replace the constant 
 After plugging in your new guess for the second solution into the original ODE, you will obtain a new differential equation for v(t).
 You can see for yourself that your v(t) will be equal to t or some multiple of t.
 
-In general an N$^{th}$ order equation, assuming degenerate roots
+In general an N$^{th}$ order equation, assuming degenerate roots yields the characteristic polynomial
+%==============================================================================%
+% Not sure if the equation below could be more "correct" or if it's fine the way it is.
+%==============================================================================%
 \be
-\sum_{n=0}^N a_n x^{(n)} = 0 \xrightarrow{\text{degenerate}} \sum_{n=0}^N a_n \lambda^n = 0 .
+\sum_{n=0}^N a_n x^{(n)} = 0 \xrightarrow{\text{degenerate roots}} \sum_{n=0}^N a_n \lambda^n = 0 .
 \ee
 In the degenerate case, this maps to
 \be
 \sum_{n=0}^N a_n \lambda^n = 0 \Leftrightarrow (\lambda - \lambda_1)^{k_1} (\lambda - \lambda_2)^{k_2} \cdots = 0
 \ee
-With a general solution of
+and the general solution of the ODE becomes
 \be
 x(t) = \left( A_0 + A_1t + A_2t^2 + \cdots + A_{k_1} t^{k_1}\right) e^{\lambda_1t} + \left( B_0 + B_1t + B_2t^2 + \cdots + B_{k_2} t^{k_2}\right) e^{\lambda_2t}
 \ee
-Where there are N free paramaters such that $k_1 + k_2 + \cdots = N$.
+where there are N free parameters such that $k_1 + k_2 + \cdots = N$.
 
 \subsubsection*{Damped Harmonic Oscillator}
 Let's consider an example, the \textbf{Damped Harmonic Oscillator}; a very common physics example with analytic solutions.
-\be
+\be \label{eq:damp_oscillator}
 \frac{d^2}{dt^2} x + 2\gamma \frac{d}{dt} x + \omega_o^2 x = 0
 \ee
 The $\gamma$ is interpreted as the damping constant, and the $\omega_o$ term is interpreted as the frequency of oscillations if no damping was present, aka the natural frequency.
@@ -271,8 +278,14 @@ We now have a very nice and compact equation to describe the motion of the oscil
 % Allplots should be written in a programming language and privided on the github page too, use whatever language you like
 % If you need extra packages to plot (i.e. pandas for python or something) make a note in the src code
 %==============================================================================%
-By looking at the solution in this form, we can see that the oscillatory motion comes from the cosine term and the oscillator tending towards equilibrium comes from the negative exponential term.
-
+By looking at the solution in this form, we can see that the oscillatory motion comes from the cosine term and the oscillator tending towards equilibrium comes from the negative exponential term (see figure \ref{fig:under_damped}).
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.7]{under_damped.png}
+  \caption{The real part of the solution, in blue, for the case of the un-driven, under-damped harmonic oscillator.
+  The green dotted line shows that the amplitude of the function (and the the function itself) slowly decays to zero over time.}
+  \label{fig:under_damped}
+\end{figure}
 \subsubsection*{Overdamping ($\omega_o < \gamma$)}
 The overdamping case can be physically interpreted as having a very large friction contribution.
 In the case of overdamping, the square root in equation \ref{eq:oscillator_char} is real and not complex, so we can just write the general solution as
@@ -311,62 +324,103 @@ x(t) &= c_1 e^{\lambda_1 t} + c_2 te^{\lambda_2 t}\\
 Here we see that our ODE is second order, and we get 2 free (potentially complex) parameters, meaning the dimensionality of the solution space is 2.
 
 \subsection*{Inhomogeneous Linear ODE (constant Coefficients)}
-%==============================================================================%
-% We need to provinde the algebra for all of these cases!!!
-%==============================================================================%
 The general form for an inhomogeneous equation with constant coefficients is given by
-\be
+\be \label{eq:und_coeff_ex}
 	\sum_{n=0}^N a_n x^{(n)} = f(t) .
 \ee
-A well known example of the n=2 case is the \textbf{Driven Harmonic Oscillator}.
-The general solution for this problem is of the form
+A well known example of the N=2 case is the \textbf{Driven Harmonic Oscillator}.
+Similar to the Damped Harmonic Oscillator, the differential equation for the Driven Harmonic Oscillator has the same LHS as the Damped non-driven case (see equation \ref{eq:damp_oscillator}) but the RHS has a function f(t) which is referred to as the driving force.
+
+The general solution for any inhomogenous ODE is of the form
+%==============================================================================%
+% Particular solution should be defined as x_p so it's easier to refer to.
+%==============================================================================%
 \be
-x(t) = x_0(t) + \sum_{n=1}^N c_nx_n(t)
+x(t) = x_p(t) + \sum_{n=0}^N c_nx_n(t)
 \ee
-Where x$_0$(t) is a \textbf{Particular Solution} to the inhomogeneous equaiton, and x$_n$(t) = e$^{\lambda_n t}$.
+Where x$_p$(t) is a \textbf{Particular Solution} to the inhomogeneous equation, and x$_n$(t) = e$^{\lambda_n t}$.
+This form can be used to solve any inhomogenous ODE by simply changing the value of N to fit the order of your ODE of interest.
 Unfortunately there is no general method to solve for the particular solution.
 But it is very convenient to use the \textbf{Method of Undetermined Coefficients}.
-The following cases show you how to approach obtaining the particular solution.
+The following cases show you how to approach obtaining the particular solution using this method (assuming that you have already solved for the homogenous solution).
+As an example, we will consider different variations of the following ODE for each case to give you a better idea of how to apply the method
+\be
+3 \frac{d^2 x}{dt^2} + x = f(t)
+\ee
 
 \subsubsection*{Case 1}
-If we have f(t) = $Be^{\Omega t}$, we can assume the particular solution to be of the form $x_0(t) = Ae^{\Omega t}$.
-Substituting this guess into the into the inhomogeneous equation to find
+If we have f(t) = $Be^{\Omega t}$, we can assume the particular solution to be of the form $x_p(t) = Ae^{\Omega t}$.
+Substituting this guess into the inhomogeneous equation gives us the value of A
 \be
-A \sum_{n=0}^N a_n \omega^n B \Rightarrow A = \frac{B}{\sum_{n=0}^N a_n \omega_n}
+A \sum_{n=0}^N a_n \Omega^n e^{\Omega t} = B e^{\Omega t} \Rightarrow A = \dfrac{B e^{\Omega t}}{\sum\limits_{n=0}^N a_n \Omega_n e^{\Omega t}} \Rightarrow A = \dfrac{B}{\sum\limits_{n=0}^N a_n \Omega^n}
 \ee
-At no point did we assume $\Omega \in \Re$, so this derivation is in general complex.
-
+At no point did we assume $\Omega \in \Re$, so this derivation is in general complex. \\
+Now, let's consider the example ODE
+\be
+3 \frac{d^2 x}{dt^2} + x = 4e^{\Omega t}
+\ee
+If we use our assumption $x_p(t) = Ae^{\Omega t}$, we can make the substitution
+\be
+3A\Omega^2e^{\Omega t} + Ae^{\Omega t} = 4e^{\Omega t} \Rightarrow 3A\Omega^2 + A = 4 \Rightarrow A = \frac{4}{3\Omega^2 + 1}
+\ee
+So our particular solution is
+\be
+x_p(t) = \frac{4}{3\Omega^2 + 1} e^{\Omega t}
+\ee
+I will leave it to you to check that this is a solution to the ODE.
 \subsubsection*{Case 2}
-Our next special case is of the form $f(t) = B_1e^{\Omega_1t} + B_2e^{\Omega_2t} + \cdots$
-We will guess a solution of the form $x_0(t) = A_1 e^{\Omega_1t} + A_2 e^{\Omega_2t} + \cdots$
-Substituting this into the inhomigeneous equation we find  (truncating to 2 terms for simplicity)
+Our next special case is of the form $f(t) = B_1e^{\Omega_1t} + B_2e^{\Omega_2t} + \hdots$
+We can immediately guess a particular solution that is of the form $x_p(t) = A_1 e^{\Omega_1t} + A_2 e^{\Omega_2t} + \hdots$
+Substituting this into the inhomogeneous equation (equation \ref{eq:und_coeff_ex}), we find (truncating to 2 terms for simplicity)
 \be
-e^{\omega_1t} A_1\sum_{n=0}^N a_n \Omega_1^n + e^{\omega_2t} A_2\sum_{n=0}^N a_n \Omega_2^n = B_1e^{\Omega_1 t} + B_2 e^{\Omega_2 t}
+A_1 e^{\Omega_1t} \sum_{n=0}^N a_n \Omega_1^n + A_2 e^{\Omega_2t} \sum_{n=0}^N a_n \Omega_2^n = B_1e^{\Omega_1 t} + B_2 e^{\Omega_2 t}
 \ee
-This can be re-written as a set of equations if you perfer
+To make the math easier to handle, we can re-write this as a set of linear equations
 \be
 \begin{split}
-    A_1 \sum_{n=0}^N a_n\Omega_1^n &= B_1\\
-    A_2 \sum_{n=0}^N a_n\Omega_1^n &= B_2
+   A_1 e^{\Omega_1 t} \sum_{n=0}^N a_n\Omega_1^n = B_1 e^{\Omega_1 t} \Rightarrow A_1 \sum_{n=0}^N a_n\Omega_1^n = B_1 \\
+   A_2 e^{\Omega_2 t} \sum_{n=0}^N a_n\Omega_1^n = B_2 e^{\Omega_2 t} \Rightarrow A_2 \sum_{n=0}^N a_n\Omega_1^n = B_2
 \end{split}
 \ee
-Notice our solution is a linear combination of expotential terms, so we can probably guess that a sin or cos function can also fit this form of equation.
-For example if f(t) = sin($\Omega$ t) or f(t) = cos($\Omega$t) then we can re-write f(t) in terms of expotentials and find
+Once we have the solutions to both equations, we can combine them to form the particular solution for the total equation.
+Since case 2 can be broken down into a set of linear equations that each resemble case 1, refer to the example in case 1 to see how the coefficients are determined.
+\subsubsection*{Case 3}
+What if our f(t) was of the form of a sine or cosine function?
+In general, it is safer to assume that the particular solution is a linear combination of sine and cosine, and then let the math decide for itself which of the two (if not both) is truly necessary for the particular solution.
+Notice, however, that we can also assume our solution to be a linear combination of exponential terms, by simply re-writing all sines and cosines using the following relationships.
 \be
 \begin{split}
     \cos(\Omega t) &= \frac{e^{i\Omega t} + e^{-i\Omega t}}{2}\\
     \sin(\Omega t) &= \frac{e^{i\Omega t} - e^{-i\Omega t}}{2i}\\
 \end{split}
 \ee
-
-\subsubsection*{Case 3}
-Our next case assumes f(t) = $B_0 + B_1t + B_2t^2$
-We guess that $x_0(t) = A_0 + A_1t + A_2t^2$, and  substituting into the inhomogeneous equation we find
+For example, let's consider the example ODE
+\be
+3 \frac{d^2 x}{dt^2} + x = 4\sin(t) .
+\ee
+We can assume that x$_p(t)$ = Acos(t) + Bsin(t) and make the necessary substitutions
+\be
+[-3A\cos{(t)} - 3B\sin{(t)}] + [A\cos{(t)} + B\sin{(t)}] = 4\sin{(t)} .
+\ee
+And after combining like-terms,
+\be
+- 2A\cos{(t)} - 2B\sin{(t)} = 4\sin{(t)}
+\ee
+we see that the only way for this equation to hold is by having $A = 0$ and $B = -2$. So our particular solution looks like
+\be
+x_p(t) = -2\sin{(t)}
+\ee
+If you haven't made the connection by now, you could have also assumed that the particular solution was just a function of sine and not cosine.
+However, the reason why you could have done that in this example is because there are only even derivatives of the function x(t).
+So if you only used sines, your derivatives would only give you sines and no cosines.
+If the ODE had at least one odd derivative, a particular solution with only sines would not get you anywhere.
+You can either take my word for it or try it for yourself by replacing the second derivative in this example with a first derivative, third derivative, etc, and substituting a guess that only contains a sine term.
+\subsubsection*{Case 4}
+Our next case assumes f(t) = $B_0 + B_1t + B_2t^2$. We can make the guess that $x_p(t) = A_0 + A_1t + A_2t^2$ and substitute it into equation \ref{eq:und_coeff_ex} (again, truncating to 2 terms for simplicity)
 \be
 a_0\left(A_0 + A_1t + A_2t^2\right) + a_1\left(A_1 + 2A_2t\right) + 2a_2A_2 = 0
 \ee
-
-This is a second order polynomial, we have 3 coefficients and 3 equations, and we can solve for A$_1$, A$_2$, and A$_3$.
+This is a second order polynomial in t. Since we have 3 undetermined coefficients, we can create 3 equations to solve for each of them in order to obtain the particular solution.
 \be
 \begin{split}
     a_0A_0 + a_1A_1 + 2a_2A_2 &= B_0\\
@@ -374,44 +428,114 @@ This is a second order polynomial, we have 3 coefficients and 3 equations, and w
     a_0A_2 &= B_2\\
 \end{split}
 \ee
+Let's again consider the example ODE
+\be
+3 \frac{d^2 x}{dt^2} + x = (2-t)(t+2) .
+\ee
+Since $(2-t)(t+2) = 4 - t^2$, we can assume our guess is of the form $x_p(t)$ = $A_2t^2 + A_1t + A_0$.
+Just like in case 3, we want to make sure our guess is as general as reasonably possible in order to avoid having to make another guess.
+We continue with the method with substitution into the original ODE
+\be
+3[2A_2] + [A_2t^2 + A_1t + A_0] = (2 - t)(t + 2) \Rightarrow A_2t^2 + A_1t + A_0 + 6A_2 = 4 - t^2
+\ee
+By inspection, we can see that since the RHS does not contain a coefficient multiplied by t, A$_1 = 0$.
+So now we just need to make 2 equations to solve for the other 2 coefficients.
+\be
+\begin{split}
+A_0 + 6A_2 &= 4\\
+A_2 &= -1\\
+\end{split}
+\ee
+So after determining coefficients, we can say that our particular solution is
+\be
+x_p(t) = -t^2 + 10
+\ee
+\subsubsection*{Case 5}
+Our final case to consider is when f(t) = $(B_0 + B_1t + B_2t^2) e^{\Omega t}$.
+By analogy to all the other cases, we can make our guess for the particular solution to be $x_p(t) = (A_0 + A_1 t + A_2 t^2) e^{\Omega t}$ and substitute into equation \ref{eq:und_coeff_ex}.
+While this seems tedious to calculate, you will see that, despite having an exponential term, the problem can be reduced to case 4 because the exponential term can be cancelled out.
+\be
+\begin{split}
+& a_0[ (A_0 + A_1 t + A_2 t^2) e^{\Omega t} ] + a_1[ (A_1 + 2 A_2 t) e^{\Omega t} + (A_0 + A_1 t + A_2 t^2) \Omega e^{\Omega t} ] + \\
+& a_2[ (2 A_2) e^{\Omega t} + (2 A_1 + 4 A_2 t) \Omega e^{\Omega t} + (A_0 + A_1 t + A_2 t^2) \Omega e^{\Omega t}] \\
+&= (B_0 + B_1t + B_2t^2) e^{\Omega t}
+\end{split}
+\ee
+After dividing each term by $e^{\Omega t}$, you'll notice that it will look a lot like case 4, where will have a polynomial in t, but with $\Omega$ terms included.
+\be
+\begin{split}
+& a_0[ (A_0 + A_1 t + A_2 t^2) ] + a_1[ (A_1 + 2 A_2 t) + (A_0 + A_1 t + A_2 t^2) \Omega ] + \\
+& a_2[ (2 A_2) + (2 A_1 + 4 A_2 t) \Omega + (A_0 + A_1 t + A_2 t^2) \Omega] \\
+&= B_0 + B_1t + B_2t^2
+\end{split}
+\ee
+Then we just need to combine like-terms to get our coefficients, a$_0$, a$_1$, and a$_2$.
+\be
+\begin{split}
+&(a_0 A_2 + a_1 A_2 \Omega + a_2 A_2 \Omega) t^2 + (a_0 A_1 + 2a_2 A_2 + a_1 A_1 \Omega + 4a_2 A_2 \Omega + a_2 A_1 \Omega) t \\
+& + (a_0 A_0 + a_1 A_1 + a_0 A_0 \Omega + 2a_2 A_2 + 2a_2 A_1 \Omega + a_2 A_0 \Omega) \\
+&= B_0 + B_1t + B_2t^2
+\end{split}
+\ee
+\be
+\begin{split}
+    a_0(A_0 + A_0 \Omega) + a_1 A_1 + a_2(2 A_2 + 2 A_1 \Omega + A_0 \Omega) &= B_0 \\
+    a_0 A_1 + a_1 A_1 \Omega + a_2(2 A_2 + 4 A_2 \Omega + A_1 \Omega) &= B_1 \\
+    a_0 A_2 + a_1 A_2 \Omega + a_2 A_2 \Omega &= B_2 \\
+\end{split}
+\ee
+Remember that A$_1$, A$_2$, and A$_3$ are known values, so we end up with our system of 3 linear equations to solve for our 3 unknowns.
 
-\subsubsection*{Case 4}
-Our final case to consider is of the form f(t) = $e^{\Omega t} \left( B_0 + B_1t + B_2t^2 \right)$.
-We make our guess as $x_0(t) = \left(A_0 + A_1 t + A_2 t^2\right)e^{\Omega t}$ and substitute into the inhomogeneous equation (In the homework we will show that we get a set of linear equations for the roots).
-%==============================================================================%
-% Someone needs to do this substitution.
-%==============================================================================%
-This is the last special case that Vladimir is aware of!
-
-What we have seen from these various cases is that a RHS containing a linear combination of expotentials and polynomials will produce a system of equations.
+And this is the last special case that Vladimir is aware of!
+So it's easy to see that the Method of Undetermined Coefficients is a simple method to help solve inhomogenous equations with constant coefficients because it only requires you to make your guess for the particular solution mimic the form of f(t) and it's just algebra from there!
 
 \subsection*{Linear ODE with Variable Coefficients}
-Constant coefficient linear ODEs can be solved with linear algebra as we saw.
-Unfortunately problems with variable coefficients are a bit more tricky.
+%==============================================================================%
+Whether this section needs a little more elaborating is up to you.
+Vlad didn't really cover a lot. He just showed a bunch of stuff.
+%==============================================================================%
 
-An example of a first order variable coefficient ordinary differential equation is the 1-D Schrodinger Equation!
+Constant coefficient linear ODEs can be solved with linear algebra as we saw.
+Unfortunately, problems with variable coefficients are a bit more tricky.
+In general we don't have a general approach to solve these problems and it is often done numerically rather than analytically. We can try to use methods mentioned before such as the Variation of Parameters or Method of Undetermined Coefficients but it is not guaranteed to always work.
+There are even other methods that are usually covered in undergraduate differential equations courses, but we will not go over them in class.
+
+A famous example of a second order variable coefficient ordinary differential equation is the 1-D Schr\"odinger Equation!
 \be
 -\frac{\hbar^2}{2m} \Psi''(x) + [E - V(x)] \Psi(x) = 0
 \ee
-Here V(x) is changing (is is a function of x) so the coefficients are changing.
-
-In general we don't have a general approach to solve these problem.
-
-The SE is a  good example, guessing a Harmonic Oscillator for the potential (V(x) = kx$^2$) we can get analytic solutions.
-
-Some other examples of linear ODEs with variable coefficients are the Morse Potential, and a piecewise constant potential.
+Here, V(x) is changing (it is a function of x), which means that the coefficient of the ODE changes in x along with the function $\Psi$.
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.7]{morse.png}
+  \caption{ }
+  \label{fig:morse}
+\end{figure}
 %==============================================================================%
-% SOmeone put in a plot for a morse potential and the stepwise potential
-% Also expand the conversation around these potentials if you want
+% Someone expand the conversation around this potential in the caption.
 %==============================================================================%
-
-Another example of a second order variable coefficient OD eis teh Vertically Forced Pendulumn.
-The equation for this system is non-trivial and can be approximated as
+The SE is a good example to use because the equation is always used in Quantum Mechanics. In most Quantum Mechanics courses, we discuss different scenarios where the potential V(x) takes on different forms.
+If our potential takes the form of the potential for a Harmonic Oscillator (V(x) = kx$^2$) we can get analytic solutions to this differential equation.
+Some other examples of linear ODEs with variable coefficients are the Morse Potential (Figure \ref{fig:morse}), and a piecewise constant potential (Figure \ref{fig:piecewise}).
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.7]{piecewise.png}
+  \caption{ }
+  \label{fig:piecewise}
+\end{figure}
+%==============================================================================%
+% Someone expand the conversation around this potential in the caption.
+%==============================================================================%
+Another example of a second order, variable coefficient ODE is the Vertically/Horizontally Forced Pendulum.
+As the name implies, this system consists of having a pendulum attached to an object that is moving vertically and/or horizontally. Obtaining the equation of motion for the system is non-trivial and is often done using Lagrangian mechanics instead of Newtonian mechanics.
+Since this is not a physics course, we will not derive the equation and only show you that the equation can be approximated as
 \be
-u'' + (\alpha + \beta\cos(t)) u = 0
+u'' + (\alpha + \beta\cos(t)) u = 0 .
 \ee
-This problem is very interesting, if you allow the focal point where the pendulumn connects to the base to move you can generate a stable solution to the problem.
-
+So you can see that since one of the coefficients in the equation depends on t, this makes the equation a second order, linear, homogenous, non-constant coefficient ODE.
+This problem is very interesting, if you allow the focal point where the pendulum connects to the base to move you can generate a stable solution to the problem.
 All of these examples are just to motivate the problems, we do not need to know these specific cases.
-
+%==============================================================================%
+% Don't know what "focal point where the pendulum connects to the base to move you can generate a stable solution to the problem" means. Elaborate on it if anyone can.
+%==============================================================================%
 \end{document}
