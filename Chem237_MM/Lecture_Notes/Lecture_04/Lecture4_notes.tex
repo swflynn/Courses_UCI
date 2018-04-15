@@ -1,0 +1,194 @@
+\documentclass{article}
+%==============================================================================%
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+\newcommand{\sums}{\sum_{n=0}^\infty}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 4}
+\date{4/10/18}
+\author{Shane Flynn}
+%==============================================================================%
+%	Everyone Please Make Comments if Something Needs to be Reviewed        %
+%                           Or just fix it yourself!                           %
+%==============================================================================%
+\begin{document}
+\maketitle
+\section*{More Series}
+The alternating series has some interesting convergence properties, it takes the form
+\be
+\sums \frac{(-1)^{n+1}}{n} = \ln (1+1) = 2
+\ee
+If we start to look at some of the explicit values of the series we see 
+\be
+1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots
+\ee
+With general numbers we know that addition and subtraction commute i.e. A + B = B + A, so we would expect that if we re-arrange the order in which we take our infinite summation we would still produce teh same result at the end. 
+So consider a fancy summation scheme for the alternating series where we group terms
+\be
+\left(1 + \frac{1}{3} + \frac{1}{5}\right) - \frac{1}{2} + \left(\frac{1}{7} + \frac{1}{9} + \frac{1}{11} + \frac{1}{13} + \frac{1}{15}\right) - \frac{1}{4} \cdots
+\ee
+So we bnreak the summation into positive and negative terms, defining a set of partial summations over the positive and then negative terms. 
+If you numerically evaluate the summations in this way you will find that the summation appears to approach 1.5 as n goes to $\infty$.
+In fact it turns out that you can re-arrange the terms in any sort of pattern, and find the series converges to any value you want. 
+This is a consequence of the series not being absolutely convergent!
+The commutation of terms applies to finite numbers, it is not true for an infinite series, meaning A + B $\neq$ B + A over an infinite interval, it is only true for finite numbers. 
+If the series is absolutely convergent however, than the series converges to the same value no matter what, and changing the order of the summation will not effect the result. 
+
+\subsection*{Power Series}
+The purpose of the power series is to exapnd a function in terms of x. 
+\be
+\sums a_x x^n = f(x) 
+\ee
+If we have a Taylor series of a known function x than things are simple for example
+%==============================================================================%
+%                             Put in derivation for the Taylor expansions.     %
+%==============================================================================%
+\subsubsection*{Geometric}
+\be
+\sums x^n = \frac{1}{1-x}
+\ee
+
+\subsubsection*{Expotential}
+\be
+\sums \frac{x^n}{n!} = e^x
+\ee
+
+\subsubsection*{Sine}
+\be
+\sums \frac{x^{2k+1}(-1)^{k+1}}{(2k+1)!} = \sin(x)
+\ee
+
+\subsubsection*{Cosine}
+\be
+\sums \frac{x^{2k}(-1)^k}{(2k)!} = \cos(x)
+\ee
+
+\subsubsection*{Logarithm}
+\be
+\sums (-1)^{n+1} \frac{x^n}{n} = \ln(1+x)
+\ee
+
+If we are given a series we do not recognize, we can try applying a transformation to make it into a recognized form, such as taking a derivitive or an integral of the original series. 
+\be
+f(x) = \sum_{n=1}^\infty a_nx^n
+\ee
+We can write a new series, using the derivative.
+\be
+f'(x) = \sum_{n=1}^\infty na_nx^{n-1}
+\ee
+Now consider an integral
+\be
+\int_1^x dx f(x) = \sum_{n=1}^\infty \frac{a_n}{n+1}x^{n+1}
+\ee
+
+Consider for example
+\be
+\sum_{n=1}^\infty nx^n
+\ee
+This is similar to a geometric series in form. 
+\be
+\begin{split}
+	\sums x^n = \frac{1}{1-x} &\Rightarrow \frac{d}{dx} \left( \sums x^n\right) = \frac{d}{dx} \left( \frac{1}{1-x} \right)\\
+	\sums nx^{n-1} &= \frac{1}{(1-x)^2} \\
+\end{split}
+\ee
+To make this lase line look like our example we just need to multiple by x and cahnge the summation bounds
+\be
+\sum_{n=1}^\infty nx^n = \frac{x}{(1-x)^2} 
+\ee
+%==============================================================================%
+%             Vlad had a minus sign in his answer not sure which is correct 
+%==============================================================================%
+As another example this time consider
+\be
+\sum_{n=1}^\infty \frac{x^n}{n}
+\ee
+This expression again looks similar to a geometric series.
+Consider what happens if we take an integral of a geometric series
+\be
+\sums x^n = \frac{1}{1-x} \Rightarrow \int \text{ } dx \frac{1}{1-x} = 
+\ee
+
+If we divide by x we reproduce the problem.
+\be
+\begin{split}
+	\sums x^n &= \frac{1}{1-x} \Rightarrow \int \text{ } dx \frac{1}{1-x} \Rightarrow\\
+	\int \text{ } dx \left(\frac{1}{1-x}\right)\left(\frac{1}{x}\right) &= \int \text{ } dx \sums x^n\left(\frac{1}{x}\right) = \sum_{n=1}^\infty \frac{x^{n+1}}{n} \left(\frac{1}{x}\right) \\
+	\sum_{n=1}^\infty \frac{x^n}{n} &= \int \text{ } dx \left(\frac{1}{1-x}\right) \frac{1}{x} \Rightarrow \ln(1-x)
+\end{split}
+\ee
+
+Another example, we can start using power series, consider a function of x.
+\be
+S(x) = \sum_{n=1}^\infty \frac{x^n}{n^2}
+\ee
+Where S(1) would be evaluated as
+\be
+S(1) = \sum_{n=1}^\infty \text{ }\frac{1}{n^2}
+\ee
+
+The solution of S(x) is related to the previous problem, if we take a derivative twice we will cancel terms. 
+\be
+\begin{split}
+	S(x) &= \sum_{n=1}^\infty \frac{x^n}{n^2}
+	S'(x) &= \sum_{n=1}^\infty \frac{x^{n-1}}{n}
+\end{split}
+\ee
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
