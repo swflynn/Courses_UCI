@@ -134,7 +134,8 @@ If we divide by x we reproduce the problem.
 \begin{split}
 	\sums x^n &= \frac{1}{1-x} \Rightarrow \int \text{ } dx \frac{1}{1-x} \Rightarrow\\
 	\int \text{ } dx \left(\frac{1}{1-x}\right)\left(\frac{1}{x}\right) &= \int \text{ } dx \sums x^n\left(\frac{1}{x}\right) = \sum_{n=1}^\infty \frac{x^{n+1}}{n} \left(\frac{1}{x}\right) \\
-	\sum_{n=1}^\infty \frac{x^n}{n} &= \int \text{ } dx \left(\frac{1}{1-x}\right) \frac{1}{x} \Rightarrow \ln(1-x)
+	\sum_{n=1}^\infty \frac{x^n}{n} &= \int \text{ } dx \left(\frac{1}{1-x}\right) \frac{1}{x} \Rightarrow \ln(1-x) \Rightarrow\\
+	\sum_{n=1}^\infty \frac{x^n}{n} &= \ln(1-x) 
 \end{split}
 \ee
 
@@ -147,48 +148,203 @@ Where S(1) would be evaluated as
 S(1) = \sum_{n=1}^\infty \text{ }\frac{1}{n^2}
 \ee
 
-The solution of S(x) is related to the previous problem, if we take a derivative twice we will cancel terms. 
+The solution of S(x) is related to the previous problem, consider takng a derivative. 
 \be
 \begin{split}
-	S(x) &= \sum_{n=1}^\infty \frac{x^n}{n^2}
-	S'(x) &= \sum_{n=1}^\infty \frac{x^{n-1}}{n}
+	S(x) &= \sum_{n=1}^\infty \frac{x^n}{n^2}\\
+	S'(x) &= \sum_{n=1}^\infty \frac{x^{n-1}}{n}\\
+	x S'(x) &= \sum_{n=1}^\infty \frac{x^{n}}{n}\\
+	x S'(x) &= \ln(1-x)\\
+	S'(x) &= \int_0^x dx \frac{\ln(1-x)}{x}
+\end{split}
+\ee
+The integral on the last line cannot be evaluated analytically, but we have converted an infinite series to an integral which a nuch simplier problem, and this is a solution.
+
+\section*{Methods Of Integration}
+This is not a specific chapter in the book, we are just going to cover some simple classes of integrals and standard solutions. 
+A common theme for this course, there is no general method for solving integrals, and most integrals cannot be solve in terms of elementary functions. 
+
+\subsection*{Integration By Parts}
+%==============================================================================%
+%            Someone derive the IBP formula, comes fropm product rule of derivatives 
+%==============================================================================%
+Integration By Parts is a common method for replacing one integral (you cannot solve) for another integral (that you can hopefully solvE).
+It is useful if your integrand is a product of functions, and one of the functions can be reduced in order by taking a derivative. 
+\be
+\int_a^b U(x) dV(x) = U(x) V(x) \bigg | _a^b - \int_a^b V(x) dU(x)
+\ee
+
+We do know that any elementary function has a derivative that is also an elementary function, so you could go about making a database for easily solvable problems. 
+Applying IBP then we want to solve for integrals that are the derivative of elementary functions. 
+
+As an example consider IBP of function I (containing parameter n). 
+\be
+\begin{split}
+	I(n) &= \int_a^b dx x^n d^x\\
+	&= e^x x^n \bigg |_a^b - \int_a^b dx e^x n x^{n-1} \\
+	&= e^x x^n \bigg |_a^b - n I(n-1)\\
+	&= \cdots \\
+	&= I(0) = \int_a^b dx e^x = e^x \bigg |_a^b
+\end{split}
+\ee
+So for this example we can continue evaluating until we reach the integral of a simple expotential.
+Therefore any expotential times a polynomial can be evalued using IBP. 
+
+If we can evaluate any polynomial times an expotential, consider another example.
+\be
+\int dx x^n \cos(x) 
+\ee
+We know that we can express cos(x) in terms of expotentials
+\be
+\cos(x) = \frac{e^{ix}+e^{-ix}}{2}
+\ee
+So we can really convert this problem into the same form and solve with IBP, let s = ix
+\be
+\int ds x^n e^s
+\ee
+%==============================================================================%
+%            Someone should do these integrals out as exmaples
+%==============================================================================%
+
+\subsection*{Gaussian Integrals}
+Another well known and useful integral we will want to evaluate is the Gaussian. 
+\be
+I = \int_{-\infty}^\infty dx e^{-x^2}
+\ee
+If the limits are not $\infty$ than you can get the special function known as the \textbf{Error Fucntion}. 
+Basically a special function is a common or useful function that appears but cannot be evaluated using elementary functions, it is useful wso we give it a name. 
+%==============================================================================%
+%       May want ot add in comments about error functions since he mentioned it
+%==============================================================================%
+There is a well known trick for evaluating a Gaussian Integral.
+You instead consider the square of the integral, and convert to polar coordinates to see a nice simplification.
+\be
+\begin{split}
+	I &= \int_{-\infty}^\infty dx e^{-x^2} \Rightarrow \\
+	I^2 &= \left(\int_{-\infty}^\infty dx e^{-x^2}\right) \left(\int_{-\infty}^\infty dy e^{-y^2}\right) \\
+	 &= \int_{-\infty}^\infty \int_{-\infty}^\infty dxdy e^{-x^2 - y^2} \\
+\end{split}
+\ee
+We can now switch over to polar coordinates and re-define the integrals
+%==============================================================================%
+%      Someone add in conversation reviewing polar coordinates 
+%==============================================================================%
+\be
+\begin{split}
+	 I^2 &= \int_{-\infty}^\infty \int_{-\infty}^\infty dxdy e^{-x^2 - y^2} \\
+	 &= \int_0^{2\pi} d\theta \int_0^\infty dr e^{0r^2}r \\
+	 &= 2\pi \int_0^\infty dr re^{-r^2} \rightarrow[t=r^2]\\
+	 I^2&= 2 \int_0^\infty dt e^{-t} = \pi \\
+	 I &= \sqrt{\pi}
 \end{split}
 \ee
 
+Consider now a related example
+\be
+I = \int dx e^x \sin(x) 
+\ee
+We know that we can rewrite sin(x) as 
+\be
+\sin(x) = \frac{e^{ix}-e^{-ix}}{2i}
+\ee
+If we make the substitution we find integrals of the form
+\be
+\int e^{ax} dx
+\ee
+Where a is potentially complex and we can work through the math.
+%==============================================================================%
+%      Someone can try to solve as a gaussian if they want
+%==============================================================================%
+However, we can also just use integration by parts to evaluate this integral. 
+%==============================================================================%
+%      Someone show more algebra for the IBP
+%==============================================================================%
+\be
+\begin{split}
+	I &= \int dx e^x \sin(x) = -e^x \cos(x) + \int dx e^x \cos(x) \rightarrow[\text{IBP Again}]\\
+	I &= -e^x \cos(x) + e^x \sin)x) - I = I = \frac{-e^x \cos(x) + e^x \sin(x)}{2}
+\end{split}
+\ee
 
+\subsection*{Integrals of Rational Functions}
+We can now consider anpother class of integrals.
+Take P(x) to be a polynomial of degree n: P$_0$ + P$_1$x + $\cdots$ P$_n$x$^n$, and Q(x) to be a polynomial of degree m  Q$_0$ + Q$_1$x + $\cdots$ Q$_n$x$^n$.
+\be
+\int dx \frac{P(x)}{Q(x)}
+\ee
+To evaluate we will assume n $<$ m, which is always true because we can simply reduce by dividing by polynomials i.e. if m $>$ n than just divid the polynomials.
 
+It is always possible to find the roots of a polynomial, can be done analytically if degree 4 or less, numerically if higher degree polynomials are involved. 
+SO it is safe to assume the roots exist, we will assume the roots are not degenerate for convenience. 
+This means Q can be written as Q(x) = (x-x$_1$) $\cdots$ (x-x$_m$).
+\be
+\frac{P(x)}{Q(x)} = \frac{P(x)}{(x-x_1)(x-x_2)\cdots(x-x_m)} = \frac{A_1}{x-x_1} + \cdots + \frac{A_m}{x-x_m}
+\ee
 
+%==============================================================================%
+%      Someone check if it is partial fraction decomposition
+%==============================================================================%
+Where the coefficients A$_i$ can be found through% (partial fraction decomposition i believe it is called????). %
+For example
+%==============================================================================%
+%      We need to check this vlad made it up on teh spot may be wrong
+%==============================================================================%
+\be
+\frac{1}{(x-a)(x-b)} = \frac{A}{x-a} \frac{B}{x-b} \Rightarrow \frac{A(x-b) + B(x-a)}{(x-a)(x-b)} = 1
+\ee
+Doing some algebra we find
+\be
+A = \frac{1}{b-a}, \quad B = \frac{1}{b-a}, \quad \frac{1}{b-a} \left(\frac{1}{x-a} - \frac{1}{x-b}\right)
+\ee
+%==============================================================================%
+%     I had this written kind of randomly not sure were it goes 
+%==============================================================================%
+$\int \frac{A_k}{x-x_k} = A_k \ln(x-x_k)$
+%==============================================================================%
+%     I had this written kind of randomly not sure were it goes 
+%==============================================================================%
 
+If we consider a different probelm with degenerate roots we find a similar result.
+\be
+\frac{1}{(x-a)^2(x-b)} = \frac{A_1x + A_0}{(x-a)^2} + \frac{B}{(x-b)}
+\ee
+And go through the process to find our new constants. another example.
+\be
+\frac{1}{(x-a)^2(x-b)^3} = \frac{A_1x + A_0}{(x-a)^2} + \frac{B_2x^2 + B_1x + B_0}{(x-b)^3}
+\ee
+And again we need to solve a system of equations to find the constants. 
 
+Consider a final strategy for evaluating integrals known as \textbf{Parameter Differentation}.
+%==============================================================================%
+%    Re-Do formatting, just wanted to finish q_q
+%==============================================================================%
+\be
+I_0(a) = \int_0^\infty dx e^{-ax^2} = \frac{1}{2} \sqrt{\frac{\pi}{4}}
+\ee
+\be
+I_1(a) = \int_0^\infty dx e^{-ax^2}x = \frac{1}{2a} 
+\ee
+How do we solve I$_2$(a)?
+Consider a derivative
+\be
+\frac{d}{da} I_0(a) = \int_0^\infty dx (-x^2) e^{-ax^2}
+\ee
 
+\be
+I_2(a) = \int dx x^2e^{-ax^2} = \frac{1}{4a} \sqrt{\frac{\pi}{a}}
+\ee
 
+\be
+I_{2n}(a) = \int dx x^{2n}e^{-ax^2} = \frac{1}{4a} \sqrt{\frac{\pi}{a}}
+\ee
 
+\be
+\frac{d}{da} I_{2n}(a) \Rightarrow _{2n+1} a
+\ee
+The above is for even powers, and for odd powers we would apply.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\be
+\frac{d}{da} I_1(a) \Rightarrow _{2n-1} a
+\ee
 
 \end{document}
