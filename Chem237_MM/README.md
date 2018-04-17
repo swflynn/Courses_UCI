@@ -7,7 +7,7 @@ Topics included are: TBD
 The instructor for the course is `Dr. Vladimir Mandelshtam`.
 
 #### Lecture:
-T-Th: 8-9:30(am); PSCB 240
+T,Th: 8-9:30(am); PSCB 240
 
 #### Discussions:
 W: 8-8:50(am); PSCB 240
@@ -18,18 +18,18 @@ The suggested text for the class is:
 Mathematical Methods of Physics by Jon Mathews and R. L. Walker (Second Edition)
 
 ## Authors
-All material is provided ``as is", with the intention of understanding graduate level Mathematical and Numerical Methods.
-While accuracy is strived for, there is no guarantee the material is accurate (or up-to-date). 
+All material is provided "as is", with the intention of understanding graduate level Mathematical and Numerical Methods.
+While accuracy is strived for, there is no guarantee the material is accurate (or up-to-date).
 Thank you to everyone who helped contribute to the project in any way.
 
-Authors: Shane Flynn.
+Authors: Shane Flynn, Alan Robledo.
 
 ## Lecture_notes:
 Directory containing typed Lecture Notes from the course.
 Each lecture is written in a LaTex file (name.tex) and compiled to pdf.
 
 ## Github Crashcourse
-Github is a tool for source control (tracking a document in time, saving all verisons and changes made to that document), and for collaborating and developing projects with other people.
+Github is a tool for source control (tracking a document in time, saving all versions and changes made to that document), and for collaborating and developing projects with other people.
 
 To contribute to the project just read the example work-flow provided below (there are fancier things you can learn/read about using Git/Github, but all the essentials are covered below).
 
@@ -39,7 +39,7 @@ If you are using a different Operating System the idea is the same (all of the g
 #### Github Install
 (Does not depend on your operating system).
 To get started you will need to make a `Github` account; Please Note: most people see/use Github as a professional tool.
-Remember that when making your account. 
+Remember that when making your account.
 You may find Github to be a useful tool and continue to use it in the future.
 If you use a name.edu email you will get access to some extra tools in Github which  may be useful in your future developments.
 
@@ -81,7 +81,7 @@ You can now edit YOUR version of the course,  and work with it on your local mac
 
 I suggest making a directory on your local machine for ALL of your Github projects (this is just a suggestion).
 To do this make a directory somewhere on your computer, you can name it whatever you want (`$ mkdir ~/Desktop/github`) is an example.
-Move to this directory, and inside it we are going to make a copy of the Chem237 Repo. 
+Move to this directory, and inside it we are going to make a copy of the Chem237 Repo.
 To do that use the following command
 
 `$ git clone "url"`
