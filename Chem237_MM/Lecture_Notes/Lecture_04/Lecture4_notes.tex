@@ -20,7 +20,8 @@
 \newcommand{\eenum}{\end{enumerate}}
 \newcommand{\pd}{\partial}
 \newcommand{\dg}{\dagger}
-\newcommand{\sums}{\sum_{n=0}^\infty}
+\newcommand{\sumzero}{\sum_{n=0}^\infty}
+\newcommand{\sumone}{\sum_{n=1}^\infty}
 %==============================================================================%
 %                             Title Information                                %
 %==============================================================================%
@@ -34,108 +35,132 @@
 \begin{document}
 \maketitle
 \section*{More Series}
-The alternating series has some interesting convergence properties, it takes the form
+The following alternating series has some interesting convergence properties; it takes the form
 \be
-\sums \frac{(-1)^{n+1}}{n} = \ln (1+1) = 2
+\sumone \frac{(-1)^{n+1}}{n} = \ln (1+1) = \ln (2)
 \ee
-If we start to look at some of the explicit values of the series we see 
+If we look at some of the explicit values of the series, we see
 \be
 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots
 \ee
-With general numbers we know that addition and subtraction commute i.e. A + B = B + A, so we would expect that if we re-arrange the order in which we take our infinite summation we would still produce teh same result at the end. 
+In general, we know that addition and subtraction between numbers commute i.e. A + B = B + A, so we would expect that if we re-arrange the order in which we take our infinite summation, we would still produce the same result at the end.
 So consider a fancy summation scheme for the alternating series where we group terms
 \be
 \left(1 + \frac{1}{3} + \frac{1}{5}\right) - \frac{1}{2} + \left(\frac{1}{7} + \frac{1}{9} + \frac{1}{11} + \frac{1}{13} + \frac{1}{15}\right) - \frac{1}{4} \cdots
 \ee
-So we bnreak the summation into positive and negative terms, defining a set of partial summations over the positive and then negative terms. 
-If you numerically evaluate the summations in this way you will find that the summation appears to approach 1.5 as n goes to $\infty$.
-In fact it turns out that you can re-arrange the terms in any sort of pattern, and find the series converges to any value you want. 
+So what we did was break the summation into positive and negative terms, defining a set of partial summations over the positive and then negative terms.
+If you numerically evaluate the summations in this way, you will find that the summation appears to approach $\frac{3}{2}$ as n goes to $\infty$.
+In fact it turns out that you can re-arrange the terms in any sort of pattern, and find the series converges to any value you want.
 This is a consequence of the series not being absolutely convergent!
-The commutation of terms applies to finite numbers, it is not true for an infinite series, meaning A + B $\neq$ B + A over an infinite interval, it is only true for finite numbers. 
-If the series is absolutely convergent however, than the series converges to the same value no matter what, and changing the order of the summation will not effect the result. 
+While the commutation of terms applies to finite numbers, it is not true for all infinite series, meaning A + B $\neq$ B + A over an infinite interval for a divergent or conditionally convergent series.
+If the series is absolutely convergent however, than the series will converge to the same value no matter what, and changing the order of the summation will not affect the result.
 
 \subsection*{Power Series}
-The purpose of the power series is to exapnd a function in terms of x. 
+The purpose of a power series is to expand a function in terms of x around a center point x$_o$.
+We could expand any function around any center, but we usually consider x$_o = 0$ for simplicity.
+This gives us the general power series centered around x$_o = 0$
 \be
-\sums a_x x^n = f(x) 
+\sumzero a_x x^n = f(x)
 \ee
-If we have a Taylor series of a known function x than things are simple for example
+Often times in physics, it is much easier to deal with functions when they are represented as a Taylor Series.
+A Taylor series is a special kind of power series because such a series is computed by evaluating the values of the function's derivatives at a single point x$_o$.
+Formally, this is written as
+\be \label{eq:general_taylor}
+\sumzero /frac{f^{(n)} (x_o)}{n!} (x - x_o)^n
+\ee
+where $f^{(n)} (x_o)$ denotes the n-th derivative of the function evaluated at the point x$_o$.
+Again, we typically set x$_o = 0$ and most expansions of functions you find online use this value as well.
+When x$_o = 0$, we call the series a Maclaurin series, but the name is not always used and such a series is still often referred to as a Taylor Series.
+For example, we can expand the function $sin(x)$ as a Taylor series around x$_o = 0$ by first computing a few derivatives
+\be
+\begin{split}
+f^{(0)} (x_o = 0) = \sin{0} = 0
+f^{(1)} (x_o = 0) = \cos{0} = 1
+f^{(2)} (x_o = 0) = - \sin{0} = 0
+f^{(3)} (x_o = 0) = - \cos{0} = -1
+\end{split}
+\ee
+Then we plug our variables into equation \ref{eq:general_taylor} to get a polynomial in x of an infinite degree
+\be
+\sin(x) = \sumzero /frac{(\sin{x})^{(n)} (x_o = 0)}{n!} (x)^n = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
+\ee
+The reason why Taylor Series expansions are used often in physics is because the value of sin(x) can be approximated by simply truncating your series to any degree in x that you want.
+As you keep higher and higher order terms, your approximate equation will yield more accurate values, with the infinite degree polynomial being the exact equation.
+So it is very reasonable to represent the function sin(x) as a first degree polynomial in x if the value of x is reasonably small.
+\be
+\sin{x} \approx x
+\ee
+And this approximation is almost always used when considering oscillating systems where the angle of oscillations is very small because the math becomes much easier to solve when the substitution is made.
 %==============================================================================%
 %                             Put in derivation for the Taylor expansions.     %
 %==============================================================================%
+
 \subsubsection*{Geometric}
 \be
-\sums x^n = \frac{1}{1-x}
+\sumzero x^n = \frac{1}{1-x}
 \ee
 
 \subsubsection*{Expotential}
 \be
-\sums \frac{x^n}{n!} = e^x
-\ee
-
-\subsubsection*{Sine}
-\be
-\sums \frac{x^{2k+1}(-1)^{k+1}}{(2k+1)!} = \sin(x)
+\sumzero \frac{x^n}{n!} = e^x
 \ee
 
 \subsubsection*{Cosine}
 \be
-\sums \frac{x^{2k}(-1)^k}{(2k)!} = \cos(x)
+\sumzero \frac{x^{2k}(-1)^k}{(2k)!} = \cos(x)
 \ee
 
 \subsubsection*{Logarithm}
 \be
-\sums (-1)^{n+1} \frac{x^n}{n} = \ln(1+x)
+\sumzero (-1)^{n+1} \frac{x^n}{n} = \ln(1+x)
 \ee
 
-If we are given a series we do not recognize, we can try applying a transformation to make it into a recognized form, such as taking a derivitive or an integral of the original series. 
+Now that we are aware of how to create an infinite series out of any function, we want to become familiar with how to manipulate a series to give you another one.
+If we are given a series we do not recognize, we can always try applying a transformation to turn it into a recognized form, such as taking a derivative or an integral of the original series.
+Consider the general power series
 \be
-f(x) = \sum_{n=1}^\infty a_nx^n
+f(x) = \sumone a_nx^n
 \ee
-We can write a new series, using the derivative.
+We can write a new series by taking the derivative with respect to x
 \be
-f'(x) = \sum_{n=1}^\infty na_nx^{n-1}
+f'(x) = \sumone na_nx^{n-1}
 \ee
-Now consider an integral
+or integrating with respect to x
 \be
-\int_1^x dx f(x) = \sum_{n=1}^\infty \frac{a_n}{n+1}x^{n+1}
+\int_{0}^{x} f(x) dx = \sums \frac{a_n}{n+1}x^{n+1}
 \ee
-
-Consider for example
+Consider for example the following series
 \be
-\sum_{n=1}^\infty nx^n
+\sums nx^n
 \ee
-This is similar to a geometric series in form. 
+If we wanted to find the function that the series equates to, we can notice that it looks similar to the derivative of the geometric series with respect to x
 \be
 \begin{split}
-	\sums x^n = \frac{1}{1-x} &\Rightarrow \frac{d}{dx} \left( \sums x^n\right) = \frac{d}{dx} \left( \frac{1}{1-x} \right)\\
-	\sums nx^{n-1} &= \frac{1}{(1-x)^2} \\
+	\sum x^n = \frac{1}{1-x} &\Rightarrow \frac{d}{dx} \left( \sum x^n\right) = \frac{d}{dx} \left( \frac{1}{1-x} \right)\\
+	\sum nx^{n-1} &= \frac{1}{(1-x)^2} \\
 \end{split}
 \ee
-To make this lase line look like our example we just need to multiple by x and cahnge the summation bounds
+To make this last line look like our example series, we just need to multiply by x and change the summation bounds
 \be
-\sum_{n=1}^\infty nx^n = \frac{x}{(1-x)^2} 
+\sums nx^n = \frac{x}{(1-x)^2}
 \ee
-%==============================================================================%
-%             Vlad had a minus sign in his answer not sure which is correct 
-%==============================================================================%
-As another example this time consider
+We can change the summation bounds from $n = 0$ to $n = 1$ because the 0th term is equal to zero, so it does not affect the summation.
+As another example, consider
 \be
-\sum_{n=1}^\infty \frac{x^n}{n}
+\sums \frac{x^n}{n}
 \ee
 This expression again looks similar to a geometric series.
-Consider what happens if we take an integral of a geometric series
+Consider what happens if we take a definite integral of the geometric series
 \be
-\sums x^n = \frac{1}{1-x} \Rightarrow \int \text{ } dx \frac{1}{1-x} = 
+\sum x^n = \frac{1}{1-x} \Rightarrow \int_{0}^{x} \frac{1}{1-x} dx = - \ln(1 - x)
 \ee
 
-If we divide by x we reproduce the problem.
+If we divide by x and then integrate, we can get the example series
 \be
 \begin{split}
-	\sums x^n &= \frac{1}{1-x} \Rightarrow \int \text{ } dx \frac{1}{1-x} \Rightarrow\\
-	\int \text{ } dx \left(\frac{1}{1-x}\right)\left(\frac{1}{x}\right) &= \int \text{ } dx \sums x^n\left(\frac{1}{x}\right) = \sum_{n=1}^\infty \frac{x^{n+1}}{n} \left(\frac{1}{x}\right) \\
+	\int_{0}^{x} \left(\frac{1}{1-x}\right) dx &= \int \sum x^n dx = \sum \frac{x^{n+1}}{n} \Rightarrow \\
 	\sum_{n=1}^\infty \frac{x^n}{n} &= \int \text{ } dx \left(\frac{1}{1-x}\right) \frac{1}{x} \Rightarrow \ln(1-x) \Rightarrow\\
-	\sum_{n=1}^\infty \frac{x^n}{n} &= \ln(1-x) 
+	\sum_{n=1}^\infty \frac{x^n}{n} &= \ln(1-x)
 \end{split}
 \ee
 
@@ -148,7 +173,7 @@ Where S(1) would be evaluated as
 S(1) = \sum_{n=1}^\infty \text{ }\frac{1}{n^2}
 \ee
 
-The solution of S(x) is related to the previous problem, consider takng a derivative. 
+The solution of S(x) is related to the previous problem, consider takng a derivative.
 \be
 \begin{split}
 	S(x) &= \sum_{n=1}^\infty \frac{x^n}{n^2}\\
@@ -161,23 +186,23 @@ The solution of S(x) is related to the previous problem, consider takng a deriva
 The integral on the last line cannot be evaluated analytically, but we have converted an infinite series to an integral which a nuch simplier problem, and this is a solution.
 
 \section*{Methods Of Integration}
-This is not a specific chapter in the book, we are just going to cover some simple classes of integrals and standard solutions. 
-A common theme for this course, there is no general method for solving integrals, and most integrals cannot be solve in terms of elementary functions. 
+This is not a specific chapter in the book, we are just going to cover some simple classes of integrals and standard solutions.
+A common theme for this course, there is no general method for solving integrals, and most integrals cannot be solve in terms of elementary functions.
 
 \subsection*{Integration By Parts}
 %==============================================================================%
-%            Someone derive the IBP formula, comes fropm product rule of derivatives 
+%            Someone derive the IBP formula, comes fropm product rule of derivatives
 %==============================================================================%
 Integration By Parts is a common method for replacing one integral (you cannot solve) for another integral (that you can hopefully solvE).
-It is useful if your integrand is a product of functions, and one of the functions can be reduced in order by taking a derivative. 
+It is useful if your integrand is a product of functions, and one of the functions can be reduced in order by taking a derivative.
 \be
 \int_a^b U(x) dV(x) = U(x) V(x) \bigg | _a^b - \int_a^b V(x) dU(x)
 \ee
 
-We do know that any elementary function has a derivative that is also an elementary function, so you could go about making a database for easily solvable problems. 
-Applying IBP then we want to solve for integrals that are the derivative of elementary functions. 
+We do know that any elementary function has a derivative that is also an elementary function, so you could go about making a database for easily solvable problems.
+Applying IBP then we want to solve for integrals that are the derivative of elementary functions.
 
-As an example consider IBP of function I (containing parameter n). 
+As an example consider IBP of function I (containing parameter n).
 \be
 \begin{split}
 	I(n) &= \int_a^b dx x^n d^x\\
@@ -188,11 +213,11 @@ As an example consider IBP of function I (containing parameter n).
 \end{split}
 \ee
 So for this example we can continue evaluating until we reach the integral of a simple expotential.
-Therefore any expotential times a polynomial can be evalued using IBP. 
+Therefore any expotential times a polynomial can be evalued using IBP.
 
 If we can evaluate any polynomial times an expotential, consider another example.
 \be
-\int dx x^n \cos(x) 
+\int dx x^n \cos(x)
 \ee
 We know that we can express cos(x) in terms of expotentials
 \be
@@ -207,12 +232,12 @@ So we can really convert this problem into the same form and solve with IBP, let
 %==============================================================================%
 
 \subsection*{Gaussian Integrals}
-Another well known and useful integral we will want to evaluate is the Gaussian. 
+Another well known and useful integral we will want to evaluate is the Gaussian.
 \be
 I = \int_{-\infty}^\infty dx e^{-x^2}
 \ee
-If the limits are not $\infty$ than you can get the special function known as the \textbf{Error Fucntion}. 
-Basically a special function is a common or useful function that appears but cannot be evaluated using elementary functions, it is useful wso we give it a name. 
+If the limits are not $\infty$ than you can get the special function known as the \textbf{Error Fucntion}.
+Basically a special function is a common or useful function that appears but cannot be evaluated using elementary functions, it is useful wso we give it a name.
 %==============================================================================%
 %       May want ot add in comments about error functions since he mentioned it
 %==============================================================================%
@@ -227,7 +252,7 @@ You instead consider the square of the integral, and convert to polar coordinate
 \ee
 We can now switch over to polar coordinates and re-define the integrals
 %==============================================================================%
-%      Someone add in conversation reviewing polar coordinates 
+%      Someone add in conversation reviewing polar coordinates
 %==============================================================================%
 \be
 \begin{split}
@@ -241,9 +266,9 @@ We can now switch over to polar coordinates and re-define the integrals
 
 Consider now a related example
 \be
-I = \int dx e^x \sin(x) 
+I = \int dx e^x \sin(x)
 \ee
-We know that we can rewrite sin(x) as 
+We know that we can rewrite sin(x) as
 \be
 \sin(x) = \frac{e^{ix}-e^{-ix}}{2i}
 \ee
@@ -255,7 +280,7 @@ Where a is potentially complex and we can work through the math.
 %==============================================================================%
 %      Someone can try to solve as a gaussian if they want
 %==============================================================================%
-However, we can also just use integration by parts to evaluate this integral. 
+However, we can also just use integration by parts to evaluate this integral.
 %==============================================================================%
 %      Someone show more algebra for the IBP
 %==============================================================================%
@@ -274,8 +299,8 @@ Take P(x) to be a polynomial of degree n: P$_0$ + P$_1$x + $\cdots$ P$_n$x$^n$, 
 \ee
 To evaluate we will assume n $<$ m, which is always true because we can simply reduce by dividing by polynomials i.e. if m $>$ n than just divid the polynomials.
 
-It is always possible to find the roots of a polynomial, can be done analytically if degree 4 or less, numerically if higher degree polynomials are involved. 
-SO it is safe to assume the roots exist, we will assume the roots are not degenerate for convenience. 
+It is always possible to find the roots of a polynomial, can be done analytically if degree 4 or less, numerically if higher degree polynomials are involved.
+SO it is safe to assume the roots exist, we will assume the roots are not degenerate for convenience.
 This means Q can be written as Q(x) = (x-x$_1$) $\cdots$ (x-x$_m$).
 \be
 \frac{P(x)}{Q(x)} = \frac{P(x)}{(x-x_1)(x-x_2)\cdots(x-x_m)} = \frac{A_1}{x-x_1} + \cdots + \frac{A_m}{x-x_m}
@@ -297,11 +322,11 @@ Doing some algebra we find
 A = \frac{1}{b-a}, \quad B = \frac{1}{b-a}, \quad \frac{1}{b-a} \left(\frac{1}{x-a} - \frac{1}{x-b}\right)
 \ee
 %==============================================================================%
-%     I had this written kind of randomly not sure were it goes 
+%     I had this written kind of randomly not sure were it goes
 %==============================================================================%
 $\int \frac{A_k}{x-x_k} = A_k \ln(x-x_k)$
 %==============================================================================%
-%     I had this written kind of randomly not sure were it goes 
+%     I had this written kind of randomly not sure were it goes
 %==============================================================================%
 
 If we consider a different probelm with degenerate roots we find a similar result.
@@ -312,7 +337,7 @@ And go through the process to find our new constants. another example.
 \be
 \frac{1}{(x-a)^2(x-b)^3} = \frac{A_1x + A_0}{(x-a)^2} + \frac{B_2x^2 + B_1x + B_0}{(x-b)^3}
 \ee
-And again we need to solve a system of equations to find the constants. 
+And again we need to solve a system of equations to find the constants.
 
 Consider a final strategy for evaluating integrals known as \textbf{Parameter Differentation}.
 %==============================================================================%
@@ -322,7 +347,7 @@ Consider a final strategy for evaluating integrals known as \textbf{Parameter Di
 I_0(a) = \int_0^\infty dx e^{-ax^2} = \frac{1}{2} \sqrt{\frac{\pi}{4}}
 \ee
 \be
-I_1(a) = \int_0^\infty dx e^{-ax^2}x = \frac{1}{2a} 
+I_1(a) = \int_0^\infty dx e^{-ax^2}x = \frac{1}{2a}
 \ee
 How do we solve I$_2$(a)?
 Consider a derivative
