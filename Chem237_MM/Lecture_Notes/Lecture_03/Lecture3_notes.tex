@@ -24,8 +24,8 @@
 %                             Title Information                                %
 %==============================================================================%
 \title{Chem237: Lecture 3}
-\date{4//18}
-\author{Shane Flynn}
+\date{4/5/18}
+\author{Shane Flynn,Moises Romero}
 %==============================================================================%
 %	Everyone Please Make Comments if Something Needs to be Reviewed        %
 %                           Or just fix it yourself!                           %
@@ -146,6 +146,33 @@ Consider a real s.
 \left(1 + \frac{1}{n}\right)^{-s} = \exp\left[{\ln{\left(1+\frac{1}{n}\right)^{-s}}}\right] = \exp\left[-s*{\ln{\left(1+\frac{1}{n}\right)^{}}}\right] = \exp\left[(-s)*\frac{1}{n}\right]=1 - \frac{s}{n}
 \end{split}
 \ee
+Since this doesn't help us determine whether it converges or diverges we will try the Integral test.
+Consider the Reinman zeta function defined above as a function of x :
+\be
+f(x) = \frac{1}{x^s}
+\ee
+We will now do the integral test :
+\be
+\begin{split}
+    \int_1^\infty \frac{1}{x^s} = \left(\frac{1}{1-s}\right)\left(\frac{1}{x^{1-s}}\right) \\
+    \text{If } s>1  \text{ it converges} \\
+    \text{If } s<1 \text{ it diverges} \\
+\end{split}
+\ee
+These rules for s can then be applied to the results of the ratio test.
+\subsubsection*{Alternating Series}
+If a series is not absolute convergent :
+\be
+\sum_n a_n = a_n = (-1)^n |a_n|
+\ee
+Consider  the series :
+\be
+S(+1) = S = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \hdots = \ln(2)
+\ee
+\be
+S(x) = \sum_{n=1}^\infty \frac{x^{n-1}}{n} = \ln(1+x)
+\ee
+
 
 
 
