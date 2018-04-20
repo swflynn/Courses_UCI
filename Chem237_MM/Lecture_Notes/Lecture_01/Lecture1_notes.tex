@@ -1,6 +1,6 @@
 \documentclass{article}
-%==============================================================================%
-%	                          Packages                                           %
+%=============================================================================80
+%	                          Packages                                     %
 %==============================================================================%
 % Packages
 \usepackage[utf8]{inputenc}
@@ -28,38 +28,57 @@
 \date{4/14/18}
 \author{Alan Robledo, Shane Flynn}
 %==============================================================================%
-%	Everyone Please Make Comments if Something Needs to be Reviewed              %
-%                           Or just fix it yourself!                           %
-%==============================================================================%
 \begin{document}
+
 \maketitle
+
 \section*{Course Overview}
-The course will not directly follow the textbook. However, it will provide a rough guideline for important topics.
+The course will not directly follow the textbook, the book will be a guideline for important topics.
 The lecture and homework are the most important aspects of the course.
-The homework will be split into both analytical and numerical problems, any programming language is fine for the numerical problems.
-However, mathematica and other highly developed languages are discouraged.
+The homework will be split into both analytical and numerical problems.
+Any programming language is fine for the numerical problems, however, Mathematica and other highly developed languages are discouraged.
 For the numerical problems, if you are asked to make an algorithm, you CANNOT use pre-built algorithms available to the languages.
 
 \section*{Chapter 1: Differential Equations}
-A Differential Equation simply refers to an equation containing a function and its derivatives.
+A \textbf{Differential Equation} refers to an equation containing both a function and its derivatives.
 An \textbf{Ordinary Differential Equation} (ODE) refers to any differential equation with functions that depend on only one independent variable.
+\be
+\frac{dy(x)}{dx} + y(x) = 0
+\ee
 In contrast a \textbf{Partial Differential Equation} (PDE) contains functions that depend on more than one independent variable.
-We can further categorize differential equations (both ODE and PDE) into linear or nonlinear.
-As you can imagine, linear equations are simpler to solve compared to nonlinear ones and ODEs are easier to solve than PDEs.
+\be
+a \frac{\pd U(x,y)}{\pd x} + b \frac{\pd U(x,y)}{\pd y} = c
+\ee
+%==============================================================================%
+%                             I am here - Shane
+%==============================================================================%
+
+We can further categorize differential equations (both ODE and PDE) into linear or nonlinear (depending on the highest degree of the variable of interest). 
+As you can imagine, linear equations are simpler to solve compared to nonlinear and an ODE is easier to solve than a PDE.
 
 \subsection*{Linear Equations}
-Linear Equations are a general topic; there are linear differential equations, linear algebraic equations, and etc.
-A linear equation has the form
+Linear Equations are a general topic (not just linear differential equations); there are linear differential equations, linear algebraic equations, and etc.
+Any linear equation has the form
 \be
 \hat{A} f(x,y,\hdots) = B(x,y,\hdots)
 \ee
-Where the RHS (B) is known, and the function f is an unknown function.
-To be a linear equation, the operator $\hat{A}$ must be a linear operator.
-For example, take the equation above and let $\hat{A}$ be the differential operator wrt a single dimension, and you get a linear ordinary differential equation.
+Where the RHS (B) is some known function, and the function f is some unknown function.
+To be a linear equation, the operator $\hat{A}$ must be a \textbf{Linear Operator}. 
+For example, take the equation above and let $\hat{A}$ be the differential operator wrt. a single dimension.
+This would then describe a linear Ordinary Differential Equation.
 
-If the RHS (B) is equal to 0, the linear equation is called \textbf{Homogeneous} and if the RHS is anything other than 0, the linear equation is called \textbf{Inhomogeneous}.
-Another way to explain this is by saying that if every term in the differential equation contains the function f or any of its derivatives, it is called Homogenous.
-If there is at least one term that does not contain the function and/or its derivative, it is called Inhomogeneous.
+If the RHS of this expression (B) is equal to 0, the linear equation is called \textbf{Homogeneous} and if the RHS is anything other than 0, the linear equation is called \textbf{Inhomogeneous}.
+Another way to explain this; if every term in the differential equation contains the function f or any of its derivatives, it is called Homogenous.
+If there is at least one term that does not contain the function (f) and/or its derivative, it is called Inhomogeneous.
+For example 
+\be
+\frac{d^2y}{dx^2} + d\frac{dy}{dx} + y = 0
+\ee
+Is a homogenous equation, however
+\be
+\frac{d^2y}{dx^2} + d\frac{dy}{dx} + x = 0
+\ee
+The equation is an inhomogenous differential equation (x has no depeddence on y). 
 
 \subsubsection*{Homogeneous Linear Equations}
 Consider equation \ref{eq:lin_homo} below
@@ -281,7 +300,7 @@ We now have a very nice and compact equation to describe the motion of the oscil
 By looking at the solution in this form, we can see that the oscillatory motion comes from the cosine term and the oscillator tending towards equilibrium comes from the negative exponential term (see figure \ref{fig:under_damped}).
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=0.7]{under_damped.png}
+  \includegraphics[scale=0.7]{Figures/under_damped.png}
   \caption{The real part of the solution, in blue, for the case of the un-driven, under-damped harmonic oscillator.
   The green dotted line shows that the amplitude of the function (and the the function itself) slowly decays to zero over time.}
   \label{fig:under_damped}
@@ -507,7 +526,7 @@ A famous example of a second order variable coefficient ordinary differential eq
 Here, V(x) is changing (it is a function of x), which means that the coefficient of the ODE changes in x along with the function $\Psi$.
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.7]{morse.png}
+  \includegraphics[scale=0.7]{Figures/morse.png}
   \caption{ }
   \label{fig:morse}
 \end{figure}
@@ -519,7 +538,7 @@ If our potential takes the form of the potential for a Harmonic Oscillator (V(x)
 Some other examples of linear ODEs with variable coefficients are the Morse Potential (Figure \ref{fig:morse}), and a piecewise constant potential (Figure \ref{fig:piecewise}).
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.7]{piecewise.png}
+  \includegraphics[scale=0.7]{Figures/piecewise.png}
   \caption{ }
   \label{fig:piecewise}
 \end{figure}
