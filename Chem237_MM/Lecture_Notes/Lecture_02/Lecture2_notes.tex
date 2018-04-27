@@ -33,13 +33,15 @@
 \begin{document}
 \maketitle
 \section*{ODE; Variable Coefficients}
+We can now consider the class of ODEs with variable coefficients.
+Unfortunately most variable coefficient ODEs cannot be solved analytically, except for some special cases. 
+
 \subsection*{Variable Coefficients; Homogenous}
-Now consider Variable coefficients to our differential equations.
 \be
 \frac{dx}{dt} + a(t) x = 0
 \ee
-Cosider the linear first order variable coeficient equation above.
-This is simple because the problem is seperable, and can easily be solved by direct integration.
+Cosider the linear, first order variable coefficient ODE above. 
+This example is trivial because the problem is seperable, and can easily be solved by direct integration.
 \be
 \begin{split}
     \frac{dx}{dt} + a(t) x &= 0 \\
@@ -51,6 +53,34 @@ This is simple because the problem is seperable, and can easily be solved by dir
 \ee
 The last line is the homogeneous solution to the first order variable coefficient ODE above.
 Although the answer is in terms of an integral, an integral is much simpler than a differential equation, and we call this a solution, because we have made progress. Also recall that each integral produces a constant which we just collect and add to the end of our solution.
+
+\subsection*{Differentials as Algebra}
+A quick side note, solving seperable differential equations as we did above implies the differential operators can be treated algebraically. 
+Although this is convenient it is not 'kosher' we should probably prove it works.
+Consider a simple differntial equation
+\be
+\begin{split}
+    f(y) \frac{dy}{dx} &= g(x)\\
+    \int dx f(y) \frac{dy}{dx} &= \int dx g(x)
+\end{split}
+\ee
+If we let F(y) define the anti-derivitive of f(y), meaning
+\be
+F(y) = \int f(y) dy \qquad \Rightarrow \qquad F'(y) = f(y)
+\ee
+And recall the chain rule
+\be
+\frac{d}{dx} F(y) = f(y) \frac{dy}{dx}
+\ee
+Substitute in the chain rule into our equation we find
+\be
+\begin{split}
+    \int dx F'(y) &= \int dx g(x)\\
+    F(y) &= \int dx g(x) \\
+    \int f(y) dy &= \int dx g(x)
+\end{split}
+\ee
+So for this specific case we can prove the general result (which happens to be consistent with assuming the differentials can be treated as operators). 
 
 \subsection*{Variable Coefficients; Non-Homogenous}
 Now consider the non-homonogeous variable coefficient differential equation
