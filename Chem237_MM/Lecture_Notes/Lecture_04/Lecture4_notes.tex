@@ -27,7 +27,7 @@
 %==============================================================================%
 \title{Chem237: Lecture 4}
 \date{4/10/18}
-\author{Shane Flynn}
+\author{Alan Robledo, Shane Flynn}
 %==============================================================================%
 %	Everyone Please Make Comments if Something Needs to be Reviewed        %
 %                           Or just fix it yourself!                           %
@@ -66,7 +66,7 @@ Often times in physics, it is much easier to deal with functions when they are r
 A Taylor series is a special kind of power series because such a series is computed by evaluating the values of the function's derivatives at a single point x$_o$.
 Formally, this is written as
 \be \label{eq:general_taylor}
-\sumzero /frac{f^{(n)} (x_o)}{n!} (x - x_o)^n
+\sumzero \frac{f^{(n)} (x) \Big|_{x=x_o}}{n!} (x - x_o)^n
 \ee
 where $f^{(n)} (x_o)$ denotes the n-th derivative of the function evaluated at the point x$_o$.
 Again, we typically set x$_o = 0$ and most expansions of functions you find online use this value as well.
@@ -74,15 +74,15 @@ When x$_o = 0$, we call the series a Maclaurin series, but the name is not alway
 For example, we can expand the function $sin(x)$ as a Taylor series around x$_o = 0$ by first computing a few derivatives
 \be
 \begin{split}
-f^{(0)} (x_o = 0) = \sin{0} = 0
-f^{(1)} (x_o = 0) = \cos{0} = 1
-f^{(2)} (x_o = 0) = - \sin{0} = 0
-f^{(3)} (x_o = 0) = - \cos{0} = -1
+f^{(0)} (x_o = 0) &= \sin{0} = 0\\
+f^{(1)} (x_o = 0) &= \cos{0} = 1\\
+f^{(2)} (x_o = 0) &= - \sin{0} = 0\\
+f^{(3)} (x_o = 0) &= - \cos{0} = -1\\
 \end{split}
 \ee
 Then we plug our variables into equation \ref{eq:general_taylor} to get a polynomial in x of an infinite degree
 \be
-\sin(x) = \sumzero /frac{(\sin{x})^{(n)} (x_o = 0)}{n!} (x)^n = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
+\sin(x) = \sumzero \frac{(\sin{x})^{(n)} \Big|_{x_o = 0}}{n!} (x-0)^n = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
 \ee
 The reason why Taylor Series expansions are used often in physics is because the value of sin(x) can be approximated by simply truncating your series to any degree in x that you want.
 As you keep higher and higher order terms, your approximate equation will yield more accurate values, with the infinite degree polynomial being the exact equation.
@@ -97,65 +97,65 @@ And this approximation is almost always used when considering oscillating system
 
 \subsubsection*{Geometric}
 \be
-\sumzero x^n = \frac{1}{1-x}
+\sumzero x^n = 1 + x + x^2 + x^3 + \hdots = \frac{1}{1-x}
 \ee
 
-\subsubsection*{Expotential}
+\subsubsection*{Exponential}
 \be
-\sumzero \frac{x^n}{n!} = e^x
+\sumzero \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \hdots = e^x
 \ee
 
 \subsubsection*{Cosine}
 \be
-\sumzero \frac{x^{2k}(-1)^k}{(2k)!} = \cos(x)
+\sumzero \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \hdots = \cos(x)
 \ee
 
 \subsubsection*{Logarithm}
 \be
-\sumzero (-1)^{n+1} \frac{x^n}{n} = \ln(1+x)
+\sumzero (-1)^{n} \frac{x^n}{n} = x - \frac{x^2}{2!} + \frac{x^3}{3!} - \hdots = \ln(1+x)
 \ee
 
 Now that we are aware of how to create an infinite series out of any function, we want to become familiar with how to manipulate a series to give you another one.
 If we are given a series we do not recognize, we can always try applying a transformation to turn it into a recognized form, such as taking a derivative or an integral of the original series.
 Consider the general power series
 \be
-f(x) = \sumone a_nx^n
+f(x) = \sumzero a_nx^n
 \ee
 We can write a new series by taking the derivative with respect to x
 \be
-f'(x) = \sumone na_nx^{n-1}
+f'(x) = \sumzero na_nx^{n-1}
 \ee
 or integrating with respect to x
 \be
-\int_{0}^{x} f(x) dx = \sums \frac{a_n}{n+1}x^{n+1}
+\int_{0}^{x} f(x) dx = \sumzero \frac{a_n}{n+1}x^{n+1}
 \ee
 Consider for example the following series
 \be
-\sums nx^n
+\sumzero nx^n
 \ee
-If we wanted to find the function that the series equates to, we can notice that it looks similar to the derivative of the geometric series with respect to x
+If we wanted to find the function that the series equates to, we first notice that it looks similar to the derivative of the geometric series with respect to x
 \be
 \begin{split}
-	\sum x^n = \frac{1}{1-x} &\Rightarrow \frac{d}{dx} \left( \sum x^n\right) = \frac{d}{dx} \left( \frac{1}{1-x} \right)\\
-	\sum nx^{n-1} &= \frac{1}{(1-x)^2} \\
+	\sumzero x^n = \frac{1}{1-x} &\Rightarrow \frac{d}{dx} \left( \sumzero x^n\right) = \frac{d}{dx} \left( \frac{1}{1-x} \right)\\
+	\sumzero nx^{n-1} &= \frac{1}{(1-x)^2} \\
 \end{split}
 \ee
-To make this last line look like our example series, we just need to multiply by x and change the summation bounds
+To make this last line look like our example series, we just need to multiply by x
 \be
-\sums nx^n = \frac{x}{(1-x)^2}
+x \sumzero nx^{n-1} = \sumzero nx^{n} = \frac{x}{(1-x)^2}
 \ee
-We can change the summation bounds from $n = 0$ to $n = 1$ because the 0th term is equal to zero, so it does not affect the summation.
 As another example, consider
 \be
-\sums \frac{x^n}{n}
+\sumone \frac{x^n}{n}
 \ee
 This expression again looks similar to a geometric series.
-Consider what happens if we take a definite integral of the geometric series
+Consider what happens if we integrate by x
 \be
-\sum x^n = \frac{1}{1-x} \Rightarrow \int_{0}^{x} \frac{1}{1-x} dx = - \ln(1 - x)
+\begin{split}
+\sumzero x^n = \frac{1}{1-x} \Rightarrow \frac{1}{x} \sumzero x^n dx = \sumzero x^{n-1} = - \ln(1 - x) = \sumzero \frac{x^{n+1}}{n+1} &\Rightarrow \\
+\end{split}
 \ee
 
-If we divide by x and then integrate, we can get the example series
 \be
 \begin{split}
 	\int_{0}^{x} \left(\frac{1}{1-x}\right) dx &= \int \sum x^n dx = \sum \frac{x^{n+1}}{n} \Rightarrow \\
