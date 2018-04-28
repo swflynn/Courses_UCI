@@ -33,32 +33,34 @@
 \begin{document}
 \maketitle
 \section*{ODE; Variable Coefficients}
-We can now consider the class of ODEs with variable coefficients.
-Unfortunately most variable coefficient ODEs cannot be solved analytically, except for some special cases. 
+We can now consider ODEs with variable coefficients.
+Unfortunately most variable coefficient ODEs cannot be solved analytically, except for certain special cases. 
 
 \subsection*{Variable Coefficients; Homogenous}
-\be
+\be \label{eq:vc_homo}
 \frac{dx}{dt} + a(t) x = 0
 \ee
 Cosider the linear, first order variable coefficient ODE above. 
 This example is trivial because the problem is seperable, and can easily be solved by direct integration.
 \be
 \begin{split}
-    \frac{dx}{dt} + a(t) x &= 0 \\
+    \frac{dx}{dt} + &a(t) x = 0 \\
     \int dx \frac{1}{x} &= -\int dt \text{ a}(t) \\
     \ln(x) -\ln(x_0)  &= -\int dt \text{ a}(t) \\
-    \ln(x)  &= \ln(x_0) -\int dt \text{ a}(t) \\
-    x(t) &= x_0 \exp\left[-\int_{t_0}^t dt \text{ a}(t)\right] + c
+    \ln(x)  = \ln(x_0) &-\int dt \text{ a}(t) \\
+    x(t) = x_0 &\exp\left[-\int_{t_0}^t dt \text{ a}(t)\right] + c
 \end{split}
 \ee
-The last line is the homogeneous solution to the first order variable coefficient ODE above.
-Although the answer is in terms of an integral, an integral is much simpler than a differential equation, and we call this a solution, because we have made progress. Also recall that each integral produces a constant which we just collect and add to the end of our solution.
+The last line represents the homogeneous solution to the first order variable coefficient ODE (equation \ref{eq:vc_homo}).
+Although the final answer is in terms of an integral, an integral is in general simpler than a differential equation to solve.
+We therefore call this a solution, because we have made some progress. 
 
-\subsection*{Differentials as Algebra}
-A quick side note, solving seperable differential equations as we did above implies the differential operators can be treated algebraically. 
-Although this is convenient it is not 'kosher' we should probably prove it works.
-Consider a simple differntial equation
-\be
+\subsubsection*{Differentials and Algebra}
+A quick side note that is worth mentioning.
+Solving a seperable differential equations (as we did above) seems to imply that the differential operators can be treated as algebraic elements (it looks like we just multiplied by dt in the above example).
+Although this is convenient it is not `legitimate', and we should probably prove it works for these seperable equations.
+Consider a simple differential equation
+\be \label{eq:dif_alg}
 \begin{split}
     f(y) \frac{dy}{dx} &= g(x)\\
     \int dx f(y) \frac{dy}{dx} &= \int dx g(x)
@@ -68,11 +70,11 @@ If we let F(y) define the anti-derivitive of f(y), meaning
 \be
 F(y) = \int f(y) dy \qquad \Rightarrow \qquad F'(y) = f(y)
 \ee
-And recall the chain rule
+Applying the chain rule to F(y) we find
 \be
 \frac{d}{dx} F(y) = f(y) \frac{dy}{dx}
 \ee
-Substitute in the chain rule into our equation we find
+We can now substitute in the chain rule into Equation \ref{eq:dif_alg} and we see find
 \be
 \begin{split}
     \int dx F'(y) &= \int dx g(x)\\
@@ -80,27 +82,36 @@ Substitute in the chain rule into our equation we find
     \int f(y) dy &= \int dx g(x)
 \end{split}
 \ee
-So for this specific case we can prove the general result (which happens to be consistent with assuming the differentials can be treated as operators). 
+So we are not actually treating the operators algebraically, we can naturally re-arrange the equation through the chain rule.
+This result is true for the specific equation we analyzed, although most people will solve seperable ODEs by pretending the operators are algebraic elements, it is good to realize why this machiney works in this context (and you should not assume it will work for differnt problems). 
 
 \subsection*{Variable Coefficients; Non-Homogenous}
+%==============================================================================%
+%	I am here -Shane 4-27-18
+%==============================================================================%
 Now consider the non-homonogeous variable coefficient differential equation
-\be
+\be \label{eq:vc_non}
 \frac{dx}{dt} + a(t) x = f(t)
 \ee
 Where f(t) is a known (given) function.
-We know the general solution to a non-homogenous equation is the summation of a particular solution (x$_p$), and the homogeneous equation.
-We consider the general solution described above :
+We know the general solution to any non-homogenous equation is the summation of a particular solution (x$_p$), and the homogeneous equation.
+Using the solution we found to Equation \ref{eq:vc_homo}, we can construct the solution to Equation \ref{eq:vc_non}.
 \be
 \begin{split}
-    x(t) &= x_p(t) + C\exp\left[ -A(t) \right]\\
+    x(t) &= x_p(t) + x_0 e^{-A(t)}\\
     A(t) & \equiv \int_{t_0}^t dt \text{ a}(t)
 \end{split}
 \ee
-We will assume the particular solution is of the form
+
+A decent guess for the form of the particular solution is an expotential function multiplied by some other function.
+The original differential equation relates a function and its derivitive, therefore the expotential is a good candidate.
+And we need the particular solution to tell us something new, so we hope we can hope to oslve for somoe other function to describe the system. 
+So let's assume the particular solution is of the form
 \be
 x_p(t) = e^{-A(t)}g(t)
 \ee
-Where g is an unknown function, and we will try to solve for it.
+
+Where g(t) is some unknown function that we can try to solve for. 
 \be
 \begin{split}
     \frac{dx_p(t)}{dt} + a(t) x_p(t) &= f(t) \Rightarrow \\
