@@ -93,9 +93,10 @@ Now consider the non-homonogeous variable coefficient differential equation
 \be \label{eq:vc_non}
 \frac{dx}{dt} + a(t) x = f(t)
 \ee
-Where f(t) is a known (given) function.
-We know the general solution to any non-homogenous equation is the summation of a particular solution (x$_p$), and the homogeneous equation.
-Using the solution we found to Equation \ref{eq:vc_homo}, we can construct the solution to Equation \ref{eq:vc_non}.
+Where f(t) is some known (given) function.
+The general solution to any non-homogenous differential equation is the summation of associated homogenous equations solution, and a particular solution (x$_p$).
+
+We can therefore use the solution we found to Equation \ref{eq:vc_homo}, for our homogenous solution, and then construct the solution to Equation \ref{eq:vc_non}.
 \be
 \begin{split}
     x(t) &= x_p(t) + x_0 e^{-A(t)}\\
@@ -103,55 +104,69 @@ Using the solution we found to Equation \ref{eq:vc_homo}, we can construct the s
 \end{split}
 \ee
 
-A decent guess for the form of the particular solution is an expotential function multiplied by some other function.
-The original differential equation relates a function and its derivitive, therefore the expotential is a good candidate.
-And we need the particular solution to tell us something new, so we hope we can hope to oslve for somoe other function to describe the system. 
-So let's assume the particular solution is of the form
+We now need to find a solution to the particular solution, and unfortunately there is no general strategy for this task.
+A decent guess for the form of the particular solution is an expotential function multiplied by some other function that we will solve for.
+
+The original differential equation relates a function and its derivitive, therefore the expotential is a good candidate for our solution.
+But the particular solution needs to tell us something new it cannot just be an expotential like the homogenous solution.
+So we hope that some generic g(t) function exists and we try to solve for it.
+
+So we will guess our particular solution is of the form
 \be
 x_p(t) = e^{-A(t)}g(t)
 \ee
-
-Where g(t) is some unknown function that we can try to solve for. 
+Substituting our guess into Equation \ref{eq:vc_non} we can try to solve for g(t).
 \be
 \begin{split}
-    \frac{dx_p(t)}{dt} + a(t) x_p(t) &= f(t) \Rightarrow \\
+    \frac{dx_p(t)}{dt} + a(t) x_p(t) &= f(t) \\
     \frac{d}{dt} e^{-A(t)}g(t) + a(t)  e^{-A(t)}g(t) &= f(t)\\
     e^{-A(t)} \frac{d}{dt} g(t) + g(t) \frac{d}{dt} e^{-A(t)} + a(t)  e^{-A(t)}g(t) &= f(t)\\
     e^{-A(t)} \frac{d}{dt} g(t) -a(t) e^{-A(t)} g(t) + a(t)  e^{-A(t)}g(t) &= f(t)\\
     e^{-A(t)} \frac{d}{dt} g(t) &= f(t) \Rightarrow \\
-    g(t) &= \int^t dt \text{ }e^{A(t)} f(t) \Rightarrow \\
+    \int^t dt \text{ }e^{A(t)} f(t) &= g(t) \\
 \end{split}
 \ee
 
-\section*{NonLinear ODE}
-We will start a new, more complicated problem, the nonlinear ordinary differential equations.
-There is no general solution to solve a non-linear ODE, however, there are classes that can be solved.
+So it appears that we can in general find this mysterious g(t) function, the catch is that we need to compute an integral. 
+And we have no guarantee that we can analytically solve that integral. 
 
-Consider first a generalized form for the first order ODE
+\section*{NonLinear ODE}
+Let's now consider a more complicated problem, the NonLinear Ordinary Differential Equations.
+A theme in Differential Equations; there is no general strategy for solving a non-linear ODE.
+However, there are classes that can be solved analytically, some of which we will explore. 
+
+Consider first a generalized form of the first order ODE
 \be
 \begin{split}
     a(x) dx + b(y) dy &= 0 \Rightarrow\\
     b(y) \frac{dy}{dx} + a(x) &= 0
 \end{split}
 \ee
-These two lines are equivalent, but the second line is much more convenient because it is separable and can be solved by integration.
-This is the simplest form of a non-linear equation, because there isn't a y dependence in every term.
+These two lines are equivalent, but the second line is more convenient to work with.
+Notice it is separable and can therfore be solved by integration.
+This is one of the simplest forms of a non-linear equation, (there isn't a y dependence in every term, therefore it is non-linear). 
 
-An even more general form would be
+We can generalize the above ODE further, consider
 \be
 A(x,y)dx + B(x,y)dy = 0
 \ee
-We will see that this is a more preferable form.
 
-If this is an exact differential (the LHS), calling it U, then consider
+We will now introduce a well-known topic, the exact differntial (U). 
+Exact differentials have some useful properties such as
 \be
-U(x,y), \quad dU(x,y) = Adx + Bdy
+\begin{split}
+    dU &= \frac{\pd U}{\pd x} dx + \frac{\pd U}{\pd y} dy \\
+    dU(x,y) &\equiv A dx + B dy \\
+    \frac{\pd ^2 U}{\pd x \pd y} &= \frac{\pd ^2 U}{\pd y \pd x}
+\end{split}
 \ee
-With both of these statements the solution is then
+Please note: in Line 2 we simply give our partial derivitives names (A and B), no magic occuring here. 
+
+If we assume our generalized ODE is an exact differential we could imagine writing
 \be
 U(x,y) + c = 0
 \ee
-So if we have an exact differential, than if we just find the exact differential than we can get the solution.
+And the problem is transformed into figuring out what that exact differential is, and we get our solution.
 
 Consider exact differentials (the second line we simply give the partial derivatives names).
 \be
