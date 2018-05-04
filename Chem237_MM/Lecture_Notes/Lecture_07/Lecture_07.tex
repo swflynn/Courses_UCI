@@ -1,0 +1,67 @@
+\documentclass{article}
+%==============================================================================%
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 5}
+\date{4/11/18}
+\author{Shane Flynn,Moises Romero}
+%==============================================================================%
+%	Everyone Please Make Comments if Something Needs to be Reviewed        %
+%                           Or just fix it yourself!                           %
+%==============================================================================%
+\begin{document}
+\maketitle
+\section*{Approximate Bounds}
+%==============================================================================%
+%                           This Lecture begins with approximate integral methods , %
+% add in later
+%==============================================================================%
+\section*{Fourier Transform}
+A Fourier transform is a generalization of the complex Fourier series as the limit L $\to \infty$ defined as :
+\be
+g(y) = \int_{\- infty}^\infty f(x) e^{ixy} dx
+\ee
+And its inverse Fourier transform is defined by :
+\be
+f(x) = \int_{-\infty}^{\infty} g(y) e^{-ixy} dy
+\ee
+Before this is discussed more thoroughly we will talk about Fourier Series.
+\subsection*{Fourier Series}
+A Fourier series is a method to write a periodic function in terms of Sines Cosines. A fourier series is written in the form of :
+\be
+f(\theta) = \frac{A_o}{2} + \sum_{n=1}^\infty (A_n Cos(n\theta) + B_n Sin(n \theta) )
+\ee
+The coefficients $A_n$ and $B_n$ can be found by multiplying the function by multiply each by Cos(n$\theta$) and Sin(n$\theta$) :
+\be
+A_n = \frac{1}{\pi} \int_0^{2\pi} f(\theta) Cos(n\theta) d\theta
+\ee
+\be
+B_n = \frac{1}{\pi} \int_0^{2\pi} f(\theta) Sin(n\theta) d\theta
+\ee
+The $A_0$ term can be found by plugging in n=0 and getting :
+\be
+A_0 = \frac{2}{L} \int_0^L f(x) dx
+\ee
+Where L is the period.
+\end{document}
