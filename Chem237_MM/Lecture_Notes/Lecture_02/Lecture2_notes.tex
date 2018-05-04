@@ -86,9 +86,6 @@ So we are not actually treating the operators algebraically, we can naturally re
 This result is true for the specific equation we analyzed, although most people will solve seperable ODEs by pretending the operators are algebraic elements, it is good to realize why this machiney works in this context (and you should not assume it will work for differnt problems). 
 
 \subsection*{Variable Coefficients; Non-Homogenous}
-%==============================================================================%
-%	I am here -Shane 4-27-18
-%==============================================================================%
 Now consider the non-homonogeous variable coefficient differential equation
 \be \label{eq:vc_non}
 \frac{dx}{dt} + a(t) x = f(t)
@@ -131,11 +128,14 @@ So it appears that we can in general find this mysterious g(t) function, the cat
 And we have no guarantee that we can analytically solve that integral. 
 
 \section*{NonLinear ODE}
-Let's now consider a more complicated problem, the NonLinear Ordinary Differential Equations.
+%==============================================================================%
+% I am here ==> Shane
+%==============================================================================%
+Let's now consider a more complicated problem, the NonLinear Ordinary Differential Equation.
 A theme in Differential Equations; there is no general strategy for solving a non-linear ODE.
 However, there are classes that can be solved analytically, some of which we will explore. 
 
-Consider first a generalized form of the first order ODE
+Consider first a somewhat generalized form of the first order ODE
 \be
 \begin{split}
     a(x) dx + b(y) dy &= 0 \Rightarrow\\
@@ -143,7 +143,7 @@ Consider first a generalized form of the first order ODE
 \end{split}
 \ee
 These two lines are equivalent, but the second line is more convenient to work with.
-Notice it is separable and can therfore be solved by integration.
+Notice it is separable and can therfore be easilu solved with integration.
 This is one of the simplest forms of a non-linear equation, (there isn't a y dependence in every term, therefore it is non-linear). 
 
 We can generalize the above ODE further, consider
@@ -163,33 +163,31 @@ Exact differentials have some useful properties such as
 Please note: in Line 2 we simply give our partial derivitives names (A and B), no magic occuring here. 
 
 If we assume our generalized ODE is an exact differential we could imagine writing
+%==============================================================================%
+% I am here need to figure out how this works out ==> Shane
+%==============================================================================%
 \be
 U(x,y) + c = 0
 \ee
 And the problem is transformed into figuring out what that exact differential is, and we get our solution.
 
-Consider exact differentials (the second line we simply give the partial derivatives names).
-\be
-\begin{split}
-    dU &= \frac{\pd U}{\pd x} dx + \frac{\pd U}{\pd y} dy \\
-    dU &= A dx + B dy \\
-    \frac{\pd ^2 U}{\pd x \pd y} &= \frac{\pd ^2 U}{\pd y \pd x}
-\end{split}
-\ee
-And the last line is a requirement for a total differential.
-
-So we have seen that if we have an exact differential we can solve, and we have conditions that must be satisfied.
+So IF we have an exact differential we can solve the problem, and we actually have some conditions that must be true (relating the partial derivitive orders). 
 
 As an example consider
 \be
+(2x+y)dx + (x+3y^2)dy = 0
+\ee
+We can assume this is an exact differential and construct the partial derivitives.
+\be
 \begin{split}
-(2x+y)dx + (x+3y^2)dy &= 0 \\
-A(x,y) & = 2x+y  \\
+    (2x+y)dx + &(x+3y^2)dy = 0 \Rightarrow \\
+    \text{Let } A(x,y) & = 2x+y  \\
 \frac{\partial A}{\partial y} &= 1 \\
-B(x,y) & = x+ 3y^2  \\
+    \text{Let} B(x,y) & = x+ 3y^2  \\
 \frac{\partial B}{\partial x} &= 1 \\
 \end{split}
 \ee
+We can now check to see if this is an exact differential by testing our Total Differential Condition. 
 \be
 \begin{split}
     \frac{\pd ^2 U}{\pd x \pd y} &= 1\\
@@ -197,10 +195,13 @@ B(x,y) & = x+ 3y^2  \\
     U(x,y) &= x^2 + xy + y^3\\
 \end{split}
 \ee
-We see this is an exact differential, therefore the solution to the problem is given  by
+We see this is exact differential, therefore the solution to the problem is given  by
 \be
 x^2 + xy + y^3 + C = 0
 \ee
+%==============================================================================%
+% I am here ==> Shane
+%==============================================================================%
 %==============================================================================%
 %	                Not exactly sure which method to use to reach the final conclusion             %
 %==============================================================================%
