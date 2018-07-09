@@ -25,7 +25,7 @@
 %==============================================================================%
 \title{Chem237: Lecture 3}
 \date{4/5/18}
-\author{Shane Flynn,Moises Romero}
+\author{Shane Flynn,Moises Romero, Alan Robledo}
 %==============================================================================%
 %	Everyone Please Make Comments if Something Needs to be Reviewed        %
 %                           Or just fix it yourself!                           %
@@ -33,87 +33,113 @@
 \begin{document}
 \maketitle
 \section*{Stuff}
+% Everything before series section is the last of the ODE chapter.
 \section*{Series}
- Chapter 2 discusses tests for convergence of series and methods to obtain the sum of a series in closed form.
- A series is a sum of various numbers, or elements of a sequence. A sequence is defined by :
- \be
-  a_1, a_2, \hdots a_n
- \ee
- Where n is the total number of terms in the sequence.
- $a_n$ can be real or complex.
-A series is defined by :
+Chapter 2 discusses tests for convergence of series and methods to determine the sum of a series.
+
+Any ordered list of elements can be considered a \textbf{sequence}.
+If we have a sequence of numbers, real or complex, this could be written as
 \be
-S=\sum_{n=1}^{\infty}a_1 + a_2 \hdots + a_n
+  a_1, a_2, \hdots, a_n
 \ee
-A series is the sum of infinite number of terms possible in the sequence.
-A partial sum is the summation of parts of sequence:
+where n is the total amount of numbers (elements) in the sequence.
+
+A \textbf{series} is defined as the summation of a sequence of numbers
+\be
+S=\sum_{n=1}^{\infty} a_n
+\ee
+A \textbf{partial sum} is defined as the summation of parts of sequence:
 \be
 S_N = \sum_{n=1}^{N} a_n
 \ee
-Where capital N is the highest number of the sequence.
-With these two definitions we can state that a series 'S' is the limit of a partial sum $S_N$ as N approaches infinity
+So it goes without saying that the infinte limit of a partial sum defines the infinite sum.
 \be
-S = \lim_{N \to \infty}{S_N}
+S = \lim_{N \to \infty}{S_N} = \lim_{N \to \infty} \sum_{n=1}^{N} a_n
 \ee
+The value of S determines whether the series is labeled as convergent or divergent.
 \subsection*{Convergence and Divergence}
-Absolute convergence occurs in a series if :
+A series $\sum\limits_{n=1}^{\infty} a_n$ is said to be \textbf{convergent} if its partial sums S$_1$, S$_2$, $\hdots$ tend towards some finite number.
+If the partial sums tend towards $+\infty$ or $-\infty$, then the series is said to be \textbf{divergent}.
+In other words, if
 \be
-S= \sum_{n=1}^{\infty} |a_n|
+\lim_{n \to \infty}{a_n} = 0
 \ee
-The absolute value of the sequence equals a finite number.
-A necessary condition for convergence is that the sequence approaches 0 as the limit goes to infinity :
-\be
-\lim_{N \to \infty} a_n = 0
-\ee
-This means that the end of the sequence equals to 0 in order to get a finite number, and thus convergence.
-\bigskip
-Consider the series :
-\be
-S(x) = \sum_{n=0}^\infty x^n
-\ee
-If $x<1$ then this series converges. \\
-If $x>1$ then this series diverges.
+then the series is convergent.
+If the limit is any other value or the limit does not exist, then the series is divergent.
 
-A divergent series does not converge to a finite number and neither does the limit.
-An example of a divergent series is :
+If the series
 \be
-\sum_{n=1}^{\infty} \frac{1}{n}
+\sum_{n=1}^{\infty} |a_n|
 \ee
-However if we consider a partial sum of these sequence it does converge :
+converges to some finite value, then we say that $\sum\limits_{n=1}^{\infty} a_n$ is \textbf{absolutely convergent}.
+If the series in equation (add number) diverges but $\sum\limits_{n=1}^{\infty} a_n$ is convergent, then we say that $\sum\limits_{n=1}^{\infty} a_n$ is \textbf{conditionally convergent}.
+
+For example, consider the alternating harmonic series:
 \be
-S(N) = \sum_{n=1}^{N} \frac{1}{n} \approx \frac{1}{N}
+\sum_{n = 1}^{\infty} \frac{(-1)^{n+1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \hdots
 \ee
-If a series but diverges if taking the absolute value of the sequence but converges without the absolute value of the entire sequence, this is called \textbf{Conditional Convergence}.
-An example of this series is :
+This is an example of an alternating series because each successive term switches between a positive and negative sign.
+Note: the $(-1)^{n+1}$ could be $(-1)^{n}$ or any other integer exponent and the series would still be considered an alternating series.
+This series is said to be convergent and there are several tests that can be used to prove that this is true, some of which will be discussed later in the lecture.
+In the infinite limit, the series converges to
 \be
-\sum_{n=1}^{\infty}\frac{(-1)^n}{n}
+\sum_{n = 1}^{\infty} \frac{(-1)^{n+1}}{n} = \ln(2)
 \ee
-\subsubsection*{Geometric Series}
-A geometric series :
-A geometric series has a constant ratio between the terms.
+However, the harmonic series
+\be
+\sum_{n = 1}^{\infty} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \hdots
+\ee
+is a well-known divergent series.
+Therefore, the alternating harmonic series is not absolutely convergent but it is conditionally convergent.
+% Consider the geometric series:
+% \be
+% S(x) = \sum_{n=0}^\infty x^n
+% \ee
+% If $x<1$ then this series converges. \\
+% If $x>1$ then this series diverges.
+Despite the harmonic series being divergent, we can show that the partial sums converge to:
+\be
+S_N = \sum_{n=1}^{N} \frac{1}{n} \approx \frac{1}{N}
+\ee
+% Somebody find the proof for above. I'm sure its easy to find.
+Another well-known series is the geometric series:
+\be
+\sum_{n=0}^{\infty} a x^n = a + ax + ax^2 + \hdots
+\ee
+where a and x can be any real number.
+Consider the case where a = 1, so the series and partial sum looks like
+\be
+\sum_{n=0}^{\infty} x^n = 1 + x + x^2 + \hdots \quad \text{and} \quad S_N = \sum_{n=0}^{N} x^n
+\ee
+If we wanted to know the value of the partial sum, we would need to know how the partial sums S$_N$ and S$_{N+1}$ are related.
+Since we have two unknowns, that means we need two equations.
+The first equation comes from noticing that each successive partial sum is equal to the previous partial sum plus the next term in the series.
+\be
+S_{N+1} = S_N + x^{N+1}
+\ee
+The other equation comes from noticing that
 \be
 \begin{split}
-\sum_{n=0}^{\infty}x^n  \\
-S_N = \sum_{n=0}^{N} x^n = x^0 +x^1 + x^2 + x^3 \hdots
+1 + x(1 + x + x^2 + \hdots + x^N) &= 1 + x + x^2 + x^3 + \hdots + x^{N+1} \\
+1 + x (S_N) &= S_{N+1}
 \end{split}
 \ee
-Consider the geometric series at 1 term higher which can be described one of two ways :
+So we can define a system of linear equations as
 \be
 \begin{split}
-S_{N+1} = x^{N+1} + S_N \\
-S_{N+1} = xS_N + 1
+S_{N+1} - S_N &= x^{N+1} \\
+1 + xS_N &= S_{N+1}
 \end{split}
 \ee
-
-Solving the system of linear equation gives you :
+and solve for S$_N$ by plugging in S$_{N+1}$ and rearranging to get
 \be
-S_N = \frac{1+x^N}{1-x}
+S_N = \frac{1-x^{N+1}}{1-x}
 \ee
-Using this equation consider $|x| < 1$ :
+If $|x| < 1$, we can show that the infinte sum converges
 \be
 S = \lim_{N \to \infty}S_N = \frac{1}{1-x}
 \ee
-If $|x|\leq$ 1 then the series diverges.
+and if $|x|\geq$ 1, then the series diverges.
 \subsubsection*{D'Alembert-Lauche test}
 Sometimes known as the 'ratio test' , tests the convergence of real numbers. Consider the sequence :
 \be
