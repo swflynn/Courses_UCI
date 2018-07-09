@@ -34,7 +34,7 @@
 \maketitle
 \section*{ODE; Variable Coefficients}
 We can now consider ODEs with variable coefficients.
-Unfortunately most variable coefficient ODEs cannot be solved analytically, except for certain special cases. 
+Unfortunately most variable coefficient ODEs cannot be solved analytically.
 
 \subsection*{Variable Coefficients; Homogenous}
 \be \label{eq:vc_homo}
@@ -51,14 +51,14 @@ This example is trivial because the problem is seperable, and can easily be solv
     x(t) = x_0 &\exp\left[-\int_{t_0}^t dt \text{ a}(t)\right] + c
 \end{split}
 \ee
-The last line represents the homogeneous solution to the first order variable coefficient ODE (equation \ref{eq:vc_homo}).
-Although the final answer is in terms of an integral, an integral is in general simpler than a differential equation to solve.
-We therefore call this a solution, because we have made some progress. 
+The last line represents the homogeneous solution to the first order variable coefficient ODE (Equation \ref{eq:vc_homo}).
+Although the final answer is in terms of an integral, an integral is in general easier than a differential equation to solve.
+We therefore call this a solution (because we have made some progress).
 
 \subsubsection*{Differentials and Algebra}
 A quick side note that is worth mentioning.
-Solving a seperable differential equations (as we did above) seems to imply that the differential operators can be treated as algebraic elements (it looks like we just multiplied by dt in the above example).
-Although this is convenient it is not `legitimate', and we should probably prove it works for these seperable equations.
+Solving a seperable differential equations (as we did above) seems to imply that the differential operators can be treated algebraically (it looks like we just multiplied by dt in the above example).
+Although this is convenient it is not `legit', and we should probably see how it works for the special case of seperable equations.
 Consider a simple differential equation
 \be \label{eq:dif_alg}
 \begin{split}
@@ -74,7 +74,7 @@ Applying the chain rule to F(y) we find
 \be
 \frac{d}{dx} F(y) = f(y) \frac{dy}{dx}
 \ee
-We can now substitute in the chain rule into Equation \ref{eq:dif_alg} and we see find
+We can now substitute in the chain rule into Equation \ref{eq:dif_alg} and we see 
 \be
 \begin{split}
     \int dx F'(y) &= \int dx g(x)\\
@@ -83,7 +83,8 @@ We can now substitute in the chain rule into Equation \ref{eq:dif_alg} and we se
 \end{split}
 \ee
 So we are not actually treating the operators algebraically, we can naturally re-arrange the equation through the chain rule.
-This result is true for the specific equation we analyzed, although most people will solve seperable ODEs by pretending the operators are algebraic elements, it is good to realize why this machiney works in this context (and you should not assume it will work for differnt problems). 
+This result is true for the seperable equations.
+Although most people will solve seperable ODEs by pretending the operators can be manipulated algebraically, it is good to realize why this works in this context (you should not assume you can treat operators algebraically). 
 
 \subsection*{Variable Coefficients; Non-Homogenous}
 Now consider the non-homonogeous variable coefficient differential equation
@@ -102,10 +103,9 @@ We can therefore use the solution we found to Equation \ref{eq:vc_homo}, for our
 \ee
 
 We now need to find a solution to the particular solution, and unfortunately there is no general strategy for this task.
-A decent guess for the form of the particular solution is an expotential function multiplied by some other function that we will solve for.
-
-The original differential equation relates a function and its derivitive, therefore the expotential is a good candidate for our solution.
-But the particular solution needs to tell us something new it cannot just be an expotential like the homogenous solution.
+A decent guess for the form of the particular solution is an expotential function. 
+Unfortunately the homogenous solution is already an expotential, and the particular solution needs to tell us something new (it cannot just be the same form as the general solution). 
+A decent guess for this case would be an expotential function multiplied by some other function (it could be anything) and we try to solve for this mysterious function.
 So we hope that some generic g(t) function exists and we try to solve for it.
 
 So we will guess our particular solution is of the form
@@ -123,17 +123,13 @@ Substituting our guess into Equation \ref{eq:vc_non} we can try to solve for g(t
     \int^t dt \text{ }e^{A(t)} f(t) &= g(t) \\
 \end{split}
 \ee
-
 So it appears that we can in general find this mysterious g(t) function, the catch is that we need to compute an integral. 
 And we have no guarantee that we can analytically solve that integral. 
 
 \section*{NonLinear ODE}
-%==============================================================================%
-% I am here ==> Shane
-%==============================================================================%
-Let's now consider a more complicated problem, the NonLinear Ordinary Differential Equation.
-A theme in Differential Equations; there is no general strategy for solving a non-linear ODE.
-However, there are classes that can be solved analytically, some of which we will explore. 
+Let's now consider a more complicated problem, the class of Non-Linear Ordinary Differential Equations.
+A theme across all of Differential Equations is that a general strategy for solving differential equations does NOT exist. 
+However, there are special cases that can be solved analytically, some of which we will explore here. 
 
 Consider first a somewhat generalized form of the first order ODE
 \be
@@ -143,11 +139,11 @@ Consider first a somewhat generalized form of the first order ODE
 \end{split}
 \ee
 These two lines are equivalent, but the second line is more convenient to work with.
-Notice it is separable and can therfore be easilu solved with integration.
-This is one of the simplest forms of a non-linear equation, (there isn't a y dependence in every term, therefore it is non-linear). 
+Notice it is separable and can be solved with direct integration.
+This is one of the simplest forms of a non-linear equation, (notice there isn't a y dependence in every term, therefore it is non-linear). 
 
 We can generalize the above ODE further, consider
-\be
+\be \label{eq:gen_ode}
 A(x,y)dx + B(x,y)dy = 0
 \ee
 
@@ -162,17 +158,15 @@ Exact differentials have some useful properties such as
 \ee
 Please note: in Line 2 we simply give our partial derivitives names (A and B), no magic occuring here. 
 
-If we assume our generalized ODE is an exact differential we could imagine writing
-%==============================================================================%
-% I am here need to figure out how this works out ==> Shane
-%==============================================================================%
+If we assumed our generalized ODE (Equation \ref{eq:gen_ode}) is an exact differential we could write 
 \be
 U(x,y) + c = 0
 \ee
-And the problem is transformed into figuring out what that exact differential is, and we get our solution.
-
-So IF we have an exact differential we can solve the problem, and we actually have some conditions that must be true (relating the partial derivitive orders). 
-
+Then the problem becomes what that exact differential is.
+So IF we have an exact differential we can solve the problem, and we have some conditions that must be true (relating the partial derivitive orders) if we have an exact differential.
+%==============================================================================%
+% I am here ==> Shane
+%==============================================================================%
 As an example consider
 \be
 (2x+y)dx + (x+3y^2)dy = 0
