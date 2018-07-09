@@ -1,7 +1,8 @@
 # Lecture Content:
 
 ## Lecture 1 (4/3/18):
-Ordinary Differential Equations: 
+
+### Ordinary Differential Equations: 
 
 Homogenous Linear Constant Coefficient
 
