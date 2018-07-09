@@ -1,6 +1,10 @@
 # Lecture Content:
 
 ## Lecture 1 (4/3/18):
+Ordinary Differential Equations: 
+Homogenous Linear Constant Coefficient
+InHomogenous Linear Constant Coefficient
+Linear ODE Variable Coefficients. 
 
 ## Lecture 2 (4/4/18):
 
