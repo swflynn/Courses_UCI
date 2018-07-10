@@ -25,7 +25,7 @@
 %==============================================================================%
 \title{Chem237: Lecture 3}
 \date{4/5/18}
-\author{Shane Flynn,Moises Romero, Alan Robledo}
+\author{Alan Robledo, Shane Flynn, Moises Romero}
 %==============================================================================%
 %	Everyone Please Make Comments if Something Needs to be Reviewed        %
 %                           Or just fix it yourself!                           %
@@ -36,7 +36,7 @@
 % Everything before series section is the last of the ODE chapter.
 \section*{Series}
 Chapter 2 discusses tests for convergence of series and methods to determine the sum of a series.
-
+% Needs a better intro.
 Any ordered list of elements can be considered a \textbf{sequence}.
 If we have a sequence of numbers, real or complex, this could be written as
 \be
@@ -73,10 +73,12 @@ If the series
 \ee
 converges to some finite value, then we say that $\sum\limits_{n=1}^{\infty} a_n$ is \textbf{absolutely convergent}.
 If the series in equation (add number) diverges but $\sum\limits_{n=1}^{\infty} a_n$ is convergent, then we say that $\sum\limits_{n=1}^{\infty} a_n$ is \textbf{conditionally convergent}.
+A very useful property of an absolutely convergent series is that any rearrangement of the terms that make up the original sum will always give the same sum.
+On the other hand, any rearrangement of the terms that make up a conditionally convergent series will always give a different result for the sum.
 
 For example, consider the alternating harmonic series:
 \be
-\sum_{n = 1}^{\infty} \frac{(-1)^{n+1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \hdots
+\sum_{n=1}^{\infty} a_n = \sum_{n = 1}^{\infty} \frac{(-1)^{n+1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \hdots
 \ee
 This is an example of an alternating series because each successive term switches between a positive and negative sign.
 Note: the $(-1)^{n+1}$ could be $(-1)^{n}$ or any other integer exponent and the series would still be considered an alternating series.
@@ -85,19 +87,29 @@ In the infinite limit, the series converges to
 \be
 \sum_{n = 1}^{\infty} \frac{(-1)^{n+1}}{n} = \ln(2)
 \ee
+A quick way to prove this is to consider the following function
+\be
+S(x) = \sum_{n = 1}^{\infty} (-1)^{n+1} \frac{x^n}{n}
+\ee
+If we insert $x = 1$, we get back the alternating harmonic series.
+And if you take a look at your list of every conceivable taylor expansion in the universe, you will find
+\be
+S(x) = \sum_{n = 1}^{\infty} (-1)^{n+1} \frac{x^n}{n} = \ln(1+x)
+\ee
+Since we know that our original series is equal to S(x) when x = 1, then we can say that the oringial series is equal to ln(2).
+% Somebody find a better place to put the proof for ln(2), or add more flow.
 However, the harmonic series
 \be
-\sum_{n = 1}^{\infty} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \hdots
+\sum_{n=1}^{\infty} |a_n| = \sum_{n = 1}^{\infty} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \hdots
 \ee
 is a well-known divergent series.
-Therefore, the alternating harmonic series is not absolutely convergent but it is conditionally convergent.
-% Consider the geometric series:
-% \be
-% S(x) = \sum_{n=0}^\infty x^n
-% \ee
-% If $x<1$ then this series converges. \\
-% If $x>1$ then this series diverges.
-Despite the harmonic series being divergent, we can show that the partial sums converge to:
+Therefore, from our properties mentioned earlier, we can say that the alternating harmonic series is conditionally convergent and not absolutely convergent.
+If we consider rearranging the plus and minus signs in the alternating harmonic series, you can show that the infinite sum does not evaluate to ln(2),
+\be
+\sum_{n = 1}^{\infty} \frac{(-1)^{n}}{n} = -1 + \frac{1}{2} - \frac{1}{3} + \hdots = -\ln(2)
+\ee
+which is expected because the series is conditionally convergent.
+On a side note, despite the harmonic series being divergent, we can show that the partial sums converge to:
 \be
 S_N = \sum_{n=1}^{N} \frac{1}{n} \approx \frac{1}{N}
 \ee
@@ -140,67 +152,61 @@ If $|x| < 1$, we can show that the infinte sum converges
 S = \lim_{N \to \infty}S_N = \frac{1}{1-x}
 \ee
 and if $|x|\geq$ 1, then the series diverges.
+\section*{Convergence tests}
 \subsubsection*{D'Alembert-Lauche test}
-Sometimes known as the 'ratio test' , tests the convergence of real numbers. Consider the sequence :
+Often referred to as the 'ratio test', if you have any series $\sum\limits_{n=1}^{\infty} a_n$, you can check whether it is absolutely convergent or divergent by evaluating the infinite limit of the ratio between a$_{n+1}$ and a$_n$
 \be
-\sum_{n=1}^{\infty}a_n
+\lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big|
 \ee
-If :
-\be
-\frac{a_{n+1}}{a_n} < 1
-\ee
-The series \textbf{converges absolutely}. If $>1$ diverges.
-If it $=1$ , then we must choose a different method.
-\subsubsection*{Integral Test for Convergence}
-This test is used to test non-negative terms for convergence., consider a sequence of continuous function $f(n)$
-\be
-\sum_{n=1}^{\infty} f(n)
-\ee
-with :
+If the limit is less than 1, then the series is absolutely convergent.
+If the limit is greater than 1, then the series is divergent.
+If the limit is equal to 1, then the test is inconclusive and another test should be used instead.
+\subsubsection*{Integral Test}
+Convergence of a series $\sum\limits_{n=1}^{\infty} f(n)$, where f(n) is continuous, can be determined by determining convergence of the definite integral.
 \be
 \int_{1}^{\infty}f(x)dx
 \ee
-\subsubsection*{Reinman Zeta Function}
-\be
-\mathcal{L}(s) = 1 + \frac{1}{2^s} + \frac{1}{3^s}+ \hdots = \sum_{n=1}^{\infty} = \frac{1}{n^s}
-\ee
-Where s is an integer of a simple real variable ...
-Consider a real s.
-\be
-\begin{split}
-\frac{a_{n+1}}{a_n}= \left(\frac{n}{n+1}\right)^s {n \to \infty}:  \left(1+\frac{1}{n}\right)^{-s} = \left( 1 - \frac{s}{n}\right)+ \hdots \\
-\left(1 + \frac{1}{n}\right)^{-s} = \exp\left[{\ln{\left(1+\frac{1}{n}\right)^{-s}}}\right] = \exp\left[-s*{\ln{\left(1+\frac{1}{n}\right)^{}}}\right] = \exp\left[(-s)*\frac{1}{n}\right]=1 - \frac{s}{n}
-\end{split}
-\ee
-Since this doesn't help us determine whether it converges or diverges we will try the Integral test.
-Consider the Reinman zeta function defined above as a function of x :
-\be
-f(x) = \frac{1}{x^s}
-\ee
-We will now do the integral test :
-\be
-\begin{split}
-    \int_1^\infty \frac{1}{x^s} = \left(\frac{1}{1-s}\right)\left(\frac{1}{x^{1-s}}\right) \\
-    \text{If } s>1  \text{ it converges} \\
-    \text{If } s<1 \text{ it diverges} \\
-\end{split}
-\ee
-These rules for s can then be applied to the results of the ratio test.
-\subsubsection*{Alternating Series}
-If a series is not absolute convergent :
-\be
-\sum_n a_n = a_n = (-1)^n |a_n|
-\ee
-Consider  the series :
-\be
-S(+1) = S = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \hdots = \ln(2)
-\ee
-\be
-S(x) = \sum_{n=1}^\infty \frac{x^{n-1}}{n} = \ln(1+x)
-\ee
+Notice that the upper and lower limits of the definite integral are the same as the upper and lower limits of the series.
+Note: the integral test does not determine whether a series is absolutely or conditionally convergent.
 
-
-
-
-
+Using these two tests, we can test the Riemann Zeta (RZ) function for convergence.
+For those who have not heard of the RZ function, it is defined as
+\be
+\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} = 1 + \frac{1}{2^s} + \frac{1}{3^s}+ \hdots
+\ee
+where s is an integer.
+Using the ratio test, we first need to evaluate the limit.
+\begin{align}
+\lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| &= \lim_{n \to \infty} \frac{\frac{1}{(n+1)^s}}{\frac{1}{n^s}} = \lim_{n \to \infty} \Big( \frac{n}{n+1} \Big) ^s
+= \lim_{n \to \infty} \Big( \frac{n+1}{n} \Big) ^{-s} = \lim_{n \to \infty} \Big( 1 + \frac{1}{n} \Big) ^{-s} \\
+&= \lim_{n \to \infty} \exp \Big[ \ln \Big( 1 + \frac{1}{n} \Big) ^{-s} \Big] = \lim_{n \to \infty} \exp \Big[ (-s) \ln \Big( 1 + \frac{1}{n} \Big) \Big] \\
+\end{align}
+We can taylor expand to make the substitution $\ln(1 + \frac{1}{n}) = \frac{1}{n} - \frac{1}{2}(\frac{1}{n})^2 + \hdots \approx \frac{1}{n}$.
+\be
+\lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| = \lim_{n \to \infty} \exp \Big[ (-s) \ln \Big( 1 + \frac{1}{n} \Big) \Big] \approx \lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big]
+\ee
+Taylor expanding again gives
+\be
+\lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big] = \lim_{n \to \infty} 1 - \frac{s}{n} + \frac{1}{2} \Big( \frac{-s}{n} \Big)^2 + \hdots \approx \lim_{n \to \infty} 1 - \frac{-s}{n} = 1
+\ee
+which means that the ratio test is inconclusive. So we can try the integral test.
+\be
+\int_{1}^{\infty} \frac{1}{x^s} dx = \frac{-1}{(s-1)(x^{s-1})} \Big\vert_{1}^{\infty} = \frac{1}{s-1}
+\ee
+So if s $>$ 1, the series is convergent and if s $<$ 1, the series is divergent.
+\subsubsection*{Alternating Series Test}
+As the name implies, this test is only to be used when you have an alternating series, e.g. $\sum\limits_{n=1}^{\infty} (-1)^n a_n$.
+Any series of this form is considered convergent if:
+\begin{enumerate}
+  \item $\lim_{n \to \infty} a_n = 0$
+  \item $|a_n| > |a_{n+1}|$
+\end{enumerate}
+If these conditions cannot be met, the series is considered divergent.
+Using the alternating harmonic series as an example, we can check the two conditions and see that
+\be
+\lim_{n \to \infty} \frac{1}{n} = 0 \quad \text{and} \quad \frac{1}{n} > \frac{1}{n+1}
+\ee
+which shows that the series is convergent, as expected.
+However, this test is not enough to show whether an alternating series is absolutely or conditionally convergent.
+There are a few other tests that you could use such as the limit comparison test, p-series test, etc, but the three we went over are very useful on their own for testing convergence.
 \end{document}
