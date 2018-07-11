@@ -358,9 +358,11 @@ Often referred to as the 'ratio test', if you have any series $\sum\limits_{n=1}
 \be
 \lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big|
 \ee
-If the limit is less than 1, then the series is absolutely convergent.
-If the limit is greater than 1, then the series is divergent.
-If the limit is equal to 1, then the test is inconclusive and another test should be used instead.
+\begin{itemize}
+  \item If $\lim\limits_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| < 1$, the series is absolutely convergent.
+  \item If $\lim\limits_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| > 1$, the series is divergent.
+  \item If $\lim\limits_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| = 1$, the test is inconclusive and another test should be used instead.
+\end{itemize}
 \subsubsection*{Integral Test}
 Convergence of a series $\sum\limits_{n=1}^{\infty} f(n)$, where f(n) is continuous, can be determined by determining convergence of the definite integral.
 \be
@@ -385,13 +387,13 @@ We can taylor expand to make the substitution $\ln(1 + \frac{1}{n}) = \frac{1}{n
 \be
 \lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| = \lim_{n \to \infty} \exp \Big[ (-s) \ln \Big( 1 + \frac{1}{n} \Big) \Big] \approx \lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big]
 \ee
-Taylor expanding again gives
+Taylor expanding $\text{exp} \Big[ \frac{-s}{n} \Big]$ gives
 \be
-\lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big] = \lim_{n \to \infty} 1 - \frac{s}{n} + \frac{1}{2} \Big( \frac{-s}{n} \Big)^2 + \hdots \approx \lim_{n \to \infty} 1 - \frac{-s}{n} = 1
+\lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big] = \lim_{n \to \infty} 1 - \frac{s}{n} + \frac{1}{2} \Big( \frac{-s}{n} \Big)^2 + \hdots \approx \lim_{n \to \infty} 1 - \frac{s}{n} = 1
 \ee
 which means that the ratio test is inconclusive. So we can try the integral test.
 \be
-\int_{1}^{\infty} \frac{1}{x^s} dx = \frac{-1}{(s-1)(x^{s-1})} \Big\vert_{1}^{\infty} = \frac{1}{s-1}
+\int_{1}^{\infty} \frac{1}{x^s} dx = \frac{-1}{(s-1)(x^{s-1})} \Big\vert_{1}^{\infty}
 \ee
 So if s $>$ 1, the series is convergent and if s $<$ 1, the series is divergent.
 \subsubsection*{Alternating Series Test}
