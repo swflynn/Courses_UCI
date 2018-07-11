@@ -33,7 +33,207 @@
 \begin{document}
 \maketitle
 \section*{Stuff}
-% Everything before series section is the last of the ODE chapter.
+One of the many Ordinary Differential Equations (ODEs) which have an analytical solution is Clairaut's equation.
+In general, it has the form
+\be \label{eq:clair}
+y - x y' = f(y')
+\ee
+where f is a continuosuly differentiable function of the derivative of y with respect to (wrt) x.
+To solve it, we start by taking the derivative wrt x of both sides, which involves using the product rule and the chain rule.
+\be
+\frac{d}{dx} (y - x y') = \frac{d}{dx}f(y') \Rightarrow y' - y' - xy'' = \frac{df}{dy'} \frac{dy'}{dx} = f'(y') y''
+\Rightarrow -xy'' = f'(y') y''
+\ee
+While every other prime is meant to be a derivative wrt x, do not forget that $f'(y') = \frac{df(y')}{dy'}$ because it is easy to mistake this for $f'(y') \neq \frac{df(y')}{dx}$ at later times.
+Now, moving the $-xy''$ term to the other side gives us
+\be
+y''(f'(y') + x) = 0
+\ee
+and by inspection, we can get two solutions to the ODE.
+\be
+\begin{split}
+f'(y') + x &= 0 \\
+y'' &= 0
+\end{split}
+\ee
+The bottom equation has a solution that can be found with two simple integrations
+\be
+\int y'' dx = \int 0 dx \Rightarrow y' = a \Rightarrow \\
+\int y' dx = \int a dx \Rightarrow y = ax + b
+\ee
+where a and b are arbitrary constants.
+If we take the y and y' we found and substitute them back into equation (\ref{eq:clair}), we get
+\be
+ax + b - ax = f(a) \Rightarrow b = f(a)
+\ee
+Thus, y = ax + f(a) is a general solution.
+However, we also have $f'(y') + x = 0$.
+Using this and equation (\ref{eq:clair}), we have two equations with two unknowns, y and y'.
+We could use one of the equations to eliminate y' from the other equation and end up with a closed form solution for y.
+Such a solution would have no arbitrary constants and is therefore called the singular solution.
+
+To get a better understanding of this, let's consider an example equation
+\be
+y = x y' + (y')^2
+\ee
+We can see that this a Clairaut equation because we can subtract $xy'$ from both sides and $(y')^2$ can be considered a function of y'.
+Taking from the general case, we can say that $f(a) = a^2$ where a is an arbitrary constant, giving us a general solution.
+\be
+y = ax + a^2
+\ee
+However, we also have to consider the equation
+\be
+f'(y') + x = \frac{d}{y'} (y')^2 + x = 2y' + x = 0.
+\ee
+If we solve for y' and substitute into equation (\ref{eq:clair}), we get
+\be
+y = -\frac{x^2}{2} + \frac{x^2}{4} = -\frac{x^2}{4}
+\ee
+which is our singular solution since it has no arbitrary constants like the general solution.
+The singular solution has a nice property, in that it is an envelope to a family of curves defined by the general solution.
+This means that, when plotted, every possible general solution is tangential to the singular solution (see figure 1).
+% Add plot of singular solution and a few different general solutions here.
+\begin{enumerate}
+  \centering
+  \item $P(x) y'' + Q(x) y' + R(x) y = S(x)$
+  \item $P(x) y'' + Q(x) y' + R(x) y = 0$
+\end{enumerate}
+\be
+  y = u_1(x) y_1(x) + u_2(x) y_2(x)
+\ee
+\be
+  u'_1 y_1 + u'_2 y_2 = 0
+\ee
+\be
+\begin{split}
+  y' &= u'_1 y_1 + u_1 y'_1 + u'_2 y_2 + u_2 y'_2 \\
+  &= u_1 y'_1 + u_2 y'_2
+\end{split}
+\ee
+\be
+  y'' = u'_1 y'_1 + u_1 y''_1 + u'_2 y'_2 + u_2 y''_2
+\ee
+\be
+  P(x) [u'_1 y'_1 + u_1 y''_1 + u'_2 y'_2 + u_2 y''_2] + Q(x) [u_1 y'_1 + u_2 y'_2] + R(x) [u_1 y_1 + u_2 y_2] = S(x)
+\ee
+\be
+\begin{split}
+  P(x) [u'_1 y'_1 & + u'_2 y'_2] + P(x)u_1(x) y''_1 + Q(x) u_1(x) y'_1 + R(x) u_1(x) y_1 + \\
+  & P(x) u_2(x) y''_2 + Q(x) u_2(x) y'_2 + R(x) u_2(x) y_2 = S(x)
+\end{split}
+\ee
+Since $P(x)u_1(x)$, $Q(x)u_1(x)$, $R(x)u_1(x), P(x)u_2(x)$, $Q(x)u_2(x)$, $R(x)u_2(x)$ are all arbitrary functions of x and y$_1$ and y$_2$ are solutions to (2) in equation (whatever), we can say
+\be
+\begin{split}
+  & P(x)u_1(x) y''_1 + Q(x) u_1(x) y'_1 + R(x) u_1(x) y_1 = 0\\
+  & P(x) u_2(x) y''_2 + Q(x) u_2(x) y'_2 + R(x) u_2(x) y_2 = 0
+\end{split}
+\ee
+which leaves us with
+\be
+  P(x) [u'_1 y'_1 + u'_2 y'_2] = S(x)
+\ee
+Using our constraint from before, we can make a system of linear equations
+\be
+\begin{split}
+  P(x) y'_1 u'_1 + P(x) y'_2 u'_2 &= S(x) \\
+  y_1 u'_1 + y_2 u'_2 &= 0
+\end{split}
+\ee
+where the only unkonwns are u'$_1$ and u'$_2$.
+After solving for the unknowns, both can be integrated with respect to x to obtain u$_1$, u$_2$ and thus the solution to the inhomogenous equation.
+Example
+\begin{enumerate}
+  \centering
+  \item $x^2 y'' - 2y = x$
+  \item $x^2 y'' - 2y = 0$
+\end{enumerate}
+Noting that $y = x^m$ is a natural guess for the solution to (2), we can obtain a general solution by plugging it and its derivatives
+\be
+\begin{split}
+  y &= x^m \\
+  y' &= m x^{m-1} \\
+  y'' &= m(m-1)x^{m-2}
+\end{split}
+\ee
+into (2) and dividing by $x^m$ to obtain the characteristic ploynomial
+\be
+m(m-1) x^2 x^{m-2} - 2 x^m = 0 \Rightarrow m(m-1) - 2 = 0 \Rightarrow m^2 - m - 2 = 0
+\ee
+whose solutions are $m = 2$ and $m = -1$, so the general solution is the linear combination of unique solutions.
+\be
+y = c_1 x^2 + \frac{c_2}{x}
+\ee
+Just as before, let's assume that the solution to the inhomogenous equation is of the form
+\be
+y = u_1(x) x^2 + u_2(x) \Big( \frac{1}{x} \Big)
+\ee
+Now we can take derivatives to plug into the original ODE, while keeping in mind the constraint $u'_1 y_1 + u'_2 y_2 = 0$.
+\be
+\begin{split}
+  y' &= u'_1 x^2 + 2 u_1 x  + u'_2 \Big( \frac{1}{x} \Big) - u_2 \Big( \frac{1}{x^2} \Big) = 2u_1 x - u_2 \Big( \frac{1}{x^2} \Big) \\
+  y'' &= 2 u'_1 x + 2u_1 - u'_2 \Big( \frac{1}{x^2} \Big) + u_2 \Big( \frac{2}{x^3} \Big)
+\end{split}
+\ee
+If we plug y and y'' into (1), we get
+\be
+  x^2 \Big[ 2 u'_1 x + 2u_1 - u'_2 \Big( \frac{1}{x^2} \Big) + u_2 \Big( \frac{2}{x^3} \Big) \Big] - 2 \Big[ u_1 x^2 + u_2 \Big( \frac{1}{x} \Big) \Big] = x
+\ee
+and with some rearranging
+\be
+2x^3 u'_1 - u'_2 + 2x^2 u_1 + 2u_2 \Big( \frac{1}{x} \Big) - 2u_1 x^2 - 2u_2 \Big(\frac{1}{x} \Big) = x
+\ee
+we obtain
+\be
+2x^3 u'_1 - u'_2 = x
+\ee
+And since we are left with u'$_1$ and u'$_2$, we can make our system of linear equations with the equation above and our constraint.
+\be
+\begin{split}
+  2x^3 u'_1 - u'_2 &= x \\
+  x^2 u'_1 + \Big( \frac{1}{x} \Big) u'_2 &= 0
+\end{split}
+\ee
+We can solve the system by solving the above equation for u'$_2$ and plugging it into the equation below to solve for u'$_1$
+\be
+x^2u'_1 + \Big( \frac{1}{x} \Big) \Big( 2x^3 u'_1 - x \Big) = 0 \Rightarrow u'_1( x^2 + 2x^2) - 1 = 0 \Rightarrow u'_1 = \frac{1}{3x^2}
+\ee
+Plugging u'$_1$ into the equation above gives us u'$_2$
+\be
+2x^3 \Big( \frac{1}{3x^2} \Big) - u'_2 = x \Rightarrow \frac{2}{3}x - u'_2 = x \Rightarrow u'_2 = - \frac{x}{3}
+\ee
+Integrating both u'$_1$ and u'$_2$ with respect to x gives
+\be
+\begin{split}
+  \int u'_1 dx &= \int \frac{1}{3x^2} dx \Rightarrow u_1 = - \frac{1}{3x} + c_1 \\
+  \int u'_2 dx &= \int - \frac{x}{3} dx \Rightarrow u_2 = - \frac{x^2}{6} + c_2
+\end{split}
+\ee
+So the general solution to the inhomogenoues ODE is
+\be
+\begin{split}
+y = \Big( - \frac{1}{3x} & + c_1 \Big) x^2 + \Big( - \frac{x^2}{6} + c_2 \Big) \frac{1}{x} \Rightarrow \\
+& y = - \frac{x}{2} + c_1 x^2 + \frac{c_2}{x}
+\end{split}
+\ee
+The last trick we will discuss involves second-order linear ODEs of the form
+\be
+y'' + f(x)y' + g(x)y = 0
+\ee
+Making the substitution $y = v(x)p(x)$, where p(x) is one solution to the ODE, will give us
+\be
+\begin{split}
+(v''p & + v'p' + v'p' + vp'') + f(x)[v'p + vp'] + g(x)[vp] = 0 \Rightarrow \\
+& pv'' + [2p' + f(x)p]v' + [p'' + f(x)p' + g(x)p]v = 0
+\end{split}
+\ee
+Noting that p is a solution to the ODE, you can see that the expression inside the brackets of the third term is equal to zero.
+Thus, after dividing by p, reducing the equation to a second-order ODE in v
+\be
+v'' + (2 \frac{p'}{p} + f)v' = 0
+\ee
+Solving for p becomes trivial after performing a \textbf{reduction of order}, which involves substituting $v'(x) = h(x)$ and $v''(x) = h'(x)$ into the ODE, which turns the second-order ODE in v into a first-order ODE in h.
+Once you solve the first-order ODE, you can back-substitute h for v', integrate one last time to obtain v, and multiply your solution by p to obtain the general solution y.
 \section*{Series}
 Chapter 2 discusses tests for convergence of series and methods to determine the sum of a series.
 % Needs a better intro.
