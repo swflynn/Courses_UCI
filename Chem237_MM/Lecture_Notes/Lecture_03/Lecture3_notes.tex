@@ -33,35 +33,66 @@
 \begin{document}
 \maketitle
 \section*{Stuff}
-General form of clairaut equation
-\be
+One of the many Ordinary Differential Equations (ODEs) which have an analytical solution is Clairaut's equation.
+In general, it has the form
+\be \label{eq:clair}
 y - x y' = f(y')
 \ee
+where f is a continuosuly differentiable function of the derivative of y with respect to (wrt) x.
+To solve it, we start by taking the derivative wrt x of both sides, which involves using the product rule and the chain rule.
 \be
-\frac{d}{dx} y' - x y' = \frac{d}{dx}f(y') \Rightarrow y' - y' - xy'' = \frac{df}{dy} \frac{dy'}{x} = f'(y') y''
+\frac{d}{dx} (y - x y') = \frac{d}{dx}f(y') \Rightarrow y' - y' - xy'' = \frac{df}{dy'} \frac{dy'}{dx} = f'(y') y''
 \Rightarrow -xy'' = f'(y') y''
 \ee
+While every other prime is meant to be a derivative wrt x, do not forget that $f'(y') = \frac{df(y')}{dy'}$ because it is easy to mistake this for $f'(y') \neq \frac{df(y')}{dx}$ at later times.
+Now, moving the $-xy''$ term to the other side gives us
 \be
 y''(f'(y') + x) = 0
 \ee
+and by inspection, we can get two solutions to the ODE.
 \be
 \begin{split}
 f'(y') + x &= 0 \\
 y'' &= 0
 \end{split}
 \ee
+The bottom equation has a solution that can be found with two simple integrations
 \be
-\int_{0}^{x} y'' dx = \int_{0}^{x} 0 dx \Rightarrow y' = b \\
-\int_{0}^{x} y' dx = \int_{0}^{x} b dx \Rightarrow y = ax + b
+\int y'' dx = \int 0 dx \Rightarrow y' = a \Rightarrow \\
+\int y' dx = \int a dx \Rightarrow y = ax + b
 \ee
+where a and b are arbitrary constants.
+If we take the y and y' we found and substitute them back into equation (\ref{eq:clair}), we get
 \be
-y - x(a) = f(a) \Rightarrow y = ax + f(a)
+ax + b - ax = f(a) \Rightarrow b = f(a)
 \ee
-Example problem
+Thus, y = ax + f(a) is a general solution.
+However, we also have $f'(y') + x = 0$.
+Using this and equation (\ref{eq:clair}), we have two equations with two unknowns, y and y'.
+We could use one of the equations to eliminate y' from the other equation and end up with a closed form solution for y.
+Such a solution would have no arbitrary constants and is therefore called the singular solution.
+
+To get a better understanding of this, let's consider an example equation
 \be
 y = x y' + (y')^2
 \ee
-2nd order inhomogenous non constant coeeficient linear ODE
+We can see that this a Clairaut equation because we can subtract $xy'$ from both sides and $(y')^2$ can be considered a function of y'.
+Taking from the general case, we can say that $f(a) = a^2$ where a is an arbitrary constant, giving us a general solution.
+\be
+y = ax + a^2
+\ee
+However, we also have to consider the equation
+\be
+f'(y') + x = \frac{d}{y'} (y')^2 + x = 2y' + x = 0.
+\ee
+If we solve for y' and substitute into equation (\ref{eq:clair}), we get
+\be
+y = -\frac{x^2}{2} + \frac{x^2}{4} = -\frac{x^2}{4}
+\ee
+which is our singular solution since it has no arbitrary constants like the general solution.
+The singular solution has a nice property, in that it is an envelope to a family of curves defined by the general solution.
+This means that, when plotted, every possible general solution is tangential to the singular solution (see figure 1).
+% Add plot of singular solution and a few different general solutions here.
 \begin{enumerate}
   \centering
   \item $P(x) y'' + Q(x) y' + R(x) y = S(x)$
