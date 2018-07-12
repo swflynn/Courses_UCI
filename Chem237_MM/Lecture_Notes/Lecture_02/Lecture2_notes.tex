@@ -161,10 +161,8 @@ If we assumed our generalized ODE (Equation \ref{eq:gen_ode}) is an exact differ
 U(x,y) + c = 0
 \ee
 Then the problem becomes what that exact differential is.
-So IF we have an exact differential we can solve the problem, and we have some conditions that must be true (relating the partial derivitive orders) if we have an exact differential.
-%==============================================================================%
-% I am here ==> Shane
-%==============================================================================%
+So IF we have an exact differential we can solve the problem, and we have some conditions that must be true (relating the partial derivitive orders) if we have an exact differential.\\
+
 As an example consider
 \be
 (2x+y)dx + (x+3y^2)dy = 0
@@ -172,58 +170,72 @@ As an example consider
 We can assume this is an exact differential and construct the partial derivitives.
 \be
 \begin{split}
-    (2x+y)dx + &(x+3y^2)dy = 0 \Rightarrow \\
-    \text{Let } A(x,y) & = 2x+y  \\
+    dU & = (2x+y)dx + (x+3y^2)dy = 0\\
+    \text{Let } A(x,y) &\equiv \frac{\partial U}{\partial x} = 2x+y  \\
 \frac{\partial A}{\partial y} &= 1 \\
-    \text{Let} B(x,y) & = x+ 3y^2  \\
+    \text{Let} B(x,y) &\equiv \frac{\partial U}{\partial y}  = x+ 3y^2  \\
 \frac{\partial B}{\partial x} &= 1 \\
 \end{split}
 \ee
-We can now check to see if this is an exact differential by testing our Total Differential Condition. 
+To see if this is a total differential check to see if the order of differentation changes the final result.
 \be
 \begin{split}
-    \frac{\pd ^2 U}{\pd x \pd y} &= 1\\
-    \frac{\pd ^2 U}{\pd y \pd x} &= 1\\
-    U(x,y) &= x^2 + xy + y^3\\
+    \frac{\pd ^2 U}{\pd x \pd y} &= \frac{\pd }{\pd x}\left[\frac{\pd U}{\pd y}\right]= \frac{\pd}{\pd x}\left(x+3y^2\right) = 1 \\
+    \frac{\pd ^2 U}{\pd y \pd x} &= \frac{\pd }{\pd y}\left[\frac{\pd U}{\pd x}\right]= \frac{\pd}{\pd y}\left(2x+y\right) = 1 \\
 \end{split}
 \ee
-We see this is exact differential, therefore the solution to the problem is given  by
+Clearly the order of differentation does not matter, therefore dU is a total differential.
+We can solve for U by simply integrating dU. 
 \be
-x^2 + xy + y^3 + C = 0
+\begin{split}
+    dU & = (2x+y)dx + (x+3y^2)dy = 0\\
+    \int dU & = \int (2x+y)dx + \int (x+3y^2)dy = 0\\
+    U & = x^2 + yx + xy + y^3 + c = 0
+\end{split}
+\ee
+
+So the solution to the given differential equation is 
+\be
+x^2 + xy + y^3 + c = 0
 \ee
 %==============================================================================%
 % I am here ==> Shane
 %==============================================================================%
-%==============================================================================%
-%	                Not exactly sure which method to use to reach the final conclusion             %
-%==============================================================================%
 \subsection*{Integrating Factor}
-If we do not have an exact differential the problem is no longer easy, we have a few methods we can use to solve.
-A well known method for addressing a non-linear ODE with is the \textbf{Integrating Factor}.
-Consider Adx + Bdy, such that it is not an exact differntial.
-Introduce the integrating factor $\lambda$(x,y), such that
+What if we don't have a total differential (and cannot use the method shown above then)?
+One method for addressing a non-linear ODE is the \textbf{Integrating Factor} (you have probably seen this in Thermodynamics). 
+Consider dU = Adx + Bdy, such that it is \textbf{NOT} an exact differntial.
+We can introduce the \textbf{Integrating Factor} $\lambda$(x,y), such that our previous inexact differential becomes an exact differential. 
 \be
 dU = \lambda(Adx + Bdy)
 \ee
-Is now transformed into an exact differential.
-We therefore need to find a $\lambda$ such that the inexact differential becomes exact.A theorem exists stating that an integrating factor always exists!
+We therefore need to find this magical $\lambda$ such that the inexact differential becomes exact.
+A theorem exists stating that an integrating factor always exists, so in theory this strategy will always work (in practice you may not be able to solve for it). 
+
 \subsubsection*{Proof}
-The proof for this theorem is as follows consider the above example :
+%==============================================================================%
+% I am here 7-12-18 shane
+% This proof has a wiki look there, this explination is not that clear
+% https://proofwiki.org/wiki/Existence_of_Integrating_Factor
+%==============================================================================%
+The proof for this theorem (that an integrating factor always exists) is as follows:
+Consider the above example where dU is not an exact differential. 
 \be
 \begin{split}
-A(x,y)dx + B(x,y)dy &= 0 \\
-\frac{dy}{dx} &= -\frac{A}{B}
+    A(x,y)dx &+ B(x,y)dy = 0 \\
+    \frac{dy}{dx} &= -\frac{A}{B}
 \end{split}
 \ee
-Which has a general solution of :
+Where the general solution to this expression is just some constant C
 \be
 f(x,y) = C
 \ee
-C is a constant. We then take a total differential:
+
+Then take a total differential of the general solution. 
 \be
 \begin{split}
-\frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y} dy &= 0 \\
-\frac{dy}{dx} &=  - \frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial y}}\\
+    \frac{\partial f}{\partial x}dx &+ \frac{\partial f}{\partial y} dy = 0 \\
+    \frac{dy}{dx} &=  - \frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial y}}\\
 \end{split}
 \ee
 Relating the two we can see :
@@ -256,9 +268,6 @@ We can always consider an integrating factor
 The idea is now to integrate each side, however, this will only be useful if the RHS is only a function of x.
 If it turns out that $\lambda \rightarrow \lambda(x)$ than the RHS is always a function of x.
 If $\lambda$(x,y) than we may not be able to solve the LHS.
-%==============================================================================%
-%	                May need to elaborate on this part, not sure
-%==============================================================================%
 So we will assume $\lambda \rightarrow \lambda(x)$ and see if it works.
 The whole point of the method is to get an exact differential, therefore assume the LHS is exact.
 \be
@@ -296,22 +305,28 @@ y' + f(x)y = g(x)
 \ee
 Than the integrating factor is a useful approach, using a non-trivial transformation to generate a simple solution.
 
-\subsection*{New Method}
-We can look at other classes of equations we can solve for.
+\subsection*{Homogenous Functions}
+Consider the following equation
 \be
 A(x,y)dx + B(x,y)dy = 0
 \ee
-Consider an equation of the above from with A and B both being homogeneous functions of degree r.
-Recall a homogeneous function obeys
+Assume both A and B are homogeneous functions of degree r.
+
+\subsubsection*{Recall}
+A homogeneous function obeys the following
 \be
 A(cx,cy) = c^r A(x,y)
 \ee
 
 As an example
 \be
-A = x^2 + yx, \qquad B = y^2
+\begin{split}
+    A = x^2 + yx, &\qquad B = y^2\\
+    A(cx,cy) = (cx)^2 + (cy)(cx), &\qquad B(cy) = (cy)^2\\
+    A(cx,cy) = c^2\left(x^2 + yx\right) = c^2A(x,y), &\qquad B(cy) = c^2\left(y^2\right) = c^2 B(y)\\
+\end{split}
 \ee
-Both functions are homogeneous functions of degree 2.
+Both functions in the example are homogeneous functions of degree 2. 
 
 For this type of equation for we can generate a separable equation through the substitution
 \be
@@ -351,4 +366,5 @@ This generates
 (aX + bY)dX + (eX + fY)dY = 0
 \ee
 Where we have a homogeneous equation, and we can solve using the methods from before.
+
 \end{document}
