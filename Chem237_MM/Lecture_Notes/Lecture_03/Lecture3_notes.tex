@@ -32,8 +32,8 @@
 %==============================================================================%
 \begin{document}
 \maketitle
-\section*{Stuff}
-One of the many Ordinary Differential Equations (ODEs) which have an analytical solution is Clairaut's equation.
+\section*{First and Second Order ODE with variable coefficients}
+One of the few Ordinary Differential Equations (ODEs) which have an analytical solution is Clairaut's equation.
 In general, it has the form
 \be \label{eq:clair}
 y - x y' = f(y')
@@ -93,36 +93,54 @@ which is our singular solution since it has no arbitrary constants like the gene
 The singular solution has a nice property, in that it is an envelope to a family of curves defined by the general solution.
 This means that, when plotted, every possible general solution is tangential to the singular solution (see figure 1).
 % Add plot of singular solution and a few different general solutions here.
-\begin{enumerate}
-  \centering
-  \item $P(x) y'' + Q(x) y' + R(x) y = S(x)$
-  \item $P(x) y'' + Q(x) y' + R(x) y = 0$
-\end{enumerate}
+
+Let's consider extending from a first-oder linear ODE (Clairaut equation) to a second-order linear ODE with non-constant coefficients.
+Assume that we have such an ODE in two forms (equation \ref{eq:sec_order}), homogenous (top equation) and inhomogenous (bottom equation), where P(x), Q(x), and R(x) are arbitrary functions of x.
+\be \label{eq:sec_order}
+\begin{split}
+  P(x) y'' + Q(x) y' + R(x) y &= S(x) \\
+  P(x) y'' + Q(x) y' + R(x) y &= 0
+\end{split}
+\ee
+In Lectures 1 and 2, we mentioned that obtaining solutions to inhomogenous ODEs with non-constatn coefficients is non-trivial and can often times only be solved numerically instead of analytically.
+So let's focus on the homogenous equation instead.
+Since all of our functions are arbitrary, suppose we know the solution of the homogenous equation to be
+\be
+ c_1 y_1(x) + c_2 y_2(x)
+\ee
+where c$_1$ and c$_2$ are arbitrary constants. Since the inhomogenous equation differs from the homogenous equation by an S(x), it's safe to say that a solution to the inhomogenous case would be of the form
 \be
   y = u_1(x) y_1(x) + u_2(x) y_2(x)
 \ee
+where the coefficients now depend on x instead of being constant and also, y$_1$ and y$_2$ are solutions to the homogenous case.
+To find a more specific solution to the inhomogenous equation, let's plug in the homoegenous solution and its derivatives into the inhomoegnous equation.
+Before we compute the second derivative, it would be convenient to impose a constraint as it would the math less gruesome.
 \be
   u'_1 y_1 + u'_2 y_2 = 0
 \ee
+So the first derivative becomes
 \be
 \begin{split}
   y' &= u'_1 y_1 + u_1 y'_1 + u'_2 y_2 + u_2 y'_2 \\
   &= u_1 y'_1 + u_2 y'_2
 \end{split}
 \ee
+And the second derivative
 \be
   y'' = u'_1 y'_1 + u_1 y''_1 + u'_2 y'_2 + u_2 y''_2
 \ee
+The rest of the method is straightforaward because all we need to do is subsitute the equations and see if any terms cancel out.
 \be
   P(x) [u'_1 y'_1 + u_1 y''_1 + u'_2 y'_2 + u_2 y''_2] + Q(x) [u_1 y'_1 + u_2 y'_2] + R(x) [u_1 y_1 + u_2 y_2] = S(x)
 \ee
+If we distribute the P(x), Q(x), and R(x), we can see something interesting
 \be
 \begin{split}
   P(x) [u'_1 y'_1 & + u'_2 y'_2] + P(x)u_1(x) y''_1 + Q(x) u_1(x) y'_1 + R(x) u_1(x) y_1 + \\
   & P(x) u_2(x) y''_2 + Q(x) u_2(x) y'_2 + R(x) u_2(x) y_2 = S(x)
 \end{split}
 \ee
-Since $P(x)u_1(x)$, $Q(x)u_1(x)$, $R(x)u_1(x), P(x)u_2(x)$, $Q(x)u_2(x)$, $R(x)u_2(x)$ are all arbitrary functions of x and y$_1$ and y$_2$ are solutions to (2) in equation (whatever), we can say
+Since y$_1$ and y$_2$ are solutions to the homogenous equation, we can say that
 \be
 \begin{split}
   & P(x)u_1(x) y''_1 + Q(x) u_1(x) y'_1 + R(x) u_1(x) y_1 = 0\\
@@ -142,12 +160,13 @@ Using our constraint from before, we can make a system of linear equations
 \ee
 where the only unkonwns are u'$_1$ and u'$_2$.
 After solving for the unknowns, both can be integrated with respect to x to obtain u$_1$, u$_2$ and thus the solution to the inhomogenous equation.
-Example
-\begin{enumerate}
-  \centering
-  \item $x^2 y'' - 2y = x$
-  \item $x^2 y'' - 2y = 0$
-\end{enumerate}
+To see this in action, let's try an example.
+\be
+\begin{split}
+  x^2 y'' - 2y &= x \\
+  x^2 y'' - 2y &= 0
+\end{split}
+\ee
 Noting that $y = x^m$ is a natural guess for the solution to (2), we can obtain a general solution by plugging it and its derivatives
 \be
 \begin{split}
@@ -234,6 +253,7 @@ v'' + (2 \frac{p'}{p} + f)v' = 0
 \ee
 Solving for p becomes trivial after performing a \textbf{reduction of order}, which involves substituting $v'(x) = h(x)$ and $v''(x) = h'(x)$ into the ODE, which turns the second-order ODE in v into a first-order ODE in h.
 Once you solve the first-order ODE, you can back-substitute h for v', integrate one last time to obtain v, and multiply your solution by p to obtain the general solution y.
+And with that, we are done with looking at chapter 1 of the Mathematical Methods book.
 \section*{Series}
 Chapter 2 discusses tests for convergence of series and methods to determine the sum of a series.
 % Needs a better intro.
@@ -358,9 +378,11 @@ Often referred to as the 'ratio test', if you have any series $\sum\limits_{n=1}
 \be
 \lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big|
 \ee
-If the limit is less than 1, then the series is absolutely convergent.
-If the limit is greater than 1, then the series is divergent.
-If the limit is equal to 1, then the test is inconclusive and another test should be used instead.
+\begin{itemize}
+  \item If $\lim\limits_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| < 1$, the series is absolutely convergent.
+  \item If $\lim\limits_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| > 1$, the series is divergent.
+  \item If $\lim\limits_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| = 1$, the test is inconclusive and another test should be used instead.
+\end{itemize}
 \subsubsection*{Integral Test}
 Convergence of a series $\sum\limits_{n=1}^{\infty} f(n)$, where f(n) is continuous, can be determined by determining convergence of the definite integral.
 \be
@@ -385,13 +407,13 @@ We can taylor expand to make the substitution $\ln(1 + \frac{1}{n}) = \frac{1}{n
 \be
 \lim_{n \to \infty} \Big| \frac{a_{n+1}}{a_n} \Big| = \lim_{n \to \infty} \exp \Big[ (-s) \ln \Big( 1 + \frac{1}{n} \Big) \Big] \approx \lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big]
 \ee
-Taylor expanding again gives
+Taylor expanding $\text{exp} \Big[ \frac{-s}{n} \Big]$ gives
 \be
-\lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big] = \lim_{n \to \infty} 1 - \frac{s}{n} + \frac{1}{2} \Big( \frac{-s}{n} \Big)^2 + \hdots \approx \lim_{n \to \infty} 1 - \frac{-s}{n} = 1
+\lim_{n \to \infty} \exp \Big[ \frac{-s}{n} \Big] = \lim_{n \to \infty} 1 - \frac{s}{n} + \frac{1}{2} \Big( \frac{-s}{n} \Big)^2 + \hdots \approx \lim_{n \to \infty} 1 - \frac{s}{n} = 1
 \ee
 which means that the ratio test is inconclusive. So we can try the integral test.
 \be
-\int_{1}^{\infty} \frac{1}{x^s} dx = \frac{-1}{(s-1)(x^{s-1})} \Big\vert_{1}^{\infty} = \frac{1}{s-1}
+\int_{1}^{\infty} \frac{1}{x^s} dx = \frac{-1}{(s-1)(x^{s-1})} \Big\vert_{1}^{\infty}
 \ee
 So if s $>$ 1, the series is convergent and if s $<$ 1, the series is divergent.
 \subsubsection*{Alternating Series Test}
