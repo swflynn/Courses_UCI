@@ -327,27 +327,36 @@ As an example
 \end{split}
 \ee
 Both functions in the example are homogeneous functions of degree 2. 
-
-For this type of equation for we can generate a separable equation through the substitution
+It turns out that the following substitution can be used to convert these homogenoues functions of degree r into a seperable equation.
 \be
 y = vx
 \ee
-Consider our example above we find
+
+As with most of differential equations the motivation for this substituion comes from the answer (it works).
+Consider the following example
 \be
 ydx + (2\sqrt{xy} - x) dy = 0
 \ee
+
 In this example r=1, let y=vx and substitute in dy = vdx + xdv (assume an exact differential).
 \be
-vxdx + (2x\sqrt{v} - x) (vdx + xdv) = 0 \Rightarrow \frac{2\sqrt{v}-1}{2v^{3/2}}dv = -\frac{1}{x} dx
+\begin{split}
+    0 &= ydx + (2\sqrt{xy} - x) dy\\
+    0 &= vxdx + (2x\sqrt{v} - x) (vdx + xdv)\\
+    0 &= vxdx + (2x\sqrt{v})(vdx) + (2x\sqrt{v})(xdv) - x(vdx) - x(xdv)\\
+    &-2x^2\sqrt{v}dv + x^2dv = vxdx + 2xv^{\frac{3}{2}}dx - xvdx \\
+    & \frac{-2\sqrt{v}+1}{2v^{3/2}}dv = \frac{dx}{x}
+\end{split}
 \ee
-And this equation is separable and can be solved with integration!
+This final equation is separable and can be solved with integration, so we see that homogenous functions of the same degree can be seperated with the givne substitution!
 
 \subsection*{Final Example}
-Another example of the same class of problem.
+Another example using a substitution to generate a seperable problem. 
+Consider the following equation where a,b,c,e,f,g are all constants.
 \be
 (ax + by + c) dx + (ex + fy + g dy) = 0
 \ee
-Where a,b,c,e,f,g are all constants.
+
 But ax + by + c is not homogeneous because c is a lone constant (same with g).
 Consider x = X + $\alpha$ and y = Y + $\beta$, dx = dX, and dy = dY.
 Substitute in these definitions we find
