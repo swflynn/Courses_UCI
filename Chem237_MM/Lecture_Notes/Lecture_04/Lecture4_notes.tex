@@ -34,87 +34,73 @@
 %==============================================================================%
 \begin{document}
 \maketitle
-\section*{More Series}
-The following alternating series has some interesting convergence properties; it takes the form
-\be
-\sumone \frac{(-1)^{n+1}}{n} = \ln (1+1) = \ln (2)
-\ee
-If we look at some of the explicit values of the series, we see
-\be
-1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots
-\ee
-In general, we know that addition and subtraction between numbers commute i.e. A + B = B + A, so we would expect that if we re-arrange the order in which we take our infinite summation, we would still produce the same result at the end.
-So consider a fancy summation scheme for the alternating series where we group terms
-\be
-\left(1 + \frac{1}{3} + \frac{1}{5}\right) - \frac{1}{2} + \left(\frac{1}{7} + \frac{1}{9} + \frac{1}{11} + \frac{1}{13} + \frac{1}{15}\right) - \frac{1}{4} \cdots
-\ee
-So what we did was break the summation into positive and negative terms, defining a set of partial summations over the positive and then negative terms.
-If you numerically evaluate the summations in this way, you will find that the summation appears to approach $\frac{3}{2}$ as n goes to $\infty$.
-In fact it turns out that you can re-arrange the terms in any sort of pattern, and find the series converges to any value you want.
-This is a consequence of the series not being absolutely convergent!
-While the commutation of terms applies to finite numbers, it is not true for all infinite series, meaning A + B $\neq$ B + A over an infinite interval for a divergent or conditionally convergent series.
-If the series is absolutely convergent however, than the series will converge to the same value no matter what, and changing the order of the summation will not affect the result.
 
 \subsection*{Power Series}
-The purpose of a power series is to expand a function in terms of x around a center point x$_o$.
-We could expand any function around any center, but we usually consider x$_o = 0$ for simplicity.
-This gives us the general power series centered around x$_o = 0$
+In general, a power series is an infinite series of the form
 \be
-\sumzero a_x x^n = f(x)
+\sumzero a_n x^n = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \hdots
 \ee
-Often times in physics, it is much easier to deal with functions when they are represented as a Taylor Series.
-A Taylor series is a special kind of power series because such a series is computed by evaluating the values of the function's derivatives at a single point x$_o$.
+where the a$_n$'s are called the coefficients of the series.
+The sum can be identified as a function of infinte degree of x whose domain is the set of all x for which the series converges.
+For exmample, last lecture, we saw that if a$_n = 1$, we obtain the geometric series
+\be
+\sumzero x^n = 1 + x + x^2 + x^3
+\ee
+and the domain of the series is $-1 < x < 1$.
+In other words, the geometric series only converges for values of x greater than -1 and less than 1.
+A more general power series, an infinite series of the form
+\be
+\sumzero a_n (x - x_o)^2 = a_0 + a_1 (x - x_o) + a_2 (x - x_o)^2 + \hdots
+\ee
+is called a power series centered about x$_o$.
+Notice that if x$_o$ = 0, then you get back the power series mentioned earlier.
+Also notice that the term $(x - x_o)^0$ is equal to 1 for all values of x, including x = x$_o$ (even though you have been told at some point in your algebra class that $0^0$ is undefined).
+
+In physics, functions are often written in their power series representations by way of a \textbf{Taylor series} expansion about a point x$_o$, with x$_o = 0$ typically being the easiest value to expand a function about.
+A Taylor series is a special kind of power series because it is computed by evaluating the function's derivatives at a single point x$_o$.
 Formally, this is written as
 \be \label{eq:general_taylor}
-\sumzero \frac{f^{(n)} (x) \Big|_{x=x_o}}{n!} (x - x_o)^n
+\sumzero \frac{f^{(n)} (x_o)} {n!} (x - x_o)^n = \frac{f(x_o)}{0!} + \frac{f'(x_o)}{1!} (x - x_o) + \frac{f''(x_o)}{2!} (x - x_o)^2 + \hdots + \frac{ f^{(n)} }{n!}(x - x_o)^n + \hdots
 \ee
-where $f^{(n)} (x_o)$ denotes the n-th derivative of the function evaluated at the point x$_o$.
-Again, we typically set x$_o = 0$ and most expansions of functions you find online use this value as well.
-When x$_o = 0$, we call the series a Maclaurin series, but the name is not always used and such a series is still often referred to as a Taylor Series.
-For example, we can expand the function $sin(x)$ as a Taylor series around x$_o = 0$ by first computing a few derivatives
+where $f^{(n)} (x_o)$ denotes the n-th derivative of the function evaluated at the center x$_o$.
+Again, we typically set x$_o = 0$ and most expansions of functions you find online use this value as the center as well, such as
+\be
+\frac{1}{1-x} = 1 + x + x^2 + x^3 + \hdots = \sumzero x^n
+\ee
+\be
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \hdots = \sumzero \frac{x^n}{n!}
+\ee
+\be
+\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \hdots = \sumzero \frac{(-1)^n x^{2n}}{(2n)!}
+\ee
+\be
+\ln(1+x) = x - \frac{x^2}{2!} + \frac{x^3}{3!} - \hdots = \sumzero (-1)^{n} \frac{x^n}{n}
+\ee
+For those who do not remember the process of obtaining a Taylor series, we can consider Taylor expanding $\frac{1}{1 - x}$, since we were able to show that the infinite limit of the partial sum of the geometric series converged to $\frac{1}{1-x}$ in lecture 3.
+The first thing you do is compute the first few derivatives and then evaluate them at the center point which we will take to be zero.
 \be
 \begin{split}
-f^{(0)} (x_o = 0) &= \sin{0} = 0\\
-f^{(1)} (x_o = 0) &= \cos{0} = 1\\
-f^{(2)} (x_o = 0) &= - \sin{0} = 0\\
-f^{(3)} (x_o = 0) &= - \cos{0} = -1\\
+f^{(0)} (x_o = 0) &= \frac{1}{1-0} = 1 = 0!\\
+f^{(1)} (x_o = 0) &= \frac{1}{(1-0)^2} = 1 = 1!\\
+f^{(2)} (x_o = 0) &= \frac{2}{(1-0)^3} = 2 = 2!\\
+f^{(3)} (x_o = 0) &= \frac{6}{(1-0)^4} = 6 = 3!\\
 \end{split}
 \ee
-Then we plug our variables into equation \ref{eq:general_taylor} to get a polynomial in x of an infinite degree
+and then we plug them into equation (\ref{eq:general_taylor}) to obtain our series
 \be
-\sin(x) = \sumzero \frac{(\sin{x})^{(n)} \Big|_{x_o = 0}}{n!} (x-0)^n = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
+\frac{1}{1-x} = f(0) + \frac{f'(0)}{1!} (x - 0) + \frac{f''(0)}{2!} (x - 0)^2 + \frac{f'''(0)}{3!} (x - 0)^3 + \hdots = 1 + x + x^2 + x^3 + \hdots = \sumzero x^n
 \ee
-The reason why Taylor Series expansions are used often in physics is because the value of sin(x) can be approximated by simply truncating your series to any degree in x that you want.
+You can try taylor expanding the functions in equations 5-8 about the point x$_0$ = 0 to see if you actually do get the infinite series shown.
+
+Physics often uses Taylor series expansions because a function can be approximated by simply truncating your series to any degree in x that you want.
 As you keep higher and higher order terms, your approximate equation will yield more accurate values, with the infinite degree polynomial being the exact equation.
-So it is very reasonable to represent the function sin(x) as a first degree polynomial in x if the value of x is reasonably small.
+So it is very reasonable to represent the function sin($\theta$) as a first degree polynomial in $\theta$ if the value of $\theta$ is reasonably small.
 \be
-\sin{x} \approx x
+\sin{\theta} = \theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \hdots \approx \theta
 \ee
-And this approximation is almost always used when considering oscillating systems where the angle of oscillations is very small because the math becomes much easier to solve when the substitution is made.
-%==============================================================================%
-%                             Put in derivation for the Taylor expansions.     %
-%==============================================================================%
+And this approximation, known as the small-angle approximation, is almost always used when considering oscillating systems where the angle of oscillations is very small because the math becomes much easier to handle when the substitution is made.
 
-\subsubsection*{Geometric}
-\be
-\sumzero x^n = 1 + x + x^2 + x^3 + \hdots = \frac{1}{1-x}
-\ee
-
-\subsubsection*{Exponential}
-\be
-\sumzero \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \hdots = e^x
-\ee
-
-\subsubsection*{Cosine}
-\be
-\sumzero \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \hdots = \cos(x)
-\ee
-
-\subsubsection*{Logarithm}
-\be
-\sumzero (-1)^{n} \frac{x^n}{n} = x - \frac{x^2}{2!} + \frac{x^3}{3!} - \hdots = \ln(1+x)
-\ee
-
+\subsubsection*{Manipulating Series}
 Now that we are aware of how to create an infinite series out of any function, we want to become familiar with how to manipulate a series to give you another one.
 If we are given a series we do not recognize, we can always try applying a transformation to turn it into a recognized form, such as taking a derivative or an integral of the original series.
 Consider the general power series
@@ -135,10 +121,7 @@ Consider for example the following series
 \ee
 If we wanted to find the function that the series equates to, we first notice that it looks similar to the derivative of the geometric series with respect to x
 \be
-\begin{split}
-	\sumzero x^n = \frac{1}{1-x} &\Rightarrow \frac{d}{dx} \left( \sumzero x^n\right) = \frac{d}{dx} \left( \frac{1}{1-x} \right)\\
-	\sumzero nx^{n-1} &= \frac{1}{(1-x)^2} \\
-\end{split}
+	\sumzero x^n = \frac{1}{1-x} \Rightarrow \frac{d}{dx} \left( \sumzero x^n\right) = \frac{d}{dx} \left( \frac{1}{1-x} \right) = \frac{1}{(1-x)^2} = \sumzero nx^{n-1}
 \ee
 To make this last line look like our example series, we just need to multiply by x
 \be
@@ -148,22 +131,32 @@ As another example, consider
 \be
 \sumone \frac{x^n}{n}
 \ee
-This expression again looks similar to a geometric series.
-Consider what happens if we integrate by x
+Again, this expression looks similar to a geometric series but if you look carefully, you will see that the geometric series is evaluated from zero to infinity while this series is evaluated from 1 to infinity.
+This means that we will need to perform an \textbf{index shift}.
+The process is simply changing the value that the series starts froms.
+Obviously, we can't just change the $n = 0$ to $n = 1$ because we would be changing the value of the sum.
+To prevent from changing the value of the sum, we first define a new index
 \be
-\begin{split}
-\sumzero x^n = \frac{1}{1-x} \Rightarrow \frac{1}{x} \sumzero x^n dx = \sumzero x^{n-1} = - \ln(1 - x) = \sumzero \frac{x^{n+1}}{n+1} &\Rightarrow \\
-\end{split}
+m = n - 1
 \ee
-
+and now, when $n = 1$, our new index $m = 0$.
+Since we are dealing with infinte sums, we don't have to worry about the upper limit because $\infty - 1 = \infty$.
+And now, we can rewrite our sum in terms of our new index by solving for n
 \be
-\begin{split}
-	\int_{0}^{x} \left(\frac{1}{1-x}\right) dx &= \int \sum x^n dx = \sum \frac{x^{n+1}}{n} \Rightarrow \\
-	\sum_{n=1}^\infty \frac{x^n}{n} &= \int \text{ } dx \left(\frac{1}{1-x}\right) \frac{1}{x} \Rightarrow \ln(1-x) \Rightarrow\\
-	\sum_{n=1}^\infty \frac{x^n}{n} &= \ln(1-x)
-\end{split}
+n = m + 1
 \ee
-
+giving us
+\be
+\sumone \frac{x^n}{n} = \sum_{m = 0}^{\infty} \frac{x^{m + 1}}{m + 1}
+\ee
+and we can re-write our new sum in terms of our original index n since the value of the sum is not dependent on the variable we choose to represent the index
+\be
+\sumone \frac{x^n}{n} = \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{n + 1}
+\ee
+And this sum can be obtained by just integrating the geometric series
+\be
+\int_{0}^{x} \sumzero x^n = \int_{0}^{x} \left( \frac{1}{1 - x} \right) dx \Rightarrow \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{n + 1} =  - \ln(1 - x) = \sumone \frac{x^n}{n}
+\ee
 Another example, we can start using power series, consider a function of x.
 \be
 S(x) = \sum_{n=1}^\infty \frac{x^n}{n^2}
