@@ -153,31 +153,44 @@ and we can re-write our new sum in terms of our original index n since the value
 \be
 \sumone \frac{x^n}{n} = \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{n + 1}
 \ee
-And this sum can be obtained by just integrating the geometric series
+And the sum can be obtained by just integrating the geometric series
 \be
 \int_{0}^{x} \sumzero x^n = \int_{0}^{x} \left( \frac{1}{1 - x} \right) dx \Rightarrow \sum_{n = 0}^{\infty} \frac{x^{n + 1}}{n + 1} =  - \ln(1 - x) = \sumone \frac{x^n}{n}
 \ee
-Another example, we can start using power series, consider a function of x.
+Going back to the Reimann Zeta function, we can consider what was known in the mid-1600s as the Basel problem, which consisted of trying to evaluate the Reimann Zeta function when s = 2
+\be
+\zeta(2) = \sum_{n=1}^\infty \frac{1}{n^2}
+\ee
+Sometime in the 1730s, Leonhard Euler was able to find out that the value of the sum was equal to $\frac{\pi^2}{6}$.
+Multiple proofs exist that use theorems such as Parseval's theorem and the Residue theorem (which we'll see later in the course), but let's see if we can use what learned so far about evaluating series sums to evalaute this sum
+Consider the function S(x)
 \be
 S(x) = \sum_{n=1}^\infty \frac{x^n}{n^2}
 \ee
-Where S(1) would be evaluated as
+and S(1) would give us back our original sum
 \be
-S(1) = \sum_{n=1}^\infty \text{ }\frac{1}{n^2}
+S(1) = \sum_{n=1}^\infty \frac{1}{n^2}
 \ee
-
-The solution of S(x) is related to the previous problem, consider takng a derivative.
+If we can find a closed form expression for the function S(x), then all we need to do is plug in x = 1 and we can get the value of our sum. So let's start with taking a derivative.
 \be
 \begin{split}
 	S(x) &= \sum_{n=1}^\infty \frac{x^n}{n^2}\\
 	S'(x) &= \sum_{n=1}^\infty \frac{x^{n-1}}{n}\\
-	x S'(x) &= \sum_{n=1}^\infty \frac{x^{n}}{n}\\
-	x S'(x) &= \ln(1-x)\\
-	S'(x) &= \int_0^x dx \frac{\ln(1-x)}{x}
 \end{split}
 \ee
-The integral on the last line cannot be evaluated analytically, but we have converted an infinite series to an integral which a nuch simplier problem, and this is a solution.
-
+If we multiply the sum by x, we can get back a series that we've already dealt with before.
+\be
+\begin{split}
+	x S'(x) &= \sum_{n=1}^\infty \frac{x^{n}}{n}\\
+	x S'(x) &= \ln(1-x)\\
+\end{split}
+\ee
+To find S(x), all we need to do now is divide by x and integrate from 0 to x.
+\be
+	S(x) = \int_0^x \frac{\ln(1-x)}{x} dx
+\ee
+Sadly, this integral cannot be evaluated analytically.
+But at least we have converted an infinite series to an integral and this is a solution.
 \section*{Methods Of Integration}
 This is not a specific chapter in the book, we are just going to cover some simple classes of integrals and standard solutions.
 A common theme for this course, there is no general method for solving integrals, and most integrals cannot be solve in terms of elementary functions.
