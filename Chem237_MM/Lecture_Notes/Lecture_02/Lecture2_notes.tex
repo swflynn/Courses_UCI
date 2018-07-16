@@ -10,6 +10,7 @@
 \usepackage{braket}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
+\usepackage{url}
 %==============================================================================%
 %                           User-Defined Commands                              %
 %==============================================================================%
@@ -198,78 +199,44 @@ So the solution to the given differential equation is
 \be
 x^2 + xy + y^3 + c = 0
 \ee
-%==============================================================================%
-% I am here ==> Shane
-%==============================================================================%
+
 \subsection*{Integrating Factor}
 What if we don't have a total differential (and cannot use the method shown above then)?
-One method for addressing a non-linear ODE is the \textbf{Integrating Factor} (you have probably seen this in Thermodynamics). 
-Consider dU = Adx + Bdy, such that it is \textbf{NOT} an exact differntial.
+One method for addressing a non-linear ODE is the \textbf{Integrating Factor} (you have probably encountered this in Thermodynamics). 
+Consider 
+\be
+dU = Adx + Bdy
+\ee
+Such that it is \textbf{NOT} an exact differntial.
+
 We can introduce the \textbf{Integrating Factor} $\lambda$(x,y), such that our previous inexact differential becomes an exact differential. 
 \be
 dU = \lambda(Adx + Bdy)
 \ee
+
 We therefore need to find this magical $\lambda$ such that the inexact differential becomes exact.
-A theorem exists stating that an integrating factor always exists, so in theory this strategy will always work (in practice you may not be able to solve for it). 
+A theorem exists stating that an integrating factor always exists, so in theory this strategy will always work (in practice you may not be able to solve for $\lambda$). 
+For those interested the proof of the theorm can be found at \url{https://proofwiki.org/wiki/Existence_of_Integrating_Factor}. 
 
-\subsubsection*{Proof}
-%==============================================================================%
-% I am here 7-12-18 shane
-% This proof has a wiki look there, this explination is not that clear
-% https://proofwiki.org/wiki/Existence_of_Integrating_Factor
-%==============================================================================%
-The proof for this theorem (that an integrating factor always exists) is as follows:
-Consider the above example where dU is not an exact differential. 
+$\lambda$ always exists, unfortunately there is no general method for finding the integrating factor.
+
+\subsubsection*{Example}
+There are some known forms for A and B that we can recognize to solve for the integrating factor. As an example consider:
 \be
-\begin{split}
-    A(x,y)dx &+ B(x,y)dy = 0 \\
-    \frac{dy}{dx} &= -\frac{A}{B}
-\end{split}
-\ee
-Where the general solution to this expression is just some constant C
-\be
-f(x,y) = C
+dy + f(x) y dx = g(x) dx
 \ee
 
-Then take a total differential of the general solution. 
+We can always consider an integrating factor (it always exists)
 \be
-\begin{split}
-    \frac{\partial f}{\partial x}dx &+ \frac{\partial f}{\partial y} dy = 0 \\
-    \frac{dy}{dx} &=  - \frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial y}}\\
-\end{split}
+\lambda \left[dy + f(x) y dx\right] = \lambda \left[g(x) dx\right]
 \ee
-Relating the two we can see :
-\be
-\begin{split}
-   \frac{dy}{dx} &=  - \frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial y}}= -\frac{A}{B}\\
-   \frac{\frac{\partial f}{\partial x}}{A} &= \frac{\frac{\partial f}{\partial y}}{B}
-\end{split}
-\ee
-We can then relate this ratio using a factor , which is the integrating factor $\lambda(x,y)$ :
-\be
-\begin{split}
-\frac{\partial f}{\partial x} &= \lambda A  \\
-\frac{\partial f}{\partial y} &= \lambda B
-\end{split}
-\ee
-We multiply are general differential equation by an integrating factor as follows :
-\be
-\lambda A dx + \lambda B dy = 0
-\ee
-Unfortunately there is no general method for finding it, but $\lambda$ always exists!
-There are known forms for A and B that we can recognize to solve for the integrating factor. As an example consider:
-\be
-y' + f(x) y = g(x) \Rightarrow dy + f(x) y dx = g(x) dx
-\ee
-We can always consider an integrating factor
-\be
-\lambda \left[dy + f(x) y dx\right] = \lambda g(x) dx
-\ee
-The idea is now to integrate each side, however, this will only be useful if the RHS is only a function of x.
-If it turns out that $\lambda \rightarrow \lambda(x)$ than the RHS is always a function of x.
-If $\lambda$(x,y) than we may not be able to solve the LHS.
+
+The trick is to integrate each side.
+However it turns out that this will only be useful if the RHS is a function of x only (or else we will not be able to compute the integral). 
+If $\lambda \rightarrow \lambda(x)$ than the RHS is always a function of just x and we can solve the problem. 
 So we will assume $\lambda \rightarrow \lambda(x)$ and see if it works.
-The whole point of the method is to get an exact differential, therefore assume the LHS is exact.
+
+The whole point of the method is to get an exact differential, therefore assume the LHS is exact and see what happens. 
 \be
 \frac{\pd\lambda}{\pd x} = \frac{\pd (\lambda f y)}{\pd y} = \lambda(x) f(x)
 \ee
