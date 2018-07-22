@@ -44,19 +44,21 @@ where the a$_n$'s are called the coefficients of the series.
 The sum can be identified as a function of infinte degree of x whose domain is the set of all x for which the series converges.
 For exmample, last lecture, we saw that if a$_n = 1$, we obtain the geometric series
 \be
-\sumzero x^n = 1 + x + x^2 + x^3
+\sumzero x^n = 1 + x + x^2 + x^3 + \hdots
 \ee
 and the domain of the series is $-1 < x < 1$.
 In other words, the geometric series only converges for values of x greater than -1 and less than 1.
 A more general power series, an infinite series of the form
 \be
-\sumzero a_n (x - x_o)^2 = a_0 + a_1 (x - x_o) + a_2 (x - x_o)^2 + \hdots
+\sumzero a_n (x - x_o)^n = a_0 + a_1 (x - x_o) + a_2 (x - x_o)^2 + \hdots
 \ee
 is called a power series centered about x$_o$.
 Notice that if x$_o$ = 0, then you get back the power series mentioned earlier.
 Also notice that the term $(x - x_o)^0$ is equal to 1 for all values of x, including x = x$_o$ (even though you have been told at some point in your algebra class that $0^0$ is undefined).
 
 In physics, functions are often written in their power series representations by way of a \textbf{Taylor series} expansion about a point x$_o$, with x$_o = 0$ typically being the easiest value to expand a function about.
+For those of you who remember from your calculus classes, yes, centering a series at x$_o = 0$ gives what mathematicians call a \textbf{Maclaurin series}.
+But in physics we just call every series expansion a Taylor series to keep generality
 A Taylor series is a special kind of power series because it is computed by evaluating the function's derivatives at a single point x$_o$.
 Formally, this is written as
 \be \label{eq:general_taylor}
@@ -90,9 +92,9 @@ and then we plug them into equation (\ref{eq:general_taylor}) to obtain our seri
 \be
 \frac{1}{1-x} = f(0) + \frac{f'(0)}{1!} (x - 0) + \frac{f''(0)}{2!} (x - 0)^2 + \frac{f'''(0)}{3!} (x - 0)^3 + \hdots = 1 + x + x^2 + x^3 + \hdots = \sumzero x^n
 \ee
-You can try taylor expanding the functions in equations 5-8 about the point x$_0$ = 0 to see if you actually do get the infinite series shown.
+You can try taylor expanding the functions in equations 6-8 about the point x$_0$ = 0 to see if you actually do get the infinite series shown.
 
-Physics often uses Taylor series expansions because a function can be approximated by simply truncating your series to any degree in x that you want.
+Physicists often uses Taylor series expansions because a function can be approximated by simply truncating your series to any degree in x that you want.
 As you keep higher and higher order terms, your approximate equation will yield more accurate values, with the infinite degree polynomial being the exact equation.
 So it is very reasonable to represent the function sin($\theta$) as a first degree polynomial in $\theta$ if the value of $\theta$ is reasonably small.
 \be
@@ -199,51 +201,83 @@ A common theme for this course, there is no general method for solving integrals
 %==============================================================================%
 %            Someone derive the IBP formula, comes fropm product rule of derivatives
 %==============================================================================%
-Integration By Parts is a common method for replacing one integral (you cannot solve) for another integral (that you can hopefully solvE).
-It is useful if your integrand is a product of functions, and one of the functions can be reduced in order by taking a derivative.
+Integration By Parts (IBP) is a common method for replacing one integral (you cannot solve easily) for another integral (that you can hopefully solve).
+This comes from the idea that any function y(x) can always be written as a product of functions.
+If you're not sure about this, consider the fact that you can always multiply any function by a constant function where the constant is 1 and your original function will remain unchanged.
+So we have
 \be
-\int_a^b U(x) dV(x) = U(x) V(x) \bigg | _a^b - \int_a^b V(x) dU(x)
+y(x) = U(x)V(x)
 \ee
-
-We do know that any elementary function has a derivative that is also an elementary function, so you could go about making a database for easily solvable problems.
-Applying IBP then we want to solve for integrals that are the derivative of elementary functions.
-
-As an example consider IBP of function I (containing parameter n).
+If we take a derivative of y(x), the chain rule tells us
+\be
+\frac{dy}{dx} = \frac{d(UV)}{dx} = V\frac{dU}{dx} + U\frac{dV}{dx}
+\ee
+If we take an integral of the derivative from a to b, the fundametnal theorem of calculus tells us
 \be
 \begin{split}
-	I(n) &= \int_a^b dx x^n d^x\\
-	&= e^x x^n \bigg |_a^b - \int_a^b dx e^x n x^{n-1} \\
-	&= e^x x^n \bigg |_a^b - n I(n-1)\\
-	&= \cdots \\
-	&= I(0) = \int_a^b dx e^x = e^x \bigg |_a^b
+\int_a^b \frac{d(UV)}{dx} dx &= \int_a^b V\frac{dU}{dx} dx + \int_a^b U\frac{dV}{dx} dx \\
+UV \Big| _a^b &= \int_a^b V\frac{dU}{dx} dx + \int_a^b U\frac{dV}{dx} dx
 \end{split}
 \ee
-So for this example we can continue evaluating until we reach the integral of a simple expotential.
-Therefore any expotential times a polynomial can be evalued using IBP.
-
-If we can evaluate any polynomial times an expotential, consider another example.
+If we rearrange the equation, we get the famous integration by parts formula.
 \be
-\int dx x^n \cos(x)
+\int_a^b U dV = UV \Big| _a^b - \int_a^b V dU
 \ee
-We know that we can express cos(x) in terms of expotentials
+So your integrand can always be split into two functions.
+One of your functions dV would be integrated while the other U would be differentiated and then it becomes a matter of plugging in and solving.
+It becomes useful when you make your function U a function that can be reduced in order after being differentiated.
+As an example consider using IBP of function I (containing parameter n).
+\be
+\begin{split}
+	I(n) &= \int_a^b x^n e^x dx\\
+	&= x^n e^x \Big |_a^b - n \int_a^b e^x n x^{n-1} dx
+\end{split}
+\ee
+This new integral is just the original integral if the exponent of x was n - 1 instead of n.
+So if we kept integrating, we would keep getting new integrals that have an x that is one less degree than in the previous integral.
+\be
+\begin{split}
+	I(n) &= \int_a^b x^n e^x dx\\
+	&= x^n e^x \Big |_a^b - n \text{I} (n-1) \\
+	&= x^n e^x \Big |_a^b - n x^{n-1} e^x \Big |_a^b + n(n-1) \int_a^b x^{n-2} e^x dx \\
+	&= x^n e^x \Big |_a^b - n x^{n-1} e^x \Big |_a^b + n(n-1) \text{I} (n-2) \\
+  &= \hdots \\
+	&= x^n e^x \Big |_a^b - n x^{n-1} e^x \Big |_a^b + n(n-1) x^{n-2} e^x \Big |_a^b - \hdots \pm n(n-1)\hdots \cdot 3 \cdot 2 \cdot 1 \cdot e^x \Big |_a^b
+\end{split}
+\ee
+where the $\pm$ is either a plus if n is an even number or a minus if n is an odd number.
+
+Since we now have an analytic solution to the integral of an exponential times a polynomial, consider another example.
+\be
+\int_a^b x^n \cos(x) dx
+\ee
+We know that we can express cos(x) in terms of exponentials
 \be
 \cos(x) = \frac{e^{ix}+e^{-ix}}{2}
 \ee
-So we can really convert this problem into the same form and solve with IBP, let s = ix
+So if we can substitute this into the integral, we can get two integrals that may look familiar if we make another substiution s = ix and $\frac{1}{i}$ds = dx.
 \be
-\int ds x^n e^s
+\begin{split}
+\int_a^b x^n \cos(x) dx &= \int_a^b x^n \Big( \frac{e^{ix} + e^{-ix}}{2} \Big) dx \\
+&= \int_a^b x^n \frac{e^{ix}}{2} dx + \int_a^b x^n \frac{e^{-ix}}{2} dx \\
+&= \frac{1}{2i} \int_a^b \Big( \frac{s}{i}  \Big)^n e^s ds + \frac{1}{2i} \int_a^b \Big( \frac{s}{i}  \Big)^n e^{-s} ds \\
+&= \frac{1}{2} \cdot \frac{1}{i^{n+1}} \int_a^b s^n e^s ds + \frac{1}{2} \cdot \frac{1}{i^{n+1}} \int_a^b s^n e^{-s} ds
+\end{split}
 \ee
+The first integral is of the same form as the one we just solved!
+The second integral is different by just a minus sign, but if you try to find an analytic expression for the integral you can guess that it'll look similar to the first integral.
 %==============================================================================%
-%            Someone should do these integrals out as exmaples
+%            Don't know if you want to add the expression for the answer
+%            but this looks enough to me.
 %==============================================================================%
 
 \subsection*{Gaussian Integrals}
-Another well known and useful integral we will want to evaluate is the Gaussian.
+Another well known and useful integral we will want to evaluate is the Gaussian function.
 \be
-I = \int_{-\infty}^\infty dx e^{-x^2}
+I = \int_{-\infty}^\infty e^{-x^2} dx
 \ee
-If the limits are not $\infty$ than you can get the special function known as the \textbf{Error Fucntion}.
-Basically a special function is a common or useful function that appears but cannot be evaluated using elementary functions, it is useful wso we give it a name.
+If the limits are from 0 to a instead of $\pm \infty$, then you get the special function known as the \textbf{Error Fucntion}.
+Basically a special function is a common or useful function that appears but cannot be evaluated using elementary functions, it is useful so we give it a name.
 %==============================================================================%
 %       May want ot add in comments about error functions since he mentioned it
 %==============================================================================%
