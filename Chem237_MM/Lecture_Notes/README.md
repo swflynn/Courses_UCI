@@ -12,15 +12,26 @@ Linear ODE Variable Coefficients.
 
 ## Lecture 2 (4/4/18):
 
+#### Methods for Differential Equations: 
+
+Variable Coefficients (Homogenous and Non-Homogenous)
+
+Integrating Factors
+
+Homogenous functions
+
 ## Lecture 3 (4/5/18):
 
 ## Lecture 4 (4/10/18):
 
 ## Lecture 5 (4/11/18):
+Complex Calculus (Shane)
 
 ## Lecture 6 (4/12/18):
+Complex Calculus (Shane)
 
 ## Lecture 7 (4/17/18):
+Complex Calculus (Shane)
 
 ## Lecture 8 (4/19/18):
 
