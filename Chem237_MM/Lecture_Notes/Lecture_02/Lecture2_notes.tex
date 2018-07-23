@@ -197,7 +197,7 @@ We can solve for U by simply integrating dU.
 
 So the solution to the given differential equation is 
 \be
-x^2 + xy + y^3 + c = 0
+x^2 + 2xy + y^3 + c = 0
 \ee
 
 \subsection*{Integrating Factor}
@@ -207,7 +207,7 @@ Consider
 \be
 dU = Adx + Bdy
 \ee
-Such that it is \textbf{NOT} an exact differntial.
+Such that it is \textbf{NOT} an exact differential.
 
 We can introduce the \textbf{Integrating Factor} $\lambda$(x,y), such that our previous inexact differential becomes an exact differential. 
 \be
@@ -220,7 +220,7 @@ For those interested the proof of the theorm can be found at \url{https://proofw
 
 $\lambda$ always exists, unfortunately there is no general method for finding the integrating factor.
 
-\subsubsection*{Example}
+\subsubsection*{Method}
 There are some known forms for A and B that we can recognize to solve for the integrating factor. As an example consider:
 \be
 dy + f(x) y dx = g(x) dx
@@ -231,53 +231,85 @@ We can always consider an integrating factor (it always exists)
 \lambda \left[dy + f(x) y dx\right] = \lambda \left[g(x) dx\right]
 \ee
 
-The trick is to integrate each side.
-However it turns out that this will only be useful if the RHS is a function of x only (or else we will not be able to compute the integral). 
-If $\lambda \rightarrow \lambda(x)$ than the RHS is always a function of just x and we can solve the problem. 
-So we will assume $\lambda \rightarrow \lambda(x)$ and see if it works.
+The motivation for using integrating factor is to convert the LHS of the differential equation into the same form as the product rule. 
+This trick only works if the RHS is a function of x only, we therefore need to assume the integrating factor is only a function of x ($\lambda \rightarrow \lambda(x)$). 
 
-The whole point of the method is to get an exact differential, therefore assume the LHS is exact and see what happens. 
-\be
-\frac{\pd\lambda}{\pd x} = \frac{\pd (\lambda f y)}{\pd y} = \lambda(x) f(x)
+So we multiply everything by the integrating factor.
+\be \label{eq:int_f}
+\lambda dy + \lambda f(x) y dx = \lambda g(x) dx
 \ee
-This new equation is separable and we can solve by integration.
+We want the LHS to be of the form (product rule)
 \be
-\int d\lambda \frac{1}{\lambda} = \int dx f(x) \Rightarrow \lambda(x) = \exp\left[\int dx f(x)\right]
+(\lambda y)' = \lambda y' + y\lambda'
 \ee
-So we see that we can find the integrating factor with $\lambda(x)$.
-Now that we have an exact differential we need to confirm
+Comparing to Equation \ref{eq:int_f} we assume the following
+\be
+\lambda' = \lambda(x) f(x)
+\ee
+This result is seperable and can be evaluated directly to solve for the integrating factor. 
 \be
 \begin{split}
-    dU &\equiv \lambda(dy + f(x)ydx)\\
-    \frac{\pd U}{\pd x} &= \lambda\\
-    U(x,y) = \lambda(x) y
+    \int \frac{d\lambda}{\lambda} &= \int dx f(x) \Rightarrow\\
+    \lambda(x) &= \exp\left[\int dx f(x)\right]
 \end{split}
 \ee
-So we can solve this problem by integration, and find a general equation for any f(x), g(x). Another example consider
+If we are able to find the integrating factor, we can convert our original differential equation into an exact differential.
+We can now check to make sure we have an exact differential.
 \be
 \begin{split}
-    xy' + (1+x) y = e^x \Rightarrow y' + \left(\frac{1+x}{x}\right)y &= \frac{e^x}{x}\\
-    \lambda(x) = \exp\left[ \int dx \frac{1+x}{x} \right] = xe^x
+    dU &\equiv \lambda dy + \lambda f(x)ydx\\
+    \frac{d}{dx}\left[\lambda\right] &= \lambda' = \lambda f(x)\\
+    \frac{d}{dy} \left[f(x)y\right] &= \lambda f(x)\\
 \end{split}
 \ee
-Now if we multiply the LHS and RHS by $\lambda$
+And we have show this is an exact differential (with our definition of $\lambda'$). 
+We can easily integrate to find our final solution
 \be
-\int xe^x\left[y' + \frac{1+x}{x} y\right] = \int dx e^{2x} \Rightarrow U(x,y) = xe^xy = \frac{1}{2} e^{2x} + c \Rightarrow y = \frac{e^x}{2x} + \frac{c}{x} e^{-x}
+\begin{split}
+    dU &\equiv \lambda(x) dy + \lambda(x) f(x)ydx\\
+    \int dU &= \int \lambda(x) dy + \int \lambda(x) f(x)ydx\\
+    U(x,y) &= \lambda y + y\int \lambda' dx\\
+    U(x,y) &= \lambda y + y \lambda + c\\
+    U(x,y) &= 2\lambda y + c
+\end{split}
 \ee
 
-So we see that a non-linear first order ODE can be solved with the integrating factor method.
+\subsubsection*{Application}
+To see how the method works, consider
+\be \label{eq:if_ex}
+\begin{split}
+    xy' + (1+x) y &= e^x\\
+    y' + \left(\frac{1+x}{x}\right)y &= \frac{e^x}{x} \Rightarrow \\
+    \lambda(x) &= \exp\left[ \int dx \left(\frac{1+x}{x}\right) \right] = xe^x
+\end{split}
+\ee
+
+Now if we multiply the LHS and RHS of Equation \ref{eq:if_ex} by $\lambda$ and integrate we find
+\be
+\begin{split}
+	dU &= \lambda\left[y' + \left(\frac{1+x}{x}\right)y\right] = \lambda\frac{e^x}{x} \\
+    &= xe^x\left[y' + \left(\frac{1+x}{x}\right)y\right] = xe^x\frac{e^x}{x} \\
+    \int dU &= \int xe^x\left[y' + \left(\frac{1+x}{x}\right) y\right] = \int dx e^{2x}\\
+    U &= \int xe^x dy + \int  xe^x\left(\frac{1+x}{x}\right) y dx = \int dx e^{2x}\\
+    U &=  xe^x y + y  xe^x = \frac{e^{2x}}{2} + c\\
+	\Rightarrow \quad y &= \frac{1}{2}\left[\frac{e^x}{2x} + \frac{c}{xe^x}\right]
+\end{split}
+\ee
+
+So we see that a non-linear first order ODE can be solved using the integrating factor method.
 If we have an equation of the form
 \be
 y' + f(x)y = g(x)
 \ee
-Than the integrating factor is a useful approach, using a non-trivial transformation to generate a simple solution.
+Than the integrating factor uses a non-trivial transformation (assuming a form similar to the product rule) to generate a simple solution in the form of a total differential. 
 
 \subsection*{Homogenous Functions}
+We can now look at a different family of equations, homogenous functions.
 Consider the following equation
 \be
 A(x,y)dx + B(x,y)dy = 0
 \ee
-Assume both A and B are homogeneous functions of degree r.
+Assuming both A and B are homogeneous functions of degree r.
 
 \subsubsection*{Recall}
 A homogeneous function obeys the following
@@ -294,12 +326,14 @@ As an example
 \end{split}
 \ee
 Both functions in the example are homogeneous functions of degree 2. 
-It turns out that the following substitution can be used to convert these homogenoues functions of degree r into a seperable equation.
+
+\subsubsection*{Substitution}
+It turns out that the following substitution can be used to convert homogenoues functions of degree r into a seperable equation.
 \be
 y = vx
 \ee
 
-As with most of differential equations the motivation for this substituion comes from the answer (it works).
+As with most methods for differential equations, the motivation for this substituion comes from the answer (it works).
 Consider the following example
 \be
 ydx + (2\sqrt{xy} - x) dy = 0
@@ -315,7 +349,7 @@ In this example r=1, let y=vx and substitute in dy = vdx + xdv (assume an exact 
     & \frac{-2\sqrt{v}+1}{2v^{3/2}}dv = \frac{dx}{x}
 \end{split}
 \ee
-This final equation is separable and can be solved with integration, so we see that homogenous functions of the same degree can be seperated with the givne substitution!
+This final equation is separable and can be solved with integration, so we see that homogenous functions of the same degree can be seperated with the given substitution!
 
 \subsection*{Final Example}
 Another example using a substitution to generate a seperable problem. 
