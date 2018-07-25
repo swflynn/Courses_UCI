@@ -1,0 +1,122 @@
+\documentclass{article}
+%==============================================================================%
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+\newcommand{\sumzero}{\sum_{n=0}^\infty}
+\newcommand{\sumone}{\sum_{n=1}^\infty}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 8}
+\date{4/10/18}
+\author{Alan Robledo}
+%==============================================================================%
+%	Everyone Please Make Comments if Something Needs to be Reviewed        %
+%                           Or just fix it yourself!                           %
+%==============================================================================%
+\begin{document}
+\maketitle
+
+\subsection*{Approximate Methods}
+Ever since Lecture 4, we discussed different ways to evaluate integrals of interest to give us exact answers.
+It is often times enough for us to know an approximation to the value of te integral and we will discuss a few ways to do that by looking at some known special functions.
+\subsubsection*{Error Function}
+At first glance, you'd think that the error function looks like the integral of a gaussian
+\be
+  \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt = \frac{1}{\sqrt{\pi}} \int_{-x}^x e^{-t^2} dt
+\ee
+and you'd be correct. To be specific, the error function is the integral of a normalized Gaussian with the normalization part coming from the $\frac{1}{\sqrt{\pi}}$.
+The error function comes up in probability theory as this function is used to show the probability of something lying between -x and x.
+Finding a good approximation of the integral can be done by taylor expanding the integrand about a center that we will take to be zero, and integrating term by term.
+\be
+  \begin{split}
+    \text{erf(x)} &= \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt \\
+    &= \frac{2}{\sqrt{\pi}} \int_0^x (1 - t^2 + \frac{t^4}{2!} - \frac{t^6}{3!} + \hdots) dt \\
+    &= \frac{2}{\sqrt{\pi}} (x - \frac{x^3}{3} + \frac{x^5}{5 \cdot 2!} - \frac{x^7}{7 \cdot 3!} + \hdots)
+  \end{split}
+\ee
+By the look of it, we can say that the series converges for any x because the denominator tends to infinity much faster than the numerator ever could.
+However, the convergence of the series is small for large x.
+As a matter of fact, for large x, as x $\rightarrow \infty$, erf(x) $\rightarrow$ 1.
+So suppose we wanted to know what erf(x) is for large x.
+Using the fact that erf(x) $\rightarrow$ 1 as x $\rightarrow \infty$, we could write
+\be
+1 = \frac{2}{\sqrt{\pi}} \int_0^{\infty} e^{-t^2} dt
+\ee
+and if we break up the integrals
+\be
+1 = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt + \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt
+\ee
+and rearrange terms, we get
+\be \label{eq:erfc}
+1 - \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt = 1 - \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt = \text{erfc(x)}
+\ee
+where we have an integral from large x to infinity, which happens to be called the complementary error function or erfc(x).
+We can try to find an expression for the complementary error function by considering using integration by parts.
+Now, you may look at the integrand and think to yourself that there are no two functions that you can use for integration by parts.
+But a neat little trick that is often used is to consider multiplying the integrand by the one function.
+\be
+  \int_x^{\infty} e^{-t^2} dt = \int_x^{\infty} e^{-t^2} \cdot 1 dt = \int_x^{\infty} e^{-t^2} \cdot \frac{-2t}{-2t} dt
+\ee
+and if we consider,
+\be
+  \begin{split}
+    U &= - \frac{1}{2t} \qquad dV = - 2t e^{-t^2} dt \\
+    dU &= \frac{1}{2t^2} dt \qquad V = e^{-t^2}
+  \end{split}
+\ee
+our integral becomes
+\be
+  \begin{split}
+    \int_x^{\infty} e^{-t^2} dt &= \frac{e^{-t^2}}{2t} \Big|_x^{\infty} - \int_x^{\infty} \frac{e^{-t^2}}{2t^2} dt \\
+    &= \frac{e^{-x^2}}{2x} - \int_x^{\infty} \frac{e^{-t^2}}{2t^2} dt
+  \end{split}
+\ee
+We can integrate by parts again by using the same trick and multiplying the integrand by the one function
+\be
+  \int_x^{\infty} e^{-t^2} dt = \frac{e^{-x^2}}{2x} - \int_x^{\infty} \frac{e^{-t^2}}{2t^2} \cdot \frac{-2t}{-2t} dt
+\ee
+and considering
+\be
+  \begin{split}
+    U &= - \frac{1}{4t^3} \qquad dV = - 2t e^{-t^2} dt \\
+    dU &= \frac{3}{4t^4} dt \qquad V = e^{-t^2}
+  \end{split}
+\ee
+to get
+\be
+  \begin{split}
+    \int_x^{\infty} e^{-t^2} dt &= \frac{e^{-x^2}}{2x} - \int_x^{\infty} \frac{e^{-t^2}}{2t^2} \\
+    &= \frac{e^{-x^2}}{2x} + \frac{e^{-t^2}}{4t^3} \Big|_x^{\infty} + \int_x^{\infty} \frac{3e^{-t^2}}{4t^4} dt \\
+    &= \frac{e^{-x^2}}{2x} - \frac{e^{-x^2}}{4x^3} + \int_x^{\infty} \frac{3e^{-t^2}}{4t^4} dt
+  \end{split}
+\ee
+You can see that we can use this trick each time we integrate by parts and if we integrated an infinite number of times, we'd have an exact expression.
+If we go back to the equation \ref{eq:erfc} and solve for erf(x), we can see that the result after n integrations by parts of the complementary error function gives
+\be
+  \begin{split}
+    \text{erf(x)} = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt = 1 - e^{-t^2} \Big[ \frac{1}{2x} - \frac{1}{2^2 x^3} & + \frac{1 \cdot 3}{2^3 x^5} - \frac{1 \cdot 3 \cdot 5}{2^4 x^7} + \hdots + (-1)^{n-1} \frac{1 \cdot 3 \cdot 5 \cdots (2n-3)}{2^n x^{2n-1}} \Big] \\
+    & + (-1)^n \frac{1 \cdot 3 \cdot 5 \cdots (2n-1)}{2^n} \frac{2}{\sqrt{\pi}} \int_x^{\infty} \frac{e^{-t^2}}{t^{2n}} dt
+  \end{split}
+\ee
+where the last term (the term after the brackets, including the integral) is the "remainder" that makes the expression exact.
+
+\end{document}
