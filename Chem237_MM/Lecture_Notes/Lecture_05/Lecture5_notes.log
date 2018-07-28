@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.18)  25 JUL 2018 09:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.18)  28 JUL 2018 15:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -855,46 +855,47 @@ Package pdftex.def Info: Figures/complex.png  used on input line 50.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Figures/complex.png>]
-! Missing delimiter (. inserted).
-<to be read again> 
-                   \intop 
-l.96 \left \int
-               \limits_L\right_{z_1}^{z_2} f(z) dz
-? 
-! Missing delimiter (. inserted).
-<to be read again> 
-                   _
-l.96 \left \int\limits_L\right_
-                               {z_1}^{z_2} f(z) dz
-? 
-[2] (./Lecture5_notes.aux)
+<Figures/approach.png, id=18, 1486.55376pt x 1523.6925pt>
+File: Figures/approach.png Graphic file (type png)
+<use Figures/approach.png>
+Package pdftex.def Info: Figures/approach.png  used on input line 85.
+(pdftex.def)             Requested size: 297.30548pt x 304.73311pt.
+ [2 <./Figures/approach.png>]
+<Figures/line.png, id=22, 2023.56pt x 1461.46pt>
+File: Figures/line.png Graphic file (type png)
+<use Figures/line.png>
+Package pdftex.def Info: Figures/line.png  used on input line 136.
+(pdftex.def)             Requested size: 404.70483pt x 292.28682pt.
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
- ) 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] [4 <./Figures/line.png>] (./Lecture5_notes.aux) ) 
 Here is how much of TeX's memory you used:
- 12397 strings out of 494847
- 234814 string characters out of 6179080
- 289661 words of memory out of 5000000
- 15625 multiletter control sequences out of 15000+600000
- 537827 words of font info for 52 fonts, out of 8000000 for 9000
+ 12408 strings out of 494847
+ 235033 string characters out of 6179080
+ 291661 words of memory out of 5000000
+ 15634 multiletter control sequences out of 15000+600000
+ 538135 words of font info for 53 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 41i,15n,34p,10374b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-7.pfb>
-Output written on Lecture5_notes.pdf (2 pages, 2681369 bytes).
+ 41i,16n,34p,10374b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Lecture5_notes.pdf (4 pages, 8430142 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
+ 72 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

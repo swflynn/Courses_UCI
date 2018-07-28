@@ -48,54 +48,101 @@ Consider the 2D complex plane.
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.2]{Figures/complex.png}
-    \caption{Under-Damped HO. The real part of the solution (blue), for the un-driven, under-damped harmonic oscillator.
-    The dotted line (green) shows that the amplitude of the function (and the the function itself) slowly decays to zero over time.}
+    \caption{Make a caption (z=x+iy,D=domain(2D))}
   \label{fig:under_damped}
 \end{figure}
-Analytic function in domain (D) if it has derivative for any Z in D.
+An \textbf{Analytic Function} in domain (D) if it has derivative for any Z within D.
 \be
-f'(z) = \lim_{h\to 0} \frac{f(z+h)-f(z)}{h}
+f'(z) = \lim_{|h|\to 0} \frac{f(z+h)-f(z)}{h}
 \ee
-f(z) is regular in D if it is analytic and single valued in D.
-Examples of non singled valued functions are square roots
+%%%%%%%%%%%%%%%%%%%%%%%%Edit this more%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Where both h,z are $\in \mathbb{C}$. This is a more suddle definition, because h is in complex, no matter how we approach z we will get the same value and the defivitive of the function therefore exists. Weill need to look into this more, vlas says h in complex is a non-trivial definition. 
+The takeaway is that an analytic function is important because the derivitive is the same no matter how you approach the limit. 
+
+f(z) is \textbf{Regular} in D if it is analytic and single valued in D.
+
+Examples of non-single valued functions are square roots
 $f(z) = \sqrt{z}$ and logarithm functions $f(z)=\ln{(1+z)}$
+
 \subsection*{Cauchy Riemann equations}
+In general you can think of complex functions as two different a real and complex component. 
 The Cauchy-Riemann equations are used to check if a complex function is analytic (sometimes referred to as holomorphic), in other words if it is differentiable.
 It is often useful to define complex functions into their real and complex parts as follows :
 \be
 f(z) = u(x,y) + iv(x,y)
 \ee
+Consider h=h$_x$+ih$_y$
+\be
+\frac{\pd f}{\pd x} = \frac{\pd u}{\pd x} + i \frac{\pd V}{\pd x}
+\ee
+In general a partial derivitive is just one way to define
+\be
+f'(z) = \lim_{|h|\to 0} \frac{f(z+h)-f(z)}{h}
+\ee
+But there are other paths we could take to apprach the derivitive. 
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.2]{Figures/approach.png}
+    \caption{Make a caption different paths}
+\end{figure}
 The Cauchy-Riemann equations are derived from taking a  differential with respect to x and y  and then relating the Real part and imaginary part. Note: that for the imaginary piece we multiply by i thus getting a negative:
+To be analytic we need 
+\be
+\frac{\pd f}{\pd x} = \frac{\pd f}{\pd y}
+\ee
+But in reality we have f=x+iy, therefore
 \be
 \begin{split}
-\frac{\partial f}{\partial x} = \frac{\partial u}{\partial x}+ i\frac{\partial v}{\partial x} &= \frac{1}{i}\frac{\partial f}{\partial y} = \frac{1}{i}\frac{\partial u}{\partial y}+\frac{\partial v}{\partial x} \\
-\frac{\partial u}{\partial x} &= \frac{\partial v}{\partial y} \\
-\frac{\partial v}{\partial x} &= - \frac{\partial u}{\partial y}
+    \frac{\pd f}{\pd x} &= \frac{1}{i}\frac{\pd}{\pd y}\\
+    \frac{\partial f}{\partial x} &= \frac{\partial u}{\partial x}+ i\frac{\partial v}{\partial x}\\
+    &= \frac{1}{i}\frac{\partial f}{\partial y}\\
+    &= \frac{1}{i}\left[\frac{\partial u}{\partial y}+\frac{\partial v}{\partial y} i\right] \\
+    &= \frac{1}{i}\left(\frac{\partial u}{\partial y}\right)+\frac{\partial v}{\partial y} i
 \end{split}
 \ee
-Example of an analytic function :
+This produces the Cauchy Riemann Equation
+\be
+\frac{\pd U}{\pd x} = \frac{\pd V}{\pd y}i\frac{\pd V}{\pd x} = -\frac{\pd U}{\pd y}
+\ee
+So an analytic function is a function that satifies the Cauchy Riemann Equation.
+Not every function will satisfy this equation!
+
+\subsubsection*{Analytic Example}
 \be
 \begin{split}
  f(z)=z^2 &= x^2 - y^2 + i(2xy) \\
- u &= x^2+y^2\\
+ u &= x^2-y^2\\
  v &=2xy \\
  \frac{\partial u}{\partial x} &= 2x \frac{\partial v}{\partial y}\\
-\frac{\partial v}{\partial x} &=2y - \frac{\partial u}{\partial y}
+\frac{\partial v}{\partial x} &=2y = -\frac{\partial u}{\partial y}
 \end{split}
 \ee
-Example of a non-analytic :
+z$^2$ is na example of an analytic function. 
+
+\subsubsection*{Non-Analytic Example}
 \be
 \begin{split}
-    f=z*=x-iy  \\
+    f=z^*=x-iy  \\
 \frac{\partial u}{\partial x} = 1 \neq \frac{\partial v}{\partial y} = -1
 \end{split}
 \ee
-\subsection*{Cauchy-Theorem}
-The Cauchy theorem states an integral is path independent if f(z) is regular in D $\epsilon$ L. Where L denotes a path integral.
+
+\subsection*{Line Integrals}
+To compute a line integral we need to define the line, which sets our path. 
+Therefore these calculations are path depedent, a different line computes a different value. 
+So we cna compute an integral between 2 points z$_1$ and z$_2$ using the path L.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.2]{Figures/line.png}
+    \caption{Make a caption different points z and line L axis are x/y to give points z}
+\end{figure}
+
+The \textbf{Cauchy Theorem} states that such an integral is path independent if f(z) is regular in D $\epsilon$ L, in the domain containing L.  
 \be
-\left \int\limits_L\right_{z_1}^{z_2} f(z) dz
+\int_{z_1}^{z_2} f(z) dz
 \ee
-More commonly it is written as a contour:
+
+Equivalently if an integral does not depend on its path, we can consider an integral over a closed contour C
 \be
 \oint\limits_{C \epsilon D} f(z) dz = 0
 \ee
