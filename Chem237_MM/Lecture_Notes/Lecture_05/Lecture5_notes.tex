@@ -10,6 +10,7 @@
 \usepackage{braket}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
+\usepackage{float}
 %==============================================================================%
 %                           User-Defined Commands                              %
 %==============================================================================%
@@ -34,14 +35,23 @@
 \maketitle
 \section*{Integrals Continued}
 %==============================================================================%
-%                            Im not sure what method vlad was doing at the beginning of lecture for this last integral it was a continuation of the day before.                                %
-%==============================================================================%
 \section*{Complex Calculus }
-Complex functions are typically defined as 'z' or 'f(z)'.
-\be
-z=x+iy
-\ee
+Complex Calculus is a large field (typically a 1-year course) we will highlight some useful integration techniques using the complex plane. 
+
 \subsection*{Analytic Function}
+Consider the 2D complex plane. 
+%==============================================================================%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% We need a 'professional' version of this figure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%==============================================================================%
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.2]{Figures/complex.png}
+    \caption{Under-Damped HO. The real part of the solution (blue), for the un-driven, under-damped harmonic oscillator.
+    The dotted line (green) shows that the amplitude of the function (and the the function itself) slowly decays to zero over time.}
+  \label{fig:under_damped}
+\end{figure}
 Analytic function in domain (D) if it has derivative for any Z in D.
 \be
 f'(z) = \lim_{h\to 0} \frac{f(z+h)-f(z)}{h}

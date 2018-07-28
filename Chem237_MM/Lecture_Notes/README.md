@@ -21,6 +21,9 @@ Integrating Factors
 Homogenous functions
 
 ## Lecture 3 (4/5/18):
+Need to add figure for Clairaut Equation (Moises?)
+Need a bit of an intro to sequences and series
+Harmonic Series Partial Sums Proof
 
 ## Lecture 4 (4/10/18):
 
