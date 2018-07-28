@@ -36,10 +36,10 @@
 \maketitle
 
 \subsection*{Approximate Methods}
-Ever since Lecture 4, we discussed different ways to evaluate integrals of interest to give us exact answers.
-It is often times enough for us to know an approximation to the value of te integral and we will discuss a few ways to do that by looking at some known special functions.
-\subsubsection*{Error Function}
-At first glance, you'd think that the error function looks like the integral of a gaussian
+So far, we have discussed different ways to evaluate integrals of interest to obtain exact answers.
+It is often times enough for us to know an approximation to the value of an integral and we will discuss a few methods that go about this by looking at some special functions as examples.
+\subsubsection*{Asymptotic Series}
+At first glance, you'd think that the error function is just the integral of a gaussian
 \be
   \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt = \frac{1}{\sqrt{\pi}} \int_{-x}^x e^{-t^2} dt
 \ee
@@ -90,7 +90,7 @@ our integral becomes
     &= \frac{e^{-x^2}}{2x} - \int_x^{\infty} \frac{e^{-t^2}}{2t^2} dt
   \end{split}
 \ee
-We can integrate by parts again by using the same trick and multiplying the integrand by the one function
+We can integrate by parts again by using the same trick of multiplying the integrand by the one function
 \be
   \int_x^{\infty} e^{-t^2} dt = \frac{e^{-x^2}}{2x} - \int_x^{\infty} \frac{e^{-t^2}}{2t^2} \cdot \frac{-2t}{-2t} dt
 \ee
@@ -113,10 +113,92 @@ You can see that we can use this trick each time we integrate by parts and if we
 If we go back to the equation \ref{eq:erfc} and solve for erf(x), we can see that the result after n integrations by parts of the complementary error function gives
 \be
   \begin{split}
-    \text{erf(x)} = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt = 1 - e^{-t^2} \Big[ \frac{1}{2x} - \frac{1}{2^2 x^3} & + \frac{1 \cdot 3}{2^3 x^5} - \frac{1 \cdot 3 \cdot 5}{2^4 x^7} + \hdots + (-1)^{n-1} \frac{1 \cdot 3 \cdot 5 \cdots (2n-3)}{2^n x^{2n-1}} \Big] \\
+    \text{erf(x)} = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt = 1 - \frac{2}{\sqrt{\pi}} e^{-x^2} \Big[ \frac{1}{2x} - \frac{1}{2^2 x^3} & + \frac{1 \cdot 3}{2^3 x^5} - \frac{1 \cdot 3 \cdot 5}{2^4 x^7} + \hdots + (-1)^{n-1} \frac{1 \cdot 3 \cdot 5 \cdots (2n-3)}{2^n x^{2n-1}} \Big] \\
     & + (-1)^n \frac{1 \cdot 3 \cdot 5 \cdots (2n-1)}{2^n} \frac{2}{\sqrt{\pi}} \int_x^{\infty} \frac{e^{-t^2}}{t^{2n}} dt
   \end{split}
 \ee
 where the last term (the term after the brackets, including the integral) is the "remainder" that makes the expression exact.
+If we only pay attention to the terms inside the brackets, we can see that these terms form the beginning of divergent series.
+Since the numerator grows as (2n+1)!, there is no value of x that would make the denominator grow larger in size than the numerator so if we were to form an infinite series, the series would diverge to $\infty$.
+It is because of this fact that physicists would call the series in brackets an \textbf{asymptotic series} if the summation of the terms continued to infinity.
+To be formal, if we have a function whose series expansion is
+\be
+S(x) = c_0 + \frac{c_1}{x} + \frac{c_2}{x} + \hdots
+\ee
+where the c$_n$'s are just constants, we can say that the partial sum $\sum\limits_{i=0}^n c_i / x^i$ is an asymptotic series expansion of f(x) if the following holds
+\be
+  \lim_{x \to \infty} x^n \Big[ f(x) - \sum_{i=0}^n \frac{c_i}{x^i} \Big] = 0
+\ee
+Therefore, for some value n and for arbitrarily large x, the series $S_n(x)$ gives a good approximation to f(x).
+If, however, we have a function whose series expansion is
+\be
+  S(x) = c_0 + c_1x + c_2x^2 + \hdots
+\ee
+where the c$_n$'s are again just constants, we can say that the partial sum  $\sum\limits_{i=0}^n c_i x^i$ is an asymptotic series expansion of f(x) if the following holds
+\be
+  \lim_{x \to \infty} \frac{1}{x^n} \Big[ f(x) - \sum_{i=0}^n c_i x^i \Big] = 0
+\ee
+Therefore, for some value n and for arbitrarily small x, the series $S_n(x)$ gives a good approximation to f(x).
 
+Mathematicians define an asymptotic series expansion as a series whose partial sums give a good approximation to a function of a variable x for arbitrarily small or large values of x.
+This definition makes it sound like a convergent Taylor series falls under the category of an asymptotic expansion.
+Because of this, it is common in Physics for the term 'asymptotic expansion' to imply a divergent series.
+To be mathematically correct, an asymptotic series can be divergent or convergent but, in most cases of interest, asymptotic series never converge.
+So it is useful to consider the physicist's perspective when distinguishing between a convergent series and an asympotitc series.
+We can go back to the error function erf(x) to show how an asymtptic series can be different from a convergent series.
+\be
+  \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
+\ee
+Just as we did in equation 2, if we taylor expand the integrand about $t=0$, and integrate the series term by term, we get the following convergent series,
+\be
+  \text{erf(x)} = \frac{2}{\sqrt{\pi}} \Big( x - \frac{1}{3}x^3 + \hdots + \frac{(-1)^n}{(2n+1)n!} x^{2n+1} + \hdots \Big)
+\ee
+which is convergent for all values of x.
+And if we recall from earlier, we obtained an asymptotic series of the erf(x)
+\be
+  \text{erf(x)} \approx 1 - \frac{2}{\sqrt{\pi}} e^{-x^2} \Big[ \frac{1}{2x} - \frac{1}{2^2 x^3} + \frac{1 \cdot 3}{2^3 x^5} - \frac{1 \cdot 3 \cdot 5}{2^4 x^7} + \hdots + (-1)^{n-1} \frac{1 \cdot 3 \cdot 5 \cdots (2n-3)}{2^n x^{2n-1}} \Big] + \text{remainder}
+\ee
+Now, when $x=3$, we need the first 30 terms of the taylor series to approximate erf(3) to an accuracy of $10^{-5}$, whereas we only need about the first two terms of the asymptotic series (excluding the remainder of course) to obtain the same approximation.
+This should not be of any surprise to us because I mentioned earlier in the lecture that the convergence of the Taylor series is slow for (arbitrarily) large x.
+If we were to make a plot of the remainder as a function of the number of terms we decide to keep in our series approximation for fixed x
+%==============================================================================%
+%  Add plot of remainder as a function of M in notes.
+%==============================================================================%
+we would see that as we keep adding more terms, our approximation gets better and better up to a certain limit, which defines the asymptoticity of the function, and then our approximation becomes worse and worse.
+This should make sense because we are trying to use a divergent series to define the value of an integral.
+
+Note, if we use the physics definition of asymptotic series then we have to be clear in saying that not all functions have an asymptotic expansion.
+If a function does have such an expansion then that expansion is unique.
+However, one can get different asympotitc series expansions for the same function when we consider x to be a complex number z and the convergence of a series to be defined by the radius of a disk on the complex plane.
+This is known in complex analysis as Stokes phenomenon but we will not dive into the topic.
+
+\subsubsection*{Saddle Point Method}
+Consider the integral
+\be
+  \int_0^{\infty} F(x) dx = \int_0^{\infty} e^{f(x)} dx
+\ee
+where the integral of F(x) is dominated by a narrow region in x.
+A example plot of F(x) as a function of x would be
+%==============================================================================%
+%  Add plot of remainder as a function of M in notes.
+%==============================================================================%
+If we perform a Taylor expansion of f(x) and decide to expand around the point x$_o$ we get
+\be
+  F(x) \approx \text{exp} \Big[ f(x_o) + (x - x_o)f'(x_o) + \frac{(x - x_o)^2}{2}f''(x_o) \Big]
+\ee
+If we let x$_o$ to be the maximum of f(x), we can identify that $f'(x_o) = 0$ so our integral becomes
+\be
+  \begin{split}
+    \int_0^{\infty} F(x) dx &\approx \int_0^{\infty} \text{exp} \big[ f(x_o) + \frac{(x - x_o)^2}{2}f''(x_o) \Big] dx \\
+    &= \text{exp}[f(x_o)] \int_0^{\infty} \text{exp} \Big[ \frac{(x - x_o)^2}{2}f''(x_o) \Big] dx
+  \end{split}
+\ee
+which is just the integral of a gaussian exp $[A(x-x_o)^2]$ where $A = \frac{f''(x_o)}{2}$.
+Using a u-substitution $u = x - x_o$ and $du = dx$, you should be able to get
+\be
+  \begin{split}
+      \int_0^{\infty} F(x) dx &\approx \text{exp}[f(x_o)] \int_0^{\infty} \text{exp} \Big[ \frac{(x - x_o)^2}{2}f''(x_o) \Big] dx \\
+      &= \text{exp}[f(x_o)] \Big( \frac{-2 \pi}{f''(x_o)} \Big) ^{\frac{1}{2}}
+  \end{split}
+\ee
 \end{document}

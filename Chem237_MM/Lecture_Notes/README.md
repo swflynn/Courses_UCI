@@ -22,7 +22,35 @@ Homogenous functions
 
 ## Lecture 3 (4/5/18):
 
+#### Methods for Differential Equations:
+
+Clairaut Equation
+
+Variable Coefficients (Homogenous and Non-Homogenous)
+
+#### Series: 
+
+Convergence and Divergence Definitions
+
+Convergence tests 
+
 ## Lecture 4 (4/10/18):
+
+#### Series: 
+
+Power Series Expansion
+
+Series Manipulation
+
+#### Methods of Integration: 
+
+Integration by Parts
+
+Change of Variables (Gaussian integral)
+
+Partial Fraction Decomposition
+
+Parameter Differentiation 
 
 ## Lecture 5 (4/11/18):
 Complex Calculus (Shane)
@@ -34,6 +62,16 @@ Complex Calculus (Shane)
 Complex Calculus (Shane)
 
 ## Lecture 8 (4/19/18):
+
+#### Integral Approximation Methods: (Alan)
+
+Asymptotic Series
+
+Saddle-point method
+
+#### Integral Transforms (Alan)
+
+Fourier Series
 
 ## Lecture 9 (4/24/18):
 
