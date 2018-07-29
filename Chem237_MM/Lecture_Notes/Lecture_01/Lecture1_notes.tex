@@ -36,7 +36,7 @@
 \section*{Course Overview}
 The course will not directly follow the textbook, the book will be a guideline for important topics.
 The lecture and homework are the most important aspects of the course.
-The homework will be split into both analytical and numerical problems.
+Homework will contain both analytical and numerical problems.
 Any programming language is fine for the numerical problems, however, Mathematica and other highly developed languages are discouraged.
 For the numerical problems, if you are asked to make an algorithm, you CANNOT use pre-built algorithms available to the languages.
 
@@ -51,23 +51,23 @@ In contrast a \textbf{Partial Differential Equation} (PDE) contains functions th
 a \frac{\pd U(x,y)}{\pd x} + b \frac{\pd U(x,y)}{\pd y} = c
 \ee
 
-We can further categorize differential equations (both ODE and PDE) into linear or nonlinear (depending on the highest degree of the variable of interest). 
+We can further categorize differential equations (both ODE and PDE) into linear or nonlinear (depending on the highest degree of the variable of interest).
 As you can imagine, linear equations are simpler to solve compared to nonlinear and an ODE is easier to solve than a PDE.
 
 \subsection*{Linear Equations}
-Linear Equations are a general topic (not just linear differential equations); there are linear differential equations, linear algebraic equations, and etc.
+Linear Equations are a general topic (not only linear differential equations); there are linear differential equations, linear algebraic equations, and etc.
 Any linear equation has the form
 \be
 \hat{A} f(x,y,\hdots) = B(x,y,\hdots)
 \ee
 Where the RHS (B) is some known function, and the function f is some unknown function.
-To be a linear equation, the operator $\hat{A}$ must be a \textbf{Linear Operator}. 
+To be a linear equation, the operator $\hat{A}$ must be a \textbf{Linear Operator}.
 For example, take the equation above and let $\hat{A}$ be the differential operator wrt. a single dimension.
 This would then describe a linear Ordinary Differential Equation.
 
 If the RHS of this expression (B) is equal to 0, the linear equation is called \textbf{Homogeneous} and if the RHS is anything other than 0, the linear equation is called \textbf{Inhomogeneous}.
 Another way to explain this; if every term in the differential equation contains the function f or any of its derivatives, it is called Homogenous.
-For example equation \ref{eq:homo_ex} is a homogenous equation. 
+For example equation \ref{eq:homo_ex} is a homogenous equation.
 \be \label{eq:homo_ex}
 \frac{d^2y}{dx^2} + d\frac{dy}{dx} + y = 0
 \ee
@@ -75,7 +75,7 @@ If there is at least one term that does not contain the function (f) and/or its 
 \be \label{eq:inhomo_ex}
 \frac{d^2y}{dx^2} + d\frac{dy}{dx} + x = 0
 \ee
-Equation \ref{eq:inhomo_ex} is an inhomogenous differential equation (the x term has no dependence on y). 
+Equation \ref{eq:inhomo_ex} is an inhomogenous differential equation (the x term has no dependence on y).
 
 \subsubsection*{Homogeneous Linear Equations}
 Consider equation \ref{eq:lin_homo} below
@@ -89,7 +89,7 @@ f_3 = c_1f_1 + c_2f_2 .
 This result is true for any set of linear homogeneous ODEs: A linear combination of two unique solutions to a linear homogeneous equation gives another unique solution.
 
 This implies that f$_1$ and f$_2$ are linearly independent functions, meaning there cannot exist a constant c such that $f_1 = cf_2$.
-Checking if f$_1$ and f$_2$ are two linearly independent solutions can be done by determining the Wronskian of the two functions (if you are unfamiliar with this method feel free to ignore it). 
+Checking if f$_1$ and f$_2$ are two linearly independent solutions can be done by determining the Wronskian of the two functions (if you are unfamiliar with this method feel free to ignore it).
 
 \subsubsection*{Inhomogeneous Linear Equations}
 Consider now an Inhomogeneous linear equation; equation \ref{eq:lin_inhomo}
@@ -109,7 +109,7 @@ Various books use different notation for presenting ODEs.
 For example, it is very common in physics to consider functions that only depend on time, x = x(t).
 We may switch between using t and x as independent variables in class, since these are ordinary differential equations there will only be one variable of interest in the problem.
 
-We will be writing lots of derivatives, some common notation for a derivative are: 
+We will be writing lots of derivatives, some common notation for a derivative are:
 \be
 x^{(n)} \equiv \frac{d^n}{dt^n}x \equiv D^n x
 \ee
@@ -143,7 +143,7 @@ Our Differential Equation (equation \ref{eq:lin_cc_homo}) requires a function x(
 A simple elementary function that satisfies this condition is x(t) = e$^{\lambda t}$.
 To account for different multiples of the function, we include the $\lambda$ in our assumed solution, since its derivative is equal to $\lambda$ e$^{\lambda t}$.
 You can probably guess that some trigonometric functions and their derivatives may also satisfy this condition.
-While this may sometimes be true, it is not true generally, the expotential turns out to be a better guess. 
+While this may sometimes be true, it is not true generally, the expotential turns out to be a better guess.
 Even if you consider a combination of sine and cosine, such a function would not always work.
 Consider the example ODE below,
 \be \label{eq:ode_guess}
@@ -164,8 +164,8 @@ x(t) = \sum_{n=1}^N c_n e^{\lambda_n t}
 \ee
 
 Finding the general solution for the degenerate case is not as straightforward.
-If we have two roots that are the same (e.g. $\lambda_1$ = $\lambda_2$), we cannot form 2 unique solutions from these roots. 
-We would only be able to form one unique solution (each root produces the same solution). 
+If we have two roots that are the same (e.g. $\lambda_1$ = $\lambda_2$), we cannot form 2 unique solutions from these roots.
+We would only be able to form one unique solution (each root produces the same solution).
 However, there are multiple ways to show that for each repeated root, a unique solution will be given by a different multiple of the expotential.
 
 For example, if we had a 3rd order linear ODE with repeated roots, $\lambda_1$ = $\lambda_2$ = $\lambda_3$, the general solution will be three terms all differning by a multiple t.
@@ -183,7 +183,7 @@ If the above ODE has two repeated roots, $\lambda_1$ and $\lambda_2$, we expect 
 \be
 y_1(t) = c_1 e^{\lambda_1 t}
 \ee
-Let's first assume we do not have a degeneracy so $\lambda_1 \neq \lambda_2$ (just play along). 
+Let's first assume we do not have a degeneracy so $\lambda_1 \neq \lambda_2$ (just play along).
 We can consider evaluating the following limit to obtain the resulting second unique solution
 \be
 \lim_{\lambda_1\to\ \lambda_2} \frac{e^{\lambda_2 t} - e^{\lambda_1 t}}{\lambda_2 - \lambda_1} = t e^{\lambda_1 t} .
@@ -332,7 +332,7 @@ The general solution can be written as
 x(t) = (c_1 + c_2t)e^{\lambda_+ t} = (c_1 + c_2t)e^{\lambda_- t}
 \ee
 With arbitrary constants $c_1$ and $c_2$.
-This means that the characteristic equation has two equal roots 
+This means that the characteristic equation has two equal roots
 \be
 \begin{split}
 x(t) &= c_1 e^{\lambda_1 t} + c_2 te^{\lambda_2 t}\\
@@ -514,7 +514,7 @@ It only requires you to make your guess for the particular solution mimicing the
 \subsection*{Linear ODE with Variable Coefficients}
 Constant coefficient linear ODEs can be solved with linear algebra as we saw.
 Unfortunately, problems with variable coefficients are a bit more tricky.
-There is not a general approach to solve these problems and it is often done numerically rather than analytically. 
+There is not a general approach to solve these problems and it is often done numerically rather than analytically.
 We can try to use methods mentioned before such as the Variation of Parameters or Method of Undetermined Coefficients but it is not guaranteed to always work.
 There are even other methods that are usually covered in undergraduate differential equations courses, but we will not go over them here.
 
@@ -526,13 +526,13 @@ Here, V(x) is changing (it is a function of x), which means that the coefficient
 The SE is a good example to use because the equation is always used in Quantum Mechanics. In most Quantum Mechanics courses, we discuss different scenarios where the potential V(x) takes on different forms.
 
 If our potential takes the form of the potential for a Harmonic Oscillator (V(x) = kx$^2$) we can get analytic solutions to this differential equation.
-Some other examples of linear ODEs with variable coefficients are the Morse Potential, and a piecewise constant potential. 
+Some other examples of linear ODEs with variable coefficients are the Morse Potential, and a piecewise constant potential.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \includegraphics[width=\textwidth]{Figures/morse.png}
-  	\caption{The Morse Potential.} 
+  	\caption{The Morse Potential.}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\textwidth}
         \includegraphics[width=\textwidth]{Figures/piecewise.png}
@@ -542,7 +542,7 @@ Some other examples of linear ODEs with variable coefficients are the Morse Pote
 \end{figure}
 
 Another example of a second order, variable coefficient ODE is the Vertically/Horizontally Forced Pendulum.
-As the name implies, this system consists of having a pendulum attached to an object that is moving vertically and/or horizontally. 
+As the name implies, this system consists of having a pendulum attached to an object that is moving vertically and/or horizontally.
 Obtaining the equation of motion for the system is non-trivial and is often done using Lagrangian mechanics instead of Newtonian mechanics.
 Since this is not a physics course, we will not derive the equation and only show you that the equation can be approximated as
 \be
