@@ -131,7 +131,7 @@ z$^2$ is na example of an analytic function.
 To compute a line integral we need to define the line, which sets our path. 
 Therefore these calculations are path depedent, a different line computes a different value. 
 So we cna compute an integral between 2 points z$_1$ and z$_2$ using the path L.
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[scale=0.2]{Figures/line.png}
     \caption{Make a caption different points z and line L axis are x/y to give points z}
@@ -143,38 +143,40 @@ The \textbf{Cauchy Theorem} states that such an integral is path independent if 
 \ee
 
 Equivalently if an integral does not depend on its path, we can consider an integral over a closed contour C
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
-  \includegraphics{Figures/contour.png}
-    \caption{Make a caption different points z and line L axis are x/y to give points z}
+    \includegraphics[scale=0.2]{Figures/contour.png}
+    \caption{Make a caption different points z1,z2 and line L. Should be on xy coordinate axis and usrronided by a domain D. }
 \end{figure}
-
+If the integral is not path depedent, than our closed contour integral must evaluate to 0 (this statement is equivalent to the Cauchy theorem). 
 \be
 \oint\limits_{C \epsilon D} f(z) dz = 0
 \ee
 
-The definition of an analytic function is only the first derivative of f(z) exists.
-If f(z) is ? in D :
-\be
-\frac{d^n}{dz^n} f(z)
-\ee
-exists for any n. $f^(n)(z)$ is a result function in D.
+\subsection*{Complex Integration}
+If f(x) is some function we are interested in integrating (assume it is analytic) we can instead compute the integral over f(z) to solve for f(x). 
+This is a generalization of real calculus. 
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.2]{Figures/motivation.png}
+    \caption{Make a caption. compute real integral f(x) using complex contour f(z) and taking advantage of the cauchy theorem. }
+\end{figure}
 
+If F(z) is regular in D, than any $\frac{\pd^n}{\pd z^n}f(z)$ exists for all n, and the derivitive is a regular function in D.
+Therfore if 1 derivitive exists, they all exist in D.
+
+So a function that has a first derivitive in D, bu thigher orderderivitives do not exists, means the funciton is not analytic in D. 
 
 \subsection*{Cauchy Integral Formula}
-The general formula for the Cauchy integral formula is as follows :
+The Cauchy Integral Formula is over a closed contour
 \be
-f^{n}(z) = \frac{d^n f}{dz^n}  \frac{n!}{2\pi i } \oint \frac{f(w) dw}{(w-z)^{n+1}}
+f^{n}(z) = \frac{d^n f}{dz^n}  = \frac{n!}{2\pi i } \oint_\mathbb{C} \frac{f(w) dw}{(w-z)^{n+1}}
 \ee
 Where n is the order of your function.
-%==============================================================================%
-%	These all require proofs as well as many of the
-% contour graphs that vlad drew out in class.    %
-%==============================================================================%
 
+It is convention for the contour to be traversed in a counter-clockwise fashion. 
 
-
-
+% Need to add more context here
 
 
 
