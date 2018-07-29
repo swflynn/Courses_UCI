@@ -58,6 +58,8 @@ Parameter Differentiation
 ## Lecture 5 (4/11/18):
 Complex Calculus (Shane)
 
+Needs a bunch of figures
+
 ## Lecture 6 (4/12/18):
 Complex Calculus (Shane)
 
