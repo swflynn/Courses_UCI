@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1532895499 "Lecture1_notes.tex" "Lecture1_notes.pdf" "Lecture1_notes" 1532895500
+["pdflatex"] 1532896048 "Lecture1_notes.tex" "Lecture1_notes.pdf" "Lecture1_notes" 1532896049
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -97,9 +97,9 @@
   "Figures/morse.png" 1532894621 22369 120261e2f960d9c36b03aafe54b862d3 ""
   "Figures/piecewise.png" 1532894621 11156 4ec25ad6b086e767517ce2b33501e8c8 ""
   "Figures/under_damped.png" 1532894621 35407 c9091a8c3f5adc64e04bab4280fc4795 ""
-  "Lecture1_notes.aux" 1532895500 946 60dc5daa18d561de9f29048aea0f0c50 ""
-  "Lecture1_notes.tex" 1532895499 30794 cf2923a1f3a1fdfda7d13c9e42059f40 ""
+  "Lecture1_notes.aux" 1532896049 946 60dc5daa18d561de9f29048aea0f0c50 ""
+  "Lecture1_notes.tex" 1532896048 30794 f6792a3544e7d7a554b51de2f77f0d18 ""
   (generated)
-  "Lecture1_notes.pdf"
   "Lecture1_notes.aux"
   "Lecture1_notes.log"
+  "Lecture1_notes.pdf"
