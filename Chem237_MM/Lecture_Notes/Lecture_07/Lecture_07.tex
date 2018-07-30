@@ -10,6 +10,7 @@
 \usepackage{braket}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
+\usepackage{float}
 %==============================================================================%
 %                           User-Defined Commands                              %
 %==============================================================================%
@@ -23,45 +24,85 @@
 %==============================================================================%
 %                             Title Information                                %
 %==============================================================================%
-\title{Chem237: Lecture 5}
-\date{4/11/18}
-\author{Shane Flynn,Moises Romero}
-%==============================================================================%
-%	Everyone Please Make Comments if Something Needs to be Reviewed        %
-%                           Or just fix it yourself!                           %
+\title{Chem237: Lecture 7}
+\date{4/17/18}
+\author{Shane Flynn}
 %==============================================================================%
 \begin{document}
 \maketitle
-\section*{Approximate Bounds}
-%==============================================================================%
-%                           This Lecture begins with approximate integral methods , %
-% add in later
-%==============================================================================%
-\section*{Fourier Transform}
-A Fourier transform is a generalization of the complex Fourier series as the limit L $\to \infty$ defined as :
+
+\section*{More Complex Calculus}
+Consider
 \be
-g(y) = \int_{\- infty}^\infty f(x) e^{ixy} dx
+I = \int_0^\infty dx \quad \frac{1}{1+x^3}
 \ee
-And its inverse Fourier transform is defined by :
+We know that we want to use the residue to compute this integral, so we need to find the poles (which means we need the roots of the associated complex equation). 
 \be
-f(x) = \int_{-\infty}^{\infty} g(y) e^{-ixy} dy
+\begin{split}
+    1 + z^n &= 0 \Rightarrow z^n - 1 = 0\\
+    |z|^n = |1|
+\end{split}
 \ee
-Before this is discussed more thoroughly we will talk about Fourier Series.
-\subsection*{Fourier Series}
-A Fourier series is a method to write a periodic function in terms of Sines Cosines. A fourier series is written in the form of :
+So we need exactly n roots (root sof unity), consider the unit circle 
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.2]{Figures/unit.png}
+    \caption{Make a caption. Unit Circle for real/complex}
+\end{figure}
+
+All of the roots must be on the unit circle, we can define a complex number z as $z=e^{i\theta}$, which will be on the unit circle. 
 \be
-f(\theta) = \frac{A_o}{2} + \sum_{n=1}^\infty (A_n Cos(n\theta) + B_n Sin(n \theta) )
+1 = e^{ian}, \quad \theta = \frac{2\pi k}{n} \Rightarrow 1 = e^{2\pi ik}
 \ee
-The coefficients $A_n$ and $B_n$ can be found by multiplying the function by multiply each by Cos(n$\theta$) and Sin(n$\theta$) :
+Where k runs from 0,1,2,3,...,n-1 (to give a total of n roots). 
+
+So we can now find the roots
 \be
-A_n = \frac{1}{\pi} \int_0^{2\pi} f(\theta) Cos(n\theta) d\theta
+1+z^n \Rightarrow e^{i\theta n} = 1 - e^{i2\pi k + i\pi} \rightarrow \theta = \frac{2\pi k}{n} + \frac{\pi}{n}
 \ee
+
+Returning to our example we can find the first 3 roots for 1 + $|x|^3$ as:  $e^{\frac{i2\pi}{6}}, e^{\frac{-i2\pi}{6}}, -1 $.
+So we have foudn our 3 poles for this system. 
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.2]{Figures/poles.png}
+    \caption{Make a caption. 3 Poles for Cubic Equation}
+\end{figure}
+
+But we have a problem now, our integral bounds go from 0 to infinity, our function is not even so we cannot simply change the bounds.
+
+There are two ways we can continue, both will require those poles we just found. 
+
+This first trick is to actually consider a different problem, consider
 \be
-B_n = \frac{1}{\pi} \int_0^{2\pi} f(\theta) Sin(n\theta) d\theta
+\oint dz \quad \frac{\ln|z|}{1+z^3}
 \ee
-The $A_0$ term can be found by plugging in n=0 and getting :
+
+Why we are considering this other problem is not clear right now, but we will see.
+Unfortunatley the natural logarithm has a branching point, but we can get around this problem (at 0) with an interesting looking contour. 
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.2]{Figures/log.png}
+    \caption{Make a caption. I from 0-R, II circle, III R-0. Contour around natural log branching point at 0. ALSO REMEMBER TO PUT THE POLES IN (SAME AS LAST PROBLEM) 3 POLES -1, and the other 2. }
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Need to do this math%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+With this contour you can do some math and you find the residue to be 
 \be
-A_0 = \frac{2}{L} \int_0^L f(x) dx
+\frac{4\pi^2i\sqrt{3}}{9}
 \ee
-Where L is the period.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Need to do this math%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
