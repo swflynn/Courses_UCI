@@ -433,7 +433,7 @@ The Fourier series coefficients end up becoming exactly as the book has them wri
 So both conventions give the same result.
 An issue that occurs in scientific computing is that some math software packages will program Fourier series such that there are no $\sqrt{\pi}$'s or $\pi$'s at all and you are free to add them wherever you like.
 This becomes a third convention that simply does not make any sense mathematically and can cause confusion if you come across these packages.
-But, now that we know Fourier series come from just defining a linear vector space with sine and cosine as orthonormal basis vectors, we can use this knowledge as a check to make sure that our math always adds up correctly when we create the series from periodic functions.
+But, now that we know Fourier series are just vectors in a linear vector space with sine and cosine as orthonormal basis vectors, we can use this knowledge as a check to make sure that our math always adds up correctly when we create the series from periodic functions.
 
 This whole time, we've defined our Fourier series in an interval of length $2 \pi$ and we would now like to define a Fourier series that is periodic in an interval of any length L.
 So if we wanted our Fourier series to go from representing functions that are periodic with some period $2\pi$ in the variable $\theta$ to representing functions that are periodic with some period L in the variable x, we let
@@ -472,8 +472,189 @@ and our $B_n$ becomes
 which is now defined on an interval of length L such as $0 \leq x \leq L$, $-L \leq x \leq 0$, etc.
 Again, the book defines the coefficients with a $\frac{2}{L}$ but I can assure you that if you plug in our coefficients like I did in equation \ref{eq:fourier_check}, both conventions will yield the same series.
 
-Now that we have a full understanding of where a Fourier series comes from, we can consider some examples that require us to create one.
+Now that we have a full understanding of where a Fourier series comes from, we will see how much easier it will be to define Fourier Transforms using our convention.
+But for now, we will consider some examples that require us to create a Fourier Series to see where it can be applied.
 However, we basically covered how to create a Fourier series if we are given any periodic function $f(\theta)$ or $f(x)$.
 Therefore, we will consider some special cases where our given function is a periodic even or odd function.
+
+If we have a periodic even function, we say that $f(\theta) = f(- \theta)$.
+And if we wanted to express this function in terms of sine and cosine, since sine is an odd function (and this can be seen by seeing a plot of sine or by noticing that a Taylor expansion only gives polynomials with odd powers of x), our Fourier series will not have any sine contribution.
+This means that we can skip having to evaluate the $B_n$ coefficients because $B_n$'s dictate the amount of sine contribution, which we concluded is always zero.
+And all we need to evaluate are the $A_n$'s and we would be done.
+
+Likewise, if we have a periodic odd function, we can say that $f(\theta) = - f(\theta)$.
+And expressing the function in a Fourier series would only require us to evaluate the $B_n$ coefficients because there will be no cosine contribution since cosine is an even function.
+
+Consider the following plot of $f(\theta)$
+%==============================================================================%
+%  Need the plot of the square function
+%==============================================================================%
+where the function can be defined as a piecewise function.
+\be
+  f(x) =
+  \left\{
+    \begin{array}{ll}
+      +1 & \quad 0 < \theta < \pi \\
+      -1 & \quad \pi < \theta < 2 \pi
+    \end{array}
+  \right.
+\ee
+If we make a plot of the piecewise function from $- \pi$ to $\pi$ with a plot of $\sin(x)$ superimposed on top of it,
+%==============================================================================%
+%  Need plot of pieceiwse function with sin(x) on top of it.
+%==============================================================================%
+we can see that this function is an odd function because $f(\theta) = - f(\theta)$, so we will only need $B_n$'s when creating a Fourier series representation.
+Since $\sin(n \theta) = 0$ when $n = 0$, we don't have to consider the $B_0$ term and simply define the integral for $n = 1, 2, 3, \hdots$.
+We then have
+\be
+  B_n = \braket{s_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} sin(n \theta) f(\theta) d\theta
+\ee
+where our upper and lower limits came from noticing that our function is periodic from 0 to $2 \pi$.
+Since our function has different forms in the intervals $0 < \theta < \pi$ and $\pi < \theta < 2 \pi$, we could split up our integral into two integrals and evaluate
+\be
+  \begin{split}
+    B_n &= \braket{s_n|f(\theta)} \\
+    &= \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} sin(n \theta) f(\theta) d\theta \\
+    &= \frac{1}{\sqrt{\pi}} \int_0^{\pi} sin(n \theta) \cdot 1 d\theta + \frac{1}{\sqrt{\pi}} \int_{\pi}^{2 \pi} sin(n \theta) \cdot -1 d\theta \\
+    &= \frac{1}{\sqrt{\pi}} \Big( - \frac{\cos(n \theta)}{n} \Big) \Big|_0^{\pi} + \frac{1}{\sqrt{\pi}} \Big( \frac{\cos(n \theta)}{n} \Big) \Big|_{\pi}^{2 \pi} \\
+    &= \Big( - \frac{\cos(n \pi)}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} \Big) + \Big( \frac{\cos(2 n \pi)}{n \sqrt{\pi}} - \frac{\cos(n \pi)}{n \sqrt{\pi}} \Big)
+  \end{split}
+\ee
+Since $n = 1, 2, 3, \hdots$, we can say that $\cos(2 n \pi)$ will always be equal to 1, because any value of n will give this result.
+\be
+  \begin{split}
+    B_n &= \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} sin(n \theta) f(\theta) d\theta \\
+    &= \Big( - \frac{\cos(n \pi)}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} \Big) + \Big( \frac{1}{n \sqrt{\pi}} - \frac{\cos(n \pi)}{n \sqrt{\pi}} \Big) \\
+    &= \frac{-2 \cos(n \pi)}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} \\
+    &= \frac{-2 \cos(n \pi)}{n \sqrt{\pi}} + \frac{2}{n \sqrt{\pi}}
+  \end{split}
+\ee
+We cannot say that $\cos(n \pi)$ will always be equal to 1 because it can alternate in sign.
+But, we since we know that it will either be 1 or $-1$ depending on the value of n, we can replace $\cos(n \pi)$ with $(-1)^n$, giving
+\be
+  \begin{split}
+    B_n = \frac{-2 (-1)^n}{n \sqrt{\pi}} + \frac{2}{n \sqrt{\pi}} = \frac{2 (-1)^{n+1}}{n \sqrt{\pi}} + \frac{2}{n \sqrt{\pi}} = \frac{2}{n \sqrt{\pi}} ((-1)^{n+1} + 1)
+  \end{split}
+\ee
+And this is fine as an answer as long as it is specified that $n = 1, 2, 3, \hdots$.
+If you wanted to make this answer cleaner, you can say that
+\be
+  B_n =
+  \left\{
+    \begin{array}{ll}
+      0 & \quad \text{for all even n} \\
+      \frac{4}{n \sqrt{\pi}} & \quad \text{for all odd n}
+    \end{array}
+  \right.
+\ee
+So our Fourier series becomes
+\be
+  \begin{split}
+    \ket{f(\theta)} &= \sum_{n=0}^{\infty} B_n \ket{s_n} \\
+    &=  \sum_{n=1}^{\infty} \Big( \frac{4}{n \sqrt{\pi}} \Big) \frac{1}{\sqrt{\pi}} \sin(n \theta) \\
+    f(\theta) &= \frac{4}{\pi} \sum_{n=1}^{\infty} \frac{\sin(n \theta)}{n} \\
+    &= \frac{4}{\pi} \Big( \sin(\theta) + \frac{\sin(3 \theta)}{3} + \frac{\sin(5 \theta)}{5} + \hdots \Big)
+  \end{split}
+\ee
+where $n = 1, 3, 5, \hdots$.
+
+If we plot truncated versions of our Fourier series on top of our original function
+%==============================================================================%
+%  Need a plot of n = 5 and a plot of n = 15 next to each other right here.
+%==============================================================================%
+we can see that if we add more terms from the Fourier series, the series becomes a better and better representation of the original function.
+This kind of behavior of the Fourier series representations of piecewise functions such as this one is known as Gibb's Phenomenon or Gibb's oscillations.
+
+Consider another example
+\be
+  f(\theta) = \cos(k \theta) \qquad (- \pi < \theta < \pi)
+\ee
+where k is a real number but it is not restricted to integers.
+Just by looking at the equation, we can immediately tell that we only need cosine terms, so we will only compute the $A_n$'s for $n = 0, 1, 2, \hdots$
+\be
+  \begin{split}
+    A_n &= \braket{c_n|f(\theta)} \\
+    &= \frac{1}{\sqrt{\pi}} \int_{-\pi}^{\pi} \cos(n \theta) f(\theta) d\theta \\
+    &= \frac{1}{\sqrt{\pi}} \int_{-\pi}^{\pi} \cos(n \theta) \cos(k \theta) d\theta
+  \end{split}
+\ee
+We can exploit the properties of even functions, since an even function times an even function is another even function, and write our integral as
+\be
+  \frac{1}{\sqrt{\pi}} \int_{-\pi}^{\pi} \cos(n \theta) \cos(k \theta) d\theta
+  = \frac{2}{\sqrt{\pi}} \int_{0}^{\pi} \cos(n \theta) \cos(k \theta) d\theta
+\ee
+And we can substitute a product identity $\cos(x)\cos(y) = \frac{1}{2}[\cos(x - y) + \cos(x + y)]$ to make the integral easier to compute
+\be
+  \begin{split}
+    \frac{2}{\sqrt{\pi}} \int_{0}^{\pi} \cos(n \theta) \cos(k \theta) d\theta &= \frac{2}{\sqrt{\pi}} \int_{0}^{\pi} \frac{1}{2} [\cos(n \theta - k \theta) + \cos(n \theta + k \theta) ] d \theta \\
+    &= \frac{1}{\sqrt{\pi}} \int_{0}^{\pi} \cos[(n - k) \theta] d \theta + \frac{1}{\sqrt{\pi}} \int_{0}^{\pi} \cos[(n + k) \theta] d \theta \\
+    &= \frac{1}{\sqrt{\pi}} \Big( \frac{\sin[(n - k) \theta]}{(n - k)} \Big) \Big|_0^{\pi} + \frac{1}{\sqrt{\pi}} \Big( \frac{\sin[(n + k) \theta]}{(n + k)} \Big) \Big|_0^{\pi} \\
+    &= \frac{1}{\sqrt{\pi}} \frac{\sin[(n - k) \pi]}{(n-k)} + \frac{1}{\sqrt{\pi}} \frac{\sin[(n + k) \pi]}{(n+k)} \\
+    &= \frac{1}{\sqrt{\pi}} \frac{(n+k)}{(n+k)} \frac{\sin[(n - k) \pi]}{(n-k)} + \frac{1}{\sqrt{\pi}} \frac{(n-k)}{(n-k)} \frac{\sin[(n + k) \pi]}{(n+k)} \\
+    &= \frac{(n+k)}{\sqrt{\pi}} \frac{\sin[(n - k) \pi]}{(n^2-k^2)} + \frac{(n-k)}{\sqrt{\pi}} \frac{\sin[(n + k) \pi]}{(n^2-k^2)} \\
+    &= \frac{(n+k)\sin[n \pi - k \pi] + (n-k) \sin[n \pi + k \pi]}{\sqrt{\pi} (n^2 - k^2)} \\
+    &= \frac{1}{\sqrt{\pi}(n^2 - k^2)} [(n+k)\sin(n \pi - k \pi) + (n-k) \sin(n \pi + k \pi) ]
+  \end{split}
+\ee
+Using two more trig identities $$\sin(x - y) = \sin(x) \cos(y) - \cos(x) \sin(y) \quad \text{and} \quad \sin(x + y) = \sin(x) \cos(y) + \cos(x) \sin(y)$$
+we can make another substitution to get
+\be
+  \begin{split}
+    \frac{2}{\sqrt{\pi}} \int_{0}^{\pi} \cos(n \theta) \cos(k \theta) d\theta &= \frac{1}{(n^2 - k^2)} [(n+k)\sin(n \pi - k \pi) + (n-k) \sin(n \pi + k \pi) ] \\
+    &= \frac{1}{\sqrt{\pi}(n^2 - k^2)} \Big[ (n+k)[\sin(n \pi)\cos(k \pi) - \cos(n \pi) \sin(k \pi)] + \\
+    & \qquad (n - k)[\sin(n \pi)\cos(k \pi) + \cos(n \pi) \sin(k \pi)] \Big]
+  \end{split}
+\ee
+And we can set the two $\sin(n \pi)$'s to zero because n is an integer and we get
+\be
+  \begin{split}
+    \frac{2}{\sqrt{\pi}} \int_{0}^{\pi} \cos(n \theta) \cos(k \theta) d\theta &= \frac{1}{\sqrt{\pi}(n^2 - k^2)} \Big[-(n+k)\cos(n \pi) \sin(k \pi) + (n-k) \cos(n \pi) \sin(k \pi) \Big] \\
+    &= \frac{\cos(n \pi) \sin(k \pi)}{\sqrt{\pi}(n^2 - k^2)}[(n-k)-(n+k)] \\
+    &= \frac{-2k \cos(n \pi) \sin(k \pi)}{\sqrt{\pi}(n^2 - k^2)} \\
+    &= \frac{2k \cos(n \pi) \sin(k \pi)}{\sqrt{\pi}(k^2 - n^2)}
+  \end{split}
+\ee
+which is valid for $n = 0, 1, 2, \hdots$.
+If we want to make the result look cleaner, we can do what we did before with $\cos(n \pi)$ and replace it with $(-1)^n$, which gives
+\be
+  A_n = \frac{2}{\sqrt{\pi}} \int_{0}^{\pi} \cos(n \theta) \cos(k \theta) d\theta = \frac{(-1)^n 2k \sin(k \pi)}{\sqrt{\pi}(k^2 - n^2)}
+\ee
+So our Fourier series becomes
+\be
+  \begin{split}
+    \ket{f(\theta)} &= \sum_{n=0}^{\infty} A_n \ket{c_n} \\
+    &= \sum_{n=0}^{\infty} \Big( \frac{(-1)^n 2k \sin(k \pi)}{\sqrt{\pi}(k^2 - n^2)} \Big) \frac{1}{\sqrt{\pi}} \cos(n \theta) \\
+    \cos(k \theta) &= \sum_{n=0}^{\infty} \Big( \frac{(-1)^n 2k \sin(k \pi)}{\pi(k^2 - n^2)} \Big) \cos(n \theta) \\
+    &= \frac{2k \sin(k \pi)}{\pi} \Big( \frac{1}{2k^2} - \frac{\cos(\theta)}{k^2 - 1} + \frac{\cos(2 \theta)}{k^2 - 4} - \hdots \Big)
+  \end{split}
+\ee
+
+We've talked about functions where $f(\theta)$ is real so our Fourier series can consist of sines and cosines.
+But what if $f(\theta)$ was complex?
+All we need to do is change our basis from $\sin(n \theta)$ and $\cos(n \theta)$ to $e^{i n \theta}$.
+So we can define our series as
+\be
+  \ket{f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \ket{e_n}
+\ee
+where the series goes from $- \infty$ to $\infty$ to cover all space.
+We can check that our basis vector is orthogonal with itself by checking if
+We can normalize our basis by requiring that the projection of the basis vector with itself is equal to one $\braket{e_n|e_n} = 1$, which is the same as integrating over our finite interval $0 \leq \theta \leq 2 \pi$.
+\be
+  \braket{e_n | e_n} = \int_{0}^{2 \pi} c_n^2 e^{-i n \theta} e^{i n \theta} d \theta = c_n^2 \int_{0}^{2 \pi} 1 d \theta = 2 \pi c_n^2 = 1 \Rightarrow c_n = \frac{1}{\sqrt{2 \pi}}
+\ee
+So our Fourier series becomes
+\be
+  \begin{split}
+    \ket{f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \ket{e_n} \\
+    f(\theta) = \sum_{n= - \infty}^{\infty} C_n \Big( \frac{1}{\sqrt{\pi}} e^{i n \theta} \Big)
+  \end{split}
+\ee
+So we can now find the an analytic expression for the weight $C_n$ by projecting the basis vector $\ket{e_n}$ with our function $\ket{f(\theta)}$
+\be
+  \braket{e_n|f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \braket{e_n|e_n}
+\ee
+
+
+
 
 \end{document}
