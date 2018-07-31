@@ -315,14 +315,14 @@ What it means for our trig functions to be orthogonal is that if we have two fun
 \ee
 for any n and m.
 And if take the the product of two sine functions $\sin(nx)$ and $\sin(mx)$, then
-\be
+\be \label{eq:sin_sin_orth}
   \begin{split}
     \int_0^{2\pi} \sin(nx)\sin(mx) dx &= 0 \quad \text{if} \quad n \neq m \\
     \int_0^{2\pi} \sin(nx)\sin(mx) dx &= \pi \quad \text{if} \quad n = m
   \end{split}
 \ee
 Likewise, if we have two cosine functions $\cos(nx)$ and $\cos(mx)$, then
-\be
+\be \label{eq:cos_cos_orth}
   \begin{split}
     \int_0^{2\pi} \cos(nx)\cos(mx) dx &= 0 \quad \text{if} \quad n \neq m \\
     \int_0^{2\pi} \cos(nx)\cos(mx) dx &= \pi \quad \text{if} \quad n = m
@@ -330,12 +330,30 @@ Likewise, if we have two cosine functions $\cos(nx)$ and $\cos(mx)$, then
 \ee
 where n and m are integers $n,m = 1, 2, 3, \hdots$.
 If we wanted to normalize our trig functions, then we must consider every sine and cosine having a normalization constant $a_n$ and $b_n$ such that the product of sines is equal to one
-\be \label{eq:sin_sin}
+\be \label{eq:sin_sin_norm_norm}
   \int_0^{2\pi} a_n^2 \sin^2(nx) = a_n^2\pi = 1 \Rightarrow a_n = \frac{1}{\sqrt{\pi}}
 \ee
 and the product of cosines is also equal to one
-\be \label{eq:cos_cos}
+\be \label{eq:cos_cos_norm_norm}
   \int_0^{2\pi} a_n^2 \cos^2(nx) = b_n^2\pi = 1 \Rightarrow b_n = \frac{1}{\sqrt{\pi}}
+\ee
+So our functions are now orthonormal (orthogonal and normalized).
+Therefore, if we rewrite equations \ref{eq:sin_sin_orth} and \ref{eq:cos_cos_orth} we get
+\be \label{eq:sin_sin_orthonorm}
+  \int_0^{2\pi} \sin(nx)\sin(mx) dx = \delta_{nm}
+\ee
+\be \label{eq:cos_cos_orthonorm}
+  \int_0^{2\pi} \cos(nx)\cos(mx) dx = \delta_{nm}
+\ee
+where $\delta_{nm}$ is the kronecker delta and it is shorthand notation for
+\be
+\delta_{nm} =
+  \left\{
+    \begin{array}{ll}
+      0 & \quad \text{if n} \neq \text{m} \\
+      1 & \quad \text{if n = m}
+    \end{array}
+  \right.
 \ee
 Whether your decide to normalize your sines and cosines is one convention while not normalizing your sines and cosines is another convention.
 We will use the convention of using normalized sines and cosines so that these integrals either evaluate to 0 or 1 for simplicity.
@@ -408,7 +426,7 @@ If we project the cosine vector $\bra{c_n}$ onto our $\ket{f(\theta)}$ vector (r
   \braket{c_n|f(\theta)} = \sum_{n=0}^{\infty} A_n \braket{c_n|c_n} + B_n \braket{c_n|s_n}
 \ee
 and since we know from equation \ref{eq:sin_cos} that the integral of sine and cosine is always zero, then the dot product $\braket{c_n|s_n}$ is always zero.
-And since we know from equation \ref{eq:cos_cos} that the integral of cosine and cosine is 1 when $n = m$ and 0 when $n \neq m$ (don't forget about the normalization constants), then all the terms in the sum but one will cancel out and all that we're left with is
+And since we know from equation \ref{eq:cos_cos_orthonorm} that $\braket{c_n|c_n}$ is 1 when $n = m$ and 0 when $n \neq m$ (don't forget about the normalization constants), then all the terms in the sum but one will cancel out and all that we're left with is
 \be
   A_n = \braket{c_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \cos(n \theta) f(\theta) d\theta
 \ee
@@ -416,7 +434,7 @@ If we project the sine vector $\bra{s_n}$ onto our $\ket{f(\theta)}$ vector, we 
 \be
   \braket{s_n|f(\theta)} = \sum_{n=0}^{\infty} A_n \braket{s_n|c_n} + B_n \braket{s_n|s_n}
 \ee
-And using the same logic as before, equation \ref{eq:sin_cos} says that $\braket{s_n|c_n}$ is zero for any n and m, and equation \ref{eq:sin_sin} says $\braket{s_n|s_n}$ will only be 1 when $n = m$, so we're left with
+And using the same logic as before, equation \ref{eq:sin_cos} says that $\braket{s_n|c_n}$ is zero for any n and m, and equation \ref{eq:sin_sin_orthonorm} says $\braket{s_n|s_n}$ will only be 1 when $n = m$, so we're left with
 \be
   B_n = \braket{s_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \sin(n \theta) f(\theta) d\theta
 \ee
@@ -625,7 +643,8 @@ So our Fourier series becomes
     \ket{f(\theta)} &= \sum_{n=0}^{\infty} A_n \ket{c_n} \\
     &= \sum_{n=0}^{\infty} \Big( \frac{(-1)^n 2k \sin(k \pi)}{\sqrt{\pi}(k^2 - n^2)} \Big) \frac{1}{\sqrt{\pi}} \cos(n \theta) \\
     \cos(k \theta) &= \sum_{n=0}^{\infty} \Big( \frac{(-1)^n 2k \sin(k \pi)}{\pi(k^2 - n^2)} \Big) \cos(n \theta) \\
-    &= \frac{2k \sin(k \pi)}{\pi} \Big( \frac{1}{2k^2} - \frac{\cos(\theta)}{k^2 - 1} + \frac{\cos(2 \theta)}{k^2 - 4} - \hdots \Big)
+    &= \frac{2k \sin(k \pi)}{\pi} \sum_{n=0}^{\infty} \frac{(-1)^n \cos(n \theta)}{k^2 - n^2} \\
+    &= \frac{2k \sin(k \pi)}{\pi} \Big( \frac{1}{k^2} - \frac{\cos(\theta)}{k^2 - 1} + \frac{\cos(2 \theta)}{k^2 - 4} - \hdots \Big)
   \end{split}
 \ee
 
@@ -646,14 +665,26 @@ So our Fourier series becomes
 \be
   \begin{split}
     \ket{f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \ket{e_n} \\
-    f(\theta) = \sum_{n= - \infty}^{\infty} C_n \Big( \frac{1}{\sqrt{\pi}} e^{i n \theta} \Big)
+    f(\theta) = \sum_{n= - \infty}^{\infty} C_n \Big( \frac{1}{\sqrt{2 \pi}} e^{i n \theta} \Big)
   \end{split}
 \ee
-So we can now find the an analytic expression for the weight $C_n$ by projecting the basis vector $\ket{e_n}$ with our function $\ket{f(\theta)}$
+So we can now find an analytic expression for the weight $C_n$ by projecting the basis vector $\ket{e_n}$ with our function $\ket{f(\theta)}$
 \be
-  \braket{e_n|f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \braket{e_n|e_n}
+  \braket{e_n|f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \braket{e_n|e_n} \quad \Rightarrow \quad C_n = \braket{e_n|f(\theta)} = \frac{1}{\sqrt{2 \pi}} \int_0^{2 \pi} e^{-i n \theta} f(\theta) d \theta
 \ee
 
+If we wanted to write a Fourier series for a function that is periodic over a length L, then we substitute $\theta = \frac{2 \pi x}{L}$ and $d\theta = \frac{2 \pi}{L} dx$ to get a new coefficient $C_n$.
+\be
+  \begin{split}
+    C_n = \braket{e_n|f(x)} &= \frac{1}{\sqrt{2 \pi}} \int_0^L e^{- 2 \pi n i / L} f(x) \frac{2 \pi}{L} dx \\
+    &= \frac{2 \pi}{L \sqrt{2 \pi}} \int_0^L e^{- 2 \pi n i / L} f(x) dx \\
+    &= \frac{\sqrt{2 \pi}}{L} \int_0^L e^{- 2 \pi n i / L} f(x) dx \\
+  \end{split}
+\ee
+Therefore
+\be
+  \ket{f(x)} = \sum_{n = -\infty}^{\infty} C_n \ket{e_n} \Rightarrow f(x) = \sum_{n = -\infty}^{\infty} C_n \frac{1}{\sqrt{2 \pi}} e^{2 \pi n i / L} \qquad C_n = \braket{e_n|f(x)} \frac{\sqrt{2 \pi}}{L} \int_0^L e^{- 2 \pi n i / L} f(x) dx
+\ee
 
 
 
