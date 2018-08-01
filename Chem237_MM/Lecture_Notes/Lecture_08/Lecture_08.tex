@@ -296,25 +296,16 @@ The concept of a Fourier Series is made more intuitive when understood in the co
 Linear Vector Spaces are discussed heavily in Linear Algebra courses and are thought about constantly in Quantum Mechanics.
 We will be covering Linear Algebra later in the course, but if you have not been exposed to Linear Algebra you can refer to Lecture 12 where we discuss it in full detail.
 Or you can try following along until you don't understand something and keep going back and forth with both lectures and whatever other material you may be using.
-We will start with basic general definitions that are discussed in any textbook but we will soon make the connection to vector spaces to get a better understanding of where things come from.
+We will start with some background info that is discussed in any textbook and then we will make the connection to Fourier Series and Fourier Transform.
 
-When we have a function $f(\theta)$ that is defined periodically for $0 \leq \theta \leq 2 \pi$, we can create an expansion that is of the form
-\be
-  f(\theta) = \sum_{n = 0}^{\infty} A_n \cos(n \theta) + B_n \sin(n \theta)
-\ee
-This is considered the general form of a fourier series and the coefficients can be found analytically.
-When we say that a function is periodic, we mean that the function repeats in intervals $- 2\pi \leq \theta \leq 0$, $- \pi \leq \theta \leq \pi$, $2 \pi \leq \theta \leq 4 \pi $, etc.
-It is only required that the interval is of length $2\pi$.
-If we extend or contract the length of the interval, we must change the form of the sine and cosine accordingly.
-For the time being, we will stick to the interval $0 \leq \theta \leq 2 \pi$ and discuss changing the length of the interval later.
-
+\subsubsection*{Orthonormality}
 One of the nice properties of sine and cosine functions is that they are orthogonal on given intervals.
-What it means for our trig functions to be orthogonal is that if we have two functions $\sin(nx)$ and $\cos(mx)$ and integrate their product over the interval $0 \leq x \leq 2 \pi$ we get
+What it means for two functions to be orthogonal is that if we have, for example, $\sin(nx)$ and $\cos(mx)$ and integrate their product over the interval $0 \leq x \leq 2 \pi$ we get
 \be \label{eq:sin_cos}
   \int_0^{2\pi} \sin(nx)\cos(mx) dx = 0
 \ee
-for any n and m.
-And if take the the product of two sine functions $\sin(nx)$ and $\sin(mx)$, then
+for any integers n and m.
+If we have a similar integral but instead with two functions of the same type, such as $\sin(nx)$ and $\sin(mx)$, then we get
 \be \label{eq:sin_sin_orth}
   \begin{split}
     \int_0^{2\pi} \sin(nx)\sin(mx) dx &= 0 \quad \text{if} \quad n \neq m \\
@@ -328,16 +319,27 @@ Likewise, if we have two cosine functions $\cos(nx)$ and $\cos(mx)$, then
     \int_0^{2\pi} \cos(nx)\cos(mx) dx &= \pi \quad \text{if} \quad n = m
   \end{split}
 \ee
-where n and m are integers $n,m = 1, 2, 3, \hdots$.
-If we wanted to normalize our trig functions, then we must consider every sine and cosine having a normalization constant $a_n$ and $b_n$ such that the product of sines is equal to one
+where, again, n and m are integers $n,m = 1, 2, 3, \hdots$.
+If we wanted to normalize a function, then we must consider our function of interest carrying around a normalization constant $a_n$ such that the integral of the function times itself over some interval is equal to one, i.e. $\int |f(x)|^2 dx = 1$.
+If we had complex functions, we would need to be careful with the square modulus $|f(x)|^2$, because the modulus is defined as
+\be
+  |f(x)|^2 = f^*(x) f(x)
+\ee
+where $f^*(x)$ denotes the complex conjugate.
+If you have a real function, then the square modulus is simply the function times itself.
+If we do this for a real function $a_n \sin(nx)$, this would look like
 \be \label{eq:sin_sin_norm_norm}
-  \int_0^{2\pi} a_n^2 \sin^2(nx) = a_n^2\pi = 1 \Rightarrow a_n = \frac{1}{\sqrt{\pi}}
+  \int_0^{2\pi} a_n^2 \sin^2(nx) = a_n^2\pi = 1
 \ee
-and the product of cosines is also equal to one
+and we can use this to find the normalization constant.
+\be
+  a_n^2\pi = 1 \Rightarrow a_n = \frac{1}{\sqrt{\pi}}
+\ee
+If we do this for another function $b_n \cos(nx)$, we can find its normalization constant $b_n$
 \be \label{eq:cos_cos_norm_norm}
-  \int_0^{2\pi} a_n^2 \cos^2(nx) = b_n^2\pi = 1 \Rightarrow b_n = \frac{1}{\sqrt{\pi}}
+  \int_0^{2\pi} b_n^2 \cos^2(nx) = b_n^2\pi = 1 \quad \Rightarrow \quad b_n = \frac{1}{\sqrt{\pi}}
 \ee
-So our functions are now orthonormal (orthogonal and normalized).
+So if we have two normalized functions that are orthogonal to each other, we say they are orthonormal.
 Therefore, if we rewrite equations \ref{eq:sin_sin_orth} and \ref{eq:cos_cos_orth} we get
 \be \label{eq:sin_sin_orthonorm}
   \int_0^{2\pi} \sin(nx)\sin(mx) dx = \delta_{nm}
@@ -355,95 +357,150 @@ where $\delta_{nm}$ is the kronecker delta and it is shorthand notation for
     \end{array}
   \right.
 \ee
-Whether your decide to normalize your sines and cosines is one convention while not normalizing your sines and cosines is another convention.
-We will use the convention of using normalized sines and cosines so that these integrals either evaluate to 0 or 1 for simplicity.
+There are usually two conventions, either choosing to normalize your functions or choosing not to normalize your functions.
+We will use the convention of using normalized functions so that our integrals either evaluate to 0 or 1 for simplicity.
 
-To introduce the concept of a linear vector space, remember that whenever we have a function, we can almost always represent it in a Taylor series expansion, giving us
+\subsubsection*{Dirac Notation}
+You're probably comfortable with representing vectors as variables with an arrow over it like $\vec{a}$.
+So when we say that when we are taking the inner product of two vectors (you may remember this as the dot product), this looks like $\vec{a} \cdot \vec{b}$.
+In Physics, we use a different type of notation that means the same thing which is called dirac notation, aka braket notation.
+A vector in this notation can be a ket $\ket{a}$ or a bra $\bra{a}$ but it is usually shown as a ket.
+So the inner product of two vectors $\vec{u}$ and $\vec{v}$ in braket notation becomes
 \be
-  f(x) = \sum_{n=0}^{\infty} h_n x^n
+  \vec{u} \cdot \vec{v} = \braket{u|v}
 \ee
-and (assuming our function can be Taylor expanded) we can think of the function as having a basis of polynomials of the form $x^n$ with weightings $h_n$ that are of the form
+and we can remember thinking about the inner product as a projection of some vector $\vec{u}$ onto another vector $\vec{v}$.
+%==============================================================================%
+% Flashlight image would go here
+%==============================================================================%
+If we represented a function $f(x)$ as a ket, it could look like $\ket{f(x)}$ or $\ket{f}$.
+The naming of a bra or ket is entirely up to you as long as you remember what it represents.
+If we had two functions $\ket{f(x)}$ and $\ket{g(x)}$, then $\braket{f(x)|g(x)}$ is defined as an integral of their product
 \be
-  h_n = \frac{f^{(n)}(x_o)}{n!}
+  \braket{f(x)|g(x)} = \int_{- \infty}^{\infty} f^*(x) g(x) dx
 \ee
-From lecture 3, we showed that sine and cosine both have Taylor expansions of the form
+where the upper and lower limits always have to be specified beforehand.
+In this case, we are integrating over all space.
+Make sure to remember that, when using dirac notation, our function in the ket needs to be in the form of its complex conjugate when evaluating the integral.
+Therefore,
 \be
-  \begin{split}
-    \sin(x) &= 0 + x + 0\frac{x^2}{2!} - \frac{x^3}{3!} + \hdots = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \hdots \\
-    \cos(x) &= 1 + 0x - \frac{x^2}{2!} + 0 \frac{x^3}{3!} + \hdots = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \hdots
-  \end{split}
+  \braket{g(x)|f(x)} = \int_{- \infty}^{\infty} g^*(x) f(x) dx
 \ee
-And we can see that $\sin(x)$ and $\cos(x)$ are functions of x with odd and even powers.
-But when $\sin(x)$ and $\cos(x)$ are added together, we will always have an infinite degree polynomial in x.
+and to make the connection to normalization,
 \be
-  \cos(x) + \sin(x) = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \hdots) + (x - \frac{x^3}{3!} + \frac{x^5}{5!} - \hdots) = 1 + x - \frac{x^2}{2!} - \frac{x^3}{3!} + \frac{x^4}{4!} + \hdots
+  \braket{f|f} = \int_{- \infty}^{\infty} |f(x)|^2 dx
 \ee
+You could imagine how this could be done to show two functions being orthogonal to each other.
+I said earlier that we define vectors in braket notation as bras or kets and if you're confused about why we could treat functions the same way in this notation, it is because we can think of some functions as vectors themselves in a vector space.
+I may switch back and forth with representing vectors with arrows or kets but this is just to enforce the idea that they are the same thing.
 
-If we consider a set of all polynomials $x^n$ together with the addition of polynomials and the multiplication of a polynomial by a number, we have an infinite dimensional linear vector space where our polynomials themselves are vectors.
-Likewise, we can think of a set of all linear combinations of $\sin(nx)$ and $\cos(nx)$ as a vector space, where $\sin(nx)$ and $\cos(nx)$ are orthogonal basis vectors.
-In Physics, this comes up all the time when we discuss Hermitian operators because it turns out that Hermitian operators often have eigenvectors of the form $\sin(nx)$ and $\cos(mx)$.
-If you're thinking ahead, we can also have an complex exponential $e^{ix}$ or $e^{-ix}$ as a basis vector as well but we will consider this later in lecture.
-
-Going back to our fourier series,
+\subsubsection*{Linear Vector Space}
+Linear vector spaces are defined such that each vector in the space needs to follow certain axioms in order for it to be considered a linear vector space.
+One property of a vector space that is important to remember is that any vector $v_i$ can be represented as a linear combination of basis vectors $\ket{e_i}$
 \be
-  f(\theta) = \sum_{n = 0}^{\infty} A_n \cos(n \theta) + B_n \sin(n \theta)
+  \ket{v} = \sum_{i = 0}^{n} a_i \ket{e_i}
 \ee
-now that we can think of having an infinite vector space where our functions are vectors, we can think of this series as a sum of orthonormal basis vectors in the form of sine and cosine with weightings $A_n$ and $B_n$.
-If we use dirac notation, we can make our series look like
+So if we had two basis vectors $\vec{e}_1$ and $\vec{e}_2$, any vector $\vec{v}$ could be represented as
 \be
-  \ket{f(\theta)} = \sum_{n=0}^{\infty} A_n \ket{c_n} + B_n \ket{s_n}
+  \ket{v} = a_1 \ket{e_1} + a_2 \ket{e_2}
 \ee
-where the $\ket{c_n}$'s are our cosines with integer n and the $\ket{s_n}$'s are our sines with integer n.
+where $a_1$ and $a_2$ are coefficients or "weightings" that define how much their repsective basis contributes to the definition of the vector $\vec{v}$.
+In terms of functions, a set of infinite polynomials \{$x^0, x^1, x^2, x^3, \hdots$\} can be considered a basis in a vector space where every vector is itself a polynomial (this is first thing that is proven in every standard Linear Algebra course but we will not prove it here so take my word for it).
+So any polynomial can be represented as
+\be
+  \ket{v} = \sum_{i=1}^{n} a_i \ket{e_i} = \sum_{i=1}^{n} a_i x^i
+\ee
+where n defines the dimensions of the space.
+So if we have an infinite number of basis vectors, we have an infinite dimensional space.
 
-Since we now have a vector space, we want to be able to define an inner product (you may remember it as the dot product) on our vector space.
-The reason why we want to define an inner product is because we want to be able to define an orthogonal projection of one vector onto another.
+Remember that whenever we have a function, we can almost always represent it in a Taylor series expansion, giving us
+\be
+  f(x) = \sum_{n=0}^{\infty} a_n x^n
+\ee
+where $a_n$ is defined as
+\be
+  a_n = \frac{f^{(n)}(x_o)}{n!}
+\ee
+If you haven't noticed yet where I'm going with this, we could think of our expanded function $f(x)$ as a vector that is represented as a linear combination of basis vectors $x^n$.
+
+Now that we have a vector space, we want to be able to define an inner product on our space.
+The reason why we want to define an inner product is because we want to be able to define an orthogonal projection of one vector onto another, as I've explained before.
 When we project a vector $\vec{u}$ onto another vector $\vec{v}$, we consider this as taking the dot product
 \be
   \vec{u} \cdot \vec{v} = u_1v_1 + u_2v_2 + \hdots
 \ee
-and in dirac notation this looks like
-\be
-  \vec{u} \cdot \vec{v} = \braket{u|v}
-\ee
-And since our functions can be thought of as vectors, we can think of performing an inner product with our functions!
-But if you're confused about how to do that, it turns out that taking an integral is exactly the same thing as the inner product!
+And since our functions can be thought of as vectors, we can think of performing an inner product with our functions because taking an integral is exactly the same thing as the inner product!
 
 When we have two vectors, the dot product is defined as multiplying a component from one vector and a component from another vector and adding up all the multiplications.
 When we have two functions f and g, the integral of their product is defined as multiplying a function evaluated at one point and another function evaluated at a point, with each product having a weight dx, and adding up all the multiplications.
 \be
   \int_a^b f(x)g(x) = f(a)g(a)dx + f(a + dx)g(a + dx)dx + \hdots
 \ee
-So our orthogonal projection is the same thing as taking the integral of the product of our orthogonal functions!
+So our inner product for functions is the same thing as taking the integral of the product of our functions!
 \be
   \braket{f|g} = \int_a^b f^*(x)g(x) dx
 \ee
-Notice that using dirac notation means that our function in the ket needs to be in the form of its complex conjugate when evaluating the integral.
-If our sines and cosines are real functions however, then the complex conjugate of a real function is simply itself.
 
-Now that we know we can take dot products of our series with other vectors, we can use our vectors' orthogonality properties to find an expression for the coefficients $A_n$ and $B_n$.
-If we project the cosine vector $\bra{c_n}$ onto our $\ket{f(\theta)}$ vector (remember, projection means dot product), we get, in dirac notation,
+\subsubsection*{Fourier Series}
+In lecture 3, we showed that sine and cosine both have Taylor expansions of the form
 \be
-  \braket{c_n|f(\theta)} = \sum_{n=0}^{\infty} A_n \braket{c_n|c_n} + B_n \braket{c_n|s_n}
+  \begin{split}
+    \sin(x) &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \hdots \\
+    \cos(x) &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \hdots
+  \end{split}
+\ee
+where $\sin(x)$ and $\cos(x)$ are functions of x with odd and even powers, respectively.
+If we add $\sin(x)$ and $\cos(x)$ together, we get an infinite degree polynomial in x.
+\be
+  \cos(x) + \sin(x) = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \hdots) + (x - \frac{x^3}{3!} + \frac{x^5}{5!} - \hdots) = 1 + x - \frac{x^2}{2!} - \frac{x^3}{3!} + \frac{x^4}{4!} + \hdots
+\ee
+Therefore, we can think of $\cos(nx)$ and $\sin(nx)$, where n is an integer, as being basis vectors in a space where every vector is written as a linear combination of them
+\be
+  \ket{f} = \sum_{n = 0}^{\infty} a_n \ket{cos(nx)} + b_n \ket{\sin(nx)}
+\ee
+And if we don't use dirac notation for a second and replace x with $\theta$, we recover the exact form of a Fourier series
+\be
+  f(\theta) = \sum_{n = 0}^{\infty} A_n \cos(n \theta) + B_n \sin(n \theta)
+\ee
+So every time we see a Fourier series, we can think of it as just a vector $f(\theta)$ that is represented as a linear combination of basis vectors $\cos(n \theta)$ and $\sin(n \theta)$.
+And we will see that we can easily find an expression for the coefficients through the use of dirac notation.
+If you're thinking ahead, we can also have a complex exponential $e^{ix}$ or $e^{-ix}$ as a basis vector as well, but we will consider this later in lecture.
+
+While we are able to think of a series as a sum of vectors, a Fourier series can only be created from functions $f(\theta)$ that are defined periodically for intervals of length L.
+When we say that a function is periodic, we mean that the function repeats in intervals, e.g. $- 2\pi \leq \theta \leq 0$, $- \pi \leq \theta \leq \pi$, $2 \pi \leq \theta \leq 4 \pi $, etc.
+It is only required that the interval is of a certain length, in this case $2 \pi$.
+For the time being, we will stick to the interval $0 \leq \theta \leq 2 \pi$ and discuss changing the length of the interval later because the length of the interval does not change how we find the coefficients.
+
+We will be using the convention of having our basis vectors be normalized so that our Fourier series is now
+\be
+  \ket{f(\theta)} = \sum_{n=0}^{\infty} A_n \ket{c_n} + B_n \ket{s_n}
+\ee
+where $\ket{c_n} = \frac{1}{\sqrt{\pi}} \cos(n \theta)$ and $\ket{s_n} = \frac{1}{\sqrt{\pi}} \sin(n \theta)$, where $\frac{1}{\sqrt{\pi}}$ is the normalization constant we derived earlier in Lecture.
+Now that we know how to take dot products in braket notation, we can use our functions' orthogonality properties to find an expression for the coefficients $A_n$ and $B_n$.
+
+If we project the cosine vector $\bra{c_n}$ onto our $\ket{f(\theta)}$ vector (remember, projection means dot product), we get,
+\be
+  \braket{c_n|f(\theta)} = \bra{c_n} \Big(\sum_{n=0}^{\infty} A_n \ket{c_n} + B_n \ket{s_n} \Big) = \sum_{n=0}^{\infty} A_n \braket{c_n|c_n} + B_n \braket{c_n|s_n}
 \ee
 and since we know from equation \ref{eq:sin_cos} that the integral of sine and cosine is always zero, then the dot product $\braket{c_n|s_n}$ is always zero.
-And since we know from equation \ref{eq:cos_cos_orthonorm} that $\braket{c_n|c_n}$ is 1 when $n = m$ and 0 when $n \neq m$ (don't forget about the normalization constants), then all the terms in the sum but one will cancel out and all that we're left with is
+And since we know from equation \ref{eq:cos_cos_orthonorm} that $\braket{c_n|c_n}$ is 1 when $n = m$ and 0 when $n \neq m$, then all the terms in the sum but one will cancel out and all that we're left with is
 \be
   A_n = \braket{c_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \cos(n \theta) f(\theta) d\theta
 \ee
-If we project the sine vector $\bra{s_n}$ onto our $\ket{f(\theta)}$ vector, we get, in dirac notation
+If we project the sine vector $\bra{s_n}$ onto our $\ket{f(\theta)}$ vector, we get,
 \be
-  \braket{s_n|f(\theta)} = \sum_{n=0}^{\infty} A_n \braket{s_n|c_n} + B_n \braket{s_n|s_n}
+  \braket{s_n|f(\theta)} = \bra{s_n} \Big(\sum_{n=0}^{\infty} A_n \ket{c_n} + B_n \ket{s_n} \Big) = \sum_{n=0}^{\infty} A_n \braket{s_n|c_n} + B_n \braket{s_n|s_n}
 \ee
 And using the same logic as before, equation \ref{eq:sin_cos} says that $\braket{s_n|c_n}$ is zero for any n and m, and equation \ref{eq:sin_sin_orthonorm} says $\braket{s_n|s_n}$ will only be 1 when $n = m$, so we're left with
 \be
   B_n = \braket{s_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \sin(n \theta) f(\theta) d\theta
 \ee
-If you check what the Math methods book has for the coefficients $A_n$ and $B_n$, you'll notice that there is a factor of $\frac{1}{\pi}$ in front of the integrals, whereas we have $\frac{1}{\sqrt{\pi}}$.
+If you check to see what our Math methods book has for the coefficients $A_n$ and $B_n$, you'll notice that there is a factor of $\frac{1}{\pi}$ in front of the integrals, whereas we have $\frac{1}{\sqrt{\pi}}$.
 The reason for this is because (and some books do not mention this explicitly like ours) the book is choosing the convention where the basis functions are not normalized, whereas we have chosen to use the convention where the basis functions are normalized.
 If you're starting to think that our convention is wrong, watch what happens when we explicitly write the fourier series with the coefficients written in their integral form using our convention.
 \be \label{eq:fourier_check}
   \begin{split}
-    f(\theta) &= \sum_{n = 0}^{\infty} \Big( \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \cos(n \theta) f(\theta) d\theta \Big) \frac{1}{\sqrt{\pi}} \cos(n \theta) + \Big( \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \sin(n \theta) f(\theta) d\theta \Big) \sin(n \theta) \\
+    f(\theta) &= \sum_{n = 0}^{\infty} \Big( \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \cos(n \theta) f(\theta) d\theta \Big) \frac{1}{\sqrt{\pi}} \cos(n \theta) + \Big( \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \sin(n \theta) f(\theta) d\theta \Big) \frac{1}{\sqrt{\pi}} \sin(n \theta) \\
     &= \sum_{n = 0}^{\infty} \Big( \frac{1}{\pi} \int_0^{2\pi} \cos(n \theta) f(\theta) d\theta \Big) \cos(n \theta) + \Big( \frac{1}{\pi} \int_0^{2\pi} \sin(n \theta) f(\theta) d\theta \Big) \sin(n \theta)
   \end{split}
 \ee
@@ -465,22 +522,24 @@ If we rearrange the equation above we get
 \ee
 and our Fourier series is now
 \be
- f(\theta) = \sum_{n = 0}^{\infty} A_n \cos \Big( \frac{2 \pi n x}{L} \Big) + B_n \sin \Big( \frac{2 \pi n x}{L} \Big)
+ f(\theta) = \sum_{n = 0}^{\infty} A_n \frac{1}{\sqrt{\pi}} \cos \Big( \frac{2 \pi n x}{L} \Big) + B_n \frac{1}{\sqrt{\pi}} \sin \Big( \frac{2 \pi n x}{L} \Big)
 \ee
 As for our coefficients, we don't need to change the $\frac{1}{\sqrt{\pi}}$ because that comes naturally from our normalized basis.
 But we need to make the substitution
 \be
   \theta = \frac{2 \pi x}{L} \qquad d\theta = \frac{2 \pi}{L} dx
 \ee
-So our $A_n$ becomes
+into our integrals.
+So $A_n$ becomes
 \be
   \begin{split}
     A_n &= \braket{c_n|f(x)} \\
+    &= \frac{1}{\sqrt{\pi}} \int_0^{L} \cos \Big( \frac{2 n \pi x}{L} \Big) f(x) \frac{2 \pi}{L} dx \\
     &= \frac{1}{\sqrt{\pi}} \frac{2 \pi}{L} \int_0^{L} \cos \Big( \frac{2 n \pi x}{L} \Big) f(x) dx \\
     &= \frac{2 \sqrt{\pi}}{L} \int_0^{L} \cos \Big( \frac{2 n \pi x}{L} \Big) f(x) dx \\
   \end{split}
 \ee
-and our $B_n$ becomes
+and $B_n$ becomes
 \be
   \begin{split}
     B_n &= \braket{s_n|f(x)} \\
@@ -495,15 +554,16 @@ But for now, we will consider some examples that require us to create a Fourier 
 However, we basically covered how to create a Fourier series if we are given any periodic function $f(\theta)$ or $f(x)$.
 Therefore, we will consider some special cases where our given function is a periodic even or odd function.
 
+If we have a periodic odd function, we say that $-f(\theta) = f(-\theta)$.
+And if we wanted to represent an odd function as a Fourier series, we could use the fact that sine is an odd function and cosine is an even function to deduce that we will not have any cosine contribution.
+This means that we can skip having to evaluate the $A_n$ coefficients because $A_n$'s dictate the amount of cosine contribution, which we concluded is always zero.
+And all we need to evaluate are the $B_n$'s and we would be done.
+
 If we have a periodic even function, we say that $f(\theta) = f(- \theta)$.
-And if we wanted to express this function in terms of sine and cosine, since sine is an odd function (and this can be seen by seeing a plot of sine or by noticing that a Taylor expansion only gives polynomials with odd powers of x), our Fourier series will not have any sine contribution.
-This means that we can skip having to evaluate the $B_n$ coefficients because $B_n$'s dictate the amount of sine contribution, which we concluded is always zero.
-And all we need to evaluate are the $A_n$'s and we would be done.
+And using the same logic as before, we can skip having to evaluate the $B_n$ coefficients because $B_n$'s dictate the amount of sine contribution, which we can conclude is always zero.
+So all we would need to evaluate are the $A_n$'s and we would be done.
 
-Likewise, if we have a periodic odd function, we can say that $f(\theta) = - f(\theta)$.
-And expressing the function in a Fourier series would only require us to evaluate the $B_n$ coefficients because there will be no cosine contribution since cosine is an even function.
-
-Consider the following plot of $f(\theta)$
+As our first example, consider the following plot of $f(\theta)$
 %==============================================================================%
 %  Need the plot of the square function
 %==============================================================================%
@@ -521,13 +581,13 @@ If we make a plot of the piecewise function from $- \pi$ to $\pi$ with a plot of
 %==============================================================================%
 %  Need plot of pieceiwse function with sin(x) on top of it.
 %==============================================================================%
-we can see that this function is an odd function because $f(\theta) = - f(\theta)$, so we will only need $B_n$'s when creating a Fourier series representation.
-Since $\sin(n \theta) = 0$ when $n = 0$, we don't have to consider the $B_0$ term and simply define the integral for $n = 1, 2, 3, \hdots$.
+we can see that this function is an odd function, so we will only need $B_n$'s when creating a Fourier series representation.
+Since $\sin(n \theta) = 0$ when $n = 0$, we don't have to consider the $B_0$ term and only consider $n = 1, 2, 3, \hdots$.
 We then have
 \be
   B_n = \braket{s_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} sin(n \theta) f(\theta) d\theta
 \ee
-where our upper and lower limits came from noticing that our function is periodic from 0 to $2 \pi$.
+where our upper and lower limits come from noticing that our function is periodic from 0 to $2 \pi$.
 Since our function has different forms in the intervals $0 < \theta < \pi$ and $\pi < \theta < 2 \pi$, we could split up our integral into two integrals and evaluate
 \be
   \begin{split}
@@ -581,13 +641,15 @@ If we plot truncated versions of our Fourier series on top of our original funct
 %  Need a plot of n = 5 and a plot of n = 15 next to each other right here.
 %==============================================================================%
 we can see that if we add more terms from the Fourier series, the series becomes a better and better representation of the original function.
-This kind of behavior of the Fourier series representations of piecewise functions such as this one is known as Gibb's Phenomenon or Gibb's oscillations.
+If we notice, the Fourier series function has a peculiar behavior at what is called the "jump discontinuity", where the n-th partial sum shows a maximum (which is called the "overshoot") that is greater than the maximum of the original piecewise function.
+And as n approaches infinity, the overshoot does not go to zero but it approaches a finite limit.
+This kind of behavior from Fourier series at jump discontinuitiies such as this one is known as Gibb's Phenomenon or Gibb's oscillations.
 
 Consider another example
 \be
   f(\theta) = \cos(k \theta) \qquad (- \pi < \theta < \pi)
 \ee
-where k is a real number but it is not restricted to integers.
+where k is any real number so it is not restricted to integers.
 Just by looking at the equation, we can immediately tell that we only need cosine terms, so we will only compute the $A_n$'s for $n = 0, 1, 2, \hdots$
 \be
   \begin{split}
@@ -614,7 +676,7 @@ And we can substitute a product identity $\cos(x)\cos(y) = \frac{1}{2}[\cos(x - 
     &= \frac{1}{\sqrt{\pi}(n^2 - k^2)} [(n+k)\sin(n \pi - k \pi) + (n-k) \sin(n \pi + k \pi) ]
   \end{split}
 \ee
-Using two more trig identities $$\sin(x - y) = \sin(x) \cos(y) - \cos(x) \sin(y) \quad \text{and} \quad \sin(x + y) = \sin(x) \cos(y) + \cos(x) \sin(y)$$
+Using the angle-sum and angle-difference identities $$\sin(x - y) = \sin(x) \cos(y) - \cos(x) \sin(y) \quad \text{and} \quad \sin(x + y) = \sin(x) \cos(y) + \cos(x) \sin(y)$$
 we can make another substitution to get
 \be
   \begin{split}
@@ -656,19 +718,27 @@ So we can define our series as
   \ket{f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \ket{e_n}
 \ee
 where the series goes from $- \infty$ to $\infty$ to cover all space.
-We can check that our basis vector is orthogonal with itself by checking if
 We can normalize our basis by requiring that the projection of the basis vector with itself is equal to one $\braket{e_n|e_n} = 1$, which is the same as integrating over our finite interval $0 \leq \theta \leq 2 \pi$.
 \be
-  \braket{e_n | e_n} = \int_{0}^{2 \pi} c_n^2 e^{-i n \theta} e^{i n \theta} d \theta = c_n^2 \int_{0}^{2 \pi} 1 d \theta = 2 \pi c_n^2 = 1 \Rightarrow c_n = \frac{1}{\sqrt{2 \pi}}
+  \braket{e_n | e_n} = \int_{0}^{2 \pi} c_n^2 e^{-i n \theta} e^{i n \theta} d \theta = c_n^2 \int_{0}^{2 \pi} 1 d \theta = 2 \pi c_n^2 = 1 \quad \Rightarrow \quad c_n = \frac{1}{\sqrt{2 \pi}}
 \ee
-So our Fourier series becomes
+And we can check that our basis vector is orthogonal with itself by checking if $\braket{e_m|e_n} = 0$.
+\be
+  \braket{e_m|e_n} = \int_0^{2 \pi} e^{- i m \theta} e^{i n \theta} d \theta = \int_0^{2 \pi} e^{i (n - m) \theta} d\theta = \frac{e^{i (n - m) \theta}}{i (n - m)} \Big|_0^{2 \pi} = \frac{e^{2 i (n - m) \pi}}{i (n - m)} - \frac{e^{0}}{i (n - m)} = \frac{(e^{ i (n - m) \pi})^2}{i (n - m)} - \frac{e^{0}}{i (n - m)}
+\ee
+Since n and m are integers, then $(n-m)$ is also an integer, and from complex calculus, we know that $e^{i n \pi}$ will either be $+1$ or $-1$ depending on the integer n.
+But since $e^{ i (n - m) \pi}$ is squared in our case, it will always be $+1$, so
+\be
+  \braket{e_m|e_n} = \frac{(e^{ i (n - m) \pi})^2}{i (n - m)} - \frac{e^{0}}{i (n - m)} = \frac{1}{i (n - m)} - \frac{1}{i (n - m)} = 0
+\ee
+Which means our basis $\ket{e_n}$ is orthonormal and our Fourier series becomes
 \be
   \begin{split}
     \ket{f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \ket{e_n} \\
     f(\theta) = \sum_{n= - \infty}^{\infty} C_n \Big( \frac{1}{\sqrt{2 \pi}} e^{i n \theta} \Big)
   \end{split}
 \ee
-So we can now find an analytic expression for the weight $C_n$ by projecting the basis vector $\ket{e_n}$ with our function $\ket{f(\theta)}$
+So we can now find an analytic expression for the weight $C_n$ by projecting the basis vector $\ket{e_n}$ onto our function $\ket{f(\theta)}$
 \be
   \braket{e_n|f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \braket{e_n|e_n} \quad \Rightarrow \quad C_n = \braket{e_n|f(\theta)} = \frac{1}{\sqrt{2 \pi}} \int_0^{2 \pi} e^{-i n \theta} f(\theta) d \theta
 \ee
@@ -683,7 +753,7 @@ If we wanted to write a Fourier series for a function that is periodic over a le
 \ee
 Therefore
 \be
-  \ket{f(x)} = \sum_{n = -\infty}^{\infty} C_n \ket{e_n} \Rightarrow f(x) = \sum_{n = -\infty}^{\infty} C_n \frac{1}{\sqrt{2 \pi}} e^{2 \pi n i / L} \qquad C_n = \braket{e_n|f(x)} \frac{\sqrt{2 \pi}}{L} \int_0^L e^{- 2 \pi n i / L} f(x) dx
+  \ket{f(x)} = \sum_{n = -\infty}^{\infty} C_n \ket{e_n} \Rightarrow f(x) = \sum_{n = -\infty}^{\infty} C_n \frac{1}{\sqrt{2 \pi}} e^{2 \pi n i / L} \qquad C_n = \braket{e_n|f(x)} = \frac{\sqrt{2 \pi}}{L} \int_0^L e^{- 2 \pi n i / L} f(x) dx
 \ee
 
 
