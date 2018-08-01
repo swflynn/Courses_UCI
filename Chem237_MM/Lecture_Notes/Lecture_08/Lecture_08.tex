@@ -286,7 +286,7 @@ Then we would map our solutions back to the original domain to get the appropria
 This is done by considering different types of integral transforms that are used depending on the behavior of our function/integrand.
 Some include: Fourier Transform, Laplace Transform, Hilbert Transform, etc, but we will only be discussing the first two as they are very commonly used in Physics.
 \subsubsection*{Fourier Series}
-The topic of Fourier Series/Transform is one that is discussed often in physics classes and some Physical Chemistry classes.
+The topic of Fourier Series/Transform is one that is discussed often in Physics classes and some Physical Chemistry classes.
 However, the topic is usually introduced through example and you are only required to know how to obtain the series and/or perform the transform and then understand how it can be applied.
 Our Math Methods book introduces the topic the same way.
 For those of you who have been taught the subject this way or for those who have only heard of it, you might be aware that there are different conventions associated with the Series/Transform.
@@ -307,17 +307,23 @@ What it means for two functions to be orthogonal is that if we have, for example
 for any integers n and m.
 If we have a similar integral but instead with two functions of the same type, such as $\sin(nx)$ and $\sin(mx)$, then we get
 \be \label{eq:sin_sin_orth}
-  \begin{split}
-    \int_0^{2\pi} \sin(nx)\sin(mx) dx &= 0 \quad \text{if} \quad n \neq m \\
-    \int_0^{2\pi} \sin(nx)\sin(mx) dx &= \pi \quad \text{if} \quad n = m
-  \end{split}
+\int_0^{2\pi} \sin(nx)\sin(mx) dx =
+  \left\{
+    \begin{array}{ll}
+      0 & \quad \text{if} \quad n \neq m \\
+      \pi & \quad \text{if} \quad n = m
+    \end{array}
+  \right.
 \ee
 Likewise, if we have two cosine functions $\cos(nx)$ and $\cos(mx)$, then
 \be \label{eq:cos_cos_orth}
-  \begin{split}
-    \int_0^{2\pi} \cos(nx)\cos(mx) dx &= 0 \quad \text{if} \quad n \neq m \\
-    \int_0^{2\pi} \cos(nx)\cos(mx) dx &= \pi \quad \text{if} \quad n = m
-  \end{split}
+\int_0^{2\pi} \cos(nx)\cos(mx) dx =
+  \left\{
+    \begin{array}{ll}
+      0 & \quad \text{if} \quad n \neq m \\
+      \pi & \quad \text{if} \quad n = m
+    \end{array}
+  \right.
 \ee
 where, again, n and m are integers $n,m = 1, 2, 3, \hdots$.
 If we wanted to normalize a function, then we must consider our function of interest carrying around a normalization constant $a_n$ such that the integral of the function times itself over some interval is equal to one, i.e. $\int |f(x)|^2 dx = 1$.
@@ -342,10 +348,10 @@ If we do this for another function $b_n \cos(nx)$, we can find its normalization
 So if we have two normalized functions that are orthogonal to each other, we say they are orthonormal.
 Therefore, if we rewrite equations \ref{eq:sin_sin_orth} and \ref{eq:cos_cos_orth} we get
 \be \label{eq:sin_sin_orthonorm}
-  \int_0^{2\pi} \sin(nx)\sin(mx) dx = \delta_{nm}
+  \frac{1}{\pi} \int_0^{2\pi} \sin(nx)\sin(mx) dx = \delta_{nm}
 \ee
 \be \label{eq:cos_cos_orthonorm}
-  \int_0^{2\pi} \cos(nx)\cos(mx) dx = \delta_{nm}
+  \frac{1}{\pi} \int_0^{2\pi} \cos(nx)\cos(mx) dx = \delta_{nm}
 \ee
 where $\delta_{nm}$ is the kronecker delta and it is shorthand notation for
 \be
@@ -456,7 +462,7 @@ If we add $\sin(x)$ and $\cos(x)$ together, we get an infinite degree polynomial
 \ee
 Therefore, we can think of $\cos(nx)$ and $\sin(nx)$, where n is an integer, as being basis vectors in a space where every vector is written as a linear combination of them
 \be
-  \ket{f} = \sum_{n = 0}^{\infty} a_n \ket{cos(nx)} + b_n \ket{\sin(nx)}
+  \ket{f} = \sum_{n = 0}^{\infty} a_n \ket{\cos(nx)} + b_n \ket{\sin(nx)}
 \ee
 And if we don't use dirac notation for a second and replace x with $\theta$, we recover the exact form of a Fourier series
 \be
@@ -478,18 +484,18 @@ We will be using the convention of having our basis vectors be normalized so tha
 where $\ket{c_n} = \frac{1}{\sqrt{\pi}} \cos(n \theta)$ and $\ket{s_n} = \frac{1}{\sqrt{\pi}} \sin(n \theta)$, where $\frac{1}{\sqrt{\pi}}$ is the normalization constant we derived earlier in Lecture.
 Now that we know how to take dot products in braket notation, we can use our functions' orthogonality properties to find an expression for the coefficients $A_n$ and $B_n$.
 
-If we project the cosine vector $\bra{c_n}$ onto our $\ket{f(\theta)}$ vector (remember, projection means dot product), we get,
+If we wanted to find the n-th term of a Fourier series, we can consider projecting the cosine vector $\bra{c_n}$ onto the n-th term of our $\ket{f(\theta)}$ vector (remember, projection means dot product), we get,
 \be
-  \braket{c_n|f(\theta)} = \bra{c_n} \Big(\sum_{n=0}^{\infty} A_n \ket{c_n} + B_n \ket{s_n} \Big) = \sum_{n=0}^{\infty} A_n \braket{c_n|c_n} + B_n \braket{c_n|s_n}
+  \braket{c_n|f(\theta)} = \bra{c_n} \Big( A_n \ket{c_n} + B_n \ket{s_n} \Big) = A_n \braket{c_n|c_n} + B_n \braket{c_n|s_n}
 \ee
 and since we know from equation \ref{eq:sin_cos} that the integral of sine and cosine is always zero, then the dot product $\braket{c_n|s_n}$ is always zero.
 And since we know from equation \ref{eq:cos_cos_orthonorm} that $\braket{c_n|c_n}$ is 1 when $n = m$ and 0 when $n \neq m$, then all the terms in the sum but one will cancel out and all that we're left with is
 \be
   A_n = \braket{c_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \cos(n \theta) f(\theta) d\theta
 \ee
-If we project the sine vector $\bra{s_n}$ onto our $\ket{f(\theta)}$ vector, we get,
+If we project the sine vector $\bra{s_n}$ onto the n-th term of our $\ket{f(\theta)}$ vector, we get,
 \be
-  \braket{s_n|f(\theta)} = \bra{s_n} \Big(\sum_{n=0}^{\infty} A_n \ket{c_n} + B_n \ket{s_n} \Big) = \sum_{n=0}^{\infty} A_n \braket{s_n|c_n} + B_n \braket{s_n|s_n}
+  \braket{s_n|f(\theta)} = \bra{s_n} \Big( A_n \ket{c_n} + B_n \ket{s_n} \Big) = A_n \braket{s_n|c_n} + B_n \braket{s_n|s_n}
 \ee
 And using the same logic as before, equation \ref{eq:sin_cos} says that $\braket{s_n|c_n}$ is zero for any n and m, and equation \ref{eq:sin_sin_orthonorm} says $\braket{s_n|s_n}$ will only be 1 when $n = m$, so we're left with
 \be
@@ -592,8 +598,8 @@ Since our function has different forms in the intervals $0 < \theta < \pi$ and $
 \be
   \begin{split}
     B_n &= \braket{s_n|f(\theta)} \\
-    &= \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} sin(n \theta) f(\theta) d\theta \\
-    &= \frac{1}{\sqrt{\pi}} \int_0^{\pi} sin(n \theta) \cdot 1 d\theta + \frac{1}{\sqrt{\pi}} \int_{\pi}^{2 \pi} sin(n \theta) \cdot -1 d\theta \\
+    &= \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} \sin(n \theta) f(\theta) d\theta \\
+    &= \frac{1}{\sqrt{\pi}} \int_0^{\pi} \sin(n \theta) \cdot 1 d\theta + \frac{1}{\sqrt{\pi}} \int_{\pi}^{2 \pi} \sin(n \theta) \cdot -1 d\theta \\
     &= \frac{1}{\sqrt{\pi}} \Big( - \frac{\cos(n \theta)}{n} \Big) \Big|_0^{\pi} + \frac{1}{\sqrt{\pi}} \Big( \frac{\cos(n \theta)}{n} \Big) \Big|_{\pi}^{2 \pi} \\
     &= \Big( - \frac{\cos(n \pi)}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} \Big) + \Big( \frac{\cos(2 n \pi)}{n \sqrt{\pi}} - \frac{\cos(n \pi)}{n \sqrt{\pi}} \Big)
   \end{split}
@@ -601,7 +607,7 @@ Since our function has different forms in the intervals $0 < \theta < \pi$ and $
 Since $n = 1, 2, 3, \hdots$, we can say that $\cos(2 n \pi)$ will always be equal to 1, because any value of n will give this result.
 \be
   \begin{split}
-    B_n &= \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} sin(n \theta) f(\theta) d\theta \\
+    B_n &= \frac{1}{\sqrt{\pi}} \int_0^{2 \pi} \sin(n \theta) f(\theta) d\theta \\
     &= \Big( - \frac{\cos(n \pi)}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} \Big) + \Big( \frac{1}{n \sqrt{\pi}} - \frac{\cos(n \pi)}{n \sqrt{\pi}} \Big) \\
     &= \frac{-2 \cos(n \pi)}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} + \frac{1}{n \sqrt{\pi}} \\
     &= \frac{-2 \cos(n \pi)}{n \sqrt{\pi}} + \frac{2}{n \sqrt{\pi}}
@@ -738,9 +744,9 @@ Which means our basis $\ket{e_n}$ is orthonormal and our Fourier series becomes
     f(\theta) = \sum_{n= - \infty}^{\infty} C_n \Big( \frac{1}{\sqrt{2 \pi}} e^{i n \theta} \Big)
   \end{split}
 \ee
-So we can now find an analytic expression for the weight $C_n$ by projecting the basis vector $\ket{e_n}$ onto our function $\ket{f(\theta)}$
+So we can now find an analytic expression for the weight $C_n$ by projecting the basis vector $\ket{e_n}$ onto the n-th term of our function $\ket{f(\theta)}$
 \be
-  \braket{e_n|f(\theta)} = \sum_{n= - \infty}^{\infty} C_n \braket{e_n|e_n} \quad \Rightarrow \quad C_n = \braket{e_n|f(\theta)} = \frac{1}{\sqrt{2 \pi}} \int_0^{2 \pi} e^{-i n \theta} f(\theta) d \theta
+  \braket{e_n|f(\theta)} = C_n \braket{e_n|e_n} \quad \Rightarrow \quad C_n = \braket{e_n|f(\theta)} = \frac{1}{\sqrt{2 \pi}} \int_0^{2 \pi} e^{-i n \theta} f(\theta) d \theta
 \ee
 
 If we wanted to write a Fourier series for a function that is periodic over a length L, then we substitute $\theta = \frac{2 \pi x}{L}$ and $d\theta = \frac{2 \pi}{L} dx$ to get a new coefficient $C_n$.
