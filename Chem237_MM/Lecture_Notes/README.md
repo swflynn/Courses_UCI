@@ -82,17 +82,59 @@ Fourier Series
 
 ## Lecture 10 (4/26/18):
 
-## Lecture 11 (5/1/18):
+## Lecture 11 (5/1/18): 
 
-## Lecture 12 (5/2/18):
+#### Laplace Transform
 
-## Lecture 13 (5/3/18):
+Properties of Laplace Transform 
+
+#### Linear Algebra 
+
+Linear Vector Space
+
+Linear Transformations
+
+## Lecture 12 (5/2/18): 
+
+#### Linear Algebra 
+
+Determinants
+
+Cofactor Expansion
+
+## Lecture 13 (5/3/18): 
+
+#### Linear Algebra 
+
+Gaussian Elimination 
+
+Inverse Matrices 
+
+Unitary Transformations
 
 ## Lecture 14 (5/8/18):
 
+#### Linear Algebra 
+
+Generalized Eigenvalue Problem 
+
+Functions of Matrices
+
+Eigenvalue Decomposition 
+
 ## Lecture 15 (5/9/18):
 
+#### Linear Algebra 
+
+Normal Mode Analysis (Classical Case)
+
 ## Lecture 16 (5/10/18):
+
+#### Linear Algebra 
+
+Normal Mode Analysis (Quantum Case)
+
+Eigenvalue Decomposition Example (Time Signal Analysis)
 
 ## Lecture 17 (5/15/18):
 
