@@ -174,7 +174,7 @@ Diffusion Equation
 
 Time-Dependent Schrodinger Equation
 
-## Lecture 19 (5/17/18):
+## Lecture 19 (5/17/18): (Alan)
 
 #### Numerical Partial Differential Equations
 
@@ -186,7 +186,7 @@ Basis Set Methods vs Grid Methods
 
 Golden-Section Search Method
 
-## Lecture 20 (5/22/18):
+## Lecture 20 (5/22/18): (Shane)
 
 #### Optimization Methods
 
@@ -196,13 +196,13 @@ Simplex Method
 
 Method of Steepest Descent 
 
-## Lecture 21 (5/23/18):
+## Lecture 21 (5/23/18): (Shane)
 
 #### Optimization Methods
 
 Conjugate Gradient Method
 
-## Lecture 22 (5/24/18):
+## Lecture 22 (5/24/18): (Shane)
 
 #### Optimization Methods
 
@@ -216,7 +216,7 @@ Newton's Method
 
 Linear Interpolation Method
 
-## Lecture 23 (5/29/18):
+## Lecture 23 (5/29/18): (Shane)
 
 #### Optimization Methods 
 
@@ -226,13 +226,13 @@ Constrained Optimization with Lagrange Multipliers
 
 Singular Value Decomposition 
 
-## Lecture 24 (5/30/18):
+## Lecture 24 (5/30/18): (Shane)
 
 #### Numerical Linear Algebra 
 
 Applications of Singular Value Decomposition 
 
-## Lecture 25 (5/31/18):
+## Lecture 25 (5/31/18): (Shane)
 
 #### Numerical Linear Algebra
 
@@ -246,7 +246,7 @@ Linear Interpolation
 
 Quadratic Interpolation 
 
-## Lecture 26 (6/5/18):
+## Lecture 26 (6/5/18): (Shane)
 
 #### Numerical Analysis 
 
@@ -254,19 +254,19 @@ Neville's Algorithm
 
 Bilinear Interpolation 
 
-## Lecture 27 (6/6/18):
+## Lecture 27 (6/6/18): (Shane)
 
 #### Numerical Analysis 
 
 Bilinear Interpolation with Gaussian Basis Functions
 
-## Lecture 28 (6/7/18):
+## Lecture 28 (6/7/18): (Shane)
 
 #### Numerical Analysis 
 
 Pade Approximation
 
-## Lecture 29 (5/3/18):
+## Lecture 29 (5/3/18): (Shane)
 
 #### Numerical Ordinary Differential Equations 
 
