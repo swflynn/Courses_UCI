@@ -266,10 +266,6 @@ Bilinear Interpolation with Gaussian Basis Functions
 
 Pade Approximation
 
-## Lecture 29 (5/3/18): (Shane)
-
 #### Numerical Ordinary Differential Equations 
 
 Runge-Kutta Methods 
-
-## Lecture 30 (5/3/18):
