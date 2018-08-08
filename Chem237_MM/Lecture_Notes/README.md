@@ -78,15 +78,31 @@ Saddle-point method
 
 Fourier Series
 
+Fourier Transform 
+
 ## Lecture 9 (4/24/18):
+
+#### Integral Transforms 
+
+Delta Functions
+
+Parseval's Theorem 
 
 ## Lecture 10 (4/26/18):
 
+#### Integral Transforms
+
+Properties of Fourier Transform
+
+Laplace Transform
+
 ## Lecture 11 (5/1/18): 
 
-#### Laplace Transform
+#### Integral Transforms
 
 Properties of Laplace Transform 
+
+Relationship between Fourier and Laplace Transform
 
 #### Linear Algebra 
 
