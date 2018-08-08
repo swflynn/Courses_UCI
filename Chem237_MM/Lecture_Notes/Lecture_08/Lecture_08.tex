@@ -5,9 +5,11 @@
 % Packages
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{braket}
+\usepackage{subcaption}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
 %==============================================================================%
@@ -35,10 +37,10 @@
 \begin{document}
 \maketitle
 
-\subsection*{Approximate Methods}
+\section*{Approximate Methods}
 So far, we have discussed different ways to evaluate integrals of interest to obtain exact answers.
 It is often times enough for us to know an approximation to the value of an integral and we will discuss a few methods that go about this by looking at some special functions as examples.
-\subsubsection*{Asymptotic Series}
+\subsection*{Asymptotic Series}
 At first glance, you'd think that the error function is just the integral of a gaussian
 \be
   \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt = \frac{1}{\sqrt{\pi}} \int_{-x}^x e^{-t^2} dt
@@ -172,7 +174,7 @@ If a function does have such an expansion then that expansion is unique.
 However, one can get different asympotitc series expansions for the same function when we consider x to be a complex number z and the convergence of a series to be defined by the radius of a disk on the complex plane.
 This is known in complex analysis as Stokes phenomenon but we will not dive into the topic.
 
-\subsubsection*{Saddle Point Method}
+\subsection*{Saddle Point Method}
 Consider the integral
 \be
   \int_0^{\infty} F(x) dx = \int_0^{\infty} e^{f(x)} dx
@@ -279,13 +281,13 @@ which is Stirling's approximation!
 % Relate it to Stat mech if you want.
 %==============================================================================%
 And with that, we are done with chapter 3 of the Math Methods book.
-\subsection*{Integral Transforms}
+\section*{Integral Transforms}
 Chapter 4 can be thought of as a continuation of chapter 3 in that we are still going to be looking at integrals and finding ways to solve them.
 But, similar to contour integration, we are going to be focusing on how to map our function of interest from one domain onto another domain in order to make our integrals much easier to solve.
 Then we would map our solutions back to the original domain to get the appropriate result.
 This is done by considering different types of integral transforms that are used depending on the behavior of our function/integrand.
 Some include: Fourier Transform, Laplace Transform, Hilbert Transform, etc, but we will only be discussing the first two as they are very commonly used in Physics.
-\subsubsection*{Fourier Series}
+\subsection*{Fourier Series/Transform}
 The topic of Fourier Series/Transform is one that is discussed often in Physics classes and some Physical Chemistry classes.
 However, the topic is usually introduced through example and you are only required to know how to obtain the series and/or perform the transform and then understand how it can be applied.
 Our Math Methods book introduces the topic the same way.
@@ -447,7 +449,7 @@ So our inner product for functions is the same thing as taking the integral of t
   \braket{f|g} = \int_a^b f^*(x)g(x) dx
 \ee
 
-\subsubsection*{Fourier Series}
+\subsection*{Fourier Series}
 In lecture 3, we showed that sine and cosine both have Taylor expansions of the form
 \be
   \begin{split}
@@ -569,10 +571,13 @@ If we have a periodic even function, we say that $f(\theta) = f(- \theta)$.
 And using the same logic as before, we can skip having to evaluate the $B_n$ coefficients because $B_n$'s dictate the amount of sine contribution, which we can conclude is always zero.
 So all we would need to evaluate are the $A_n$'s and we would be done.
 
+\subsubsection*{Example}
 As our first example, consider the following plot of $f(\theta)$
-%==============================================================================%
-%  Need the plot of the square function
-%==============================================================================%
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.7]{figures/SquareWave.png}
+    \caption{Plot of the square wave function from $- \pi \leq \theta \leq 3 \pi$.}
+\end{figure}
 where the function can be defined as a piecewise function.
 \be
   f(x) =
@@ -584,9 +589,11 @@ where the function can be defined as a piecewise function.
   \right.
 \ee
 If we make a plot of the piecewise function from $- \pi$ to $\pi$ with a plot of $\sin(x)$ superimposed on top of it,
-%==============================================================================%
-%  Need plot of pieceiwse function with sin(x) on top of it.
-%==============================================================================%
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.7]{figures/square_sin_plot.png}
+    \caption{A sine wave from $- \pi \leq \theta \leq \pi$ superimposed on the square wave. Notice that one sine function $\sin(x)$ already shows similar behavior to the square wave function.}
+\end{figure}
 we can see that this function is an odd function, so we will only need $B_n$'s when creating a Fourier series representation.
 Since $\sin(n \theta) = 0$ when $n = 0$, we don't have to consider the $B_0$ term and only consider $n = 1, 2, 3, \hdots$.
 We then have
@@ -643,14 +650,24 @@ So our Fourier series becomes
 where $n = 1, 3, 5, \hdots$.
 
 If we plot truncated versions of our Fourier series on top of our original function
-%==============================================================================%
-%  Need a plot of n = 5 and a plot of n = 15 next to each other right here.
-%==============================================================================%
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/Sin_0_to_5.png}
+    \caption{Plot of the first 6 terms of the Fourier series from $- \pi \leq \theta \leq \pi$.}
+  \end{subfigure}
+  \hspace{1cm}
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/Sin_0_to_15.png}
+    \caption{Plot of the first 16 terms of the Fourier series from $- \pi \leq \theta \leq \pi$.}
+  \end{subfigure}
+\end{figure}
 we can see that if we add more terms from the Fourier series, the series becomes a better and better representation of the original function.
 If we notice, the Fourier series function has a peculiar behavior at what is called the "jump discontinuity", where the n-th partial sum shows a maximum (which is called the "overshoot") that is greater than the maximum of the original piecewise function.
 And as n approaches infinity, the overshoot does not go to zero but it approaches a finite limit.
 This kind of behavior from Fourier series at jump discontinuitiies such as this one is known as Gibb's Phenomenon or Gibb's oscillations.
 
+\subsubsection*{Example}
 Consider another example
 \be
   f(\theta) = \cos(k \theta) \qquad (- \pi < \theta < \pi)
@@ -757,11 +774,29 @@ If we wanted to write a Fourier series for a function that is periodic over a le
     &= \frac{\sqrt{2 \pi}}{L} \int_0^L e^{- 2 \pi n i / L} f(x) dx \\
   \end{split}
 \ee
-Therefore
+Therefore, for any periodic function defined on an interval of length L,
 \be
   \ket{f(x)} = \sum_{n = -\infty}^{\infty} C_n \ket{e_n} \Rightarrow f(x) = \sum_{n = -\infty}^{\infty} C_n \frac{1}{\sqrt{2 \pi}} e^{2 \pi n i / L} \qquad C_n = \braket{e_n|f(x)} = \frac{\sqrt{2 \pi}}{L} \int_0^L e^{- 2 \pi n i / L} f(x) dx
 \ee
 
+\subsection*{Fourier Transform}
+Using everything we used to understand how to obtain a Fourier Series, we will see that performing a Fourier Transform is almost no different.
+We've seen that a Fourier Series representation of a function on a finite interval is just a sum over all integers n
+\be
+  \ket{f(x)} = \sum_{n=-\infty}^{\infty} C_n \ket{e_n}
+\ee
+where $\ket{e_n}$ is our normalized basis vector $\frac{1}{\sqrt{2 \pi}} e^{ikx}$.
+Similarly, a Fourier Transform is just an integral over all real numbers k
+\be \label{eq:fourier_trans}
+  \ket{f(x)} = f(x) = \frac{1}{\sqrt{2 \pi}} \int_{- \infty}^{\infty} f(k) e^{i k x} dk
+\ee
+where $f(k)$ can be thought of as our coefficients $C_k$ and $\frac{1}{\sqrt{2 \pi}} e^{ikx}$ can be thought of as our basis vector $\ket{e_n}$.
+So, just like in the Fourier Series section, if we wanted to find the k-th coefficient $f(k)$, we just need to project the basis vector onto the function.
+\be \label{eq:inverse_fourier}
+  \braket{e_n|f(x)} = f(k) = \frac{1}{\sqrt{2 \pi}} \int_{- \infty}^{\infty} e^{-ikx} f(x) dx
+\ee
+And just like that, we defined the Fourier Transform (equation \ref{eq:fourier_trans}) and the Inverse Fourier Transform (equation \ref{eq:inverse_fourier}).
 
+Notice that the only difference between a Fourier Series and a Fourier Transform is that when we discuss Fourier Series we consider representing functions on a finite interval as a sum of basis vectors with coefficients that are discrete, whereas with Fourier Transforms we consider representing functions on an infinite interval as a sum of basis vectors with coefficients that are continuous.
 
 \end{document}
