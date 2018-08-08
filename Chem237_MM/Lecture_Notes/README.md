@@ -37,7 +37,7 @@ Convergence and Divergence Definitions
 
 Convergence tests 
 
-## Lecture 4 (4/10/18):
+## Lecture 4 (4/10/18): (Alan)
 
 #### Series: 
 
@@ -66,21 +66,21 @@ Complex Calculus (Shane)
 ## Lecture 7 (4/17/18):
 Complex Calculus (Shane)
 
-## Lecture 8 (4/19/18):
+## Lecture 8 (4/19/18): (Alan)
 
-#### Integral Approximation Methods: (Alan)
+#### Integral Approximation Methods: 
 
 Asymptotic Series
 
 Saddle-point method
 
-#### Integral Transforms (Alan)
+#### Integral Transforms 
 
 Fourier Series
 
 Fourier Transform 
 
-## Lecture 9 (4/24/18):
+## Lecture 9 (4/24/18): (Alan)
 
 #### Integral Transforms 
 
@@ -88,7 +88,7 @@ Delta Functions
 
 Parseval's Theorem 
 
-## Lecture 10 (4/26/18):
+## Lecture 10 (4/26/18): (Alan)
 
 #### Integral Transforms
 
@@ -96,7 +96,7 @@ Properties of Fourier Transform
 
 Laplace Transform
 
-## Lecture 11 (5/1/18): 
+## Lecture 11 (5/1/18): (Alan)
 
 #### Integral Transforms
 
@@ -110,7 +110,7 @@ Linear Vector Space
 
 Linear Transformations
 
-## Lecture 12 (5/2/18): 
+## Lecture 12 (5/2/18): (Alan)
 
 #### Linear Algebra 
 
@@ -118,7 +118,7 @@ Determinants
 
 Cofactor Expansion
 
-## Lecture 13 (5/3/18): 
+## Lecture 13 (5/3/18): (Alan)
 
 #### Linear Algebra 
 
@@ -128,7 +128,7 @@ Inverse Matrices
 
 Unitary Transformations
 
-## Lecture 14 (5/8/18):
+## Lecture 14 (5/8/18): (Alan)
 
 #### Linear Algebra 
 
@@ -138,13 +138,13 @@ Functions of Matrices
 
 Eigenvalue Decomposition 
 
-## Lecture 15 (5/9/18):
+## Lecture 15 (5/9/18): (Alan)
 
 #### Linear Algebra 
 
 Normal Mode Analysis (Classical Case)
 
-## Lecture 16 (5/10/18):
+## Lecture 16 (5/10/18): (Alan)
 
 #### Linear Algebra 
 
@@ -152,7 +152,7 @@ Normal Mode Analysis (Quantum Case)
 
 Eigenvalue Decomposition Example (Time Signal Analysis)
 
-## Lecture 17 (5/15/18):
+## Lecture 17 (5/15/18): (Alan)
 
 #### Linear Algebra
 
@@ -164,7 +164,7 @@ First-Order PDE
 
 System of Linear First-Order PDEs
 
-## Lecture 18 (5/16/18):
+## Lecture 18 (5/16/18): (Alan)
 
 #### Partial Differential Equations
 
