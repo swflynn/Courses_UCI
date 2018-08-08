@@ -39,7 +39,7 @@
 
 \section*{Approximate Methods}
 So far, we have discussed different ways to evaluate integrals of interest to obtain exact answers.
-It is often times enough for us to know an approximation to the value of an integral and we will discuss a few methods that go about this by looking at some special functions as examples.
+It is often times enough for us to know an approximation to the value of an integral and we will discuss a few methods that go about doing this by looking at some special functions as examples.
 \subsection*{Asymptotic Series}
 At first glance, you'd think that the error function is just the integral of a gaussian
 \be
@@ -112,7 +112,7 @@ to get
   \end{split}
 \ee
 You can see that we can use this trick each time we integrate by parts and if we integrated an infinite number of times, we'd have an exact expression.
-If we go back to the equation \ref{eq:erfc} and solve for erf(x), we can see that the result after n integrations by parts of the complementary error function gives
+If we go back to equation \ref{eq:erfc} and solve for erf(x), we can see that the result after n integrations by parts of the complementary error function gives
 \be
   \begin{split}
     \text{erf(x)} = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt = 1 - \frac{2}{\sqrt{\pi}} e^{-x^2} \Big[ \frac{1}{2x} - \frac{1}{2^2 x^3} & + \frac{1 \cdot 3}{2^3 x^5} - \frac{1 \cdot 3 \cdot 5}{2^4 x^7} + \hdots + (-1)^{n-1} \frac{1 \cdot 3 \cdot 5 \cdots (2n-3)}{2^n x^{2n-1}} \Big] \\
@@ -120,12 +120,12 @@ If we go back to the equation \ref{eq:erfc} and solve for erf(x), we can see tha
   \end{split}
 \ee
 where the last term (the term after the brackets, including the integral) is the "remainder" that makes the expression exact.
-If we only pay attention to the terms inside the brackets, we can see that these terms form the beginning of divergent series.
-Since the numerator grows as (2n+1)!, there is no value of x that would make the denominator grow larger in size than the numerator so if we were to form an infinite series, the series would diverge to $\infty$.
+If we only pay attention to the terms inside the brackets, we can see that these terms form the beginning of a divergent series.
+Since the numerator grows as (2n+1)!, there is no value of x that would make the denominator grow larger in size than the numerator so if we were to form an infinite series from the terms in the brackets, this series would diverge to $\infty$.
 It is because of this fact that physicists would call the series in brackets an \textbf{asymptotic series} if the summation of the terms continued to infinity.
 To be formal, if we have a function whose series expansion is
 \be
-S(x) = c_0 + \frac{c_1}{x} + \frac{c_2}{x} + \hdots
+S(x) = c_0 + \frac{c_1}{x} + \frac{c_2}{x^2} + \hdots
 \ee
 where the c$_n$'s are just constants, we can say that the partial sum $\sum\limits_{i=0}^n c_i / x^i$ is an asymptotic series expansion of f(x) if the following holds
 \be
@@ -146,8 +146,8 @@ Mathematicians define an asymptotic series expansion as a series whose partial s
 This definition makes it sound like a convergent Taylor series falls under the category of an asymptotic expansion.
 Because of this, it is common in Physics for the term 'asymptotic expansion' to imply a divergent series.
 To be mathematically correct, an asymptotic series can be divergent or convergent but, in most cases of interest, asymptotic series never converge.
-So it is useful to consider the physicist's perspective when distinguishing between a convergent series and an asympotitc series.
-We can go back to the error function erf(x) to show how an asymtptic series can be different from a convergent series.
+So it is useful to consider the physicist's perspective when distinguishing between a convergent series and an asymptotic series.
+We can go back to the error function erf(x) to show how an asymptotic series can be different from a convergent series.
 \be
   \text{erf(x)} = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
 \ee
@@ -156,33 +156,34 @@ Just as we did in equation 2, if we taylor expand the integrand about $t=0$, and
   \text{erf(x)} = \frac{2}{\sqrt{\pi}} \Big( x - \frac{1}{3}x^3 + \hdots + \frac{(-1)^n}{(2n+1)n!} x^{2n+1} + \hdots \Big)
 \ee
 which is convergent for all values of x.
-And if we recall from earlier, we obtained an asymptotic series of the erf(x)
+And if we recall from earlier, we obtained an asymptotic series of the erf(x) from continuous integrations by parts
 \be
-  \text{erf(x)} \approx 1 - \frac{2}{\sqrt{\pi}} e^{-x^2} \Big[ \frac{1}{2x} - \frac{1}{2^2 x^3} + \frac{1 \cdot 3}{2^3 x^5} - \frac{1 \cdot 3 \cdot 5}{2^4 x^7} + \hdots + (-1)^{n-1} \frac{1 \cdot 3 \cdot 5 \cdots (2n-3)}{2^n x^{2n-1}} \Big] + \text{remainder}
+  \text{erf(x)} \approx 1 - \frac{2}{\sqrt{\pi}} e^{-x^2} \Big[ \frac{1}{2x} - \frac{1}{2^2 x^3} + \frac{1 \cdot 3}{2^3 x^5} - \frac{1 \cdot 3 \cdot 5}{2^4 x^7} + \hdots + (-1)^{n-1} \frac{1 \cdot 3 \cdot 5 \cdots (2n-3)}{2^n x^{2n-1}} \Big]
 \ee
-Now, when $x=3$, we need the first 30 terms of the taylor series to approximate erf(3) to an accuracy of $10^{-5}$, whereas we only need about the first two terms of the asymptotic series (excluding the remainder of course) to obtain the same approximation.
+where the asymptotic series is just the terms in the brackets minus the remainder.
+Now, when $x=3$, we need the first 30 terms of the taylor series to approximate erf(3) to an accuracy of $10^{-5}$, whereas we only need the first two terms of the asymptotic series to obtain the same approximation.
 This should not be of any surprise to us because I mentioned earlier in the lecture that the convergence of the Taylor series is slow for (arbitrarily) large x.
 If we were to make a plot of the remainder as a function of the number of terms we decide to keep in our series approximation for fixed x
 %==============================================================================%
 %  Add plot of remainder as a function of M in notes.
 %==============================================================================%
-we would see that as we keep adding more terms, our approximation gets better and better up to a certain limit, which defines the asymptoticity of the function, and then our approximation becomes worse and worse.
-This should make sense because we are trying to use a divergent series to define the value of an integral.
+we would see that as we keep adding more terms, our approximation gets better and better up to a certain limit, which defines the asymptoticity of the function, and then our approximation becomes worse and worse as we add even more terms.
+It makes sense that the remainder blows up to infinity because we are trying to use a divergent series to define the value of an integral.
 
-Note, if we use the physics definition of asymptotic series then we have to be clear in saying that not all functions have an asymptotic expansion.
+Note, if we use the Physics definition of an asymptotic series then we have to be clear in saying that not all functions have an asymptotic expansion.
 If a function does have such an expansion then that expansion is unique.
-However, one can get different asympotitc series expansions for the same function when we consider x to be a complex number z and the convergence of a series to be defined by the radius of a disk on the complex plane.
+However, one can get different asymptotic series expansions for the same function if we consider x to be a complex number z and the convergence of a series to be defined by the radius of a disk on the complex plane.
 This is known in complex analysis as Stokes phenomenon but we will not dive into the topic.
 
 \subsection*{Saddle Point Method}
-Consider the integral
+To introduce another method of integral approximations, we will consider the integral
 \be
   \int_0^{\infty} F(x) dx = \int_0^{\infty} e^{f(x)} dx
 \ee
 where the integral of F(x) is dominated by a narrow region in x.
 A example plot of F(x) as a function of x would be
 %==============================================================================%
-%  Add plot of remainder as a function of M in notes.
+%  Add plot of generic gaussian.
 %==============================================================================%
 If we perform a Taylor expansion of f(x) and decide to expand around the point x$_o$ we get
 \be
@@ -203,7 +204,8 @@ Using a u-substitution $u = x - x_o$ and $du = dx$, you should be able to get
       &= \text{exp}[f(x_o)] \Big( \frac{-2 \pi}{f''(x_o)} \Big) ^{\frac{1}{2}}
   \end{split}
 \ee
-where $f''(x_o) < 0$ to keep from getting imaginary results.
+where $f''(x_o) < 0$ to prevent from obtaining imaginary results.
+\subsubsection*{Example}
 As an example, we will consider another special function: the Gamma function.
 \be
   \Gamma(x+1) = \int_0^{\infty} t^{x} e^{-t} dt
@@ -213,7 +215,7 @@ We can turn the integrand into an exponential with the following transformation
   t^{x} e^{-t} = e^{\ln(t^x)} e^{-t} = e^{x \ln(t)} e^{-t} = e^{x \ln(t) - t}
 \ee
 and use the saddle-point approximation to approximate the value of the integral.
-We will consider $f(t) = x \ln(t) - t$ and Taylor expand f(t) up to second order.
+We will consider $f(t) = x \ln(t) - t$ and Taylor expand $f(t)$ up to second order.
 So we need to compute some derivatives and evaluate them at the maximum $t_o$.
 \be
   \begin{split}
@@ -264,9 +266,9 @@ So we can integrate by parts a few more times until we see a pattern
     &= x \int_0^{\infty} t^{x-1} e^{-t} dt \\
     &= x \Big( -t^{x-1}e^{-t} \Big|_0^{\infty} + (x-1) \int_0^{\infty} t^{x-2} e^{-t} dt \Big) \\
     &= x(x-1) \int_0^{\infty} t^{x-2} e^{-t} dt \\
-    &= x(x-1) \Gamma(x) \\
+    &= x(x-1) \Gamma(x-1) \\
     &= \hdots \\
-    &= x(x-1)\cdot2\cdot1 \int_0^{\infty} e^{-t} dt \\
+    &= x(x-1) \cdots 2\cdot1 \int_0^{\infty} e^{-t} dt \\
     &= - (x!) e^{-t} \Big|_0^{\infty} \\
     &= -x! (0 - 1)\\
     &= x!
@@ -296,12 +298,12 @@ But, despite the existence of different conventions, each give the same results 
 
 The concept of a Fourier Series is made more intuitive when understood in the context of \textbf{Linear Vector Spaces}.
 Linear Vector Spaces are discussed heavily in Linear Algebra courses and are thought about constantly in Quantum Mechanics.
-We will be covering Linear Algebra later in the course, but if you have not been exposed to Linear Algebra you can refer to Lecture 12 where we discuss it in full detail.
+We will be covering Linear Algebra later in the course, but if you have not been exposed to Linear Algebra you can refer to Lecture 11 where we discuss it in full detail.
 Or you can try following along until you don't understand something and keep going back and forth with both lectures and whatever other material you may be using.
 We will start with some background info that is discussed in any textbook and then we will make the connection to Fourier Series and Fourier Transform.
 
 \subsubsection*{Orthonormality}
-One of the nice properties of sine and cosine functions is that they are orthogonal on given intervals.
+One of the nice properties of some functions such as sine and cosine is that they are orthogonal on given intervals.
 What it means for two functions to be orthogonal is that if we have, for example, $\sin(nx)$ and $\cos(mx)$ and integrate their product over the interval $0 \leq x \leq 2 \pi$ we get
 \be \label{eq:sin_cos}
   \int_0^{2\pi} \sin(nx)\cos(mx) dx = 0
@@ -399,12 +401,13 @@ and to make the connection to normalization,
   \braket{f|f} = \int_{- \infty}^{\infty} |f(x)|^2 dx
 \ee
 You could imagine how this could be done to show two functions being orthogonal to each other.
-I said earlier that we define vectors in braket notation as bras or kets and if you're confused about why we could treat functions the same way in this notation, it is because we can think of some functions as vectors themselves in a vector space.
+
+I said earlier that we define vectors in braket notation as bras or kets and if you're confused about why we could treat functions the same way in this notation, it is because we can think of some functions as vectors in a vector space!
 I may switch back and forth with representing vectors with arrows or kets but this is just to enforce the idea that they are the same thing.
 
 \subsubsection*{Linear Vector Space}
 Linear vector spaces are defined such that each vector in the space needs to follow certain axioms in order for it to be considered a linear vector space.
-One property of a vector space that is important to remember is that any vector $v_i$ can be represented as a linear combination of basis vectors $\ket{e_i}$
+One property of a vector space that is important to remember is that any vector $\ket{v}$ can be represented as a linear combination of basis vectors $\ket{e_i}$
 \be
   \ket{v} = \sum_{i = 0}^{n} a_i \ket{e_i}
 \ee
@@ -429,7 +432,7 @@ where $a_n$ is defined as
 \be
   a_n = \frac{f^{(n)}(x_o)}{n!}
 \ee
-If you haven't noticed yet where I'm going with this, we could think of our expanded function $f(x)$ as a vector that is represented as a linear combination of basis vectors $x^n$.
+If you haven't noticed yet where I'm going with this, we could think of our expanded function $f(x)$ as a vector that is represented as a linear combination of basis vectors \{$x^0, x^1, x^2, x^3, \hdots$\}.
 
 Now that we have a vector space, we want to be able to define an inner product on our space.
 The reason why we want to define an inner product is because we want to be able to define an orthogonal projection of one vector onto another, as I've explained before.
@@ -440,7 +443,7 @@ When we project a vector $\vec{u}$ onto another vector $\vec{v}$, we consider th
 And since our functions can be thought of as vectors, we can think of performing an inner product with our functions because taking an integral is exactly the same thing as the inner product!
 
 When we have two vectors, the dot product is defined as multiplying a component from one vector and a component from another vector and adding up all the multiplications.
-When we have two functions f and g, the integral of their product is defined as multiplying a function evaluated at one point and another function evaluated at a point, with each product having a weight dx, and adding up all the multiplications.
+When we have two functions f and g, the integral of their product is defined as multiplying a function evaluated at a point and another function evaluated at a point, with each product having a weight dx, and adding up all the multiplications.
 \be
   \int_a^b f(x)g(x) = f(a)g(a)dx + f(a + dx)g(a + dx)dx + \hdots
 \ee
@@ -464,9 +467,9 @@ If we add $\sin(x)$ and $\cos(x)$ together, we get an infinite degree polynomial
 \ee
 Therefore, we can think of $\cos(nx)$ and $\sin(nx)$, where n is an integer, as being basis vectors in a space where every vector is written as a linear combination of them
 \be
-  \ket{f} = \sum_{n = 0}^{\infty} a_n \ket{\cos(nx)} + b_n \ket{\sin(nx)}
+  \ket{f} = \sum_{n = 0}^{\infty} A_n \ket{\cos(nx)} + B_n \ket{\sin(nx)}
 \ee
-And if we don't use dirac notation for a second and replace x with $\theta$, we recover the exact form of a Fourier series
+And if we don't use dirac notation for a second and replace x with $\theta$, we recover the exact form of a Fourier series!
 \be
   f(\theta) = \sum_{n = 0}^{\infty} A_n \cos(n \theta) + B_n \sin(n \theta)
 \ee
@@ -477,21 +480,21 @@ If you're thinking ahead, we can also have a complex exponential $e^{ix}$ or $e^
 While we are able to think of a series as a sum of vectors, a Fourier series can only be created from functions $f(\theta)$ that are defined periodically for intervals of length L.
 When we say that a function is periodic, we mean that the function repeats in intervals, e.g. $- 2\pi \leq \theta \leq 0$, $- \pi \leq \theta \leq \pi$, $2 \pi \leq \theta \leq 4 \pi $, etc.
 It is only required that the interval is of a certain length, in this case $2 \pi$.
-For the time being, we will stick to the interval $0 \leq \theta \leq 2 \pi$ and discuss changing the length of the interval later because the length of the interval does not change how we find the coefficients.
+For the time being, we will stick to the interval $0 \leq \theta \leq 2 \pi$ and discuss changing the length later because the length of the interval does not change how we find the coefficients.
 
 We will be using the convention of having our basis vectors be normalized so that our Fourier series is now
 \be
   \ket{f(\theta)} = \sum_{n=0}^{\infty} A_n \ket{c_n} + B_n \ket{s_n}
 \ee
-where $\ket{c_n} = \frac{1}{\sqrt{\pi}} \cos(n \theta)$ and $\ket{s_n} = \frac{1}{\sqrt{\pi}} \sin(n \theta)$, where $\frac{1}{\sqrt{\pi}}$ is the normalization constant we derived earlier in Lecture.
+where $\ket{c_n} = \frac{1}{\sqrt{\pi}} \cos(n \theta)$ and $\ket{s_n} = \frac{1}{\sqrt{\pi}} \sin(n \theta)$, where $\frac{1}{\sqrt{\pi}}$ is the normalization constant we derived earlier in lecture.
 Now that we know how to take dot products in braket notation, we can use our functions' orthogonality properties to find an expression for the coefficients $A_n$ and $B_n$.
 
-If we wanted to find the n-th term of a Fourier series, we can consider projecting the cosine vector $\bra{c_n}$ onto the n-th term of our $\ket{f(\theta)}$ vector (remember, projection means dot product), we get,
+If we wanted to find the n-th term of a Fourier series, we can consider projecting the cosine vector $\bra{c_n}$ onto the n-th term of our $\ket{f(\theta)}$ vector (remember, projection means dot product) and we get,
 \be
   \braket{c_n|f(\theta)} = \bra{c_n} \Big( A_n \ket{c_n} + B_n \ket{s_n} \Big) = A_n \braket{c_n|c_n} + B_n \braket{c_n|s_n}
 \ee
 and since we know from equation \ref{eq:sin_cos} that the integral of sine and cosine is always zero, then the dot product $\braket{c_n|s_n}$ is always zero.
-And since we know from equation \ref{eq:cos_cos_orthonorm} that $\braket{c_n|c_n}$ is 1 when $n = m$ and 0 when $n \neq m$, then all the terms in the sum but one will cancel out and all that we're left with is
+And since we know from equation \ref{eq:cos_cos_orthonorm} that $\braket{c_n|c_n}$ is 1 when $n = m$, then all we're left with is
 \be
   A_n = \braket{c_n|f(\theta)} = \frac{1}{\sqrt{\pi}} \int_0^{2\pi} \cos(n \theta) f(\theta) d\theta
 \ee
