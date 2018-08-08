@@ -138,28 +138,122 @@ Eigenvalue Decomposition Example (Time Signal Analysis)
 
 ## Lecture 17 (5/15/18):
 
+#### Linear Algebra
+
+Solving Linear ODEs with Eigenvalue Decomposition
+
+#### Partial Differential Equations 
+
+First-Order PDE 
+
+System of Linear First-Order PDEs
+
 ## Lecture 18 (5/16/18):
+
+#### Partial Differential Equations
+
+Second-Order PDE (Wave Equation)
+
+Diffusion Equation
+
+Time-Dependent Schrodinger Equation
 
 ## Lecture 19 (5/17/18):
 
+#### Numerical Partial Differential Equations
+
+Time-Dependent Schrodinger Equation
+
+Basis Set Methods vs Grid Methods
+
+#### Optimization Methods
+
+Golden-Section Search Method
+
 ## Lecture 20 (5/22/18):
+
+#### Optimization Methods
+
+Quadratic Interpolation
+
+Simplex Method
+
+Method of Steepest Descent 
 
 ## Lecture 21 (5/23/18):
 
+#### Optimization Methods
+
+Conjugate Gradient Method
+
 ## Lecture 22 (5/24/18):
+
+#### Optimization Methods
+
+Metropolis Monte Carlo 
+
+Traveling Salesman Example
+
+#### Root Search Methods
+
+Newton's Method
+
+Linear Interpolation Method
 
 ## Lecture 23 (5/29/18):
 
+#### Optimization Methods 
+
+Constrained Optimization with Lagrange Multipliers
+
+#### Numerical Linear Algebra
+
+Singular Value Decomposition 
+
 ## Lecture 24 (5/30/18):
+
+#### Numerical Linear Algebra 
+
+Applications of Singular Value Decomposition 
 
 ## Lecture 25 (5/31/18):
 
+#### Numerical Linear Algebra
+
+Tikhonov regularization with SVD 
+
+Numerical Differentiation with Tikhonov Regularization 
+
+#### Numerical Analysis 
+
+Linear Interpolation 
+
+Quadratic Interpolation 
+
 ## Lecture 26 (6/5/18):
+
+#### Numerical Analysis 
+
+Neville's Algorithm
+
+Bilinear Interpolation 
 
 ## Lecture 27 (6/6/18):
 
+#### Numerical Analysis 
+
+Bilinear Interpolation with Gaussian Basis Functions
+
 ## Lecture 28 (6/7/18):
 
+#### Numerical Analysis 
+
+Pade Approximation
+
 ## Lecture 29 (5/3/18):
+
+#### Numerical Ordinary Differential Equations 
+
+Runge-Kutta Methods 
 
 ## Lecture 30 (5/3/18):
