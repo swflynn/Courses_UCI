@@ -37,7 +37,7 @@ Convergence and Divergence Definitions
 
 Convergence tests 
 
-## Lecture 4 (4/10/18):
+## Lecture 4 (4/10/18): (Alan)
 
 #### Series: 
 
@@ -66,27 +66,43 @@ Complex Calculus (Shane)
 ## Lecture 7 (4/17/18):
 Complex Calculus (Shane)
 
-## Lecture 8 (4/19/18):
+## Lecture 8 (4/19/18): (Alan)
 
-#### Integral Approximation Methods: (Alan)
+#### Integral Approximation Methods: 
 
 Asymptotic Series
 
 Saddle-point method
 
-#### Integral Transforms (Alan)
+#### Integral Transforms 
 
 Fourier Series
 
-## Lecture 9 (4/24/18):
+Fourier Transform 
 
-## Lecture 10 (4/26/18):
+## Lecture 9 (4/24/18): (Alan)
 
-## Lecture 11 (5/1/18): 
+#### Integral Transforms 
 
-#### Laplace Transform
+Delta Functions
+
+Parseval's Theorem 
+
+## Lecture 10 (4/26/18): (Alan)
+
+#### Integral Transforms
+
+Properties of Fourier Transform
+
+Laplace Transform
+
+## Lecture 11 (5/1/18): (Alan)
+
+#### Integral Transforms
 
 Properties of Laplace Transform 
+
+Relationship between Fourier and Laplace Transform
 
 #### Linear Algebra 
 
@@ -94,7 +110,7 @@ Linear Vector Space
 
 Linear Transformations
 
-## Lecture 12 (5/2/18): 
+## Lecture 12 (5/2/18): (Alan)
 
 #### Linear Algebra 
 
@@ -102,7 +118,7 @@ Determinants
 
 Cofactor Expansion
 
-## Lecture 13 (5/3/18): 
+## Lecture 13 (5/3/18): (Alan)
 
 #### Linear Algebra 
 
@@ -112,7 +128,7 @@ Inverse Matrices
 
 Unitary Transformations
 
-## Lecture 14 (5/8/18):
+## Lecture 14 (5/8/18): (Alan)
 
 #### Linear Algebra 
 
@@ -122,13 +138,13 @@ Functions of Matrices
 
 Eigenvalue Decomposition 
 
-## Lecture 15 (5/9/18):
+## Lecture 15 (5/9/18): (Alan)
 
 #### Linear Algebra 
 
 Normal Mode Analysis (Classical Case)
 
-## Lecture 16 (5/10/18):
+## Lecture 16 (5/10/18): (Alan)
 
 #### Linear Algebra 
 
@@ -136,30 +152,124 @@ Normal Mode Analysis (Quantum Case)
 
 Eigenvalue Decomposition Example (Time Signal Analysis)
 
-## Lecture 17 (5/15/18):
+## Lecture 17 (5/15/18): (Alan)
 
-## Lecture 18 (5/16/18):
+#### Linear Algebra
 
-## Lecture 19 (5/17/18):
+Solving Linear ODEs with Eigenvalue Decomposition
 
-## Lecture 20 (5/22/18):
+#### Partial Differential Equations 
 
-## Lecture 21 (5/23/18):
+First-Order PDE 
 
-## Lecture 22 (5/24/18):
+System of Linear First-Order PDEs
 
-## Lecture 23 (5/29/18):
+## Lecture 18 (5/16/18): (Alan)
 
-## Lecture 24 (5/30/18):
+#### Partial Differential Equations
 
-## Lecture 25 (5/31/18):
+Second-Order PDE (Wave Equation)
 
-## Lecture 26 (6/5/18):
+Diffusion Equation
 
-## Lecture 27 (6/6/18):
+Time-Dependent Schrodinger Equation
 
-## Lecture 28 (6/7/18):
+## Lecture 19 (5/17/18): (Alan)
 
-## Lecture 29 (5/3/18):
+#### Numerical Partial Differential Equations
+
+Time-Dependent Schrodinger Equation
+
+Basis Set Methods vs Grid Methods
+
+#### Optimization Methods
+
+Golden-Section Search Method
+
+## Lecture 20 (5/22/18): (Shane)
+
+#### Optimization Methods
+
+Quadratic Interpolation
+
+Simplex Method
+
+Method of Steepest Descent 
+
+## Lecture 21 (5/23/18): (Shane)
+
+#### Optimization Methods
+
+Conjugate Gradient Method
+
+## Lecture 22 (5/24/18): (Shane)
+
+#### Optimization Methods
+
+Metropolis Monte Carlo 
+
+Traveling Salesman Example
+
+#### Root Search Methods
+
+Newton's Method
+
+Linear Interpolation Method
+
+## Lecture 23 (5/29/18): (Shane)
+
+#### Optimization Methods 
+
+Constrained Optimization with Lagrange Multipliers
+
+#### Numerical Linear Algebra
+
+Singular Value Decomposition 
+
+## Lecture 24 (5/30/18): (Shane)
+
+#### Numerical Linear Algebra 
+
+Applications of Singular Value Decomposition 
+
+## Lecture 25 (5/31/18): (Shane)
+
+#### Numerical Linear Algebra
+
+Tikhonov regularization with SVD 
+
+Numerical Differentiation with Tikhonov Regularization 
+
+#### Numerical Analysis 
+
+Linear Interpolation 
+
+Quadratic Interpolation 
+
+## Lecture 26 (6/5/18): (Shane)
+
+#### Numerical Analysis 
+
+Neville's Algorithm
+
+Bilinear Interpolation 
+
+## Lecture 27 (6/6/18): (Shane)
+
+#### Numerical Analysis 
+
+Bilinear Interpolation with Gaussian Basis Functions
+
+## Lecture 28 (6/7/18): (Shane)
+
+#### Numerical Analysis 
+
+Pade Approximation
+
+## Lecture 29 (5/3/18): (Shane)
+
+#### Numerical Ordinary Differential Equations 
+
+Runge-Kutta Methods 
 
 ## Lecture 30 (5/3/18):
