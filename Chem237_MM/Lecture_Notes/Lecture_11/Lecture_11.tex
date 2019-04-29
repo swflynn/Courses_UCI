@@ -37,7 +37,7 @@
 \begin{document}
 \maketitle
 %==============================================================================%
-% The end of integral transforms lecture should go here. 
+% The end of integral transforms lecture should go here.
 %==============================================================================%
 \section*{Linear Algebra}
 Just as we've seen with a Fourier Series, some topics can be better understood when we think about it in terms of Linear Algebra.
@@ -47,7 +47,7 @@ These next few lectures should not be seen as the equivalent of taking your firs
 In mathematical methods, we will find ourselves using ideas that have been proven rigorously by mathematicians and simply treating these ideas as if it is all well known information.
 With that said, we will run through all the well known information first and then see how all of this information can be used to obtain solutions to problems of interest.
 
-\subsection*{Vectors}
+\subsection*{Vectors and Vector Spaces}
 In every standard calculus course you are told about objects known as vectors.
 And you learn that a vector is a mathematical object that is defined by its direction and length.
 So in 2 dimensions, you can have a whole space of vectors which could look something like this,
@@ -126,13 +126,22 @@ So a matrix A of size MxN would be written as:
 \]
 
 Matrices aren't meant to be visualized the way vectors are.
-Matrices should be thought of as linear operators because they are the connection between different vector spaces (I will elaborate on this in the "linear trasnformation" section).
-With that said, matrices have properties that are important to know which are similar to vectors but with slight differences.
-If we had two matrices \textbf{A} and \textbf{B} such that $\textbf{A} \in \mathbb{C}^{MxN} \text{and} \textbf{B} \in \mathbb{C}^{NxK}$ we could define the multiplication of the two matrices as
+But matrices have properties that are important to know which are similar to vectors such as the
+\be
+  \begin{split}
+    \text{Commutative property:} \quad & \textbf{A} + \textbf{B} = \textbf{B} + \textbf{A} \\
+    \text{Associative property:} \quad & (\textbf{A} + \textbf{B}) + \textbf{C} = \textbf{A} + (\textbf{B} + \textbf{C} \\
+    \text{Distributive scalar property:} \quad & a(\textbf{A} + \textbf{B}) = a\textbf{A} + a\textbf{B} \\
+    \text{Distributive matrix property:} \quad & (a + b)\textbf{A} = a\textbf{A} + b\textbf{A} \\
+  \end{split}
+\ee
+
+If we had two matrices \textbf{A} and \textbf{B} such that $\textbf{A} \in \mathbb{C}^{MxN}$ and $\textbf{B} \in \mathbb{C}^{NxK}$ we could define the multiplication of the two matrices as
 \be \label{eq:matmul}
   \textbf{A} \textbf{B} = \textbf{C}
 \ee
 where \textbf{C} is a matrix such that $\textbf{C} \in \mathbb{C}^{MxK}$.
+Therefore, the only way for the multiplication to work is if the number of columns of the left matrix is equal to the number of rows of the right matrix.
 A useful way to write the multiplication is with summation notation,
 \be \label{eq:matmul_sum}
   \sum\limits_{n=1}^{N} A_{mn} B_{nk} = C_{mk}
@@ -178,4 +187,47 @@ When you're dealing with multiple sums, the work can get pretty messy, so it use
 %==============================================================================%
 % We don't go over einstein notation but it might be useful to add a tiny section about it.
 %==============================================================================%
+
+Back to matrix properties, there exists a matrix \textbf{I} called a unit matrix or identity matrix such that for any matrix \textbf{A}
+\be
+  \textbf{I} \textbf{A} = \textbf{A} \textbf{I} = \textbf{A}
+\ee
+which is often thought of as multiplying by one for matrices.
+Therefore, the identity matrix is a diagonal matrix of ones
+\be
+\begin{bmatrix}
+   1 & 0\\
+   0 & 1
+\end{bmatrix}
+,
+\begin{bmatrix}
+   1 & 0 & 0\\
+   0 & 1 & 0\\
+   0 & 0 & 1
+\end{bmatrix}
+, \dots
+\ee
+There also exists a matrix \textbf{0} called the null matrix such that each element of the matrix is zero.
+Therefore,
+\be
+  \textbf{A} \textbf{0} = \textbf{0} \textbf{A} = \textbf{0} \quad \text{and} \quad \textbf{A} + \textbf{0} = \textbf{A}
+\ee
+
+A common mistake that people make is thinking of multiplying matrices as the same way as multiplying scalars.
+If you have two matrices \textbf{A} and \textbf{B} such that
+\be
+  \textbf{A} \textbf{B} = \textbf{C}
+\ee
+then you could solve for \textbf{B} by considering that left multiplying both sides by the inverse of \textbf{A}
+\be
+  \textbf{A}^{-1} \textbf{A} \textbf{B} = \textbf{A}^{-1} \textbf{C} \quad \Rightarrow \quad \textbf{B} = \textbf{A}^{-1} \textbf{C}
+\ee
+because of the property $\textbf{A} \textbf{A}^{-1} = \textbf{A}^{-1} \textbf{A} = \textbf{I}$ and because the concept of dividing by matrices does not exist.
+Similarly, we could solve for \textbf{A} by right multiplying by the inverse of \textbf{B}
+\be
+  \textbf{A} \textbf{B} \textbf{B}^{-1} = \textbf{C} \textbf{B}^{-1} \quad \Rightarrow \quad \textbf{A} = \textbf{C} \textbf{B}^{-1}
+\ee
+Using these tools, we can discuss the concept of a matrix being associated with a linear transformation.
+\subsection*{Linear Transformation}
+
 \end{document}
