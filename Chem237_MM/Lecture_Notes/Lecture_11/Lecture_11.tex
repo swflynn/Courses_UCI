@@ -51,9 +51,13 @@ With that said, we will run through all the well known information first and the
 In every standard calculus course you are told about objects known as vectors.
 And you learn that a vector is a mathematical object that is defined by its direction and length.
 So in 2 dimensions, you can have a whole space of vectors which could look something like this,
-%==============================================================================%
-% Add picture of a bunch of Vectors
-%==============================================================================%
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.7]{Figures/vectors.png}
+    \caption{An example of a constant vector field $\vec{F}(x,y) = 2 \hat{i} + \hat{j}$.}
+  \label{fig:rotation}
+\end{figure}
+\noindent
 and we call this set of objects (vectors) a linear vector space.
 
 Each vector space is said to be closed under addition and multiplication.
@@ -152,7 +156,7 @@ Equation \ref{eq:matmul_sum} is more preffered when you're working out a problem
 Therefore, it might help to see what is actually going on in with the sum.
 Equation \ref{eq:matmul_sum} says that
 \be
-  C_{mk} = A_{m1} B_{1k} + A_{m2} B_{2k} + \hdots A_{m(N-1)} B_{(N-1)k} + A_{mN} B_{Nk}
+  A_{m1} B_{1k} + A_{m2} B_{2k} + \hdots A_{m(N-1)} B_{(N-1)k} + A_{mN} B_{Nk} = C_{mk}
 \ee
 which means that for one element of the matrix C say the mk element, we need to single out the mth row of matrix A and the kth column of matrix B, multiply the corresponding entries together, and then add up the products.
 
@@ -213,12 +217,12 @@ Therefore,
   \textbf{A} \textbf{0} = \textbf{0} \textbf{A} = \textbf{0} \quad \text{and} \quad \textbf{A} + \textbf{0} = \textbf{A}
 \ee
 
-A common mistake that people make is thinking of multiplying matrices as the same way as multiplying scalars.
+A common mistake that people make is thinking of multiplying matrices the same way as multiplying scalars.
 If you have two matrices \textbf{A} and \textbf{B} such that
 \be
   \textbf{A} \textbf{B} = \textbf{C}
 \ee
-then you could solve for \textbf{B} by considering that left multiplying both sides by the inverse of \textbf{A}
+then you could solve for \textbf{B} by left multiplying both sides of the equation by the inverse of \textbf{A}
 \be
   \textbf{A}^{-1} \textbf{A} \textbf{B} = \textbf{A}^{-1} \textbf{C} \quad \Rightarrow \quad \textbf{B} = \textbf{A}^{-1} \textbf{C}
 \ee
@@ -229,5 +233,68 @@ Similarly, we could solve for \textbf{A} by right multiplying by the inverse of 
 \ee
 Using these tools, we can discuss the concept of a matrix being associated with a linear transformation.
 \subsection*{Linear Transformation}
+A linear transformation \textit{T} is when we create a mapping from one vector space to another using a matrix, i.e.\\
+$\textit{T}: \mathbb{C}^N \rightarrow \mathbb{C}^M$.
+Applying the transformation is as easy as multiplying any two matrices, because that's exactly what it is.
+
+For example, consider two vector spaces in $\mathbb{R}^2$.
+We can take any vector and rotate it counterclockwise by some degree $\theta$ by using the rotation matrix \textbf{R}$_{\theta}$
+\begin{equation}
+  \textbf{R}_{\theta} =
+  \begin{bmatrix}
+    \cos{\theta} & -\sin{\theta}\\
+    \sin{\theta} & \cos{\theta} \\
+  \end{bmatrix}
+\end{equation}
+If we wanted to visualize this, consider a vector $\vec{v}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
+We can rotate the vector 45 degrees = $\frac{\pi}{4}$ radians by multiplying it with the rotation matrix \textbf{R}$_\frac{\pi}{4}$
+\begin{equation}
+  \textbf{R}_\frac{\pi}{4} \vec{v}_1 =
+  \begin{bmatrix}
+    \cos{( \frac{\pi}{4} )} & -\sin{( \frac{\pi}{4} )}\\[6pt]
+    \sin{( \frac{\pi}{4} )} & \cos{( \frac{\pi}{4} )} \\
+  \end{bmatrix}
+  \begin{bmatrix}
+    1 \\ 0
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{1}{\sqrt{2}} \\[6pt] \frac{1}{\sqrt{2}}
+  \end{bmatrix}
+  = \vec{v}_2
+\end{equation}
+and we can verify that the rotation was successful with a plot of $\vec{v}_1$ and $\vec{v}_2$.
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.7]{Figures/rotation.png}
+    \caption{$\vec{v}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$ being rotated 45 degrees counterclockwise to produce $\vec{v}_2$ using the rotation matrix.}
+  \label{fig:rotation}
+\end{figure}
+The rotation matrix is a special matrix because it has the following properties:
+\begin{enumerate}
+  \item \textbf{R}$_{\theta}$\textbf{R}$_{\theta'}$ = \textbf{R}$_{\theta'}$\textbf{R}$_{\theta}$
+  \item \textbf{R}$_{\theta}$\textbf{R}$_{\theta'}$ = \textbf{R}$_{\theta + \theta'}$
+  \item \textbf{R}$_{\theta}$\textbf{R}$_{-\theta}$ = \textbf{R}$_{0}$ = \textbf{I}
+  \item \textbf{R}$_{\theta}^T$ = \textbf{R}$_{\theta}^{-1}$
+\end{enumerate}
+and property number 4 is why we call the rotation matrix an \textbf{orthognal matrix}.
+The left hand side of property 4 is called the transpose matrix.
+Transposing a matrix means taking the columns of a matrix and turning them into rows.
+For example,
+\begin{equation}
+  \textbf{R}_{\theta}^{T} =
+  \begin{bmatrix}
+    \cos{\theta} & \sin{\theta}\\
+    -\sin{\theta} & \cos{\theta} \\
+  \end{bmatrix}.
+\end{equation}
+So in general, for any matrix \textbf{A},
+\begin{equation}
+  A_{mn}^T = A_{nm} .
+\end{equation}
+
+Finding the inverse of the matrix is more difficult.
+In some cases, the inverse of a matrix may not exist.
+To determine the existence of an inverse, it would be easier to first compute the determinant of the matrix, which we will discuss next lecture.
 
 \end{document}
