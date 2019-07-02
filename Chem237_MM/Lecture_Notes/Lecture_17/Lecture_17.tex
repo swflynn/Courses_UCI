@@ -1,0 +1,111 @@
+\documentclass{article}
+%==============================================================================%
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{subcaption}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+\newcommand{\sumzero}{\sum_{n=0}^\infty}
+\newcommand{\sumone}{\sum_{n=1}^\infty}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 17}
+\date{5/15/18}
+\author{Alan Robledo}
+%==============================================================================%
+%	Everyone Please Make Comments if Something Needs to be Reviewed        %
+%                           Or just fix it yourself!                           %
+%==============================================================================%
+\begin{document}
+\maketitle
+%==============================================================================%
+% The end of integral transforms lecture should go here.
+%==============================================================================%
+\section*{Solving Linear ODEs using Matrix Methods}
+We've already discussed solving ODEs (Ordinary Differential Equations) in previous lectures as well as performing an eigenvalue decomposition.
+Therefore, it makes sense to discuss how we can combine the two topics.
+We will start with a quick example of a first-order ODE,
+\be
+  \dot{y} = a y \quad ; \quad y = y(t)
+\ee
+where we are adopting the dot notation from physics where a dot represents a derivative taken with respect to time, e.g. $\dot{y} = \frac{dy}{dt}$, for simplicity.
+
+By inspection, the solution space is one dimension and has the form
+\be
+  y = y_o e^{a t}
+\ee
+where a is a scalar and $y_o$ would be determined from intitial conditions.
+
+We can consider generalizing this by considering an array of functions
+\be
+  \vec{Y}(t) =
+  \begin{bmatrix}
+    y_1(t) \\
+    \vdots \\
+    y_n(t) \\
+  \end{bmatrix}
+\ee
+and a matrix of coefficients \textbf{A}
+\be
+  \begin{bmatrix}
+    A_{11} & \cdots & A_{n1} \\
+    \vdots & & \vdots \\
+    A_{1n} & \cdots & A_{nn}\\
+  \end{bmatrix}
+\ee
+such that the following equation is satisfied
+\be \label{eq:gen_firstode}
+  \dot{Y}(t) = \textbf{A} Y(t) .
+\ee
+It is implied that $Y = \vec{Y}$.
+Equation \ref{eq:gen_firstode} looks very similar to the Time-Dependent Schr\"odinger Equation (TDSE),
+\be
+  i \hbar \frac{\partial \Psi}{\partial t} = \hat{H} \Psi
+\ee
+and, without using any quantum mechanics jargon, we can compare this to equation 1 and say that the solution to the TDSE is,
+\be
+  \Psi = \psi_o e^{-\frac{it}{\hbar} \hat{H}}
+\ee
+If this does bother you then we'll just assume that $\psi_o$ is a stationary state.
+Going back to equation \ref{eq:gen_firstode}, we can automatically see that the solution looks like,
+\be \label{eq:gen_solution}
+  Y(t) = e^{\textbf{A} t} Y_o
+\ee
+where $Y_o = \begin{bmatrix} y_1(0) \\ \vdots \\ y_n(0) \end{bmatrix}$.
+If we perform an eigenvalue decomposition on \textbf{A}, then we get,
+\be \label{eq:eigen_decomp}
+  \textbf{A} = \textbf{X} \Lambda \textbf{X}^{-1}
+\ee
+And using this with equation \ref{eq:gen_solution} gives
+\be \label{eq:eigen_solution}
+  Y(t) = \textbf{X} e^{\Lambda t} \textbf{X}^{-1} Y_o
+\ee
+where we recall that \textbf{X} is a matrix of eigenvectors and $\Lambda$ is a diagonal matrix of the eigenvalues.
+Remember that $Y_o$ is a vector and not a scalar, so it is important to keep it on the right hand side of the equation so that the dimensions are aligned properly.
+
+If you think that there was a big jump between equation \ref{eq:eigen_decomp} and equation \ref{eq:eigen_solution}, we are simply taking the idea from lecture 14 that \textbf{A} and $e^{\textbf{A}}$ share the same eigenvectors while the eigenvalues of \textbf{a} and $e^{\textbf{A}}$ are $\lambda_n$ and $e^{\lambda_n}$ respectively (see lecture 14 for the proof).
+Likewise, if we mutliply \textbf{A} by a scalar, t, then \textbf{A}t and $e^{\textbf{A} t}$ will share the same eigenvectors while the eigenvalues of \textbf{A}t and $e^{\textbf{A} t}$ are $\lambda_n$t and $e^{\lambda_n t}$ respectively, since scalar multiplication does not change the eigenvectors only the eigenvalues.
+Therefore, using right multiplication,
+\be
+  e^{\textbf{A} t} \textbf{X} = \textbf{X} e^{\Lambda t} \quad \Rightarrow \quad e^{\textbf{A} t} = \textbf{X} e^{\Lambda t} \textbf{X}^{-1}
+\ee
+
+\end{document}
