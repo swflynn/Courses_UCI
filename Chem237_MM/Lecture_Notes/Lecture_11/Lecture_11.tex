@@ -150,7 +150,7 @@ A useful way to write the multiplication is with summation notation,
 \be \label{eq:matmul_sum}
   \sum\limits_{n=1}^{N} A_{mn} B_{nk} = C_{mk}
 \ee
-where n is summed over all possible values of m and k.
+where we sum over all the possible values of n.
 Notice how we used lowercase letters for m and k because we are saying that m can take on values from 1 $\hdots$ M and k can take on values from 1 $\hdots$ K.
 Equation \ref{eq:matmul_sum} is more preffered when you're working out a problem and need to keep track of your variables, especially when you are coding the multiplication of two matrices.
 Therefore, it might help to see what is actually going on in with the sum.
@@ -187,12 +187,23 @@ If we had the same matrix \textbf{A} with an M-dimensional vector $\vec{u}$, the
   v_{m} = \sum_{n=1}^{N} A_{mn} u_{n}
 \ee
 Notice that the equation above tells us that we could find the mth coordinate of our new vector by taking the mth row of \textbf{A} and multiplying the corresponding values with the coordinates of $\vec{u}$.
-When you're dealing with multiple sums, the work can get pretty messy, so it useful to use \textbf{einstein notation}.
-%==============================================================================%
-% We don't go over einstein notation but it might be useful to add a tiny section about it.
-%==============================================================================%
 
-Back to matrix properties, there exists a matrix \textbf{I} called a unit matrix or identity matrix such that for any matrix \textbf{A}
+A common mistake that people make is thinking of multiplying matrices the same way as multiplying scalars.
+If you have two matrices \textbf{A} and \textbf{B} such that
+\be
+  \textbf{A} \textbf{B} = \textbf{C}
+\ee
+then you could solve for \textbf{B} by left multiplying both sides of the equation by the inverse of \textbf{A},
+\be
+  \textbf{A}^{-1} \textbf{A} \textbf{B} = \textbf{A}^{-1} \textbf{C} \quad \Rightarrow \quad \textbf{B} = \textbf{A}^{-1} \textbf{C}
+\ee
+because of the property $\textbf{A} \textbf{A}^{-1} = \textbf{A}^{-1} \textbf{A} = \textbf{I}$ and because the concept of dividing by matrices does not exist.
+Similarly, we could solve for \textbf{A} by right multiplying by the inverse of \textbf{B},
+\be
+  \textbf{A} \textbf{B} \textbf{B}^{-1} = \textbf{C} \textbf{B}^{-1} \quad \Rightarrow \quad \textbf{A} = \textbf{C} \textbf{B}^{-1}
+\ee
+
+Back to matrix properties, there exists a matrix \textbf{I} called a unit matrix or identity matrix such that for any matrix \textbf{A},
 \be
   \textbf{I} \textbf{A} = \textbf{A} \textbf{I} = \textbf{A}
 \ee
@@ -214,28 +225,15 @@ Therefore, the identity matrix is a diagonal matrix of ones
 There also exists a matrix \textbf{0} called the null matrix such that each element of the matrix is zero.
 Therefore,
 \be
-  \textbf{A} \textbf{0} = \textbf{0} \textbf{A} = \textbf{0} \quad \text{and} \quad \textbf{A} + \textbf{0} = \textbf{A}
+  \textbf{A} \textbf{0} = \textbf{0} \textbf{A} = \textbf{0} \quad \text{and} \quad \textbf{A} + \textbf{0} = \textbf{A} .
 \ee
 
-A common mistake that people make is thinking of multiplying matrices the same way as multiplying scalars.
-If you have two matrices \textbf{A} and \textbf{B} such that
-\be
-  \textbf{A} \textbf{B} = \textbf{C}
-\ee
-then you could solve for \textbf{B} by left multiplying both sides of the equation by the inverse of \textbf{A}
-\be
-  \textbf{A}^{-1} \textbf{A} \textbf{B} = \textbf{A}^{-1} \textbf{C} \quad \Rightarrow \quad \textbf{B} = \textbf{A}^{-1} \textbf{C}
-\ee
-because of the property $\textbf{A} \textbf{A}^{-1} = \textbf{A}^{-1} \textbf{A} = \textbf{I}$ and because the concept of dividing by matrices does not exist.
-Similarly, we could solve for \textbf{A} by right multiplying by the inverse of \textbf{B}
-\be
-  \textbf{A} \textbf{B} \textbf{B}^{-1} = \textbf{C} \textbf{B}^{-1} \quad \Rightarrow \quad \textbf{A} = \textbf{C} \textbf{B}^{-1}
-\ee
 Using these tools, we can discuss the concept of a matrix being associated with a linear transformation.
+
 \subsection*{Linear Transformation}
 A linear transformation \textit{T} is when we create a mapping from one vector space to another using a matrix, i.e.\\
 $\textit{T}: \mathbb{C}^N \rightarrow \mathbb{C}^M$.
-Applying the transformation is as easy as multiplying any two matrices, because that's exactly what it is.
+Computing the transformation is as easy as multiplying any two matrices, because that's exactly what it is.
 
 For example, consider two vector spaces in $\mathbb{R}^2$.
 We can take any vector and rotate it counterclockwise by some degree $\theta$ by using the rotation matrix \textbf{R}$_{\theta}$
@@ -293,7 +291,7 @@ So in general, for any matrix \textbf{A},
   A_{mn}^T = A_{nm} .
 \end{equation}
 
-Finding the inverse of the matrix is more difficult.
+Orthogonal matrices are convenient to work with because finding the inverse of the matrix is much more difficult than finding its transpose.
 In some cases, the inverse of a matrix may not exist.
 To determine the existence of an inverse, it would be easier to first compute the determinant of the matrix, which we will discuss next lecture.
 
