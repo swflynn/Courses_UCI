@@ -1,0 +1,101 @@
+\documentclass{article}
+%=============================================================================80
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+%==============================================================================%
+%      Just for Lecture 15                                                     %
+%==============================================================================%
+\newcommand{\br}{\textbf{r}}
+\newcommand{\bp}{\textbf{P}}
+\newcommand{\bm}{\textbf{M}}
+\newcommand{\bk}{\textbf{K}}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 15}
+\date{5/9/18}
+\author{Alan Robledo}
+%==============================================================================%
+\begin{document}
+
+\maketitle
+
+\section{Classical Normal Mode Analysis}
+%==============================================================================%
+%    Somebody add an intro
+%==============================================================================%
+
+\subsection{Harmonic Approximation}
+We start by writing the hamiltonian for our system of interest with N degrees of freedom,
+\be
+  H = \sum_{i = 1}^{N} \frac{p^2_i}{2 m} + V(r_1, \dots, r_N)
+\ee
+where our coorindate vector is $\br = \begin{bmatrix} r_1 \\ \vdots \\ r_N \end{bmatrix}$.
+We can invoke the \textbf{Harmonic approximation}, which says that the potential $V(\br)$ can be expressed as a taylor expansion about a minimum $r_o$
+\be
+  V(r) = V(r_o) + \sum_j \Big( \frac{\partial V}{\partial r_j} \Big) (r - r_o) + \frac{1}{2} \sum_{i j} r_i K_{i j} r_j + \dots
+\ee
+where $\bk$ is called the \textbf{Hessian} and is defined as
+\be
+  k_{i j} = \frac{\partial^2 V}{\partial r_i r_j} .
+\ee
+Since our potential is expanded about a minimum, we can say that $\frac{\partial V(r_o)}{\partial r_i} = 0$.
+If we neglect higher order terms and assume that $V(r_o) \approx 0$, then we obtain an approximate potential
+\be
+  V(r) \approx \frac{1}{2} \sum_{i j} r_i K_{i j} r_j .
+\ee
+The hamiltonian can then be written in terms of matrices as
+\be
+  \textbf{H} \approx \frac{1}{2} \bp^T \bm^{-1} \bp + \frac{1}{2} \textbf{r}^{T} \bk \textbf{r}
+\ee
+We have effectively turned our system into one where each degree of freedom can be approximated as a harmonic oscillator.
+The equations of motion for each degree of freedom can be solved by using Hamilton's equations:
+\be
+  \begin{split}
+    \dot{p}_i &= - \frac{\partial H}{\partial r_i} \\
+    \dot{r}_i &= \frac{\partial H}{\partial p_i} \\
+  \end{split}
+\ee
+However, this can be difficult when we have a system of coupled oscillators.
+
+\subsection{Normal Mode Coordinates}
+One way to get around this problem is by transforming our original coordinates into a set of normal mode coordinates.
+This decouples all of our degrees of freedom and turns our system into one of N independent harmonic oscillators, each with a normal mode frequency $\omega_i$.
+If our mass matrix \textbf{M} is not diagonal, we could perform an eigenvalue decomposition and use the corresponding eigenvectors to find a diagonal matrix for \bm, which would just be a matrix of its eigenvalues.
+Instead, we will introduce mass scaled coordinates to get rid of our mass matrix from the hamiltonian.
+These coordinates can be defined as:
+\be
+  \begin{split}
+    r'_i = \sqrt{m_i} r_i \quad &\Longleftrightarrow \quad \br' = \bm^{1/2} \br \\
+    p'_i = \frac{1}{\sqrt{m_i}} p_i \quad &\Longleftrightarrow \quad \bp' = \bm^{-1/2} \bp \\
+    K'_{i j} = \frac{1}{\sqrt{m_i m_j}} K_{i j} \quad &\Longleftrightarrow \quad \bk' = \bm^{-1/2} \bk \bm^{1/2}
+  \end{split}
+\ee
+So H becomes,
+\be
+  H = \frac{1}{2} \bk'^T \bk + \frac{1}{2} \br'^T \bk' \br'
+\ee
+where \bk' is now our mass-scaled Hessian.
+
+\subsection{}
+\end{document}
