@@ -1,0 +1,73 @@
+\documentclass{article}
+%==============================================================================%
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{subcaption}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+\newcommand{\sumzero}{\sum_{n=0}^\infty}
+\newcommand{\sumone}{\sum_{n=1}^\infty}
+\newcommand{\bA}{\mbox{\bf A}}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 13}
+\date{5/3/18}
+\author{Shane Flynn}
+%==============================================================================%
+%	Everyone Please Make Comments if Something Needs to be Reviewed        %
+%                           Or just fix it yourself!                           %
+%==============================================================================%
+\begin{document}
+\maketitle
+
+\section{Note}
+9-9-19; Just copied the lecture notes I have over, this has not been reviewed/edited/made ready for the world. 
+
+\section*{Gaussian Elimination}
+Reduce your matrix to an upper-triangular (or lower triangular) form by performing operations such that the determinant doesn't change. 
+%==============================================================================%
+%                               Note/Question:
+%(Are we using bold capital letters for matricies? let's be consistent with notation). 
+%==============================================================================%
+
+Consider the square N by N matrix $\bA$, which has column vectors labeled $\vec{a}_i$
+
+\be
+\bA =  
+\begin{bmatrix}
+    A_{11}  & \dotsb &  A_{1N} \\
+    \vdots  & \ddots &  \vdots \\
+    A_{1N}  & \dotsb &  A_{NN} 
+\end{bmatrix}
+    = 
+\begin{bmatrix}
+        \vec{a}_1 & \dots  & \vec{a}_N 
+\end{bmatrix}
+\ee
+
+To compute the determinant of $\bA$ we know the following
+\be
+\be \det\left(\bA\right) = \det\left(\vec{a}_1 \dots  \vec{a}_N \right) = \det\left(\vec{a}_1- \lambda_{a2}, \vec{a}_2 \dots  \vec{a}_N \right) 
+\ee
+
+Let $\lambda_1 = \frac{A_{N1}}{A_{N2}}$ then we have
+
+\end{document}
