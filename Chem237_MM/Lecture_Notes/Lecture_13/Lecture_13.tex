@@ -65,9 +65,71 @@ Consider the square N by N matrix $\bA$, which has column vectors labeled $\vec{
 
 To compute the determinant of $\bA$ we know the following
 \be
-\be \det\left(\bA\right) = \det\left(\vec{a}_1 \dots  \vec{a}_N \right) = \det\left(\vec{a}_1- \lambda_{a2}, \vec{a}_2 \dots  \vec{a}_N \right) 
+\det\left(\bA\right) = \det\left(\vec{a}_1 \cdots  \vec{a}_N \right) = \det\left(\vec{a}_1- \lambda_{a2}, \vec{a}_2 \cdots \vec{a}_N \right) 
 \ee
 
 Let $\lambda_1 = \frac{A_{N1}}{A_{N2}}$ then we have
+\be
+\begin{bmatrix}
+    \star  & A_{12} & \dotsb &  A_{1N} \\
+    \star & A_{22} &\dotsb &  \vdots \\
+    \vdots & \vdots &  \ddots &  \vdots \\
+    0  & A_{N2} & \dotsb &  A_{NN} 
+\end{bmatrix}
+\ee
+
+Next step set $\lambda_2 = \frac{A_{N2}}{A_{N3}}$ then we have
+\be
+\begin{bmatrix}
+    \star  & \star & \dotsb & \vdots \\
+    \star & \vdots &\dotsb &  \vdots \\
+    \vdots & \vdots &  \ddots &  \vdots \\
+    0  & 0 & \dotsb &  A_{NN} 
+\end{bmatrix}
+\ee
+
+In this way we can reduce every element of the Nth row to 0 except for the final term A$_{NN}$.
+We can then repeat this process for the N-1 row (Second to last row), which will convert every element up to N-1 in the row to 0.%you want to keep last 0 in Nth row so only go up to N-1 in N-1 row
+\be
+\begin{bmatrix}
+    \star  & \star & \dotsb & \vdots \\
+    \star & \vdots &\dotsb &  \vdots \\
+    0 & \dotsb &  0 &  \star \\
+    0  & \dotsb & 0 &  A_{NN} 
+\end{bmatrix}
+\ee
+
+Repeating the process iteratively eventually ends in
+\be
+\begin{bmatrix}
+    \star  & \star & \star & \star \\
+     0 & \star &\star &  \star \\
+     0 & 0 &  \star &  \star \\
+    0  & 0 & 0 &  \star 
+\end{bmatrix}
+\ee
+
+What happens if you have a 0 at some point during the iterations? Just move it and keep going. 
+
+\subsection{Numerical Linear Algebra}
+Using the definition of the determinant the scaling would be N! which is very bad. 
+Using the algorithm from above leads to N$^3$ scaling, which is a common result for numerical linear algebra algorithms.
+$a_1$ - $\lambda_{a2}$ = 2 operations scaling as N, Appy to row = N, apply to other ros = N. 
+
+\subsection{Linear Indepedence}
+Consider a set of n vectors $\vec{a}_1 \cdots \vec{a}_N$. 
+These vectors are linearly indepedent if for any $\lambda_1\cdots\lambda_N$
+\be
+\sum_{i=1}^N \lambda_i\vec{a}_i \neq 0
+\ee
+and vice versa linearly depedent if 
+\be
+\sum_{i=1}^N \lambda_i\vec{a}_i = 0
+\ee
+
+Theorem: determinate matrix formed by N vectors det($\vec{a}_1\cdots\vec{1}_N$) = 0 iff $\vec{a}_1\cdots\vec{a}_N$ are linearly depedent, and vice versa linearly indepedent vectors produce a determinate $\neq$ 0. 
+
+
+
 
 \end{document}
