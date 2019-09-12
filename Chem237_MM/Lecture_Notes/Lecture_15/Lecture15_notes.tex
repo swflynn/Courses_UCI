@@ -26,7 +26,7 @@
 %      Just for Lecture 15                                                     %
 %==============================================================================%
 \newcommand{\br}{\textbf{r}}
-\newcommand{\bp}{\textbf{P}}
+\newcommand{\bp}{\textbf{p}}
 \newcommand{\bm}{\textbf{M}}
 \newcommand{\bk}{\textbf{K}}
 %==============================================================================%
@@ -41,39 +41,51 @@
 \maketitle
 
 \section{Classical Normal Mode Analysis}
-%==============================================================================%
-%    Somebody add an intro
-%==============================================================================%
+%==============================================================================
+%         Shane, you can probably make a better introduction
+%==============================================================================
+If we had a problem of a mass attached to a spring, we can immediately find the equations of motion from the harmonic oscillator model.
+However, we can always imagine a situation where our system consists of having multiple masses connected to each other by springs.
+For example, a water molecule \ce{H_2O} can be thought of as 3 atoms connected to each other by 2 springs.
+In this system of coupled osciallators, the equations of motion that correspond to the molecular vibrations can be solved as if it were a coupled harmonic oscillator problem.
+Solving this problem using cartesian coordinates can be incredibly tedious and physically impossible if we keep adding more atoms to the system.
+
+This can be made much simpler by performing a transformation from the cartesian basis to the normal mode basis.
+In the normal mode basis, we can imagine all of our atoms oscillating sinusoidally each with a frequency and phase relation that corresponds to a particular normal mode.
+Chemists use normal mode analysis to determine whether a normal mode is IR and/or Raman active, which is useful when creating vibrational spectra.
+
+In this lecture, we will show the mathematical basis for normal mode analysis.
+But before we introduce how it can be applied to a quantum system such as atoms in a molecule, we will start with the classical analog.
 
 \subsection{Harmonic Approximation}
-We start by writing the hamiltonian for our system of interest with N degrees of freedom,
+We begin by writing the Hamiltonian for our system of interest with N vibrational degrees of freedom,
 \be
   H = \sum_{i = 1}^{N} \frac{p^2_i}{2 m} + V(r_1, \dots, r_N)
 \ee
 where our coorindate vector is $\br = \begin{bmatrix} r_1 \\ \vdots \\ r_N \end{bmatrix}$.
-We can invoke the \textbf{Harmonic approximation}, which says that the potential $V(\br)$ can be expressed as a taylor expansion about a minimum $r_o$
+We can invoke the \textbf{Harmonic approximation}, which says that the potential $V(\br)$ can be expressed as a taylor expansion about a minimum $r_o$, which we will take be 0,
 \be
-  V(r) = V(r_o) + \sum_j \Big( \frac{\partial V}{\partial r_j} \Big) (r - r_o) + \frac{1}{2} \sum_{i j} r_i K_{i j} r_j + \dots
+  V(r) = V(r_o) + \sum_j \Big( \frac{\partial V}{\partial r_j} \Big) r_j + \frac{1}{2} \sum_{i j} r_i K_{i j} r_j + \dots
 \ee
 where $\bk$ is called the \textbf{Hessian} and is defined as
 \be
-  k_{i j} = \frac{\partial^2 V}{\partial r_i r_j} .
+  K_{i j} = \frac{\partial^2 V}{\partial r_i r_j} .
 \ee
-Since our potential is expanded about a minimum, we can say that $\frac{\partial V(r_o)}{\partial r_i} = 0$.
-If we neglect higher order terms and assume that $V(r_o) \approx 0$, then we obtain an approximate potential
+Since our potential is expanded about a minimum, we can say that $\left. \frac{\partial V}{\partial r_j} \right|_{r_j = r_o} = 0$.
+If we truncate at the quadratic term and assume that $V(r_o) \approx 0$, then we obtain an approximate potential
 \be
   V(r) \approx \frac{1}{2} \sum_{i j} r_i K_{i j} r_j .
 \ee
-The hamiltonian can then be written in terms of matrices as
-\be
+The Hamiltonian can then be written in terms of matrices as
+\be \label{eq:gen_hamil}
   \textbf{H} \approx \frac{1}{2} \bp^T \bm^{-1} \bp + \frac{1}{2} \textbf{r}^{T} \bk \textbf{r}
 \ee
-We have effectively turned our system into one where each degree of freedom can be approximated as a harmonic oscillator.
-The equations of motion for each degree of freedom can be solved by using Hamilton's equations:
+By doing this, we have effectively turned our system into one where each degree of freedom can be approximated as a harmonic oscillator.
+The equations of motion for each degree of freedom can then be solved by using Hamilton's equations:
 \be
   \begin{split}
-    \dot{p}_i &= - \frac{\partial H}{\partial r_i} \\
     \dot{r}_i &= \frac{\partial H}{\partial p_i} \\
+    \dot{p}_i &= - \frac{\partial H}{\partial r_i} \\
   \end{split}
 \ee
 However, this can be difficult when we have a system of coupled oscillators.
@@ -82,7 +94,7 @@ However, this can be difficult when we have a system of coupled oscillators.
 One way to get around this problem is by transforming our original coordinates into a set of normal mode coordinates.
 This decouples all of our degrees of freedom and turns our system into one of N independent harmonic oscillators, each with a normal mode frequency $\omega_i$.
 If our mass matrix \textbf{M} is not diagonal, we could perform an eigenvalue decomposition and use the corresponding eigenvectors to find a diagonal matrix for \bm, which would just be a matrix of its eigenvalues.
-Instead, we will introduce mass scaled coordinates to get rid of our mass matrix from the hamiltonian.
+Instead, we will introduce mass scaled coordinates to get rid of our mass matrix from the Hamiltonian.
 These coordinates can be defined as:
 \be
   \begin{split}
@@ -91,11 +103,172 @@ These coordinates can be defined as:
     K'_{i j} = \frac{1}{\sqrt{m_i m_j}} K_{i j} \quad &\Longleftrightarrow \quad \bk' = \bm^{-1/2} \bk \bm^{1/2}
   \end{split}
 \ee
-So H becomes,
+So \textbf{H} becomes,
 \be
-  H = \frac{1}{2} \bk'^T \bk + \frac{1}{2} \br'^T \bk' \br'
+  \textbf{H} = \frac{1}{2} \bp'^T \bp' + \frac{1}{2} \br'^T \bk' \br'
 \ee
 where \bk' is now our mass-scaled Hessian.
 
-\subsection{}
+We can simplify the Hamiltonian even further by turning the mass-scaled Hessian into its diagonal form using an eigendecomposition,
+\be
+  \bk' = \textbf{U} \Lambda \textbf{U}^{\dagger} = \sum_{i = 1}^N \lambda_i U_i U_i^{\dagger}
+\ee
+where $\lambda_i$ is the ith eigenvalue of the Hessian and \textbf{U} is a matrix of the eigenvectors.
+We will also make use of the \textbf{resolution of the identity},
+\be
+  \textbf{U} \textbf{U}^{\dagger} = \textbf{I} \Longleftrightarrow \textbf{I} = \sum_i U_i U_i^{\dagger}
+\ee
+which is a neat trick that is used very often in quantum mechanics.
+We can insert the identity matrix anywhere in our equation because it is like multiplying by 1.
+\be
+  \textbf{H} = \frac{1}{2} \bp'^T \bp' + \frac{1}{2} \br'^T \bk' \br' \quad \longrightarrow \quad \textbf{H} = \frac{1}{2} \bp'^T \textbf{U} \textbf{U}^{\dagger} \bp' + \frac{1}{2} \br'^T \textbf{U} \Lambda \textbf{U}^{\dagger} \br'
+\ee
+Then we will define the normal mode coordinates and momenta as
+\be
+  \tilde{\bp} = \textbf{U}^{\dagger} \bp' \quad ; \quad \tilde{\br} = \textbf{U}^{\dagger} \br'
+\ee
+which gives us the simplified Hamiltonian,
+\be
+  \begin{split}
+    \textbf{H} &= \frac{1}{2} \tilde{\bp}^T \tilde{\bp} + \frac{1}{2} \tilde{\br}^T \Lambda \tilde{\br} \\
+    &= \sum_{i=1}^{N} \Big( \frac{1}{2} \tilde{p}_i^2 + \frac{\lambda_i}{2} \tilde{r}_i^2 \Big)
+  \end{split}
+\ee
+where each normal mode oscillates with a single frequency $\omega_i = \sqrt{\lambda_i}$.
+\subsection{Example}
+Consider an example of two classical masses attached to three springs as shown in the figure below.
+%==============================================================================
+ % Somebody should make a figure that looks like the drawing Vlad made in class
+ % It's the same as the one in this website:
+ % http://scienceworld.wolfram.com/physics/SpringsThreeSpringsandTwoMasses.html
+%==============================================================================
+The Hamiltonian for the system is simple to write because we just have coupled harmonic oscillators.
+\be
+  H = \frac{p_1^2}{2 m_1} + \frac{p_2^2}{2 m_2} + \frac{k_1}{2}r_1^2 + \frac{k_2}{2}(r_1 - r_2)^2 + \frac{k_3}{2}r_2^2
+\ee
+For simplicity, let's just say that the spring constants are the same, i.e. $k_1 = k_2 = k_3 = k$, and that the masses are the same, i.e. $m_1 = m_2 = m$.
+So now our Hamiltonian simplifies to,
+\be
+  \begin{split}
+    H &= \frac{p_1^2}{2 m} + \frac{p_2^2}{2 m} + \frac{k}{2}r_1^2 + \frac{k}{2}(r_1 - r_2)^2 + \frac{k}{2}r_2^2 \\
+    &= \frac{1}{2m} \Big( p_1^2 + p_2^2 \Big) + \frac{k}{2} \Big( 2r_1^2 - 2r_1 r_2 + 2r_2^2 \Big)
+  \end{split}
+\ee
+where $r_1$ and $r_2$ are each mass's coordinates measured from the equilibrium position.
+By creating mass, coordinate, momenta, and Hessian matrices, we can make this look like equation (\ref{eq:gen_hamil}),
+\be
+\begin{split}
+  \textbf{H} &= \frac{1}{2} \bp^T \bm^{-1} \bp + \frac{1}{2} \textbf{r}^{T} \bk \textbf{r} \\
+  &= \frac{1}{2}
+  \begin{bmatrix}
+    p_1 \\
+    p_2 \\
+  \end{bmatrix}^T
+  \begin{bmatrix}
+    m & 0 \\
+    0 & m \\
+  \end{bmatrix}^{-1}
+  \begin{bmatrix}
+    p_1 \\
+    p_2 \\
+  \end{bmatrix}
+   + \frac{1}{2}
+   \begin{bmatrix}
+     r_1 \\
+     r_2 \\
+   \end{bmatrix}^T
+   \begin{bmatrix}
+     2k & -k \\
+     -k & 2k \\
+   \end{bmatrix}
+   \begin{bmatrix}
+     r_1 \\
+     r_2 \\
+   \end{bmatrix}
+ \end{split}
+\ee
+The mass matrix is simply a diagonal matrix because there are no cross terms in the kinetic energy.
+However, the cross terms in the Hessian come from the $(r_1 - r_2)^2$ term in the potential.
+You can verify that equation 15 and 16 are the same.
+Now we can define the mass-scaled Hessian,
+\be
+  \bk' =
+  \begin{bmatrix}
+    \frac{2 k}{\sqrt{m_1^2}} & - \frac{k}{\sqrt{m_1 m_2}} \\
+    - \frac{k}{\sqrt{m_1 m_2}} & \frac{2k}{\sqrt{m_2^2}} \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{2 k}{m} & - \frac{k}{m} \\
+    - \frac{k}{m} & \frac{2k}{m} \\
+  \end{bmatrix}
+\ee
+and find it's eigenvalues and eigenvectors.
+
+\be
+  \Lambda =
+  \begin{bmatrix}
+    \lambda_1 & 0 \\
+    0 & \lambda_2 \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{3k}{m} & 0 \\
+    0 & \frac{k}{m} \\
+  \end{bmatrix}
+  \quad ; \quad
+  \textbf{U} =
+  \begin{bmatrix}
+    -1 & 1 \\
+    1 & 1 \\
+  \end{bmatrix}
+\ee
+Each column of \textbf{U} is the ith eigenvector that corresponds to the ith eigenvalue.
+Now we can define the normal mode coordinates and momenta from the mass-scaled coordinates and momenta.
+\be
+  \begin{split}
+    \tilde{\br} &=
+    \begin{bmatrix}
+      -1 & 1 \\
+      1 & 1 \\
+    \end{bmatrix}^{\dagger}
+    \begin{bmatrix}
+      \sqrt{m} r_1 \\
+      \sqrt{m} r_2 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \tilde{r}_1 \\
+      \tilde{r}_2 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \sqrt{m} (r_2 - r_1) \\
+      \sqrt{m} (r_1 + r_2) \\
+    \end{bmatrix}
+    \\
+    \tilde{\bp} &=
+    \begin{bmatrix}
+      -1 & 1 \\
+      1 & 1 \\
+    \end{bmatrix}^{\dagger}
+    \begin{bmatrix}
+      \frac{1}{\sqrt{m}} p_1 \\
+      \frac{1}{\sqrt{m}} p_2 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \tilde{p}_1 \\
+      \tilde{p}_2 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \frac{1}{\sqrt{m}} (p_2 - p_1) \\
+      \frac{1}{\sqrt{m}} (p_1 + p_2) \\
+    \end{bmatrix}
+  \end{split}
+\ee
+And with this, we have effectively turned our original coupled system into a system of independent harmonic oscillators!
+In other words, in the normal mode basis, we can think of our system as having 2 normal modes: one where both masses oscillate with frequency $\omega_1 = \sqrt{\frac{3k}{m}}$ and another where both masses oscillate with frequency $\omega_2 = \sqrt{\frac{k}{m}}$.
+Also, the position and momenta of both masses in each normal mode can be described with $(\tilde{r_1},\tilde{r_2})$ and $(\tilde{p_1},\tilde{p_2})$, respectively.
 \end{document}
