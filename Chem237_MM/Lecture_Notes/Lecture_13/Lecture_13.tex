@@ -10,6 +10,7 @@
 \usepackage{amssymb}
 \usepackage{braket}
 \usepackage{subcaption}
+\usepackage{systeme}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
 %==============================================================================%
@@ -25,6 +26,10 @@
 \newcommand{\sumzero}{\sum_{n=0}^\infty}
 \newcommand{\sumone}{\sum_{n=1}^\infty}
 \newcommand{\bA}{\mbox{\bf A}}
+\newcommand{\bB}{\mbox{\bf B}}
+\newcommand{\bI}{\mbox{\bf I}}
+\newcommand{\bU}{\mbox{\bf U}}
+\newcommand{\bW}{\mbox{\bf W}}
 %==============================================================================%
 %                             Title Information                                %
 %==============================================================================%
@@ -128,6 +133,264 @@ and vice versa linearly depedent if
 \ee
 
 Theorem: determinate matrix formed by N vectors det($\vec{a}_1\cdots\vec{1}_N$) = 0 iff $\vec{a}_1\cdots\vec{a}_N$ are linearly depedent, and vice versa linearly indepedent vectors produce a determinate $\neq$ 0. 
+
+If your vectors are linearly indepedent can't ever get a digonal element = 0, if 1 element on the diagonal is 0 the determinent is 0, for a linearly depedent set of vectors you can get 1 column being all 0. 
+
+\section{Linear Systems}
+Consider a linear system of N equations
+\begin{align}
+    A_{11} x_1 + \cdots + A_{1N}x_N = b_1\\ 
+    \cdots = \vdots\\
+    A_{N1} x_1 + \cdots + A_{NN}x_N = b_N
+\end{align}
+
+Where the vector $\vec{x}$ contains our N unknown elements. 
+\begin{align}
+    \vec{x} &= \begin{bmatrix}
+           x_{1} \\
+           \vdots \\
+           x_{N}
+         \end{bmatrix}
+\end{align}
+
+For this system matrix A is referred to as the coefficient matrix, and the column vector b is the right hand side (RHS), so we have the matrix equation $bA\vec{x} = \vec{b}$.
+In general A can be rectangular, leading to differnt types of systems, namely overdtetermined systems, and underdetermined systems, corresponding to no solution in general and an infinite number of solutions in general respectively. 
+
+Consider the case of a square matrix $\bA$, if the system is $\bA\vec{x} = 0$ then the linear system is termed homogenous, if $vec{b} \neq =$ the system is inhomogenous. 
+
+Algebraically speaking if $\bA^{-1}$ exists then $\vec{x} = \bA^{-1}\vec{b}$, however you would need the inverse of a matrix which can be non-trivial.
+The inverse of a matrix existing is related to the determijnate of the matrix not being 0, if the determinate is 0 than the inverse does not exist. 
+
+Consider a matrix A of the form
+\be
+\begin{bmatrix}
+    \star  & \star & \star & \star \\
+     0 & \star &\star &  \star \\
+     0 & 0 &  \star &  \star \\
+    0  & 0 & 0 &  \star 
+\end{bmatrix}
+\ee
+The solution to the associated matrix equation is trivial, simply use recursion to solve the problem.
+
+\be
+\begin{bmatrix}
+    A_{11}  &   \star   & \dots &  \star\\
+    0       &   A_{22}       & \dots     &   \star\\
+\vdots  &  \vdots   &   \ddots  &   \vdots\\   
+    0       &   0       & \dots     &   A_{NN}\\
+\end{bmatrix}
+\begin{bmatrix}
+x_1     \\
+x_2     \\
+\vdots  \\
+x_n     \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1     \\
+b_2     \\
+\vdots  \\
+b_n     \\
+\end{bmatrix}
+\ee
+
+The last equation (bottom row) gives (remember $\bA$ is a coefficient matrix, we know the values).
+\be
+A_{NN}x_N=b_N \Rightarrow x_N = \frac{b_N}{A_{NN}}
+\ee
+
+Using $x_N$ we can solve for $x_{N-1}$ using the second to last row, and clearly we can solve the problem recursively. 
+The solution to a trianglular matrix (upper or lower triangle doesn't matter) can always be solvef recursively. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%We should include a (3x3) matrix example to demonstate something simple
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+We can always add rows together (NOT COLUMNS), adding rows wont change anything. 
+So start by reducing the matrix to an upper-triangular form with Gaussian elimination. 
+The you can use recursion to solve the system.
+This is analagous to the determinate problem, if det($\bA$) $\neq$ 0 then you can solve the linear system with recursion to find a unique solutiojn. 
+
+\subsection{Determinate = 0}
+In the case of det($\bA$) = 0 the rows are linearly depedent, meaning 1 equation will have a LHS where all terms are 0. 
+In general $b_i$ does not have to be 0 therefore we find 0=b$_i$ as one of our equaitons, meaning no solution unless b$_i$=0. 
+
+In general if the determinate of a matrix is 0 than if $\vec{x}$ is a solution to $\bA\vec{x}=0$, $\lambda\vec{x}$ must also be a solution, leading to an infinite number of solutions. 
+A homogenous system has an infinit number of solutions if the system is linearly depedent. 
+If you try removing an equaiton (to remove linear depedence) you will have more unknowns than equations and again get an infinite number of solutions in general. 
+
+\section{Matrix Inverses}
+\be
+\bA^{-1}\bA =\bA\bA^{-1} = \bI
+\ee
+
+How do we compute matrix B ($\bB=\bA^{-1}$)?
+Consider a cofactor matrix $\bA_c$, every element of this matrix is a cofactor. 
+\be
+\bA_c =  
+\begin{bmatrix}
+    A_{c,11}  & \dotsb &  A_{c,1N} \\
+    \vdots  & \ddots &  \vdots \\
+    A_{c,1N}  & \dotsb &  A_{c,NN} 
+\end{bmatrix}
+\ee
+
+In the contrext of square matricies the ith-jth cofactor ($\bA_{c.ij}$) is computed by removing the ith and jth row and column from the original matrix $\bA$ and then computing the subsequent determinate of the (N-1 $\times$ N-1) resulting matrix.
+Finally multiply by $(-1)^{i+j}$ and you have the cofactor. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%We should include a (3x3) matrix example to demonstate something simple
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\subsection*{Adjoint Method}
+It turns out that we can compute the inverse of a matrix using the cofactor matrix transpose. 
+\be
+\bA^{-1} = \frac{\bA_c^{T}}{\det(\bA)}
+\ee
+
+Clearly this is very expensive (computing the determinate for N$^2$ elements, however, it does give an explicit expression for the inverse of a matrix. 
+It also shows that the determinate must not be 0, consistent with our claims before. 
+
+Consider a different approach for finding the inverse of a matrix.
+\be
+\bA\bB =\bI
+\ee
+Where $\bB$ is the unknow inverse of a matrix we want to compute. 
+
+Consider the first term in this system. 
+\be
+\bA\vec{b}_1 = 
+\begin{bmatrix}
+    1 \\
+    0 \\
+    \vdots \\
+     0 
+\end{bmatrix}
+\ee
+
+It is convention to define the columns of the identity matrix as $\vec{e}$.
+\be
+\bI = \begin{bmatrix}
+        \vec{e}_1 & \dots  & \vec{e}_N 
+\end{bmatrix}
+\ee
+
+Where $\vec{e}_i$ refers to a column vector containing all 0 terms, except a 1 at the i'th row.
+Our system can therefore be written as
+\begin{align}
+    \bA \vec{b}_1 + = \vec{e}_1\\ 
+    \bA \vec{b}_N + = \vec{e}_N\\ 
+\end{align}
+Which can be solved indepedently
+
+\section{Solving Systems}
+You can easily solve a system of equations using Gaussian Elimination.
+Consider applying Gauss Elimination to 
+\be
+\bA\bI
+\ee
+
+\section{Matrix Inverses}
+Some useful properties of matrix inverse, consider matricies A and B
+\be
+\begin{split}
+    (\bA\bB)^{-1} &= \bB^{-1} \bA^{-1}\\
+    \left(\bA^{-1}\right)^{-1} &= \bA\\
+    \left[\bA^{-1},\bA\right] &= 0
+\end{split}
+\ee
+
+It is useful to think of the inverse of a matrix as simply some function acting upon a matrix. 
+
+\section{Unitary Matrix}
+Unitary matricies are defined as a matrix whose inverse equals its conjugate transpose
+\be
+\begin{split}
+    \bU^\dg\bU&=\bI\\
+    \bU^\dg&=\bU^{-1}
+\end{split}
+\ee
+
+This means
+\be
+\left(\bU^\dg\right)_{mn} = \left(\bU^\star\right)_{nm}
+\ee
+
+Unitary matricies have nice properties, and the associated unitary transformations have nice properties. 
+
+\be
+\begin{split}
+    \bU\bU^\star &= 1\\
+    |\bU| &= 1\\
+    \bU &= e^{i\theta}
+\end{split}
+\ee
+These numbers are special, all unitary matricies eigenvales have this property. 
+
+Orthogonal vectors also have the Hermitian Inner Product (the final line below).
+\be
+\begin{split}
+    \bU &= \begin{bmatrix}
+        \bU_1 & \dots  & \bU_N 
+\end{bmatrix}\\
+    \bU^\dg_i\bU_j&=1\\
+    \sum_k\bU_{jk}\bU^\star_{ik}&=\delta_{ij}
+\end{split}
+\ee
+
+\subsection{Unitary Transformation}
+\be
+\begin{split}
+\bA' &= \bU\bA\bU^\dg\\
+    \det(\bA) &= \det(\bA)
+\end{split}
+\ee
+This last line comes from $\det(\bU)=e^{i\theta}, \det(\bU^\dg) = e^{-i\theta}$.
+
+The fourier transform is related to unitary transforms in special cases, all of which have special properties. 
+
+\be
+\begin{split}
+    \bA\Psi_k &= a_k\Psi_k\\
+    \bA'\Psi_k &= a_k\Psi_k\\
+\end{split}
+\ee
+The unitary transformation preserves teh determinant eigenvalues and eigenvectors.
+
+\subsection*{Orthogonal Matrix}
+Orthogonal matricies are a special cas of the unitary matrix
+\be
+\begin{split}
+    \bW\bW^T&=\bI\\
+    \bW &= \begin{bmatrix}
+        \vec{e}_1 & \dots  & \vec{e}_N 
+\end{bmatrix}\\
+    \vec{w}_i\vec{w}_j &= \delta_{ij}
+\end{split}
+\ee
+
+
+
+
+One example of an orthogonal matrix is teh rotation matrix
+\be
+\begin{bmatrix}
+    \cos(\theta)  & \sin(\theta) \\
+    -\sin(\theta)  & \cos(\theta) \\
+\end{bmatrix}
+\ee
+
+
+
+Gaussian elimination preserves the determinate of a matrix just like the unitary transformation. 
+Unitary is better though, in gaussian elimination you divide (first step) which can generate numerical instability. 
+
+In numerical linear algebra using gaussian elimination is not feasible (even for well behaved matricies) because of this division instability and associated rounding errors. 
+Gaussian elimination is unstable. 
+
+All good linear algebra is based on unitary matricies, much more stable. 
+A unitary transformation is a non-trivial transformation, you performa  transformation that magically does not change the determinate or eigenvalues and eigenvectors, it is very powerful. 
+
+Many methods in numerical linear algebra combine LU decomposition with unitary transformations. 
+
 
 
 

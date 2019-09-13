@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  12 SEP 2019 11:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.12)  13 SEP 2019 16:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -465,6 +465,22 @@ Package caption Info: float package is loaded.
 \c@subfigure=\count101
 \c@subtable=\count102
 )
+(/usr/share/texlive/texmf-dist/tex/generic/systeme/systeme.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\@xs@message=\write3
+\integerpart=\count103
+\decimalpart=\count104
+)
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/systeme/systeme.tex
+\SYS@systemecode=\toks24
+\SYS@systempreamble=\toks25
+\SYSeqnum=\count105
+)
+Package: systeme 2018/01/01 v0.31 Mise en forme de systemes d'equations (CT)
+)
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
@@ -478,9 +494,9 @@ Package ifvtex Info: VTeX not detected.
 (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count103
-\Gm@cntv=\count104
-\c@Gm@tempcnt=\count105
+\Gm@cnth=\count106
+\Gm@cntv=\count107
+\c@Gm@tempcnt=\count108
 \Gm@bindingoffset=\dimen121
 \Gm@wd@mp=\dimen122
 \Gm@odd@mp=\dimen123
@@ -489,7 +505,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutheight=\dimen126
 \Gm@layouthoffset=\dimen127
 \Gm@layoutvoffset=\dimen128
-\Gm@dimlist=\toks24
+\Gm@dimlist=\toks26
 )
 (/usr/share/texlive/texmf-dist/tex/latex/mhchem/mhchem.sty
 Package: mhchem 2017/07/24 v4.07 for typesetting chemical formulae
@@ -499,18 +515,18 @@ Package: expl3 2018/02/21 L3 programming layer (loader)
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2018/02/21 L3 programming layer (code)
-\c_max_int=\count106
-\l_tmpa_int=\count107
-\l_tmpb_int=\count108
-\g_tmpa_int=\count109
-\g_tmpb_int=\count110
-\g__intarray_font_int=\count111
-\g__prg_map_int=\count112
-\c_log_iow=\count113
-\l_iow_line_count_int=\count114
-\l__iow_line_target_int=\count115
-\l__iow_one_indent_int=\count116
-\l__iow_indent_int=\count117
+\c_max_int=\count109
+\l_tmpa_int=\count110
+\l_tmpb_int=\count111
+\g_tmpa_int=\count112
+\g_tmpb_int=\count113
+\g__intarray_font_int=\count114
+\g__prg_map_int=\count115
+\c_log_iow=\count116
+\l_iow_line_count_int=\count117
+\l__iow_line_target_int=\count118
+\l__iow_one_indent_int=\count119
+\l__iow_indent_int=\count120
 \c_zero_dim=\dimen129
 \c_max_dim=\dimen130
 \l_tmpa_dim=\dimen131
@@ -529,77 +545,77 @@ Package: expl3 2018/02/21 L3 programming layer (code)
 \l_tmpb_muskip=\muskip14
 \g_tmpa_muskip=\muskip15
 \g_tmpb_muskip=\muskip16
-\l_keys_choice_int=\count118
-\c__fp_leading_shift_int=\count119
-\c__fp_middle_shift_int=\count120
-\c__fp_trailing_shift_int=\count121
-\c__fp_big_leading_shift_int=\count122
-\c__fp_big_middle_shift_int=\count123
-\c__fp_big_trailing_shift_int=\count124
-\c__fp_Bigg_leading_shift_int=\count125
-\c__fp_Bigg_middle_shift_int=\count126
-\c__fp_Bigg_trailing_shift_int=\count127
-\c__fp_rand_size_int=\count128
-\c__fp_rand_four_int=\count129
-\c__fp_rand_eight_int=\count130
-\l__sort_length_int=\count131
-\l__sort_min_int=\count132
-\l__sort_top_int=\count133
-\l__sort_max_int=\count134
-\l__sort_true_max_int=\count135
-\l__sort_block_int=\count136
-\l__sort_begin_int=\count137
-\l__sort_end_int=\count138
-\l__sort_A_int=\count139
-\l__sort_B_int=\count140
-\l__sort_C_int=\count141
-\l__tl_build_start_index_int=\count142
-\l__tl_build_index_int=\count143
-\l__tl_analysis_normal_int=\count144
-\l__tl_analysis_index_int=\count145
-\l__tl_analysis_nesting_int=\count146
-\l__tl_analysis_type_int=\count147
-\l__regex_internal_a_int=\count148
-\l__regex_internal_b_int=\count149
-\l__regex_internal_c_int=\count150
-\l__regex_balance_int=\count151
-\l__regex_group_level_int=\count152
-\l__regex_mode_int=\count153
-\c__regex_cs_in_class_mode_int=\count154
-\c__regex_cs_mode_int=\count155
-\l__regex_catcodes_int=\count156
-\l__regex_default_catcodes_int=\count157
-\c__regex_catcode_D_int=\count158
-\c__regex_catcode_S_int=\count159
-\c__regex_catcode_L_int=\count160
-\c__regex_catcode_O_int=\count161
-\c__regex_catcode_A_int=\count162
-\c__regex_all_catcodes_int=\count163
-\l__regex_show_lines_int=\count164
-\l__regex_min_state_int=\count165
-\l__regex_max_state_int=\count166
-\l__regex_left_state_int=\count167
-\l__regex_right_state_int=\count168
-\l__regex_capturing_group_int=\count169
-\l__regex_min_pos_int=\count170
-\l__regex_max_pos_int=\count171
-\l__regex_curr_pos_int=\count172
-\l__regex_start_pos_int=\count173
-\l__regex_success_pos_int=\count174
-\l__regex_curr_char_int=\count175
-\l__regex_curr_catcode_int=\count176
-\l__regex_last_char_int=\count177
-\l__regex_case_changed_char_int=\count178
-\l__regex_curr_state_int=\count179
-\l__regex_step_int=\count180
-\l__regex_min_active_int=\count181
-\l__regex_max_active_int=\count182
-\l__regex_replacement_csnames_int=\count183
-\l__regex_match_count_int=\count184
-\l__regex_min_submatch_int=\count185
-\l__regex_submatch_int=\count186
-\l__regex_zeroth_submatch_int=\count187
-\g__regex_trace_regex_int=\count188
+\l_keys_choice_int=\count121
+\c__fp_leading_shift_int=\count122
+\c__fp_middle_shift_int=\count123
+\c__fp_trailing_shift_int=\count124
+\c__fp_big_leading_shift_int=\count125
+\c__fp_big_middle_shift_int=\count126
+\c__fp_big_trailing_shift_int=\count127
+\c__fp_Bigg_leading_shift_int=\count128
+\c__fp_Bigg_middle_shift_int=\count129
+\c__fp_Bigg_trailing_shift_int=\count130
+\c__fp_rand_size_int=\count131
+\c__fp_rand_four_int=\count132
+\c__fp_rand_eight_int=\count133
+\l__sort_length_int=\count134
+\l__sort_min_int=\count135
+\l__sort_top_int=\count136
+\l__sort_max_int=\count137
+\l__sort_true_max_int=\count138
+\l__sort_block_int=\count139
+\l__sort_begin_int=\count140
+\l__sort_end_int=\count141
+\l__sort_A_int=\count142
+\l__sort_B_int=\count143
+\l__sort_C_int=\count144
+\l__tl_build_start_index_int=\count145
+\l__tl_build_index_int=\count146
+\l__tl_analysis_normal_int=\count147
+\l__tl_analysis_index_int=\count148
+\l__tl_analysis_nesting_int=\count149
+\l__tl_analysis_type_int=\count150
+\l__regex_internal_a_int=\count151
+\l__regex_internal_b_int=\count152
+\l__regex_internal_c_int=\count153
+\l__regex_balance_int=\count154
+\l__regex_group_level_int=\count155
+\l__regex_mode_int=\count156
+\c__regex_cs_in_class_mode_int=\count157
+\c__regex_cs_mode_int=\count158
+\l__regex_catcodes_int=\count159
+\l__regex_default_catcodes_int=\count160
+\c__regex_catcode_D_int=\count161
+\c__regex_catcode_S_int=\count162
+\c__regex_catcode_L_int=\count163
+\c__regex_catcode_O_int=\count164
+\c__regex_catcode_A_int=\count165
+\c__regex_all_catcodes_int=\count166
+\l__regex_show_lines_int=\count167
+\l__regex_min_state_int=\count168
+\l__regex_max_state_int=\count169
+\l__regex_left_state_int=\count170
+\l__regex_right_state_int=\count171
+\l__regex_capturing_group_int=\count172
+\l__regex_min_pos_int=\count173
+\l__regex_max_pos_int=\count174
+\l__regex_curr_pos_int=\count175
+\l__regex_start_pos_int=\count176
+\l__regex_success_pos_int=\count177
+\l__regex_curr_char_int=\count178
+\l__regex_curr_catcode_int=\count179
+\l__regex_last_char_int=\count180
+\l__regex_case_changed_char_int=\count181
+\l__regex_curr_state_int=\count182
+\l__regex_step_int=\count183
+\l__regex_min_active_int=\count184
+\l__regex_max_active_int=\count185
+\l__regex_replacement_csnames_int=\count186
+\l__regex_match_count_int=\count187
+\l__regex_min_submatch_int=\count188
+\l__regex_submatch_int=\count189
+\l__regex_zeroth_submatch_int=\count190
+\g__regex_trace_regex_int=\count191
 \c_empty_box=\box30
 \l_tmpa_box=\box31
 \l_tmpb_box=\box32
@@ -643,7 +659,7 @@ Package: expl3 2018/02/21 L3 programming layer (code)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count189
+\l__driver_color_stack_int=\count192
 \l__driver_tmp_box=\box45
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
@@ -651,30 +667,30 @@ Package: l3keys2e 2018/02/21 LaTeX2e option processing using LaTeX3 keys
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count190
-\calc@Bcount=\count191
+\calc@Acount=\count193
+\calc@Bcount=\count194
 \calc@Adimen=\dimen160
 \calc@Bdimen=\dimen161
 \calc@Askip=\skip52
 \calc@Bskip=\skip53
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count192
+\calc@Ccount=\count195
 \calc@Cskip=\skip54
 )
 (/usr/share/texlive/texmf-dist/tex/latex/chemgreek/chemgreek.sty
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2018/02/21 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count193
-\g__xparse_grabber_int=\count194
-\l__xparse_m_args_int=\count195
-\l__xparse_mandatory_args_int=\count196
-\l__xparse_v_nesting_int=\count197
+\l__xparse_current_arg_int=\count196
+\g__xparse_grabber_int=\count197
+\l__xparse_m_args_int=\count198
+\l__xparse_mandatory_args_int=\count199
+\l__xparse_v_nesting_int=\count266
 )
 Package: chemgreek 2016/12/20 v1.1 interfaceforuprightgreeklettersforuseinchemi
 stry (CN)
-\l__chemgreek_tmpa_int=\count198
-\g__chemgreek_tmpa_int=\count199
+\l__chemgreek_tmpa_int=\count267
+\g__chemgreek_tmpa_int=\count268
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
@@ -726,7 +742,7 @@ stry (CN)
 . Defining command \selectchemgreekmapping with sig. 'm' on line 491.
 .................................................
 )
-\l__mhchem_ce_distanceFromLastComma_int=\count266
+\l__mhchem_ce_distanceFromLastComma_int=\count269
 \__mhchem_arrow_extPgfLength_skip=\skip55
 \mhchem@minispace@tmp=\skip56
 \mhchem@minibackspace@tmp=\skip57
@@ -737,7 +753,7 @@ stry (CN)
 \mhchem@smallbondwidth=\skip62
 \mhchem@bondtmp@minussidebearingleft=\skip63
 \mhchem@bondtmp@minussidebearingright=\skip64
-\l__mhchem_option_version_int=\count267
+\l__mhchem_option_version_int=\count270
 \mhchem@option@minusmathsidebearingleft=\dimen162
 \mhchem@option@minusmathsidebearingright=\dimen163
 \mhchem@option@minustextsidebearingleft=\dimen164
@@ -746,32 +762,32 @@ stry (CN)
 (./Lecture_13.aux)
 \openout1 = `Lecture_13.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count268
+\scratchcounter=\count271
 \scratchdimen=\dimen166
 \scratchbox=\box46
-\nofMPsegments=\count269
-\nofMParguments=\count270
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count271
+\nofMPsegments=\count272
+\nofMParguments=\count273
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count274
 \MPscratchDim=\dimen167
-\MPnumerator=\count272
-\makeMPintoPDFobject=\count273
-\everyMPtoPDFconversion=\toks26
+\MPnumerator=\count275
+\makeMPintoPDFobject=\count276
+\everyMPtoPDFconversion=\toks28
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -864,43 +880,45 @@ Package caption Info: End \AtBeginDocument code.
 .................................................
 . chemgreek info: "mapping-activated"
 . 
-. Activating mapping `default' on line 38.
+. Activating mapping `default' on line 43.
 .................................................
-LaTeX Font Info:    Try loading font information for U+msa on input line 39.
+LaTeX Font Info:    Try loading font information for U+msa on input line 44.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 39.
+LaTeX Font Info:    Try loading font information for U+msb on input line 44.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./Lecture_13.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] (./Lecture
+_13.aux) ) 
 Here is how much of TeX's memory you used:
- 13495 strings out of 494847
- 254631 string characters out of 6179079
- 310441 words of memory out of 5000000
- 16716 multiletter control sequences out of 15000+600000
+ 13888 strings out of 494847
+ 260646 string characters out of 6179079
+ 320147 words of memory out of 5000000
+ 17098 multiletter control sequences out of 15000+600000
  538135 words of font info for 53 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 42i,9n,40p,10386b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
-</
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Lecture_13.pdf (2 pages, 117084 bytes).
+ 42i,22n,40p,10386b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+>
+Output written on Lecture_13.pdf (5 pages, 147178 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 72 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
