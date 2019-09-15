@@ -33,6 +33,9 @@
 
 \maketitle
 WORK IN PROGRESS
+%==============================================================================
+% Needs section naming
+%==============================================================================
 We have talked about linear transformations that consist of taking some general matrix \textbf{A} $\in \mathbb{C}$ and having it act on a vector $\vec{x}$ to create a new vector $\vec{b}$, i.e.
 \be
   \textbf{A} \vec{x} = \vec{b} .
@@ -48,16 +51,17 @@ This idea can be seen more clearly by manipulating equation (\ref{eq:eigen_prob}
   \textbf{A} \vec{x} = \lambda \vec{x} \quad \Longrightarrow \quad \textbf{A} \vec{x} - \lambda \vec{x} = \textbf{0} \quad \Longrightarrow \quad (\textbf{A} - \lambda \textbf{I})\vec{x} = \textbf{0}
 \ee
 Notice how we multiplied $\lambda$ by the identity matrix because we cannot subtract a scalar from a matrix.
-If we were to mutliply both sides by $(\textbf{A} - \lambda \textbf{I})^{-1}$, then we would be left with the trivial solution that all $x_i = 0$.
+If we were to mutliply both sides by $(\textbf{A} - \lambda \textbf{I})^{-1}$, then we would be left with the trivial solution that $x_i = 0$ for all i.
 So what we'll do is impose the idea that $(\textbf{A} - \lambda \textbf{I})$ does not have an inverse.
 This means that the determinant of $(\textbf{A} - \lambda \textbf{I})$ must be equal to 0.
-Recall that noninvertable or \textbf{singular} matrices have a determinant equal to 0.
+Recall that noninvertable or \textbf{singular} matrices must have a determinant equal to 0.
 This allows us to write
 \be
   \text{det}(\textbf{A} - \lambda \textbf{I}) = 0
 \ee
-and is called the \textbf{characteristic equation}.
-The characteristic equation is a polynomial of degree N where N is the dimensionality of \textbf{A}.
+and it has two names: the \textbf{characteristic equation} and the \textbf{secular equation}.
+Since we already used "characteristic polynomial" in Lecture 1 for solving homogenous ODEs, we will call the above equation the secular equation.
+The secular equation is a polynomial of degree N where N is the dimensionality of \textbf{A}.
 How do we know there will always be N eigenvalues?
 Let's consider a matrix \textbf{A} $\in \mathbb{R}^3$, and write out the determinant explicitly
 \be
@@ -69,7 +73,7 @@ Let's consider a matrix \textbf{A} $\in \mathbb{R}^3$, and write out the determi
   \end{bmatrix}
 \ee
 so we can make use of the technique called \textbf{determinant expansion by minors}.
-We can pick any row or column for this technique and we'll choose to go along the first row.
+We can pick any row or column for this technique and we'll choose to go along the first row for no particular reason.
 Therefore, the expansion becomes,
 \be
   \text{det}(\textbf{A} - \lambda \textbf{I}) = (A_{11} - \lambda) \text{det}
@@ -96,7 +100,7 @@ When we write out the remaining three determinants,
 \end{split}
 \ee
 we can see that the result is a polynomial of degree 3 in $\lambda$ since each matrix element is a scalar.
-This same technique can be used to show that an NxN matrix can yield a characteristic equation with N roots and thus N complex eigenvalues (assuming that the matrix itself is complex).
+This same technique can be used to show that an NxN matrix can yield a secular equation with N roots and thus N complex eigenvalues, assuming that the matrix itself is complex.
 The technique for finding the ith eigenvector corresponding to the ith eigenvalue is to solve equation 3 by plugging in $\lambda_i$ and solving for $\vec{x}$.
 Once we have found the eigenvalues and eigenvectors of \textbf{A}, we can write the eigendecomposition of \textbf{A}; a very useful technique that is used a lot in chemistry and physics.
 \be \label{eq:eigendecomposition}
@@ -118,7 +122,7 @@ and $\Lambda$ is a diagonal matrix where the ith diagonal element corresponds to
     0 & \cdots & \lambda_N \\
   \end{bmatrix}
 \ee
-You will often find people in literature introduce eigendecomposition as finding a matrix \textbf{X} that diagonalizes \textbf{A}.
+You will often find people in literature introducing eigendecomposition as finding a matrix \textbf{X} that diagonalizes \textbf{A}.
 This is beause any matrix written in the basis of its eigenvectors results in a diagonal matrix of its eigenvalues.
 To see this, we can left multiply equation (\ref{eq:eigendecomposition}) by $\textbf{X}^{-1}$ and right multiply by \textbf{X} to get \textbf{A} in the basis of its eigenvectors.
 \be
@@ -127,7 +131,7 @@ To see this, we can left multiply equation (\ref{eq:eigendecomposition}) by $\te
 
 A special case to consider is when our matrix \textbf{A} is hermitian.
 In this case, $\textbf{A} = \textbf{A}^{\dagger}$ where $\dagger$ denotes the conjugate transpose.
-The eigenvalues of any hermitian matrix are real.
+One property of hermitian matrices is that the eigenvalues are all real.
 To prove this, consider equation (\ref{eq:eigen_prob}) for a hermitian matrix \textbf{A}.
 \be
   \textbf{A} \vec{x} = \lambda \vec{x}
@@ -145,7 +149,7 @@ Then we take the conjugate transpose of both sides
 \be
   \begin{split}
     (\vec{x}^{\dagger} \textbf{A} \vec{x})^{\dagger} &= (\lambda |\vec{x}|^2)^{\dagger} \\
-    \vec{x}^{\dagger} \textbf{A}^{\dagger} (\vec{x}^{\dagger})^{\dagger} &= \lambda^{\dagger} (|\vec{x}|^2)^{\dagger} \\
+    \vec{x}^{\dagger} \textbf{A}^{\dagger} (\vec{x}^{\dagger})^{\dagger} &= (|\vec{x}|^2)^{\dagger} \lambda^{\dagger}\\
   \end{split}
 \ee
 Since \textbf{A} is hermitian, then $\textbf{A}^{\dagger} = \textbf{A}$.
@@ -153,15 +157,16 @@ Also, $(|\vec{x}|^2)^{\dagger} = |\vec{x}|^2$ because the square modulous of any
 So,
 \be
   \begin{split}
-    \vec{x}^{\dagger} \textbf{A}^{\dagger} (\vec{x}^{\dagger})^{\dagger} &= \lambda^{\dagger} (|\vec{x}|^2)^{\dagger} \\
-    \vec{x}^{\dagger} \textbf{A} \vec{x} &= \lambda^{\dagger} |\vec{x}|^2 \\
-    \vec{x}^{\dagger} \lambda \vec{x} &= \lambda^{\dagger} \\
+    \vec{x}^{\dagger} \textbf{A}^{\dagger} (\vec{x}^{\dagger})^{\dagger} &= (|\vec{x}|^2)^{\dagger} \lambda^{\dagger} \\
+    \vec{x}^{\dagger} \textbf{A} \vec{x} &= |\vec{x}|^2 \lambda^{\dagger} \\
+    \vec{x}^{\dagger} \lambda \vec{x} &= |\vec{x}|^2 \lambda^{\dagger} \\
     \lambda |\vec{x}|^2 &= \lambda^{\dagger} |\vec{x}|^2 \\
     \lambda &= \lambda^{\dagger} \\
     \lambda &= \lambda^*
   \end{split}
 \ee
 The last line follows from the fact that the transpose of any scalar is the scalar itself.
+
 Another important property of hermitian matrices is that each of the eigenvectors are orthogonal.
 To prove this, consider two distinct eigenvectors and eigenvalues of a hermitian matrix \textbf{A} such that
 \be
@@ -179,6 +184,7 @@ If we mutliply the first equation by $\vec{x}_2^{\dagger}$ and take the conjugat
   \end{split}
 \ee
 which is only possible if the eigenvectors are orthogonal, i.e. $\vec{x}_1^{\dagger} \vec{x}_2 = 0$ because $\lambda_1 \neq \lambda_2$.
+
 If we refer back to the eigendecomposition of a hermitian matrix \textbf{A}, we can say then that $\Lambda^{\dagger} = \Lambda$ because the eigenvalue matrix is diagonal and each of the eigenvalues are real.
 We can also say that \textbf{X} is unitary, i.e. $\textbf{X}^{-1} = \textbf{X}^{\dagger}$, because \textbf{X} is made up of the eigenvectors of \textbf{A}, which are all orthogonal.
 
