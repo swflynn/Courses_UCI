@@ -1,0 +1,335 @@
+\documentclass{article}
+%=============================================================================80
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{nicefrac}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nhalf}{\nicefrac{1}{2}}
+\newcommand{\pri}{\frac{\pd}{\pd r_i}}
+\newcommand{\bM}{\mbox{\bf M}}
+\newcommand{\bS}{\mbox{\bf S}}
+\newcommand{\bK}{\mbox{\bf K}}
+\newcommand{\br}{\mbox{\bf r}}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 16}
+\date{5/10/18}
+\author{Shane Flynn}
+%==============================================================================%
+\begin{document}
+
+\maketitle
+
+\section{Note}
+I have just transcribed the lecture notes, no thought has gone in yet. We need to sit down and analyze this. 9-15-19
+
+\section{Normal Mode Analysis; Quantum Case}
+We begin by writing the Hamiltonian for our system of interest with N vibrational degrees of freedom,
+\be
+\begin{split}
+    \widehat{H}&= \sum_{i = 1}^{N} \frac{-1}{2 m}  \frac{\pd^2}{\pd r_i^2}+ V(r_1,\dots,r_N)\\
+    &=-\half \nabla^T\bM^{-1}\nabla + \half \br^T\bK\br
+\end{split}
+\ee
+Where $\nabla$ refers to a set of partial derivitives $\nabla = \pri$. 
+
+
+We will begin by mass-scaling our coordinates (no momentum). 
+\be
+\begin{split}
+    \br' &:= \bM^{\nhalf}\br\\
+    \nabla' &:= \bM^{-\nhalf}\nabla =  
+    \begin{bmatrix} 
+        \frac{1}{\sqrt{m_1}} \pri\\ 
+        \vdots \\
+        \frac{1}{\sqrt{m_N}} \pri
+    \end{bmatrix}\\
+    \bK' &:= \bM^{-\nhalf}\bK \bM^{-\nhalf}
+\end{split}
+\ee
+
+In our new coordinates the Hamiltonian reads 
+\be
+    \widehat{H}= -\half\nabla'^T\nabla+\half\br'^T\bK'\br'
+\ee
+Which is analagous to the classical case. 
+
+Normal mode analysis is useful for chemistry and physics problems, for example the simple harmonic oscillator.
+In this problem you have 2 masses and seperate spring constants (k) and seperate distances (r). 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%If we did not di ot in the previous lecture on normal mode analysis do the 2D harmonic
+%spring here, sould add a picture showing the problem
+%picture is a wall a spring a mass a another spring another mass another spring the other wall
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\be
+\begin{split}
+    \widehat{H} &= \sum_{i = 1}^{N} \frac{p^2_i}{2 m} + V(r_1, \dots, r_N)\\
+    \widehat{H} &= \frac{p^2_1}{2 m_1} + \frac{p^2_2}{2 m_2} + \frac{K}{2}\left(r_1-r_2\right)
+\end{split}
+\ee
+
+\section{Normal Mode Analysis of Time Signals}
+A time signal is simply data as a function of time (c(t)), an important tdata type for most experiments, 
+andis usualy a set of discrete measurements made in time. 
+A standard analysis of time signals is to describte c(t) as a sum of expotnetials.
+\be\label{eq:time}
+c(t) = \sum_{k=1}^K d_k e^{-\lambda_kt}
+\ee
+
+Where c(t) is know data and d, $\lambda$ are unknown parameters.
+The central numerical problem then is to fit a signal to a expotentials. 
+
+time analysis data is usualy a set of N discrete measurements made in time. 
+\be
+c(t) \Rightarrow c(n\tau) = \sum_{n=0}^{N-1} c_n
+\ee
+
+A nieve approach would be to use a non-linear least square optimization.
+You can define an optimizaiton function F in terms of our parameters.
+\be
+F(\lambda_k,d_k) := \sum_{n=1}^{N-1}\left( c_n - \sum_{k=1}^K d_k e^{-\lambda_kn\tau}  \right)^2
+\ee
+And there are tons of variations for taking this approach. 
+
+I fyou can exactly fit your data the actual form of the fitting function is not important, normally there is no exact solution .
+
+N is the numer of data points in teh experiment, k is the number of expotentials to use int eh fitting process, usually N $>>$ k, so you have an overdetermined problem.
+This means you are trying to find the best solution, which therefore epend s on the function you use to minimize (F). 
+This means we are really trying to minimize F itself, we have an optimization problem to minimize F. 
+\be
+\text{min}_{\lambda_k,d_k}\; F(\lambda_k,d_k)
+\ee
+
+If you have a non-linear function F, it will typically have many minima and typically the global minimum is the best fit. 
+Unfortunately teh number of minima grows with the size of the space, $\approx e^{\alpha k}$.
+roughly speaking with about 10 parameters global optimizaiton becomes very dificult numerically. 
+
+Although eq. \ref{eq:time} looks bad is is actually a special case (Proxy 1793 maybe discovered). 
+
+Disconnected you could solve this problem using linear algebra, find the roots of a polynomial degree k. 
+
+convex optimizationL function is a special case where the function of parameters only has 1 minimum. 
+
+\subsection{General Problem}
+The problem is generalized to complex space as
+
+\be
+\begin{split}
+    c_n &= \sum_{k=1}^K d_k e^{-in\tau \omega_k}\\
+    d_k &= |d_k|e^{i\theta}\\
+    \omega_k &= V_k - i\lambda_k
+\end{split}
+\ee
+Here ($d_k,\omega_k \in \mathbb{C}$)
+
+So the general problem actually has expotential decay.
+\be
+e^{-in\tau \omega_k} = e^{in\tau V_k}e^{-n\tau \lambda_k}
+\ee
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Insert a graph plotting this expotnetial it will oscilate with smaller and smaller amplitude
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In the complex case we have 2 complex numbers that are unknowns. 
+$c_n \in mathbb{C}, d_k, \omega \in \mathbb{C}$.
+This is a well know problem, one approach to solve is the Harmonic Inversion. 
+Here the goal is to invert the time signal with a sum of harmonic contributions.
+Hamonic inversion is related to spectra estimation methods.
+
+We need to formulate the linear algebra problem to solve for frequency and amplitude. 
+Spectral analysis: given $c_n = c(n\tau)$ estimate the spectra (I is our estimate). 
+\be
+I(\omega) := \int_0^\infty dt\; c(t)\; e^{i\omega t}
+\ee
+
+Here we have a finite interval (finite set of data measurements) and we want to estimate the result to infinity. 
+\be
+\begin{split}
+    I(\omega) &\approx \tau \sum_{n=1}^\infty c(n\tau)e^{i\omega\tau}\\
+    &= \tau \sum_{n=0}^\infty c_n z^{-n} 
+\end{split}
+\ee
+Where we define ($z:=e^{-i\omega\tau}$). 
+
+Can we try an estimate our infinite series from the finite measurement? 
+\be
+I(\omega) \approx \sum_{n=i}^{N-1} c_n z^{-n}
+\ee
+
+This is valid, however, it converges very slowly.
+Also a larger problem is known as the fourier transform ncertainty principle, where resolution is given by $\delta \omega \approx \frac{1}{\alpha} N$. 
+
+In principle if N$\geq$ 2k then you can solve the problem exactly. 
+So the paramaterization fir problem can circumvent the Fourier Transform uncertainty principle and get better resolution.  
+
+let $U_k = e^{-i\tau\omega_k}$
+\be
+\begin{split}
+    &\sum_{n=0}^\infty c_nz^{-n}\\
+    c_n &= \sum_{k=1}^K d_k U_k^n\\
+    &= \sum_{n=0}^\infty \sum_{k=1}^K d_k\left(\frac{U_k}{z}\right)^n\\
+    &= \sum_{k=1}^K \sum_{n=0}^\infty d_k\left(\frac{U_k}{z}\right)^n\\
+    &= \sum_{k=1}^K \sum_{n=0}^\infty d_k\left(\frac{U_k}{z}\right)^n\\
+    &= \sum_{k=1}^K d_k \sum_{n=0}^\infty \left(\frac{U_k}{z}\right)^n\\
+    &= \sum_{k=1}^K d_k \; \frac{1}{1 - \frac{\omega_k}{z}}
+\end{split}
+\ee
+Where $\sum_{n=0}^\infty \left(\frac{U_k}{z}\right)^n$ is a geometric series. 
+With $d_k,omega_k$ parameters you can solve. 
+
+Some approximations, $\omega_k = V_k - i\lambda_k$ , but $\lambda_k$ is usually small, if $\tau$ is small than
+\be
+\frac{1}{1-\frac{\omega_k}{z}} = \frac{1}{1-e^{i(\omega-\omega_k)\tau}} \approx \frac{1}{i(\omega_k-\omega)\tau}
+\ee
+
+\be
+\begin{split}
+    \frac{1}{\omega-\omega_k} &= \frac{1}{(\omega-\omega_k)+i\lambda_k} \\
+    &= \frac{\omega-V_k}{(\omega-V_k)^2 + \lambda_k^2} - i \frac{\lambda_k}{(\omega-V_k)^2+\lambda_k^2}
+\end{split}
+\ee
+
+The last two terms are a complex lorentzian function. 
+%%%%%%%%%%%5talk abotu whateve this funciton is
+
+The first term is the absorption (small $\lambda_k$ corresponds to a narrow peak). 
+%plot first term, and entire thing
+
+so if our oscillations can be dscribed by $e^{-in\tau\omega_k}$ you get a complex lorentzian function. 
+
+So how do we solv this problem
+\be
+c_n = \sum_{k=1}^K d_kU_k^n
+\ee
+Where we have k=1,K unknown parameters and ($d_k,U_k \in \mathbb{C}$), given c$_n$?
+
+\subsection{Vlad Solutoin}
+There are many different ways to solve this problem. 
+One solution (vlads old paper, Neuhauser 1995?) assumes the known data can be represented as
+\be
+c_n := \theta^T\widehat{U}^N\theta
+\ee
+
+Where $\widehat{U}$ is a symmetric linear operator (a symmetric matrix $\in \mathbb{C}$), not hermitian and $\theta$ is a column vector. 
+
+This assumption is a special case for time signals.  
+It is consistent witht he time auto correlatio nfunction for a quantum system.
+\be
+\Psi(t) = e^{-it\widehat{H}} \Psi(0) = \widehat{U}^n\phi
+\ee
+If we define ($\phi:= \Psi(0), \; U:= e^{-it\widehat{H}}$).
+
+With these definition the time autocorrelation function becomes
+\be
+\braket{\Psi(t)|\Psi(0)} = \phi^T\widehat{U}^N\phi
+\ee
+Which is exactly our $c_n$. 
+So the time signal is represented by some quantum system with quantum autocoreelation funciton given by some operator. 
+
+\subsection{Analysis}
+We now have a quantum system, so lets solve the eigenvalue problem (U our eigenvalues and $\gamma$ our eigenvectors). 
+\be
+\begin{split}
+    \widehat{U}\gamma_k&=U_k\gamma\\
+    \widehat{U}&=\sum_kU_k\gamma_k\gamma_k^T\\
+\end{split}
+\ee
+
+These two statements are equivalent, this is known as the eigenrepresentation of an operator, it is equivalent to eigendecomposition. 
+%We need ot explain this proof better. 
+We know that $\widehat{U}$ is symmetric i.e. $\widehat{U}=\widehat{U}^T$ therefore the right/left eigenvetors are the same i.e. ($\gamma_k^T\gamma_k=\delta_{kl}$), meaning the eigenvectors are orthogonal for symmetric matricies. 
+\be
+\left( \sum_k U_k\gamma_k\gamma_k^T \right) \gamma_l = U_l\gamma_l
+\ee
+So we see this is simply an eigenvector equivalent to the eigenvalue problem. 
+
+If we let $(\gamma_k^T\phi)^2 = \phi^T\gamma_k \gamma_k^T\phi \equiv d_k$ we have
+\be
+c_n = \phi^T\widehat{U}^N\phi = \sum_k \phi^T U_N^N \gamma_k\gamma_k^T\phi = \sum_k d_kU_k^N
+\ee
+
+Where we used the operator as a fucntion of a matrix ($\widehat{U}^N = \sum_k U_k^N\gamma_k\gamma_K^T$)
+
+So our time signal is defined by U and d, using $c_N=\phi^T\widehat{U}^N\phi$ reduces teh parameter estimation problem to an eigenvalue problme. 
+
+Now we can solve the eigenvalue problem. 
+\be
+\widehat{U}\gamma_k = U_k\gamma_k
+\ee
+We don't actually want any of these terms explicitly, we know c (the data) and we assume $c_N=\phi^T\widehat{U}^N\phi$ , we don't want to find expressions for any of the other terms.
+
+In QM we define a basis and evaluate the hamiltonian matrix to solve. 
+So we need to express our matrix elements in terms of c. 
+
+We define our basis to be
+\be
+\begin{split}
+    \phi_n &:= \widehat{U}\phi\\
+    \phi_0 &= \phi\\
+    \phi_1 &= \widehat{U}\phi_0\\
+    \phi_2 &= \widehat{U}\phi_1\\
+    &\;\;\vdots
+\end{split}
+\ee
+
+This basis choice i similar to a Krylov basis (super matricies).
+You simply keep multiplying to get the Kryloc vectors, genearating a Krylov subspace, using these vectors you can understand the original matrix of interest. 
+
+We will use this basis to find the operator $\widehat{U}$, and therefore solve the generalized eigevalue problem.
+\be
+\begin{split}
+    U_{nm} &= \phi^T\widehat{U}\phi\\
+    \delta_{nm} &= \phi^T_n\phi_m\\
+    (U-U_k \bS)B_k&= 0
+\end{split}
+\ee
+Where U and delta are square matricies of size M by M.
+\be
+\delta_{nk} = \phi_N^T\phi_m = (\widehat{U}^n\phi)^T(U^m\phi)
+\ee
+$\widehat{U}$ is symmetric therefore
+\be
+\delta_{nk} = \phi^T\widehat{U}^{n+m}\phi = c_{m+n}
+\ee
+Where $c_{m+n}$ is our data. 
+Overlap matrix is computed with teh data points directly. 
+
+\be
+U_{nm} = \phi^T\widehat{U}\phi_m = c_{n+m+1}
+\ee
+
+U and S are matricies we get from our data, meaning we can solve the eigenvalue problem $(U-U_k \bS)B_k= 0$. 
+
+It can be shwon that $(\gamma_k^T\phi)^2 = d_k$ so we assume
+\be
+\gamma_k = \sum_{n=1}^{m-1} B_{kn}\phi_n
+\ee
+Wxpanding the eigenfunctions nto the basis function leads to 
+%need to show this somehow
+\be
+d_k = \left[\sum_{n=0}^{m-1}\left(B_{kn}c_n\right)\right]^2
+\ee
+
+So we solve the generalized eigenvalue problem with dtaa matricies and find $U_k, d_k$.
+
+\end{document}
