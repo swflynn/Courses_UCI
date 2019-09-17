@@ -1,0 +1,112 @@
+\documentclass{article}
+%=============================================================================80
+%	                          Packages                                     %
+%==============================================================================%
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{nicefrac}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[version=4]{mhchem}
+%==============================================================================%
+%                           User-Defined Commands                              %
+%==============================================================================%
+% User-Defined Commands
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\pd}{\partial}
+\newcommand{\dg}{\dagger}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\nhalf}{\nicefrac{1}{2}}
+\newcommand{\prt}{\frac{\pd}{\pd t}}
+\newcommand{\prts}{\frac{\pd^2}{\pd t^2}}
+\newcommand{\prx}{\frac{\pd}{\pd x}}
+\newcommand{\prxs}{\frac{\pd^2}{\pd x^2}}
+\newcommand{\bM}{\mbox{\bf M}}
+\newcommand{\bS}{\mbox{\bf S}}
+\newcommand{\bK}{\mbox{\bf K}}
+\newcommand{\br}{\mbox{\bf r}}
+%==============================================================================%
+%                             Title Information                                %
+%==============================================================================%
+\title{Chem237: Lecture 18}
+\date{5/16/18}
+\author{Shane Flynn}
+%==============================================================================%
+\begin{document}
+
+\maketitle
+
+\section{Note}
+I have just transcribed the lecture notes, no thought has gone in yet. We need to sit down and analyze this. 9-17-19
+
+\section{PDEs}
+Partial Differential Equations (PDEs) can have $\infty$ dimensionality, the problems usually involve boundry conditions with an arbitrary function. 
+So you usually need to know the funciton and its derivative, and the value of the funciton and the vaue of the functions derivative at the boundry to solve. 
+
+Consider a second order PDE (the wave equation with constant coefficient c)
+\be
+\prts U - c^2 \prxs U = 0 
+\ee
+
+We can give some initial conditions like 
+\be
+\begin{split}
+    U(x,t=0) &= \phi x\\
+    \prt U (x,t=0) &= \psi(x)
+\end{split}
+\ee
+
+This PDE is linear and seperable, it is the easiest case to solve.
+As we will see, given a certain set of boundry conditions we may not actually get a yseful solution (for example: could get a solution being an infinite sum we can't solve). 
+
+One way to approach this problem is to guess a solution (standard approach in PDEs). 
+If we assume the 
+\be
+U(x,t)=\left[f(x-ct)+g(x+ct)\right]
+\ee
+
+We need to satify the initial conditions
+\be
+\prx U = -cf'(x)+cg'(x) = \psi(x)
+\ee
+
+\be
+\int dx \frac{dU}{dx} \Rightarrow f(x) - g(x) = \frac{-1}{c} \int^x dy\;\psi(y)
+\ee
+Where the lower boundis undefined, because f(x) and g(x) are defined up to a constant we do not know the lower bound. 
+
+So second order PDE, infinte solutioon space, need to specify boundry conditions. 
+\be\begin{split}
+    \int f(x) - g(x) &=-\half\int^x dy\;\psi(y) \\
+    -cf'(x) + cg'(x) &= \psi(x)
+\end{split}
+\ee
+Solving these two equations simultansously gives the general solution to the 2D problem. 
+\be
+U(x,t) = \half\left[\phi(x-ct)+\phi(x+ct)\right] + \frac{1}{2c} \int_{x+t}^{x+ct} dy \; \psi(y) 
+\ee
+
+This can be easily generalized to the 3D case, U(x,y,z,t)
+\be
+\prts U - c^2 \Delta U = 0
+\ee
+
+%Guess we need to work out and show the 3D case
+
+\section{Diffusion Equation}
+
+
+
+
+
+
+
+\end{document}
