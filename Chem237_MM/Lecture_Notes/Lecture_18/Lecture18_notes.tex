@@ -102,11 +102,29 @@ This can be easily generalized to the 3D case, U(x,y,z,t)
 %Guess we need to work out and show the 3D case
 
 \section{Diffusion Equation}
+Fick's law is a well known linear response expression of teh form
+\be
+J = -\frac{\sigma^2}{2}\prx \rho
+\ee
+Here we will derive the diffusion equaiton
 
+COnsider an interval J(x) to J(x + $\Delta$x).
+Assuming $\rho$=constant within our interval $\Delta$x then
+\be
+\prx \rho\; \Delta x = J(x) - J(x+\Delta x)
+\ee
 
+\be
+\prt \rho = \frac{J(x) - J(x+\Delta x)}{\Delta x} \xrightarrow{\text{$\Delta$x=0}} \prt \rho= -\prx J
+\ee
 
+\be
+\begin{split}
+    J = -\frac{\sigma^2}{2}\prx \rho, \quad&  \prt \rho= -\prx J \Rightarrow \\
+    \prt \rho &= \frac{\sigma^2}{2}\prxs \rho
+\end{split}
+\ee
 
-
-
+\subsection{Solving This Equaiton}
 
 \end{document}
