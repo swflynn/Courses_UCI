@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{braket}
+\usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage[margin=0.7in]{geometry}
 \usepackage[version=4]{mhchem}
@@ -40,6 +41,7 @@
 % The end of integral transforms lecture should go here.
 %==============================================================================%
 \section*{Solving Linear ODEs using Matrix Methods}
+\subsection{First Order ODE}
 We've already discussed solving ODEs (Ordinary Differential Equations) in previous lectures as well as performing an eigenvalue decomposition.
 Therefore, it makes sense to discuss how we can combine the two topics.
 We will start with a quick example of a first-order ODE,
@@ -107,5 +109,100 @@ Therefore, using right multiplication,
 \be
   e^{\textbf{A} t} \textbf{X} = \textbf{X} e^{\Lambda t} \quad \Rightarrow \quad e^{\textbf{A} t} = \textbf{X} e^{\Lambda t} \textbf{X}^{-1}
 \ee
-
+\subsection{General ODE}
+Now, what if we had a system of linear ODEs of arbitrary order of the form
+\be
+  b_k y^{(k)} + b_{k-1} y^{(k-1)} + \dots + b_o y^{(0)} = 0
+\ee
+Recall that $y^{(k)}$ is the kth derivative of y.
+We can introduce vectors
+\begin{align}
+    y_1 &= y^{(0)} \\
+    y_2 &= y^{(1)} \\
+    & \vdotswithin{ = }\notag \\
+    y_k &= y^{(k-1)} \\
+\end{align}
+in this way so we can say,
+\begin{align}
+    \dot{y}_1 &= y_2 \\
+    \dot{y}_2 &= y_3 \\
+    & \vdotswithin{ = }\notag \\
+    \dot{y}_{k-1} &= y_k \\
+    \dot{y}_k &= \frac{-1}{b_k} (b_{k-1} y_k + b_{k-2} y_{k-1} + \dots + b_o y_1) \\
+\end{align}
+The coefficient matrix \textbf{A} is,
+\be
+  \begin{bmatrix}
+    0 & 1 & 0 & \cdots & 0 \\
+    0 & 0 & 1 & \cdots & 0 \\
+     & & \vdots & & \\
+    0 & 0 & 0 & \cdots & 1 \\
+    \frac{-b_o}{b_k} & \frac{-b_1}{b_k} & \frac{-b_2}{b_k} & \cdots & \frac{-b_{k-1}}{b_k} \\
+  \end{bmatrix}
+\ee
+\section{Partial Differential Equations}
+Start with the simplest PDE.
+Consider a function $U = U(x,t)$.
+\be
+  \frac{\partial U}{\partial t} + a \frac{\partial U}{\partial x} = 0
+\ee
+The solution to the equation is,
+\be
+  U(x,t) = f(x - at)
+\ee
+Next exmaple, a is no longer a constant but a function of x, i.e. $a = a(x)$.
+Forward translation equation:
+\be
+  \frac{\partial U}{\partial t} + \frac{\partial (a(x) U)}{\partial x} = 0
+\ee
+Backward translation equation:
+\be
+    \frac{\partial U}{\partial t} - a(x) \frac{\partial U}{\partial x} = 0
+\ee
+Method to solve the forward translation equation is to use a characteristic curve.
+Consider
+\be \label{eq:define_a}
+  \frac{dx}{dt} = a(x)
+\ee
+Now plot all solutions $x(t)$ that solve the equation above and plot them.
+%==============================================================================
+% Add plot of curves here
+%==============================================================================
+These are your trajectories all over the coordinate space.
+Now we will define $U = U(x(t),t)$ so that $U$ is explicitly a function of t only.
+Then we will take the total derivative of U,
+\be
+  \begin{split}
+    \frac{d U}{d t} &= \frac{\partial U}{\partial t} \frac{\partial t}{\partial t} + \frac{\partial U}{\partial x} \frac{\partial x(t)}{\partial t} \\
+    &= \frac{\partial U}{\partial t} + \frac{\partial U}{\partial x} a(x(t))
+  \end{split}
+\ee
+where we plugged in equation (\ref{eq:define_a}) for the derivative of x with respect to t.
+We can also plug in the forward translation equation for $\frac{\partial U}{\partial t}$.
+\be
+  \begin{split}
+    \frac{d U}{d t} &= \frac{\partial U}{\partial t} + \frac{\partial U}{\partial x} a(x(t)) \\
+    &= - \frac{\partial (a(x) U)}{\partial x} + a(x(t)) \frac{\partial U}{\partial x} \\
+    &= - \frac{\partial a}{\partial x} U - \frac{\partial U}{\partial x} a + \frac{\partial U}{\partial x} a \\
+    &= - \frac{\partial a(x(t))}{\partial x} U \\
+    &= - a'(x(t)) U
+  \end{split}
+\ee
+We can solve for $U$ by using separation of variables and integrating both sides.
+\be
+  \int \frac{d U}{U} = - \int a'(x(t)) dt
+\ee
+\be \label{eq:pde_soln}
+  U(t) = U(0) e^{- \int_0^t a'(x(t)) dt}
+\ee
+\subsection{Example}
+Consider $a(x) = x$.
+We can define our characteristic curve as
+\be
+  \frac{\partial x}{\partial t} = x \quad \Longrightarrow \quad x(t) = x_o e^t
+\ee
+Then we can obtain our solution using equation (\ref{eq:pde_soln})
+\be
+  U(x,t) =
+\ee
 \end{document}
