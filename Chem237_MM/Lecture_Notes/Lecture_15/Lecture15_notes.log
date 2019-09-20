@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  20 SEP 2019 12:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  20 SEP 2019 12:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Lecture16_notes.tex
-(./Lecture16_notes.tex
+**Lecture15_notes.tex
+(./Lecture15_notes.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -152,15 +152,6 @@ Package caption Info: float package is loaded.
 \c@subfigure=\count103
 \c@subtable=\count104
 )
-(/usr/local/texlive/2019/texmf-dist/tex/latex/units/nicefrac.sty
-Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip46
-\L@UnitsRaiseTextstyle=\skip47
-\L@UnitsRaiseScriptstyle=\skip48
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-))
 (/usr/local/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2018/04/16 v5.8 Page Geometry
 
@@ -213,12 +204,12 @@ Package: expl3 2019-05-07 L3 programming layer (code)
 \l_tmpb_dim=\dimen132
 \g_tmpa_dim=\dimen133
 \g_tmpb_dim=\dimen134
-\c_zero_skip=\skip49
-\c_max_skip=\skip50
-\l_tmpa_skip=\skip51
-\l_tmpb_skip=\skip52
-\g_tmpa_skip=\skip53
-\g_tmpb_skip=\skip54
+\c_zero_skip=\skip46
+\c_max_skip=\skip47
+\l_tmpa_skip=\skip48
+\l_tmpb_skip=\skip49
+\g_tmpa_skip=\skip50
+\g_tmpb_skip=\skip51
 \c_zero_muskip=\muskip11
 \c_max_muskip=\muskip12
 \l_tmpa_muskip=\muskip13
@@ -358,12 +349,12 @@ Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Bcount=\count196
 \calc@Adimen=\dimen161
 \calc@Bdimen=\dimen162
-\calc@Askip=\skip55
-\calc@Bskip=\skip56
+\calc@Askip=\skip52
+\calc@Bskip=\skip53
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count197
-\calc@Cskip=\skip57
+\calc@Cskip=\skip54
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/chemgreek/chemgreek.sty
 (/usr/local/texlive/2019/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
@@ -379,38 +370,37 @@ stry (CN)
 \g__chemgreek_tmpa_int=\count269
 )
 \l__mhchem_ce_distanceFromLastComma_int=\count270
-\__mhchem_arrow_extPgfLength_skip=\skip58
-\mhchem@minispace@tmp=\skip59
-\mhchem@minibackspace@tmp=\skip60
-\mhchem@bondwidth=\skip61
-\mhchem@bondheight=\skip62
-\mhchem@smallbondwidth@tmpA=\skip63
-\mhchem@smallbondwidth@tmpB=\skip64
-\mhchem@smallbondwidth=\skip65
-\mhchem@bondtmp@minussidebearingleft=\skip66
-\mhchem@bondtmp@minussidebearingright=\skip67
+\__mhchem_arrow_extPgfLength_skip=\skip55
+\mhchem@minispace@tmp=\skip56
+\mhchem@minibackspace@tmp=\skip57
+\mhchem@bondwidth=\skip58
+\mhchem@bondheight=\skip59
+\mhchem@smallbondwidth@tmpA=\skip60
+\mhchem@smallbondwidth@tmpB=\skip61
+\mhchem@smallbondwidth=\skip62
+\mhchem@bondtmp@minussidebearingleft=\skip63
+\mhchem@bondtmp@minussidebearingright=\skip64
 \l__mhchem_option_version_int=\count271
 \mhchem@option@minusmathsidebearingleft=\dimen163
 \mhchem@option@minusmathsidebearingright=\dimen164
 \mhchem@option@minustextsidebearingleft=\dimen165
 \mhchem@option@minustextsidebearingright=\dimen166
 )
-(./Lecture16_notes.aux)
-\openout1 = `Lecture16_notes.aux'.
+No file Lecture15_notes.aux.
+\openout1 = `Lecture15_notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count272
@@ -509,55 +499,48 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package chemgreek Info: Activating mapping `default' on line 41.
+Package chemgreek Info: Activating mapping `default' on line 39.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+LaTeX Font Info:    Try loading font information for U+msa on input line 41.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 41.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) [1
 
-LaTeX Warning: Reference `eq:gen_hamil' on page 1 undefined on input line 104.
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+(./Lecture15_notes.aux)
 
-[1
-
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] [5] [6] [7] (./Lecture16_notes.aux)
-
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 14632 strings out of 492616
- 271207 string characters out of 6129482
- 334272 words of memory out of 5000000
- 18451 multiletter control sequences out of 15000+600000
+ 14561 strings out of 492616
+ 270263 string characters out of 6129482
+ 324930 words of memory out of 5000000
+ 18389 multiletter control sequences out of 15000+600000
  540820 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,22n,63p,379b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,19n,63p,379b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pf
-b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/
+/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
 texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/tex
 live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Lecture16_notes.pdf (7 pages, 179313 bytes).
+ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on Lecture15_notes.pdf (2 pages, 132169 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 59 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

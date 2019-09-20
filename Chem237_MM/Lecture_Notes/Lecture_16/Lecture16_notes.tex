@@ -30,6 +30,7 @@
 \newcommand{\bS}{\mbox{\bf S}}
 \newcommand{\bK}{\mbox{\bf K}}
 \newcommand{\br}{\mbox{\bf r}}
+\newcommand{\bp}{\mbox{\bf p}}
 %==============================================================================%
 %                             Title Information                                %
 %==============================================================================%
@@ -52,16 +53,16 @@ We begin by writing the Hamiltonian for our system of interest with N vibrationa
     &=-\half \nabla^T\bM^{-1}\nabla + \half \br^T\bK\br
 \end{split}
 \ee
-Where $\nabla$ refers to a set of partial derivitives $\nabla = \pri$. 
+Where $\nabla$ refers to a set of partial derivitives $\nabla = \pri$.
 
 
-We will begin by mass-scaling our coordinates (no momentum). 
+We will begin by mass-scaling our coordinates (no momentum).
 \be
 \begin{split}
     \br' &:= \bM^{\nhalf}\br\\
-    \nabla' &:= \bM^{-\nhalf}\nabla =  
-    \begin{bmatrix} 
-        \frac{1}{\sqrt{m_1}} \pri\\ 
+    \nabla' &:= \bM^{-\nhalf}\nabla =
+    \begin{bmatrix}
+        \frac{1}{\sqrt{m_1}} \pri\\
         \vdots \\
         \frac{1}{\sqrt{m_N}} \pri
     \end{bmatrix}\\
@@ -69,38 +70,260 @@ We will begin by mass-scaling our coordinates (no momentum).
 \end{split}
 \ee
 
-In our new coordinates the Hamiltonian reads 
+In our new coordinates the Hamiltonian reads
 \be
     \widehat{H}= -\half\nabla'^T\nabla+\half\br'^T\bK'\br'
 \ee
-Which is analagous to the classical case. 
+Which is analagous to the classical case.
 
 Normal mode analysis is useful for chemistry and physics problems, for example the simple harmonic oscillator.
-In this problem you have 2 masses and seperate spring constants (k) and seperate distances (r). 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%If we did not di ot in the previous lecture on normal mode analysis do the 2D harmonic
-%spring here, sould add a picture showing the problem
-%picture is a wall a spring a mass a another spring another mass another spring the other wall
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%==============================================================================
+% Vlad gave up on going over the example after drawing it but it's a very commonly used example so I know what the solution should be.
+% This is the first time I solved it using the method Vlad taught.
+%==============================================================================
+\subsection{Example}
+Consider an example of two classical masses attached to three springs as shown in the figure below.
+%==============================================================================
+ % Somebody should make a figure that looks like the drawing Vlad made in class
+ % It's the same as the one in this website:
+ % http://scienceworld.wolfram.com/physics/SpringsThreeSpringsandTwoMasses.html
+%==============================================================================
+The Hamiltonian for the system is simple to write because we just have coupled harmonic oscillators.
+\be
+  H = \frac{p_1^2}{2 m_1} + \frac{p_2^2}{2 m_2} + \frac{k_1}{2}r_1^2 + \frac{k_2}{2}(r_1 - r_2)^2 + \frac{k_3}{2}r_2^2
+\ee
+For simplicity, let's just say that the spring constants are the same, i.e. $k_1 = k_2 = k_3 = k$, and the masses are the same, i.e. $m_1 = m_2 = m$.
+So now our Hamiltonian simplifies to,
+\be
+  \begin{split}
+    H &= \frac{p_1^2}{2 m} + \frac{p_2^2}{2 m} + \frac{k}{2}r_1^2 + \frac{k}{2}(r_1 - r_2)^2 + \frac{k}{2}r_2^2 \\
+    &= \frac{1}{2m} \Big( p_1^2 + p_2^2 \Big) + \frac{k}{2} \Big( 2r_1^2 - 2r_1 r_2 + 2r_2^2 \Big)
+  \end{split}
+\ee
+where $r_1$ and $r_2$ are each mass's coordinates measured from the equilibrium position.
+By creating mass, coordinate, momenta, and Hessian matrices, we can make this look like equation (\ref{eq:gen_hamil}),
 \be
 \begin{split}
-    \widehat{H} &= \sum_{i = 1}^{N} \frac{p^2_i}{2 m} + V(r_1, \dots, r_N)\\
-    \widehat{H} &= \frac{p^2_1}{2 m_1} + \frac{p^2_2}{2 m_2} + \frac{K}{2}\left(r_1-r_2\right)
-\end{split}
+  \textbf{H} &= \frac{1}{2} \bp^T \bM^{-1} \bp + \frac{1}{2} \textbf{r}^{T} \bK \textbf{r} \\
+  &= \frac{1}{2}
+  \begin{bmatrix}
+    p_1 \\
+    p_2 \\
+  \end{bmatrix}^T
+  \begin{bmatrix}
+    m & 0 \\
+    0 & m \\
+  \end{bmatrix}^{-1}
+  \begin{bmatrix}
+    p_1 \\
+    p_2 \\
+  \end{bmatrix}
+   + \frac{1}{2}
+   \begin{bmatrix}
+     r_1 \\
+     r_2 \\
+   \end{bmatrix}^T
+   \begin{bmatrix}
+     2k & -k \\
+     -k & 2k \\
+   \end{bmatrix}
+   \begin{bmatrix}
+     r_1 \\
+     r_2 \\
+   \end{bmatrix}
+ \end{split}
 \ee
+The mass matrix is simply a diagonal matrix because there are no cross terms in the kinetic energy.
+However, the cross terms in the Hessian come from the $(r_1 - r_2)^2$ term in the potential.
+If you're not sure where each matrix element came from, recall equation (8),
+\be
+  K_{i j} = \frac{\partial^2 V}{\partial r_i r_j} .
+\ee
+Since the potential is equal to,
+\be
+  V = \frac{k}{2} \Big( 2r_1^2 - 2r_1 r_2 + 2r_2^2 \Big)
+\ee
+we can say that the matrix elements for the Hessian are,
+\be
+  K_{11} = \frac{\partial^2 V}{\partial r_1^2} = 2k \quad ; \quad K_{12} =  \frac{\partial^2 V}{\partial r_1 r_2} = K_{21} = -k \quad ; \quad K_{22} = \frac{\partial^2 V}{\partial r_2^2} = 2k .
+\ee
+You can verify that equation 15 and 16 are the same.
+
+Now we can define the mass-scaled Hessian,
+\be
+  \bK' =
+  \begin{bmatrix}
+    \frac{2 k}{\sqrt{m_1^2}} & - \frac{k}{\sqrt{m_1 m_2}} \\
+    - \frac{k}{\sqrt{m_1 m_2}} & \frac{2k}{\sqrt{m_2^2}} \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    \frac{2 k}{m} & - \frac{k}{m} \\
+    - \frac{k}{m} & \frac{2k}{m} \\
+  \end{bmatrix}
+\ee
+and find it's eigenvalues and eigenvectors. This can be easily done with Mathematica, but we can also do this by hand since our system is 2 dimensional. To find the eigenvalues, we set up the characteristic equation,
+\be
+  \text{det}(\bK' - \lambda \textbf{I}) = 0 \Longrightarrow \Big(\frac{2k}{m} - \lambda \Big)^2 - \Big( \frac{k}{m} \Big)^2 = 0 \Longrightarrow \Big( \lambda - \frac{2k}{m} \Big)^2 - \Big( \frac{k}{m} \Big)^2 = 0
+\ee
+and solve for $\lambda$.
+\be
+  \begin{split}
+  \lambda - \frac{2k}{m} =& \pm \frac{k}{m} \Longrightarrow \lambda = \frac{2k}{m} \pm \frac{k}{m} \\
+  &\lambda_1 = \frac{3k}{m} , \lambda_2 = \frac{k}{m}
+  \end{split}
+\ee
+Now we find the eigenvector for each eigenvalue.
+
+For $\lambda_1$, we have
+\be
+  \bK' \textbf{x} = \lambda_1 \textbf{x} \Longrightarrow (\bK' - \lambda_1 \textbf{I}) \textbf{x} = \textbf{0} \Longrightarrow
+  \begin{bmatrix}
+    \frac{2k}{m} - \lambda_1 & \frac{-k}{m} \\
+    \frac{-k}{m} & \frac{2k}{m} - \lambda_1 \\
+  \end{bmatrix}
+  \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0 \\
+    0 \\
+  \end{bmatrix}
+\ee
+which is just solving two equations with two unknowns.
+\be
+  \begin{split}
+    \frac{-k}{m}x_1 - \frac{k}{m}x_2 &= 0 \\
+    \frac{-k}{m}x_1 - \frac{k}{m}x_2 &= 0 \\
+  \end{split}
+\ee
+Since both equations are the same, we are really only left with one equation and two unknowns. To get around the problem, we can assign any value to $x_1$, like $x_1 = 1$, and just solve for $x_2$.
+\be
+  \frac{-k}{m}(1) - \frac{k}{m}x_2 = 0 \Longrightarrow x_2 = -1
+\ee
+So our eigenvector for $\lambda_1$ is $\begin{bmatrix} 1 \\ -1 \\ \end{bmatrix}$. If you don't understand why I was able to do this, refer to Lecture 14.
+
+For $\lambda_2$, we have
+\be
+  \bK' \textbf{x} = \lambda_2 \textbf{x} \Longrightarrow (\bK' - \lambda_2 \textbf{I}) \textbf{x} = \textbf{0} \Longrightarrow
+  \begin{bmatrix}
+    \frac{2k}{m} - \lambda_2 & \frac{-k}{m} \\
+    \frac{-k}{m} & \frac{2k}{m} - \lambda_2 \\
+  \end{bmatrix}
+  \begin{bmatrix}
+    x_1 \\
+    x_2 \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0 \\
+    0 \\
+  \end{bmatrix} .
+\ee
+So our two equations are:
+\be
+  \begin{split}
+    \frac{k}{m}x_1 - \frac{k}{m}x_2 &= 0 \\
+    \frac{-k}{m}x_1 + \frac{k}{m}x_2 &= 0 \\
+  \end{split}
+\ee
+The bottom equation is just the top equation multiplied by $-1$. To solve this, we again assign $x_1 = 1$ and solve for $x_2$.
+\be
+  \frac{k}{m}(1) - \frac{k}{m}x_2 \Longrightarrow x_2 = 1
+\ee
+So our eigenvector for $\lambda_2$ is $\begin{bmatrix} 1 \\ 1 \\ \end{bmatrix}$. The eigendecomposition equation for the mass-scaled Hessian becomes,
+\be
+  \bK' = \textbf{U} \Lambda \textbf{U}^{\dagger} =
+  \begin{bmatrix}
+    -1 & 1 \\
+    1 & 1 \\
+  \end{bmatrix}
+  \begin{bmatrix}
+    \frac{3k}{m} & 0 \\
+    0 & \frac{k}{m} \\
+  \end{bmatrix}
+  \begin{bmatrix}
+    -1 & 1 \\
+    1 & 1 \\
+  \end{bmatrix}^{\dagger} .
+\ee
+Remember that each column of \textbf{U} is the ith eigenvector that corresponds to the ith eigenvalue.
+
+The normal mode coordinates and momenta are then defined from the mass-scaled coordinates and momenta.
+\be \label{eq:ex_sol}
+  \begin{split}
+    \tilde{\br} &= \textbf{U}^{\dagger} \br' =
+    \begin{bmatrix}
+      -1 & 1 \\
+      1 & 1 \\
+    \end{bmatrix}^{\dagger}
+    \begin{bmatrix}
+      \sqrt{m} r_1 \\
+      \sqrt{m} r_2 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+       \sqrt{m} (r_2 - r_1) \\
+       \sqrt{m} (r_1 + r_2) \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \tilde{r}_1 \\
+      \tilde{r}_2 \\
+    \end{bmatrix}
+    = \sqrt{m}
+    \begin{bmatrix}
+        (r_2 - r_1) \\
+        (r_1 + r_2) \\
+    \end{bmatrix}
+    \\
+    \tilde{\bp} &= \textbf{U}^{\dagger} \bp'
+    \begin{bmatrix}
+      -1 & 1 \\
+      1 & 1 \\
+    \end{bmatrix}^{\dagger}
+    \begin{bmatrix}
+      \frac{1}{\sqrt{m}} p_1 \\
+      \frac{1}{\sqrt{m}} p_2 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \frac{1}{\sqrt{m}} (p_2 - p_1) \\
+      \frac{1}{\sqrt{m}} (p_1 + p_2) \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \tilde{p}_1 \\
+      \tilde{p}_2 \\
+    \end{bmatrix}
+    =
+    \frac{1}{\sqrt{m}}
+    \begin{bmatrix}
+     (p_2 - p_1) \\
+     (p_1 + p_2) \\
+    \end{bmatrix}
+  \end{split}
+\ee
+And with this, we have effectively turned our original coupled system into a system of independent harmonic oscillators!
+In other words, in the normal mode basis, we can think of our system as having 2 normal modes: one where both masses oscillate with frequency $\omega_1 = \sqrt{\frac{3k}{m}}$ and another where both masses oscillate with frequency $\omega_2 = \sqrt{\frac{k}{m}}$.
+Also, the position and momenta of both masses in each normal mode can be described with $(\tilde{r_1},\tilde{p_1})$ and $(\tilde{r_2},\tilde{p_2})$.
+
+You may wonder why the position and momenta do not look sinusoidal. This is because we never explicitly defined $r_1$ and $r_2$. However, we expect both masses to osciallte sinusoidally so we can assume that the solutions will be sinusoidal.
 
 \section{Normal Mode Analysis of Time Signals}
-A time signal is simply data as a function of time (c(t)), an important tdata type for most experiments, 
-andis usualy a set of discrete measurements made in time. 
+A time signal is simply data as a function of time (c(t)), an important tdata type for most experiments,
+andis usualy a set of discrete measurements made in time.
 A standard analysis of time signals is to describte c(t) as a sum of expotnetials.
 \be\label{eq:time}
 c(t) = \sum_{k=1}^K d_k e^{-\lambda_kt}
 \ee
 
 Where c(t) is know data and d, $\lambda$ are unknown parameters.
-The central numerical problem then is to fit a signal to a expotentials. 
+The central numerical problem then is to fit a signal to a expotentials.
 
-time analysis data is usualy a set of N discrete measurements made in time. 
+time analysis data is usualy a set of N discrete measurements made in time.
 \be
 c(t) \Rightarrow c(n\tau) = \sum_{n=0}^{N-1} c_n
 \ee
@@ -110,26 +333,26 @@ You can define an optimizaiton function F in terms of our parameters.
 \be
 F(\lambda_k,d_k) := \sum_{n=1}^{N-1}\left( c_n - \sum_{k=1}^K d_k e^{-\lambda_kn\tau}  \right)^2
 \ee
-And there are tons of variations for taking this approach. 
+And there are tons of variations for taking this approach.
 
 I fyou can exactly fit your data the actual form of the fitting function is not important, normally there is no exact solution .
 
 N is the numer of data points in teh experiment, k is the number of expotentials to use int eh fitting process, usually N $>>$ k, so you have an overdetermined problem.
-This means you are trying to find the best solution, which therefore epend s on the function you use to minimize (F). 
-This means we are really trying to minimize F itself, we have an optimization problem to minimize F. 
+This means you are trying to find the best solution, which therefore epend s on the function you use to minimize (F).
+This means we are really trying to minimize F itself, we have an optimization problem to minimize F.
 \be
 \text{min}_{\lambda_k,d_k}\; F(\lambda_k,d_k)
 \ee
 
-If you have a non-linear function F, it will typically have many minima and typically the global minimum is the best fit. 
+If you have a non-linear function F, it will typically have many minima and typically the global minimum is the best fit.
 Unfortunately teh number of minima grows with the size of the space, $\approx e^{\alpha k}$.
-roughly speaking with about 10 parameters global optimizaiton becomes very dificult numerically. 
+roughly speaking with about 10 parameters global optimizaiton becomes very dificult numerically.
 
-Although eq. \ref{eq:time} looks bad is is actually a special case (Proxy 1793 maybe discovered). 
+Although eq. \ref{eq:time} looks bad is is actually a special case (Proxy 1793 maybe discovered).
 
-Disconnected you could solve this problem using linear algebra, find the roots of a polynomial degree k. 
+Disconnected you could solve this problem using linear algebra, find the roots of a polynomial degree k.
 
-convex optimizationL function is a special case where the function of parameters only has 1 minimum. 
+convex optimizationL function is a special case where the function of parameters only has 1 minimum.
 
 \subsection{General Problem}
 The problem is generalized to complex space as
@@ -150,37 +373,37 @@ e^{-in\tau \omega_k} = e^{in\tau V_k}e^{-n\tau \lambda_k}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Insert a graph plotting this expotnetial it will oscilate with smaller and smaller amplitude
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In the complex case we have 2 complex numbers that are unknowns. 
+In the complex case we have 2 complex numbers that are unknowns.
 $c_n \in mathbb{C}, d_k, \omega \in \mathbb{C}$.
-This is a well know problem, one approach to solve is the Harmonic Inversion. 
+This is a well know problem, one approach to solve is the Harmonic Inversion.
 Here the goal is to invert the time signal with a sum of harmonic contributions.
 Hamonic inversion is related to spectra estimation methods.
 
-We need to formulate the linear algebra problem to solve for frequency and amplitude. 
-Spectral analysis: given $c_n = c(n\tau)$ estimate the spectra (I is our estimate). 
+We need to formulate the linear algebra problem to solve for frequency and amplitude.
+Spectral analysis: given $c_n = c(n\tau)$ estimate the spectra (I is our estimate).
 \be
 I(\omega) := \int_0^\infty dt\; c(t)\; e^{i\omega t}
 \ee
 
-Here we have a finite interval (finite set of data measurements) and we want to estimate the result to infinity. 
+Here we have a finite interval (finite set of data measurements) and we want to estimate the result to infinity.
 \be
 \begin{split}
     I(\omega) &\approx \tau \sum_{n=1}^\infty c(n\tau)e^{i\omega\tau}\\
-    &= \tau \sum_{n=0}^\infty c_n z^{-n} 
+    &= \tau \sum_{n=0}^\infty c_n z^{-n}
 \end{split}
 \ee
-Where we define ($z:=e^{-i\omega\tau}$). 
+Where we define ($z:=e^{-i\omega\tau}$).
 
-Can we try an estimate our infinite series from the finite measurement? 
+Can we try an estimate our infinite series from the finite measurement?
 \be
 I(\omega) \approx \sum_{n=i}^{N-1} c_n z^{-n}
 \ee
 
 This is valid, however, it converges very slowly.
-Also a larger problem is known as the fourier transform ncertainty principle, where resolution is given by $\delta \omega \approx \frac{1}{\alpha} N$. 
+Also a larger problem is known as the fourier transform ncertainty principle, where resolution is given by $\delta \omega \approx \frac{1}{\alpha} N$.
 
-In principle if N$\geq$ 2k then you can solve the problem exactly. 
-So the paramaterization fir problem can circumvent the Fourier Transform uncertainty principle and get better resolution.  
+In principle if N$\geq$ 2k then you can solve the problem exactly.
+So the paramaterization fir problem can circumvent the Fourier Transform uncertainty principle and get better resolution.
 
 let $U_k = e^{-i\tau\omega_k}$
 \be
@@ -194,8 +417,8 @@ let $U_k = e^{-i\tau\omega_k}$
     &= \sum_{k=1}^K d_k \; \frac{1}{1 - \frac{\omega_k}{z}}
 \end{split}
 \ee
-Where $\sum_{n=0}^\infty \left(\frac{U_k}{z}\right)^n$ is a geometric series. 
-With $d_k,omega_k$ parameters you can solve. 
+Where $\sum_{n=0}^\infty \left(\frac{U_k}{z}\right)^n$ is a geometric series.
+With $d_k,omega_k$ parameters you can solve.
 
 Some approximations, $\omega_k = V_k - i\lambda_k$ , but $\lambda_k$ is usually small, if $\tau$ is small than
 \be
@@ -209,13 +432,13 @@ Some approximations, $\omega_k = V_k - i\lambda_k$ , but $\lambda_k$ is usually 
 \end{split}
 \ee
 
-The last two terms are a complex lorentzian function. 
+The last two terms are a complex lorentzian function.
 %%%%%%%%%%%5talk abotu whateve this funciton is
 
-The first term is the absorption (small $\lambda_k$ corresponds to a narrow peak). 
+The first term is the absorption (small $\lambda_k$ corresponds to a narrow peak).
 %plot first term, and entire thing
 
-so if our oscillations can be dscribed by $e^{-in\tau\omega_k}$ you get a complex lorentzian function. 
+so if our oscillations can be dscribed by $e^{-in\tau\omega_k}$ you get a complex lorentzian function.
 
 So how do we solv this problem
 \be
@@ -224,15 +447,15 @@ c_n = \sum_{k=1}^K d_kU_k^n
 Where we have k=1,K unknown parameters and ($d_k,U_k \in \mathbb{C}$), given c$_n$?
 
 \subsection{Vlad Solutoin}
-There are many different ways to solve this problem. 
+There are many different ways to solve this problem.
 One solution (vlads old paper, Neuhauser 1995?) assumes the known data can be represented as
 \be
 c_n := \theta^T\widehat{U}^N\theta
 \ee
 
-Where $\widehat{U}$ is a symmetric linear operator (a symmetric matrix $\in \mathbb{C}$), not hermitian and $\theta$ is a column vector. 
+Where $\widehat{U}$ is a symmetric linear operator (a symmetric matrix $\in \mathbb{C}$), not hermitian and $\theta$ is a column vector.
 
-This assumption is a special case for time signals.  
+This assumption is a special case for time signals.
 It is consistent witht he time auto correlatio nfunction for a quantum system.
 \be
 \Psi(t) = e^{-it\widehat{H}} \Psi(0) = \widehat{U}^n\phi
@@ -243,11 +466,11 @@ With these definition the time autocorrelation function becomes
 \be
 \braket{\Psi(t)|\Psi(0)} = \phi^T\widehat{U}^N\phi
 \ee
-Which is exactly our $c_n$. 
-So the time signal is represented by some quantum system with quantum autocoreelation funciton given by some operator. 
+Which is exactly our $c_n$.
+So the time signal is represented by some quantum system with quantum autocoreelation funciton given by some operator.
 
 \subsection{Analysis}
-We now have a quantum system, so lets solve the eigenvalue problem (U our eigenvalues and $\gamma$ our eigenvectors). 
+We now have a quantum system, so lets solve the eigenvalue problem (U our eigenvalues and $\gamma$ our eigenvectors).
 \be
 \begin{split}
     \widehat{U}\gamma_k&=U_k\gamma\\
@@ -255,13 +478,13 @@ We now have a quantum system, so lets solve the eigenvalue problem (U our eigenv
 \end{split}
 \ee
 
-These two statements are equivalent, this is known as the eigenrepresentation of an operator, it is equivalent to eigendecomposition. 
-%We need ot explain this proof better. 
-We know that $\widehat{U}$ is symmetric i.e. $\widehat{U}=\widehat{U}^T$ therefore the right/left eigenvetors are the same i.e. ($\gamma_k^T\gamma_k=\delta_{kl}$), meaning the eigenvectors are orthogonal for symmetric matricies. 
+These two statements are equivalent, this is known as the eigenrepresentation of an operator, it is equivalent to eigendecomposition.
+%We need ot explain this proof better.
+We know that $\widehat{U}$ is symmetric i.e. $\widehat{U}=\widehat{U}^T$ therefore the right/left eigenvetors are the same i.e. ($\gamma_k^T\gamma_k=\delta_{kl}$), meaning the eigenvectors are orthogonal for symmetric matricies.
 \be
 \left( \sum_k U_k\gamma_k\gamma_k^T \right) \gamma_l = U_l\gamma_l
 \ee
-So we see this is simply an eigenvector equivalent to the eigenvalue problem. 
+So we see this is simply an eigenvector equivalent to the eigenvalue problem.
 
 If we let $(\gamma_k^T\phi)^2 = \phi^T\gamma_k \gamma_k^T\phi \equiv d_k$ we have
 \be
@@ -270,16 +493,16 @@ c_n = \phi^T\widehat{U}^N\phi = \sum_k \phi^T U_N^N \gamma_k\gamma_k^T\phi = \su
 
 Where we used the operator as a fucntion of a matrix ($\widehat{U}^N = \sum_k U_k^N\gamma_k\gamma_K^T$)
 
-So our time signal is defined by U and d, using $c_N=\phi^T\widehat{U}^N\phi$ reduces teh parameter estimation problem to an eigenvalue problme. 
+So our time signal is defined by U and d, using $c_N=\phi^T\widehat{U}^N\phi$ reduces teh parameter estimation problem to an eigenvalue problme.
 
-Now we can solve the eigenvalue problem. 
+Now we can solve the eigenvalue problem.
 \be
 \widehat{U}\gamma_k = U_k\gamma_k
 \ee
 We don't actually want any of these terms explicitly, we know c (the data) and we assume $c_N=\phi^T\widehat{U}^N\phi$ , we don't want to find expressions for any of the other terms.
 
-In QM we define a basis and evaluate the hamiltonian matrix to solve. 
-So we need to express our matrix elements in terms of c. 
+In QM we define a basis and evaluate the hamiltonian matrix to solve.
+So we need to express our matrix elements in terms of c.
 
 We define our basis to be
 \be
@@ -293,7 +516,7 @@ We define our basis to be
 \ee
 
 This basis choice i similar to a Krylov basis (super matricies).
-You simply keep multiplying to get the Kryloc vectors, genearating a Krylov subspace, using these vectors you can understand the original matrix of interest. 
+You simply keep multiplying to get the Kryloc vectors, genearating a Krylov subspace, using these vectors you can understand the original matrix of interest.
 
 We will use this basis to find the operator $\widehat{U}$, and therefore solve the generalized eigevalue problem.
 \be
@@ -311,20 +534,20 @@ $\widehat{U}$ is symmetric therefore
 \be
 \delta_{nk} = \phi^T\widehat{U}^{n+m}\phi = c_{m+n}
 \ee
-Where $c_{m+n}$ is our data. 
-Overlap matrix is computed with teh data points directly. 
+Where $c_{m+n}$ is our data.
+Overlap matrix is computed with teh data points directly.
 
 \be
 U_{nm} = \phi^T\widehat{U}\phi_m = c_{n+m+1}
 \ee
 
-U and S are matricies we get from our data, meaning we can solve the eigenvalue problem $(U-U_k \bS)B_k= 0$. 
+U and S are matricies we get from our data, meaning we can solve the eigenvalue problem $(U-U_k \bS)B_k= 0$.
 
 It can be shwon that $(\gamma_k^T\phi)^2 = d_k$ so we assume
 \be
 \gamma_k = \sum_{n=1}^{m-1} B_{kn}\phi_n
 \ee
-Wxpanding the eigenfunctions nto the basis function leads to 
+Wxpanding the eigenfunctions nto the basis function leads to
 %need to show this somehow
 \be
 d_k = \left[\sum_{n=0}^{m-1}\left(B_{kn}c_n\right)\right]^2
