@@ -23,6 +23,7 @@
 \newcommand{\eenum}{\end{enumerate}}
 \newcommand{\pd}{\partial}
 \newcommand{\dg}{\dagger}
+\newcommand{\ii}{\int_{-\infty}^\infty}
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\nhalf}{\nicefrac{1}{2}}
 \newcommand{\prt}{\frac{\pd}{\pd t}}
@@ -48,15 +49,15 @@
 I have just transcribed the lecture notes, no thought has gone in yet. We need to sit down and analyze this. 9-17-19
 
 \section{PDEs}
-Partial Differential Equations (PDEs) can have $\infty$ dimensionality, the problems usually involve boundry conditions with an arbitrary function. 
-So you usually need to know the funciton and its derivative, and the value of the funciton and the vaue of the functions derivative at the boundry to solve. 
+Partial Differential Equations (PDEs) can have $\infty$ dimensionality, the problems usually involve boundry conditions with an arbitrary function.
+So you usually need to know the funciton and its derivative, and the value of the funciton and the vaue of the functions derivative at the boundry to solve.
 
 Consider a second order PDE (the wave equation with constant coefficient c)
 \be
-\prts U - c^2 \prxs U = 0 
+\prts U - c^2 \prxs U = 0
 \ee
 
-We can give some initial conditions like 
+We can give some initial conditions like
 \be
 \begin{split}
     U(x,t=0) &= \phi x\\
@@ -65,10 +66,10 @@ We can give some initial conditions like
 \ee
 
 This PDE is linear and seperable, it is the easiest case to solve.
-As we will see, given a certain set of boundry conditions we may not actually get a yseful solution (for example: could get a solution being an infinite sum we can't solve). 
+As we will see, given a certain set of boundry conditions we may not actually get a yseful solution (for example: could get a solution being an infinite sum we can't solve).
 
-One way to approach this problem is to guess a solution (standard approach in PDEs). 
-If we assume the 
+One way to approach this problem is to guess a solution (standard approach in PDEs).
+If we assume the
 \be
 U(x,t)=\left[f(x-ct)+g(x+ct)\right]
 \ee
@@ -81,17 +82,17 @@ We need to satify the initial conditions
 \be
 \int dx \frac{dU}{dx} \Rightarrow f(x) - g(x) = \frac{-1}{c} \int^x dy\;\psi(y)
 \ee
-Where the lower boundis undefined, because f(x) and g(x) are defined up to a constant we do not know the lower bound. 
+Where the lower boundis undefined, because f(x) and g(x) are defined up to a constant we do not know the lower bound.
 
-So second order PDE, infinte solutioon space, need to specify boundry conditions. 
+So second order PDE, infinte solutioon space, need to specify boundry conditions.
 \be\begin{split}
     \int f(x) - g(x) &=-\half\int^x dy\;\psi(y) \\
     -cf'(x) + cg'(x) &= \psi(x)
 \end{split}
 \ee
-Solving these two equations simultansously gives the general solution to the 2D problem. 
+Solving these two equations simultansously gives the general solution to the 2D problem.
 \be
-U(x,t) = \half\left[\phi(x-ct)+\phi(x+ct)\right] + \frac{1}{2c} \int_{x+t}^{x+ct} dy \; \psi(y) 
+U(x,t) = \half\left[\phi(x-ct)+\phi(x+ct)\right] + \frac{1}{2c} \int_{x+t}^{x+ct} dy \; \psi(y)
 \ee
 
 This can be easily generalized to the 3D case, U(x,y,z,t)
@@ -126,5 +127,104 @@ Assuming $\rho$=constant within our interval $\Delta$x then
 \ee
 
 \subsection{Solving This Equaiton}
+$\rho_t(x) =\rho(x,t)$ with initial conditions $\rho_{t=0}(x) = \rho_0(x)$.
+
+Turns out the solution is a Gaussian
+\be
+\rho_t(x) = \frac{1}{\sqrt{2\pi \sigma^2t}} \exp\left[-\frac{x^2}{2\sigma^2t}\right]
+\ee
+
+In the limit of t=0, the Gaussian becomes a Delta function.
+%need to finish/show this proof
+\be
+\ii dx\; \delta(x)f(x) = f(0)
+\ee
+
+
+The Delta function can also be defined as
+\be
+\int_{-\epsilon}^\epsilon dx\; \delta(x)f(x) = f(0) \xrightarrow{\text{$\epsilon=0$}} f(0) \int_{-\epsilon}^\epsilon dx\; \delta(x) = 1
+\ee
+
+In the limit of $\epsilon$ going to 0 we have $\epsilon >> \sqrt{2\sigma^2t}$, therefore
+\be
+\int_{-\epsilon}^\epsilon dx\; \rho_t(x) \rightarrow 1
+\ee
+
+Let g define a Gaussian $g_t(x)$ (is a distribution).
+\be
+\ii dx\; g_t(x) = \ii dx \; g_0(x)
+\ee
+
+This is conservation of mass, integrals over space must be constant.
+\be
+\ii dx\; x\; g_t(x) = 0
+\ee
+
+Due to symmetry gaussian integral is 0 for the first moment.
+\be
+\ii dx\; x^2\; g_t(x) = \sigma^2t
+\ee
+
+The second moment gives a broader gaussian (grows linear wrt t).
+Therefore the rmsd is $\sqrt{t}$ this is due to the diffusion process.
+
+
+So for a delta function initial condiiton you get a simple solution of a Gaussian.
+
+What about a general initial condition?
+
+Theorem:
+This differential equation is a special case if $\rho_0(x)=\phi(x)$, then
+\be
+\rho_t(x) = \ii dy\; \phi(y)g_t(x-y)
+\ee
+
+Apply the operator (in parenthesis) to the function $\rho_t(x)$
+\be
+\left(\prt - \frac{\sigma^2}{2} \prxs \right)\rho_t(x) = \ii dy\;\left[\prt - \frac{\sigma^2}{dx^2}g_t(x-y) \right] \phi(y)
+\ee
+
+The RHS is a soln. to a differential equation with initial condiiton $\delta(x-y)$.
+At t=0, delta function is 0 or 1 therefore
+\be
+\ii \left( \prt - \frac{\sigma^2}{dy^2} g_t(x-y) \right)\phi(y)dy= \xrightarrow{\text{t=0}} \phi(x)
+\ee
+
+\subsection{Schrodinger}
+TISE
+\be
+\left(\widehat{H} - E_k \right) \psi_k =0 \Rightarrow \widehat{H}\psi = E\psi
+\ee
+
+Where $\widehat{H} = -\nabla^2 + U(r)$.
+
+The TDSE is given by
+\be
+i \prt \psi = \widehat{H}\psi
+\ee
+
+If H is not a function of t then it is seperable.
+\be
+\psi(r,t) = \exp\left[i\widehat{H}t\right]\psi(r,0)
+\ee
+
+This is informative but it is not a solution.
+If H is not a function of t then $e^{i\widehat{H}T}$ is equivalent to the
+eigenvalue problem of TISE $\widehat{H}\psi = E\psi$.
+
+If this is the case we can do eigendecomposition.
+\be
+\begin{split}
+e^{i\widehat{H}t} &= \sum_k c^{iE_kt}\ket{\psi_k}\bra{\psi_k}\\
+\psi)r,t) &= e^{i\widehat{H}t}\psi(r,0)\\
+&= \sum_{k=1}^\infty e^{iE_kt}\braket{\psi_k|\psi_0}\psi_k(r)
+\end{split}
+\ee
+
+In the gevinning of class we did not use seperability the wave equation was simple and we guessed a solution.
+Now we have a seperabel pde (second order) not simple, so we use seperability and just get an infinite sum to solve. 
+
+
 
 \end{document}
