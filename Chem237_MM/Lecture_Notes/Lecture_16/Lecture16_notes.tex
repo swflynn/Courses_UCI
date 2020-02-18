@@ -314,31 +314,32 @@ You may wonder why the position and momenta do not look sinusoidal. This is beca
 
 
 \subsection{Explicit 3D Example}
-For another example consider a 3D Potential
+For another example, consider a 3D Potential,
 \be
 \begin{split}
 V(x,y,z):&= \left(x-y\right)^2 + \left(x+y\right)^2 + \left(z-x\right)^2\\
-&= 3x^2+2y^2+z^2-2xz
+&= 3x^2+2y^2+z^2-2xz .
 \end{split}
 \ee
 
 The forces are given by
-\be\nn
-    F(x,y) = -\nabla V(x,y,z) = \begin{bmatrix}
+\be
+  F(x,y,z) = -\nabla V(x,y,z) =
+  \begin{bmatrix}
     \left(-\frac{\pd V}{\pd x}\right)_{y,z}\\
     \left(-\frac{\pd V}{\pd y}\right)_{x,z}\\
     \left(-\frac{\pd V}{\pd z}\right)_{x,y}
-         \end{bmatrix}
-         = \begin{bmatrix}
-             -2(3x-z) \\
-             -4y  \\
-             -2(z-x) \\
-         \end{bmatrix}
+  \end{bmatrix}
+  = \begin{bmatrix}
+    -2(3x-z) \\
+    -4y  \\
+    -2(z-x) \\
+  \end{bmatrix}
 \ee
 
 And the associated Hessian,
 \be
-\text{Hessian} = \begin{bmatrix}
+\bK = \begin{bmatrix}
 \frac{\pd^2 V}{\pd x^2} & \frac{\pd^2 V}{\pd x\pd y} &\frac{\pd^2 V}{\pd x\pd z} \\
 \frac{\pd^2 V}{\pd y\pd x} & \frac{\pd^2 V}{\pd y^2} &\frac{\pd^2 V}{\pd y\pd z} \\
 \frac{\pd^2 V}{\pd z\pd x} & \frac{\pd^2 V}{\pd z \pd y} &\frac{\pd^2 V}{\pd z^2} \\
@@ -349,24 +350,25 @@ And the associated Hessian,
 \end{bmatrix}
 \ee
 
-The problem can  be simplified if we consider the Hamiltonian
+The problem can be simplified if we consider the Hamiltonian,
 \be
 \begin{split}
-\widehat{H}&=
-\frac{P_x^2}{2m_1}+\frac{P_y^2}{2m_2}+\frac{P_z^2}{2m_3}+3x^2+2y^2+z^2-2xz\\
-&=\frac{P_y^2}{2m_2}+2y^2+\frac{P_x^2}{2m_1}+\frac{P_z^2}{2m_3}+3x^2+z^2-2xz\\
+\widehat{H}&= \widehat{T} + \widehat{V} \\
+&= \frac{P_x^2}{2m_1}+\frac{P_y^2}{2m_2}+\frac{P_z^2}{2m_3}+3x^2+2y^2+z^2-2xz\\
+&= \left( \frac{P_y^2}{2m_2}+2y^2 \right) + \left( \frac{P_x^2}{2m_1}+\frac{P_z^2}{2m_3}+3x^2+z^2-2xz \right)\\
 &= H_y + H_{xz}
 \end{split}
 \ee
-With $H_y:=\frac{P_y^2}{2m_2}+2y^2$ and $H_{xz}:=
+with $H_y:=\frac{P_y^2}{2m_2}+2y^2$ and $H_{xz}:=
 \frac{P_x^2}{2m_1}+\frac{P_z^2}{2m_3}+3x^2+z^2-2xz$.
-Where $H_y$ is just a 1D QHO:
+We can see that $H_y$ is just a 1D Quantum Harmonic Oscillator which has a well-known solution,
 \be
-H_y = \hbar \omega_y\left(n_y+\half\right)\;\bigg|\; \omega_y=\left(\frac{k_y}{m_2}\right)^{\nhalf}
+E_y = \hbar \omega_y\left(n_y+\half\right)\;\bigg|\; \omega_y=\left(\frac{k_y}{m_2}\right)^{\nhalf} .
 \ee
-For the given system $k_y=4$.
+where $k_y=4$.
 
-We can find an expression for the $H_{xy}$ energy using normal modes.
+We can decouple the degrees of freedom in $H_{xy}$ using normal modes.
+The hessian associated with this 2D system is,
 \be
 \bK = \begin{bmatrix}
 \frac{\pd^2 V}{\pd x^2} &\frac{\pd^2 V}{\pd x\pd z} \\
@@ -376,39 +378,38 @@ We can find an expression for the $H_{xy}$ energy using normal modes.
 -2 & 2\\
 \end{bmatrix}
 \ee
-
-For convenience let the masses all be equal $m_1=m_2=m_3=m$ the mass-scaled
-Hessian ($\bKt$) then reads
+For convenience let the masses all be equal $m_1=m_2=m_3=m$, so the mass-scaled
+Hessian ($\bK'$) then reads
 \be
-\bKt= \begin{bmatrix}
-\frac{6}{m} & -2\\
--2 & \frac{2}{m}
+\bK'= \begin{bmatrix}
+\frac{6}{m} & -\frac{2}{m}\\
+-\frac{2}{m} & \frac{2}{m}
 \end{bmatrix}
 \ee
-
 The normal modes are determined from solving the eigenvalue problem.
 \be
-\det\left(\bKt-\lambda\bI\right)=
+\det\left(\bK' - \lambda \textbf{I} \right)=
 \begin{bmatrix}
-\frac{6}{m}-\lambda & -2\\
--2 & \frac{2}{m}-\lambda
-\end{bmatrix} = \left(\frac{6}{m}-\lambda\right) \left(\frac{2}{m}-\lambda\right)-4 = 0
+\frac{6}{m}-\lambda & -\frac{2}{m}\\
+-\frac{2}{m} & \frac{2}{m}-\lambda
+\end{bmatrix} = \left(\frac{6}{m}-\lambda\right) \left(\frac{2}{m}-\lambda\right) - \frac{4}{m^2} = 0
 \ee
-The subsequent eigenvalues
+The subsequent eigenvalues give us the normal mode frequencies.
 \be
 \begin{split}
-0 &=\lambda^2-\frac{8}{m}+\frac{12}{m^2}-4 \\
-\lambda_1&=\frac{4}{m} + \frac{2\sqrt{1+m^2}}{m}\\
-\lambda_2&=\frac{4}{m} - \frac{2\sqrt{1+m^2}}{m}\\
+\lambda^2-\frac{8}{m} \lambda + \frac{8}{m^2} &= 0 \\
+\lambda_1&=\frac{4 + 2 \sqrt{2}}{m}\\
+\lambda_2&=\frac{4 - 2 \sqrt{2}}{m}\\
 \end{split}
 \ee
-
-Therefore the Analytic expression for our enery is given by the sum of these
-two Hamiltonians
+So the energy $E_{xz}$ can be written as a sum of the normal mode energies.
+\be
+E_{xz} = \hbar \left( \frac{4 + 2 \sqrt{2}}{m} \right) \left( n_x + \half \right) + \hbar \left( \frac{4 - 2 \sqrt{2}}{m} \right) \left( n_z + \half \right)
+\ee
+Therefore the analytic expression for our enery is given by the sum of the energies, $E_{x,y,z} = E_y + E_{xz}$.
 \be
 E_{x,y,z} = \hbar\left[\left(\frac{4}{m}\right)^{\nhalf} \left(n_y+\half \right) +
-\frac{4+2\sqrt{1+m^2}}{m}\left(n_x+\half\right) + \frac{4-
-2\sqrt{1+m^2}}{m}\left(n_z+\half\right)\right]
+\frac{4 + 2 \sqrt{2}}{m}\left(n_x+\half\right) + \frac{4 - 2 \sqrt{2}}{m}\left(n_z+\half\right) \right]
 \ee
 where $n_i=0,1,2,\dots$
 
